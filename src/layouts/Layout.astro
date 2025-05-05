@@ -1,22 +1,63 @@
+---
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/700.css';
+
+import { ClientRouter } from 'astro:transitions';
+
+import '@styles/global.css';
+import { fixedTitle } from '@consts/pagesTitle';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title = fixedTitle } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="description" content="Soporte Informático y Desarrollo de Aplicaciones Web" />
+
+    <meta property="og:url" content="https://www.svtech.cl" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sv Tech" />
+    <meta
+      property="og:description"
+      content="Soporte Informático y Desarrollo de Aplicaciones Web"
+    />
+    <meta property="og:image" content="https://www.svtech.cl/og.jpg" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Sv Tech" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@svtech" />
+    <meta name="twitter:creator" content="@svtech" />
+    <meta name="twitter:title" content="Soporte Informático y Desarrollo de Aplicaciones Web" />
+    <meta
+      name="twitter:description"
+      content="Evento de boxeo aficionado entre streamers y creadores de contenido, organizado por Ibai Llanos"
+    />
+
+    <ClientRouter />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
