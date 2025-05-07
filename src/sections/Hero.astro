@@ -1,0 +1,79 @@
+---
+import { SOCIAL } from '@consts/social';
+import type { Social } from '@types/social';
+---
+
+<section>
+  <div class="flex w-full flex-col items-center justify-center">
+    <p class="text-secondary-size text-tertiary relative font-medium">
+      Transformando ideas en realidades digitales
+    </p>
+
+    <h1
+      class="text-secondary flex flex-col items-center justify-center pb-12 pt-8 text-6xl font-bold uppercase"
+    >
+      Soporte Informático
+      <span class="text-primary">Desarrollo Web</span>
+    </h1>
+
+    <p class="text-subTitle text-center">
+      Comprometidos con la innovación y el uso de las nuevas <br />
+      tecnologías, para entregar soluciones de calidad
+    </p>
+  </div>
+
+  <div class="flex gap-8 pb-24 pt-10">
+    {
+      SOCIAL.map(({ url, image, name, label }: Social) => (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={name}
+          title={label}
+          class="flex items-center justify-center transition-transform duration-300 will-change-transform hover:scale-110"
+        >
+          <image.logo width={image.width} height={image.width} />
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="relative flex items-center justify-center gap-8">
+    <a href="/#contact" class="btn bg-primary hover:shadow-primary hover:scale-105 hover:shadow-md">
+      Contáctanos
+    </a>
+
+    <a
+      href="/#service"
+      class="btn hover:shadow-primary bg-transparent hover:scale-105 hover:shadow-md"
+      >Ver Servicios</a
+    >
+  </div>
+</section>
+
+<style>
+  section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-secondary);
+    border-radius: 8px;
+    border-width: 1px;
+    padding: 8px;
+    width: 200px;
+    height: 47px;
+    border-color: var(--color-primary);
+    will-change: transform;
+    transition-duration: 300ms;
+  }
+</style>
