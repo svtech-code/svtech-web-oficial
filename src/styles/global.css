@@ -16,18 +16,14 @@
 
 html,
 body {
-  /* font-family: "Poppins", sans-serif; */
   font-family: "Poppins", sans-serif;
   transition: background-color 1000ms;
   background: linear-gradient(180deg, #001217, #00252D);
   width: 100vw;
   height: 100vh;
-  color: #fff;
+  color: var(--color-secondary);
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr auto ;
 }
 
-main {
-  padding: 0 136px;
-}
