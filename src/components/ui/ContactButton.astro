@@ -1,0 +1,51 @@
+---
+
+---
+
+<a
+  href="#contact"
+  class="hover:shadow-tertiary relative flex w-32 items-center justify-center overflow-hidden rounded-lg p-2 text-lg transition-all duration-500 will-change-transform hover:scale-105 hover:shadow-sm"
+  aria-label="Boton para ir a contactos"
+>
+  Contacto
+</a>
+
+<style>
+  @reference "@styles/global.css";
+
+  a {
+    @apply from-primary to-primary bg-gradient-to-r via-[#00D0FF];
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  a::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    @apply via-primary/40 bg-gradient-to-r from-transparent to-transparent;
+    transform: rotate(30deg);
+    animation: shine 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) rotate(30deg);
+    }
+    100% {
+      transform: translateX(100%) rotate(30deg);
+    }
+  }
+</style>
