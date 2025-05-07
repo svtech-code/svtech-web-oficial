@@ -1,0 +1,104 @@
+---
+
+import Logo from "@assets/logo.svg"
+
+---
+
+<footer class="relative min-h-72 w-full bg-black/50">
+  <section class="relative w-full flex flex-col items-center justify-center px-32">
+    <div class="w-full flex justify-between gap-8">
+      <a
+        href="/"
+        class="w-1/3">
+        <Logo width={390} height={200}/>
+      </a>
+
+      <nav class="w-2/3 flex gap-24 justify-around pt-5">
+        <ul>
+          <h3>Enlaces</h3>
+          <li>Home</li>
+          <li>Servicios</li>
+          <li>Proyectos</li>
+          <li>Nosotros</li>
+          <li>Contacto</li>
+        </ul>
+
+        <ul>
+          <h3>Servicios</h3>
+          <li>Soporte Informático</li>
+          <li>Desarrollo Web</li>
+          <li>Consultoría TI</li>
+          <li>Administración Hosting</li>
+          <li>Bases de datos</li>
+        </ul>
+
+        <ul>
+          <h3>Contacto</h3>
+          <li>Soporte Informático</li>
+          <li>Desarrollo Web</li>
+          <li>Consultoría TI</li>
+          <li>Administración Hosting</li>
+          <li>Bases de datos</li>
+        </ul>
+      </nav>
+  
+    </div>
+
+    <div class="relative flex w-full items-center justify-center py-2">
+      <span class={`bg-tertiary/40 h-[3px] w-full block relative overflow-hidden`}>
+        <div class="dot"></div>
+      </span>
+    </div>
+
+    <p class="text-center">
+      Copyright &copy; {new Date().getFullYear()} SV TECH
+      <span aria-hidden="true" class="hidden md:inline">|</span>
+      <br aria-hidden="true" class="block md:hidden" />
+      Todos los derechos reservados.
+    </p>
+  </section>
+</footer>
+
+<style>
+
+  h3 {
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  li {
+    transform-origin: left;
+    transition-duration: 300ms;
+    will-change: transform;
+  }
+
+  li:hover {
+    scale: 1.2;
+  }
+
+  .dot {
+    width: 10px; /* Círculo más grande para sobresalir de la línea */
+    height: 10px;
+    background-color: var(--color-tertiary);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: moveDot 8s ease-in-out infinite;
+    box-shadow: 0 0 15px var(--color-secondary), 
+                -10px 0 10px var(--color-primary);
+  }
+
+  @keyframes moveDot {
+    0% {
+      left: 0%; /* Empieza fuera de la barra */
+    }
+    50% {
+      left: 100%; /* Termina fuera del lado derecho */
+    }
+    100% {
+      left: 0%; /* Vuelve al inicio */
+    }
+  }
+</style>
