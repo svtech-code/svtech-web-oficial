@@ -14,16 +14,67 @@
   --text-secondary-size: 22px;
 }
 
+@layer {
+  /* ::-webkit-scrollbar { */
+  /*   width: 8px; */
+  /* } */
+
+
+  /* ::-webkit-scrollbar-thumb { */
+  /*   @apply bg-primary; */
+  /*   border-radius: 4px; */
+  /* } */
+
+  /* ::-weblit-scrollbar-thumb:hover { */
+  /*   background-color: var(--color-primary); */
+  /* } */
+
+  /* ::-webkit-scrollbar-track { */
+  /*   background-color: var(--color-primary-light); */
+  /*   border: 1px solid #fff; */
+  /*   border-radius: 3px; */
+  /* } */
+  /**/
+  /* ::-webkit-scrollbar-thumb { */
+  /*   background-color: #ff0593a8; */
+  /*   border: 1px solid #fff; */
+  /*   border-radius: 3px; */
+  /* } */
+  /**/
+  /* ::-webkit-scrollbar-thumb:hover { */
+  /*   background-color: var(--color-primary); */
+  /* } */
+
+  /* * { */
+  /*   scrollbar-width: inherit; */
+  /*   scrollbar-color: var(--color-primary) var(--color-secondary); */
+  /* } */
+}
+
 html,
 body {
   font-family: "Poppins", sans-serif;
   transition: background-color 1000ms;
   background: linear-gradient(180deg, #001217, #00252D);
+  position: relative;
   width: 100vw;
   height: 100vh;
   color: var(--color-secondary);
   overflow-x: hidden;
   display: grid;
-  grid-template-rows: 1fr auto ;
+  grid-template-rows: 1fr auto;
+  scroll-behavior: smooth;
+  background-attachment: fixed;
+  z-index: 0;
 }
 
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #001217, #00252D);
+  z-index: -1;
+}
