@@ -1,24 +1,24 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --color-primary: #0096B8;
-  --color-secondary: #FFFFFF;
-  --color-tertiary: #E77400;
+  --color-primary: #0096b8;
+  --color-secondary: #ffffff;
+  --color-tertiary: #e77400;
 
   /* color gradient */
   --color-gradient-primary: #001217;
-  --color-gradient-secondary: #00252D;
+  --color-gradient-secondary: #00252d;
 
   /* tamaño de las fuentes */
   --text-subTitle: 26px;
   --text-secondary-size: 22px;
 }
 
+
 @layer {
   /* ::-webkit-scrollbar { */
   /*   width: 8px; */
   /* } */
-
 
   /* ::-webkit-scrollbar-thumb { */
   /*   @apply bg-primary; */
@@ -51,17 +51,40 @@
   /* } */
 }
 
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+
 html,
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   transition: background-color 1000ms;
-  background: linear-gradient(180deg, #001217, #00252D);
+  background: linear-gradient(180deg, #001217, #00252d);
   position: relative;
   width: 100vw;
   height: 100vh;
   color: var(--color-secondary);
   overflow-x: hidden;
   display: grid;
+  place-items: center;
   grid-template-rows: 1fr auto;
   scroll-behavior: smooth;
   background-attachment: fixed;
@@ -75,6 +98,6 @@ html::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(180deg, #001217, #00252D);
+  background: linear-gradient(180deg, #001217, #00252d);
   z-index: -1;
 }
