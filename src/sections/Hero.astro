@@ -1,6 +1,6 @@
 ---
-import { SOCIAL } from '@consts/social';
-import type { Social } from '@types/social';
+import { SOCIAL } from 'consts/social';
+import type { Social } from 'types/social';
 ---
 
 <section>
@@ -22,9 +22,10 @@ import type { Social } from '@types/social';
     </p>
   </div>
 
+  <!-- componentizar -->
   <div class="flex gap-8 pb-24 pt-10">
     {
-      SOCIAL.map(({ url, image, name, label }: Social) => (
+      SOCIAL.map(({ url, icon, name, label }: Social) => (
         <a
           href={url}
           target="_blank"
@@ -33,13 +34,14 @@ import type { Social } from '@types/social';
           title={label}
           class="flex items-center justify-center transition-transform duration-300 will-change-transform hover:scale-110"
         >
-          <image.logo width={image.width} height={image.width} />
+          <icon.svg width={icon.width} height={icon.width} />
         </a>
       ))
     }
   </div>
 
   <div class="relative flex items-center justify-center gap-8">
+    <!-- conponentizar -->
     <a href="/#contact" class="btn bg-primary hover:shadow-primary hover:scale-105 hover:shadow-md">
       Contáctanos
     </a>
@@ -61,6 +63,8 @@ import type { Social } from '@types/social';
     justify-content: center;
     height: 100vh;
     min-height: 900px;
+    width: 100vw;
+    max-width: 1200px;
   }
 
   .btn {
