@@ -1,0 +1,11 @@
+---
+interface Props {
+  subTitle: string;
+}
+
+const { subTitle } = Astro.props;
+---
+
+<h3 class="text-secondary-size text-primary max-w-[50rem] py-5 text-center font-medium">
+  {subTitle}
+</h3>
