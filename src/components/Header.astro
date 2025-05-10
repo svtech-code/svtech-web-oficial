@@ -1,18 +1,20 @@
 ---
-import Logo from '@assets/logo.svg';
+import Logo from 'assets/logo.svg';
 
-import { MENU } from '@consts/menu';
+import { MENU } from 'consts/menu';
 import ItemNav from './ui/ItemNav.astro';
 import ContactButton from './ui/ContactButton.astro';
 ---
 
-<header class="fixed top-0 z-50 h-20 w-full select-none p-2 transition-colors duration-300">
-  <nav class="flex items-center rounded-[14px] px-32">
+<header
+  class="fixed top-8 z-50 flex h-24 w-full select-none justify-center transition-colors duration-300"
+>
+  <nav class="flex w-full max-w-[1200px] items-center">
     <a
       href="/"
       class="transition-all duration-500 will-change-transform hover:scale-105 hover:drop-shadow-[1px_1px_1px_#E77400]"
     >
-      <Logo width={140} height={73} />
+      <Logo width={150} height={75} />
     </a>
 
     <div class="hidden flex-1 justify-end gap-6 lg:flex">
@@ -22,5 +24,3 @@ import ContactButton from './ui/ContactButton.astro';
     </div>
   </nav>
 </header>
-
-
