@@ -1,6 +1,5 @@
-type SocialId = "x" | "instagram" | "whatsApp" | "linkedin" | "discord" | "email";
-type SocialName = "X" | "Instagram" | "WhatsApp" | "LinkedIn" | "Discord" | "Email";
-
+type SocialId = 'x' | 'instagram' | 'whatsApp' | 'linkedin' | 'discord' | 'email';
+type SocialName = 'X' | 'Instagram' | 'WhatsApp' | 'LinkedIn' | 'Discord' | 'Email';
 
 export interface Social {
   id: SocialId;
@@ -8,8 +7,8 @@ export interface Social {
   url: string;
   label: string;
   followers?: string;
-  image: {
-    logo: any;
+  icon: {
+    svg: any;
     width: number;
     height: number;
   };
