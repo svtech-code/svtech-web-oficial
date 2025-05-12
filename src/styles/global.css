@@ -72,6 +72,23 @@
   }
 }
 
+@keyframes moveDot {
+  0% {
+    left: 0%;
+    /* Empieza fuera de la barra */
+  }
+
+  50% {
+    left: 100%;
+    /* Termina fuera del lado derecho */
+  }
+
+  100% {
+    left: 0%;
+    /* Vuelve al inicio */
+  }
+}
+
 
 html,
 body {
