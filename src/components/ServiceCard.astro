@@ -1,43 +1,46 @@
 ---
 interface Props {
-  icon?: any;
+  icon: {
+    svg: any;
+    width: number;
+    height: number;
+  };
   title: string;
   description: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, icon } = Astro.props;
 ---
 
 <article
-  class="border-primary shadow-primary/80 relative flex w-full max-w-[400px] flex-col rounded-2xl border p-7 shadow-sm transition-shadow duration-300 hover:shadow-lg"
+  class="border-primary shadow-primary/80 group relative flex w-full max-w-[400px] flex-col overflow-hidden rounded-2xl border p-7 shadow-sm transition-shadow duration-300 hover:shadow-lg"
 >
-  <header class="text-secondary-size text-primary font-semibold">
+  <header
+    class="text-secondary-size text-primary relative flex flex-col items-start gap-2 font-semibold"
+  >
+    <div
+      class="bg-tertiary/10 group-hover:bg-tertiary/40 rounded-xl p-2 transition-all duration-500 will-change-transform group-hover:scale-105"
+    >
+      <icon.svg width={icon.width} height={icon.height} />
+    </div>
     <h3>{title}</h3>
   </header>
 
+  <div
+    class="blur-xs absolute -right-36 -top-0 -z-10 rotate-45 scale-150 opacity-0 transition-all duration-500 will-change-transform group-hover:right-4 group-hover:top-4 group-hover:opacity-100"
+  >
+    <icon.svg width={100} height={100} />
+  </div>
+
   <section class="pb-8 pt-4">
-    <p class="line-clamp-3 font-medium">{description}</p>
+    <p class="line-clamp-3 font-normal">{description}</p>
   </section>
 
   <footer>
     <button
-      aria-label=`Botón para ver más sobre el servicio ${title}`
-      class="text-tertiary origin-left cursor-pointer font-medium transition-transform duration-300 will-change-transform hover:scale-105"
+      aria-label={`Botón para ver más sobre el servicio ${title}`}
+      class="text-tertiary/60 group-hover:text-tertiary origin-left cursor-pointer font-medium transition-transform duration-300 will-change-transform hover:scale-105"
       >Saber más</button
     >
   </footer>
 </article>
-
-<!-- <style> -->
-<!--   article { -->
-<!--     position: relative; -->
-<!--     display: flex; -->
-<!--     justify-content: center; -->
-<!--     align-items: center; -->
-<!--     border: 1px solid var(--color-primary); -->
-<!--     border-radius: 16px; -->
-<!--     transition: all 300ms ease-in-out; -->
-<!--     will-change: transform; -->
-<!--     padding: 24px 16px; -->
-<!--   } -->
-<!-- </style> -->
