@@ -1,24 +1,26 @@
 ---
 import ServiceCard from 'components/ServiceCard.astro';
-import SubTitle from 'components/ui/SubTitle.astro';
-import Title from 'components/ui/Title.astro';
 import { subTitleService, titleSerive } from 'consts/pagesTitle';
 
 import { SERVICE } from 'consts/service';
 import type { Service } from 'types/service';
 ---
 
-<section class="relative flex w-full max-w-[1200px] flex-col items-center justify-center">
-  <header>
-    <Title title={titleSerive} />
-    <SubTitle subTitle={subTitleService} />
-  </header>
+<section class="relative flex w-full flex-col items-center justify-center">
+  <div class="relative flex max-w-[1200px] flex-col items-center justify-center">
+    <header class="relative flex max-w-[50rem] flex-col items-center justify-center">
+      <h2 class="text-5xl font-bold">{titleSerive}</h2>
+      <h3 class="text-secondary-size text-primary py-5 text-center font-medium">
+        {subTitleService}
+      </h3>
+    </header>
 
-  <section class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20">
-    {
-      SERVICE.map(({ title, description, icon }: Service) => (
-        <ServiceCard title={title} description={description} icon={icon} />
-      ))
-    }
-  </section>
+    <section class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20">
+      {
+        SERVICE.map(({ title, description, icon }: Service) => (
+          <ServiceCard title={title} description={description} icon={icon} />
+        ))
+      }
+    </section>
+  </div>
 </section>
