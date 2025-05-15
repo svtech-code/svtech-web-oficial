@@ -103,6 +103,9 @@ body {
   display: grid;
   place-items: center;
   grid-template-rows: 1fr auto;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
   scroll-behavior: smooth;
   background-attachment: fixed;
   z-index: 0;
