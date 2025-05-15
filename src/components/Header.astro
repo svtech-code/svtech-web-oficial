@@ -7,9 +7,7 @@ import ContactButton from './ui/ContactButton.astro';
 ---
 
 <header class="fixed top-0 z-50 flex h-24 w-full select-none justify-center duration-300 xl:top-4">
-  <nav
-    class="flex w-full items-center p-4 backdrop-blur-2xl duration-300 lg:max-w-[1200px] lg:rounded-2xl"
-  >
+  <nav class="flex w-full items-center p-4 duration-300 lg:max-w-[1200px] lg:rounded-2xl">
     <a href="/" class="duration-500 hover:scale-105 hover:drop-shadow-[1px_1px_1px_#E77400]">
       <Logo width={150} height={75} />
     </a>
@@ -22,26 +20,26 @@ import ContactButton from './ui/ContactButton.astro';
   </nav>
 </header>
 
-<!-- <div data-target class="absolute top-[100px]"></div> -->
+<div data-target class="absolute top-[100px]"></div>
 
 <script>
-  // const target = document.querySelector('[data-target]');
-  // const navBar = document.querySelector('nav');
-  //
-  // const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
-  //   if (entry.isIntersecting) {
-  //     navBar?.classList.add('bg-red-200');
-  //   } else {
-  //     navBar?.classList.remove('bg-red-200');
-  //   }
-  // };
-  //
-  // const createObserver = (target: Element, callback: IntersectionObserverCallback) => {
-  //   const observer = new IntersectionObserver(callback, { threshold: 0.5 });
-  //   observer.observe(target);
-  // };
-  //
-  // if (target) {
-  //   createObserver(target, handleIntersection);
-  // }
+  const target = document.querySelector('[data-target]');
+  const navBar = document.querySelector('nav');
+
+  const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
+    if (!entry.isIntersecting) {
+      navBar?.classList.add('backdrop-blur-2xl', 'bg-white/10', 'shadow-lg', 'shadow-black');
+    } else {
+      navBar?.classList.remove('backdrop-blur-2xl', 'bg-white/10', 'shadow-lg', 'shadow-black');
+    }
+  };
+
+  const createObserver = (target: Element, callback: IntersectionObserverCallback) => {
+    const observer = new IntersectionObserver(callback, { threshold: 0.5 });
+    observer.observe(target);
+  };
+
+  if (target) {
+    createObserver(target, handleIntersection);
+  }
 </script>
