@@ -1,12 +1,14 @@
+interface Technology {
+  icon: any;
+  label: string;
+}
+
 export interface Project {
   id: string;
   title: string;
-  description: string;
-  image: string;
-  tags: string[];
+  type: string;
+  image: any;
   date: string;
-  url?: string;
-  github?: string;
-  feature: boolean;
-  content: string;
+  status: boolean;
+  technology?: Technology[];
 }
