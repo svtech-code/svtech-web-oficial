@@ -7,6 +7,7 @@ import Customer from 'sections/Customer.astro';
 import Hero from 'sections/Hero.astro';
 import Project from 'sections/Project.astro';
 import Service from 'sections/Service.astro';
+import Why from 'sections/Why.astro';
 
 const title = 'Sv Tech';
 
@@ -16,8 +17,9 @@ export const prerender = true;
 <Layout title={title}>
   <Hero />
   <Service />
-  <About />
+  <Why />
   <Project />
+  <About />
   <Customer />
   <Contact />
 </Layout>
