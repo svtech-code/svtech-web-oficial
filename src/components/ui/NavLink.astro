@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+---
+
+<li class="relative ml-12 flex justify-start md:ml-0">
+  <a
+    class="text-primary hover:text-secondary relative flex items-center justify-center p-2 text-lg duration-300 will-change-transform hover:scale-105"
+    href={url}
+  >
+    {title}
+  </a>
+</li>
+
+<style>
+  a::before {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transform: translateX(-50%);
+    transform-origin: center;
+    transition: width 300ms ease-in-out;
+  }
+
+  a:hover::before {
+    width: 90%;
+  }
+</style>

@@ -1,45 +1,67 @@
 ---
-import Logo from 'assets/logo.svg';
-
-import { MENU } from 'consts/menu';
-import ItemNav from './ui/ItemNav.astro';
-import ContactButton from './ui/ContactButton.astro';
+import MobileMenu from './ui/MobileMenu.astro';
+import DesktopMenu from './ui/DesktopMenu.astro';
 ---
 
 <header class="fixed top-0 z-50 flex h-24 w-full select-none justify-center duration-300 xl:top-4">
-  <nav class="flex w-full items-center p-4 duration-300 lg:max-w-[1200px] lg:rounded-2xl">
-    <a href="/" class="duration-500 hover:scale-105 hover:drop-shadow-[1px_1px_1px_#E77400]">
-      <Logo width={150} height={75} />
-    </a>
-
-    <div class="hidden flex-1 justify-end gap-6 lg:flex">
-      {MENU.map(({ title, url }) => <ItemNav title={title} url={url} />)}
-
-      <ContactButton />
-    </div>
-  </nav>
+  <DesktopMenu />
+  <MobileMenu />
 </header>
 
 <div data-target class="absolute top-[100px]"></div>
 
 <script>
-  const target = document.querySelector('[data-target]');
-  const navBar = document.querySelector('nav');
+  const target = document.querySelector('[data-target]') as HTMLDivElement | null;
+  const navBar = document.querySelector('#desktop-menu') as HTMLElement | null;
+  const btnToggle = document.querySelector('#btn-menu') as HTMLButtonElement | null;
+  const mobileMenu = document.querySelector('#mobile-menu') as HTMLElement | null;
+  const mobileMenuLinks = mobileMenu?.querySelectorAll(
+    'ul li a',
+  ) as NodeListOf<HTMLAnchorElement> | null;
 
   const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
     if (!entry.isIntersecting) {
-      navBar?.classList.add('backdrop-blur-2xl', 'bg-white/10', 'shadow-lg', 'shadow-black');
+      navBar?.classList.remove('md:backdrop-blur-none', 'md:bg-transparent', 'md:shadow-none');
     } else {
-      navBar?.classList.remove('backdrop-blur-2xl', 'bg-white/10', 'shadow-lg', 'shadow-black');
+      navBar?.classList.add('md:backdrop-blur-none', 'md:bg-transparent', 'md:shadow-none');
     }
   };
 
   const createObserver = (target: Element, callback: IntersectionObserverCallback) => {
     const observer = new IntersectionObserver(callback, { threshold: 0.5 });
     observer.observe(target);
+    return () => observer.disconnect();
   };
 
+  let cleanupObserver: (() => void) | null = null;
+
   if (target) {
-    createObserver(target, handleIntersection);
+    cleanupObserver = createObserver(target, handleIntersection);
   }
+
+  btnToggle?.addEventListener('click', () => {
+    const isOpen = btnToggle?.classList.toggle('open');
+    btnToggle?.setAttribute('aria-expanded', `${isOpen}`);
+
+    if (isOpen) {
+      mobileMenu?.classList.add('w-full', 'sm:w-1/2');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+    } else {
+      mobileMenu?.classList.remove('w-full', 'sm:w-1/2');
+      mobileMenu?.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  mobileMenuLinks?.forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.remove('w-full', 'sm:w-1/2');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+      btnToggle?.classList.remove('open');
+      btnToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  window.addEventListener('beforeunload', () => {
+    cleanupObserver?.();
+  });
 </script>

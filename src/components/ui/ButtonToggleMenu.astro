@@ -1,0 +1,32 @@
+<button
+  id="btn-menu"
+  class="item-center group flex w-full flex-1 justify-end md:hidden"
+  aria-label="Abrir menú"
+  aria-expanded="false"
+>
+  <div class="flex h-6 w-8 flex-col justify-between">
+    <span class="bg-primary h-1 w-full rounded"></span>
+    <span class="bg-primary h-1 w-full rounded"></span>
+    <span class="bg-primary h-1 w-full rounded"></span>
+  </div>
+</button>
+
+<style>
+  button > div > span {
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  button.open > div > span:nth-child(1) {
+    transform: rotate(45deg) translateY(7px) translateX(7px);
+  }
+
+  button.open > div > span:nth-child(2) {
+    opacity: 0;
+  }
+
+  button.open > div > span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-7px) translateX(7px);
+  }
+</style>
