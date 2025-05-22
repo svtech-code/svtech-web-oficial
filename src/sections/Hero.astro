@@ -3,25 +3,29 @@ import { SOCIAL } from 'consts/social';
 import type { Social } from 'types/social';
 ---
 
-<section>
+<section id="home">
   <header class="flex max-w-full flex-col items-center justify-center">
-    <p class="text-secondary-size text-tertiary relative font-medium">
+    <p
+      class="md:text-secondary-size text-tertiary relative text-[12px] font-medium transition-all duration-300 sm:text-[16px]"
+    >
       Transformando ideas en realidades digitales
     </p>
 
-    <h1 class="text-secondary pb-12 pt-8 text-center text-6xl font-bold uppercase">
+    <h1
+      class="text-secondary pb-6 pt-4 text-center text-[24px] font-bold uppercase transition-all duration-300 sm:pb-12 sm:pt-8 sm:text-5xl md:text-6xl"
+    >
       Soporte Informático <br />
       <span class="text-primary">Desarrollo Web</span>
     </h1>
   </header>
 
-  <p class="text-subTitle text-center">
+  <p class="md:text-subTitle text-center text-[12px] transition-all duration-300 sm:text-[22px]">
     Comprometidos con la innovación y el uso de las nuevas <br />
     tecnologías, para entregar soluciones de calidad
   </p>
 
   <!-- componentizar -->
-  <div class="flex gap-8 pb-24 pt-10">
+  <div class="flex gap-4 pb-16 pt-4 sm:gap-8 sm:pb-24 sm:pt-10">
     {
       SOCIAL.map(({ url, icon, name, label }: Social) => (
         <a
@@ -32,21 +36,24 @@ import type { Social } from 'types/social';
           title={label}
           class="flex items-center justify-center transition-transform duration-300 will-change-transform hover:scale-110"
         >
-          <icon.svg width={icon.width} height={icon.width} />
+          <icon.svg class="w-[20px] sm:w-full" width={icon.width} height={icon.width} />
         </a>
       ))
     }
   </div>
 
-  <div class="relative flex items-center justify-center gap-8">
+  <div class="relative flex items-center justify-center gap-4 sm:gap-8">
     <!-- conponentizar -->
-    <a href="/#contact" class="btn bg-primary hover:shadow-primary hover:scale-105 hover:shadow-md">
+    <a
+      href="/#contact"
+      class="bg-primary border-primary hover:shadow-primary text-secondary flex h-[40px] w-[120px] items-center justify-center rounded-lg border p-2 text-[14px] duration-300 hover:scale-105 hover:shadow-md sm:h-[47px] sm:w-[200px] sm:text-[16px]"
+    >
       Contáctanos
     </a>
 
     <a
       href="/#service"
-      class="btn hover:shadow-primary bg-transparent hover:scale-105 hover:shadow-md"
+      class="text-secondary border-primary hover:shadow-primary flex h-[40px] w-[120px] items-center justify-center rounded-lg border bg-transparent p-2 text-[14px] duration-300 hover:scale-105 hover:shadow-md sm:h-[47px] sm:w-[200px] sm:text-[16px]"
       >Ver Servicios</a
     >
   </div>
@@ -62,20 +69,5 @@ import type { Social } from 'types/social';
     height: 100vh;
     min-height: 900px;
     width: 100vw;
-  }
-
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-secondary);
-    border-radius: 8px;
-    border-width: 1px;
-    padding: 8px;
-    width: 200px;
-    height: 47px;
-    border-color: var(--color-primary);
-    will-change: transform;
-    transition-duration: 300ms;
   }
 </style>
