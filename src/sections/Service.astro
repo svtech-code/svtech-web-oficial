@@ -6,19 +6,24 @@ import { SERVICE } from 'consts/service';
 import type { Service } from 'types/service';
 ---
 
-<section
-  id="services"
-  class="relative flex w-full scroll-mt-36 flex-col items-center justify-center"
->
-  <div class="relative flex max-w-[1200px] flex-col items-center justify-center">
-    <header class="relative flex max-w-[50rem] flex-col items-center justify-center">
-      <h2 class="text-5xl font-bold">{titleSerive}</h2>
-      <h3 class="text-secondary-size text-primary py-5 text-center font-medium">
+<section id="services" class="relative flex scroll-mt-36 flex-col items-center justify-center">
+  <div class="relative flex w-full max-w-[1200px] flex-col items-center justify-center">
+    <header class="relative flex w-full flex-col items-center justify-center">
+      <h2 class="text-2xl font-bold transition-all duration-300 sm:text-4xl md:text-5xl">
+        {titleSerive}
+      </h2>
+
+      <h3
+        class="md:text-secondary-size text-primary max-w-[54rem] px-12 py-5 text-center text-[12px] font-medium transition-all duration-300 sm:text-[16px] md:px-6"
+      >
         {subTitleService}
       </h3>
     </header>
 
-    <section class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20">
+    <!-- <section class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20"> -->
+    <section
+      class="relative flex w-full flex-wrap items-center justify-center gap-6 pb-32 pt-10 md:pt-20"
+    >
       {
         SERVICE.map(({ title, description, icon }: Service) => (
           <ServiceCard title={title} description={description} icon={icon} />

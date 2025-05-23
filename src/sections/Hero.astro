@@ -3,7 +3,7 @@ import { SOCIAL } from 'consts/social';
 import type { Social } from 'types/social';
 ---
 
-<section id="home">
+<section id="home" class="relative flex flex-col items-center justify-center h-[100dvh] w-[100dvw] min-h-[900px]">
   <header class="flex max-w-full flex-col items-center justify-center">
     <p
       class="md:text-secondary-size text-tertiary relative text-[12px] font-medium transition-all duration-300 sm:text-[16px]"
@@ -12,7 +12,7 @@ import type { Social } from 'types/social';
     </p>
 
     <h1
-      class="text-secondary pb-6 pt-4 text-center text-[24px] font-bold uppercase transition-all duration-300 sm:pb-12 sm:pt-8 sm:text-5xl md:text-6xl"
+      class="text-secondary pb-6 pt-4 text-center text-[30px] font-bold uppercase transition-all duration-300 sm:pb-12 sm:pt-8 sm:text-5xl md:text-6xl"
     >
       Soporte Informático <br />
       <span class="text-primary">Desarrollo Web</span>
@@ -36,7 +36,7 @@ import type { Social } from 'types/social';
           title={label}
           class="flex items-center justify-center transition-transform duration-300 will-change-transform hover:scale-110"
         >
-          <icon.svg class="w-[20px] sm:w-full" width={icon.width} height={icon.width} />
+          <icon.svg class="w-[25px] sm:w-full" width={icon.width} height={icon.width} />
         </a>
       ))
     }
@@ -59,15 +59,3 @@ import type { Social } from 'types/social';
   </div>
 </section>
 
-<style>
-  section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    min-height: 900px;
-    width: 100vw;
-  }
-</style>
