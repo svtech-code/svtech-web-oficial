@@ -4,82 +4,82 @@ import Logo from 'assets/logo.svg';
 
 <footer class="relative flex min-h-72 w-full items-center justify-center bg-black/50">
   <section class="relative flex w-full max-w-[1200px] flex-col items-center justify-center">
-    <div class="flex w-full justify-between gap-8">
-      <a href="/" class="flex">
-        <Logo width={390} height={200} />
-      </a>
+    <!-- <div class="flex w-full justify-between gap-8"> -->
+    <!--   <a href="/" class="flex"> -->
+    <!--     <Logo width={390} height={200} /> -->
+    <!--   </a> -->
+    <!---->
+    <nav class="flex flex-1 justify-around gap-14 pt-5">
+      <ul>
+        <h3>Enlaces</h3>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#about">Nosotros</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
 
-      <nav class="flex flex-1 justify-around gap-14 pt-5">
-        <ul>
-          <h3>Enlaces</h3>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Servicios</a></li>
-          <li><a href="#projects">Proyectos</a></li>
-          <li><a href="#about">Nosotros</a></li>
-          <li><a href="#contact">Contacto</a></li>
-        </ul>
+      <ul>
+        <h3>Servicios</h3>
+        <li>Soporte Informático</li>
+        <li>Desarrollo Web</li>
+        <li>Consultoría TI</li>
+        <li>Administración Hosting</li>
+        <li>Bases de datos</li>
+      </ul>
 
-        <ul>
-          <h3>Servicios</h3>
-          <li>Soporte Informático</li>
-          <li>Desarrollo Web</li>
-          <li>Consultoría TI</li>
-          <li>Administración Hosting</li>
-          <li>Bases de datos</li>
-        </ul>
+      <ul>
+        <h3>Contacto</h3>
+        <li>WhatsApp</li>
+        <li>Correo Electrónico</li>
+        <li>Linares, Maule. Chile.</li>
+      </ul>
+    </nav>
+     </div> 
 
-        <ul>
-          <h3>Contacto</h3>
-          <li>WhatsApp</li>
-          <li>Correo Electrónico</li>
-          <li>Linares, Maule. Chile.</li>
-        </ul>
-      </nav>
-    </div>
+     <div class="relative flex w-full items-center justify-center py-2"> 
+    <span class={`bg-tertiary/40 h-[3px] w-full block relative overflow-hidden`}>
+      <div class="dot"></div>
+    </span>
+     </div> 
 
-    <div class="relative flex w-full items-center justify-center py-2">
-      <span class={`bg-tertiary/40 h-[3px] w-full block relative overflow-hidden`}>
-        <div class="dot"></div>
-      </span>
-    </div>
-
-    <p class="text-center">
-      Copyright &copy; {new Date().getFullYear()} SV TECH
-      <span aria-hidden="true" class="hidden md:inline">|</span>
-      <br aria-hidden="true" class="block md:hidden" />
-      Todos los derechos reservados.
-    </p>
+     <p class="text-center"> 
+    Copyright &copy; {new Date().getFullYear()} SV TECH
+    <span aria-hidden="true" class="hidden md:inline">|</span>
+    <br aria-hidden="true" class="block md:hidden" />
+    Todos los derechos reservados.
+     </p> 
   </section>
 </footer>
 
-<style>
-  h3 {
-    padding-bottom: 8px;
-    text-transform: uppercase;
-    color: var(--color-primary);
-  }
-
-  li {
-    transform-origin: left;
-    transition-duration: 300ms;
-    will-change: transform;
-  }
-
-  li:hover {
-    scale: 1.2;
-  }
-
-  .dot {
-    width: 10px; /* Círculo más grande para sobresalir de la línea */
-    height: 10px;
-    background-color: var(--color-tertiary);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    animation: moveDot 8s ease-in-out infinite;
-    box-shadow:
-      0 0 15px var(--color-secondary),
-      -10px 0 10px var(--color-primary);
-  }
-</style>
+<!-- <style> -->
+<!--   h3 { -->
+<!--     padding-bottom: 8px; -->
+<!--     text-transform: uppercase; -->
+<!--     color: var(--color-primary); -->
+<!--   } -->
+<!---->
+<!--   li { -->
+<!--     transform-origin: left; -->
+<!--     transition-duration: 300ms; -->
+<!--     will-change: transform; -->
+<!--   } -->
+<!---->
+<!--   li:hover { -->
+<!--     scale: 1.2; -->
+<!--   } -->
+<!---->
+<!--   .dot { -->
+<!--     width: 10px; /* Círculo más grande para sobresalir de la línea */ -->
+<!--     height: 10px; -->
+<!--     background-color: var(--color-tertiary); -->
+<!--     border-radius: 50%; -->
+<!--     position: absolute; -->
+<!--     top: 50%; -->
+<!--     transform: translateY(-50%); -->
+<!--     animation: moveDot 8s ease-in-out infinite; -->
+<!--     box-shadow: -->
+<!--       0 0 15px var(--color-secondary), -->
+<!--       -10px 0 10px var(--color-primary); -->
+<!--   } -->
+<!-- </style> -->
