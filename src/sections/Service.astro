@@ -14,15 +14,14 @@ import type { Service } from 'types/service';
       </h2>
 
       <h3
-        class="md:text-secondary-size text-primary max-w-[54rem] px-12 py-5 text-center text-[12px] font-medium transition-all duration-300 sm:text-[16px] md:px-6"
+        class="md:text-secondary-size text-primary max-w-[54rem] px-10 py-5 text-center text-[12px] font-medium transition-all duration-300 sm:text-[16px] md:px-6"
       >
         {subTitleService}
       </h3>
     </header>
 
-    <!-- <section class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20"> -->
     <section
-      class="relative flex w-full flex-wrap items-center justify-center gap-6 pb-32 pt-10 md:pt-20"
+      class="md: relative flex w-full flex-col items-center justify-center gap-6 pb-32 pt-10 md:flex-row md:flex-wrap md:pt-20"
     >
       {
         SERVICE.map(({ title, description, icon }: Service) => (
