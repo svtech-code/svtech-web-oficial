@@ -1,67 +1,25 @@
 ---
-import MobileMenu from './ui/MobileMenu.astro';
-import DesktopMenu from './ui/DesktopMenu.astro';
+import NavbarButton from './ui/NavbarButton.astro';
+import NavbarDesktop from './ui/NavbarDescktop.astro';
+import NavbarMobile from './ui/NavbarMobile.astro';
 ---
 
-<header class="fixed top-0 z-50 flex h-24 w-full select-none justify-center duration-300 xl:top-4">
-  <DesktopMenu />
-  <MobileMenu />
+<!-- button for open menu mobile -->
+<NavbarButton />
+
+<header
+  class="fixed top-0 z-30 mx-auto flex h-20 w-full items-center justify-center duration-300 md:h-24 lg:top-4"
+>
+  <NavbarDesktop />
+  <NavbarMobile />
 </header>
 
-<div data-target class="absolute top-[100px]"></div>
+<div data-target class="absolute top-[60px]"></div>
 
 <script>
-  const target = document.querySelector('[data-target]') as HTMLDivElement | null;
-  const navBar = document.querySelector('#desktop-menu') as HTMLElement | null;
-  const btnToggle = document.querySelector('#btn-menu') as HTMLButtonElement | null;
-  const mobileMenu = document.querySelector('#mobile-menu') as HTMLElement | null;
-  const mobileMenuLinks = mobileMenu?.querySelectorAll(
-    'ul li a',
-  ) as NodeListOf<HTMLAnchorElement> | null;
+  import { functionHeader } from 'lib/function-header';
 
-  const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
-    if (!entry.isIntersecting) {
-      navBar?.classList.remove('md:backdrop-blur-none', 'md:bg-transparent', 'md:shadow-none');
-    } else {
-      navBar?.classList.add('md:backdrop-blur-none', 'md:bg-transparent', 'md:shadow-none');
-    }
-  };
-
-  const createObserver = (target: Element, callback: IntersectionObserverCallback) => {
-    const observer = new IntersectionObserver(callback, { threshold: 0.5 });
-    observer.observe(target);
-    return () => observer.disconnect();
-  };
-
-  let cleanupObserver: (() => void) | null = null;
-
-  if (target) {
-    cleanupObserver = createObserver(target, handleIntersection);
-  }
-
-  btnToggle?.addEventListener('click', () => {
-    const isOpen = btnToggle?.classList.toggle('open');
-    btnToggle?.setAttribute('aria-expanded', `${isOpen}`);
-
-    if (isOpen) {
-      mobileMenu?.classList.add('w-full', 'sm:w-1/2');
-      mobileMenu?.setAttribute('aria-hidden', 'true');
-    } else {
-      mobileMenu?.classList.remove('w-full', 'sm:w-1/2');
-      mobileMenu?.setAttribute('aria-hidden', 'false');
-    }
-  });
-
-  mobileMenuLinks?.forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.remove('w-full', 'sm:w-1/2');
-      mobileMenu?.setAttribute('aria-hidden', 'true');
-      btnToggle?.classList.remove('open');
-      btnToggle?.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  window.addEventListener('beforeunload', () => {
-    cleanupObserver?.();
+  document.addEventListener('astro:page-load', () => {
+    functionHeader();
   });
 </script>

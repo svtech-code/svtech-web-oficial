@@ -1,0 +1,21 @@
+---
+import { MENU } from 'consts/menu';
+import NavLink from "./NavLink.astro"
+---
+
+<div id="content-navbar-mobile" class="md:hidden w-0 fixed top-0 right-0 h-full bg-primary/20 duration-300">
+
+  <!-- nav mobile -->
+  <nav
+    id="navbar-mobile"
+    role="navigation"
+    aria-label="barra de navegación mobile"
+    aria-hidden="false"
+    aria-expanded="false"
+    class="fixed bg-primary/90 w-0 right-0 top-0 h-full duration-300 backdrop-blur-3xl"
+  >
+    <ul class="mt-6">
+      {MENU.map(({title, url}) => <NavLink title={title} url={url} />)} 
+    </ul>
+  </nav>
+</div>

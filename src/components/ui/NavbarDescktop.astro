@@ -1,0 +1,29 @@
+---
+import Logo from 'assets/Logo.svg';
+import { MENU } from 'consts/menu';
+import NavLink from './NavLink.astro';
+import NavbarContactButton from './NavbarContactButton.astro';
+---
+
+<div
+  id="content-navbar-desktop"
+  class="bg-gradient-secondary/80 relative flex h-full w-full max-w-[1200px] items-center p-8 shadow-lg shadow-black backdrop-blur-3xl duration-300 md:bg-transparent md:shadow-none md:backdrop-blur-none lg:rounded-2xl"
+>
+  <!-- logo de la web -->
+  <a href="/" class="cursor-pointer transition duration-300 hover:scale-105">
+    <Logo class="w-32 transition-all duration-300 md:w-40" />
+  </a>
+
+  <!-- nav desktop -->
+  <nav
+    id="navbar-desktop"
+    role="navigation"
+    aria-label="barra de navegación desktop"
+    class="hidden w-full justify-end md:flex"
+  >
+    <ul class="flex items-center justify-end gap-4 duration-300">
+      {MENU.map(({ title, url }) => <NavLink title={title} url={url} />)}
+      <NavbarContactButton />
+    </ul>
+  </nav>
+</div>
