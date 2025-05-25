@@ -10,111 +10,133 @@
   --color-gradient-secondary: #00252d;
 
   /* tamaño de las fuentes */
-  --text-subTitle: 26px;
-  --text-secondary-size: 22px;
+  /* --text-subTitle: 26px; */
+  /* --text-secondary-size: 22px; */
+  --text-title-size: 26px;
+  --text-subtitle-size: 22px;
 }
 
-
-@layer {
-  /* ::-webkit-scrollbar { */
-  /*   width: 8px; */
-  /* } */
-
-  /* ::-webkit-scrollbar-thumb { */
-  /*   @apply bg-primary; */
-  /*   border-radius: 4px; */
-  /* } */
-
-  /* ::-weblit-scrollbar-thumb:hover { */
-  /*   background-color: var(--color-primary); */
-  /* } */
-
-  /* ::-webkit-scrollbar-track { */
-  /*   background-color: var(--color-primary-light); */
-  /*   border: 1px solid #fff; */
-  /*   border-radius: 3px; */
-  /* } */
-  /**/
-  /* ::-webkit-scrollbar-thumb { */
-  /*   background-color: #ff0593a8; */
-  /*   border: 1px solid #fff; */
-  /*   border-radius: 3px; */
-  /* } */
-  /**/
-  /* ::-webkit-scrollbar-thumb:hover { */
-  /*   background-color: var(--color-primary); */
-  /* } */
-
-  /* * { */
-  /*   scrollbar-width: inherit; */
-  /*   scrollbar-color: var(--color-primary) var(--color-secondary); */
-  /* } */
-}
-
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% 0;
+@layer base {
+  /* Webkit Browsers (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 10px;
   }
 
-  100% {
-    background-position: 200% 0;
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-primary-light);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+    border: 2px solid var(--color-tertiary);
+  }
+
+  /* efecto hover */
+  ::-weblit-scrollbar-thumb:hover {
+    background-color: var(--color-primary);
+  }
+
+  /* firefox */
+  * {
+    scrollbar-color: var(--color-primary) var(--color-gradient-primary);
+    scrollbar-width: thin;
   }
 }
 
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(30deg);
+@layer utilities {
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
   }
 
-  100% {
-    transform: translateX(100%) rotate(30deg);
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) rotate(30deg);
+    }
+
+    100% {
+      transform: translateX(100%) rotate(30deg);
+    }
+  }
+
+  @keyframes moveDot {
+    0% {
+      left: 0%;
+      /* Empieza fuera de la barra */
+    }
+
+    50% {
+      left: 100%;
+      /* Termina fuera del lado derecho */
+    }
+
+    100% {
+      left: 0%;
+      /* Vuelve al inicio */
+    }
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .min-h-screen {
+    min-height: 100svh;
+  }
+
+  .h-screen {
+    height: 100svh;
+  }
+
+  @media (min-width: 768px) {
+    .min-h-screen {
+      min-height: 100vh;
+    }
+
+    .h-screen {
+      height: 100vh;
+    }
   }
 }
 
-@keyframes moveDot {
-  0% {
-    left: 0%;
-    /* Empieza fuera de la barra */
-  }
-
-  50% {
-    left: 100%;
-    /* Termina fuera del lado derecho */
-  }
-
-  100% {
-    left: 0%;
-    /* Vuelve al inicio */
-  }
+@font-face {
+  font-family: 'poppins';
+  src: url('/fonts/poppins-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
 }
 
-
-html,
-body {
-  font-family: 'Poppins', sans-serif;
-  transition: background-color 1000ms;
-  background: linear-gradient(180deg, #001217, #00252d);
-  position: relative;
-  width: 100dvw;
-  height: 100dvh;
-  color: var(--color-secondary);
-  overflow-x: hidden;
-  display: grid;
-  place-items: center;
-  grid-template-rows: 1fr auto;
-  scroll-behavior: smooth;
-  background-attachment: fixed;
-  z-index: 0;
+@font-face {
+  font-family: 'poppins';
+  src: url('/fonts/poppins-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
 }
 
-html::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(180deg, #001217, #00252d);
-  z-index: -1;
+@font-face {
+  font-family: 'poppins';
+  src: url('/fonts/poppins-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+html {
+  font-family: 'poppins';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
