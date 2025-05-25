@@ -10,5 +10,5 @@ export default defineConfig({
   },
   output: 'server',
   adapter: vercel(),
-  // site: 'https://www.svtech.cl',
+  site: 'https://www.svtech.cl/',
 });
