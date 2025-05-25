@@ -7,9 +7,5 @@ export interface Social {
   url: string;
   label: string;
   followers?: string;
-  icon: {
-    svg: any;
-    width: number;
-    height: number;
-  };
+  icon: any;
 }
