@@ -10,8 +10,6 @@
   --color-gradient-secondary: #00252d;
 
   /* tamaño de las fuentes */
-  /* --text-subTitle: 26px; */
-  /* --text-secondary-size: 22px; */
   --text-title-size: 26px;
   --text-subtitle-size: 22px;
 }
@@ -139,4 +137,15 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00252d;
+  z-index: -1;
 }
