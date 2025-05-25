@@ -3,59 +3,53 @@ import { SOCIAL } from 'consts/social';
 import type { Social } from 'types/social';
 ---
 
-<section id="home" class="relative flex flex-col items-center justify-center h-[100dvh] w-[100dvw] min-h-[900px]">
-  <header class="flex max-w-full flex-col items-center justify-center">
-    <p
-      class="md:text-secondary-size text-tertiary relative text-[12px] font-medium transition-all duration-300 sm:text-[16px]"
-    >
-      Transformando ideas en realidades digitales
+<section
+  id="home"
+  class="relative flex min-h-screen w-full max-w-[1200px] flex-col items-center justify-center"
+>
+  <header class="flex flex-col items-center justify-center">
+    <p class="text-tertiary text-xs duration-300 sm:text-lg md:text-2xl">
+      Transformado ideas en realidades digitales
     </p>
 
     <h1
-      class="text-secondary pb-6 pt-4 text-center text-[30px] font-bold uppercase transition-all duration-300 sm:pb-12 sm:pt-8 sm:text-5xl md:text-6xl"
+      class="text-secondary pt-4 text-center text-2xl font-bold uppercase duration-300 sm:text-5xl md:text-6xl"
     >
       Soporte Informático <br />
       <span class="text-primary">Desarrollo Web</span>
     </h1>
   </header>
 
-  <p class="md:text-subTitle text-center text-[12px] transition-all duration-300 sm:text-[22px]">
-    Comprometidos con la innovación y el uso de las nuevas <br />
-    tecnologías, para entregar soluciones de calidad
+  <p
+    class="text-secondary text-md w-[85%] py-8 text-center duration-300 sm:text-lg md:w-[75%] md:min-w-[780px] md:text-3xl"
+  >
+    Comprometidos con la innovación y el uso de las nuevas tecnologías, para entregar soluciones de
+    calidad
   </p>
 
-  <!-- componentizar -->
-  <div class="flex gap-4 pb-16 pt-4 sm:gap-8 sm:pb-24 sm:pt-10">
+  <div class="flex gap-6 pb-16 sm:gap-12 sm:pb-24">
     {
-      SOCIAL.map(({ url, icon, name, label }: Social) => (
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={name}
-          title={label}
-          class="flex items-center justify-center transition-transform duration-300 will-change-transform hover:scale-110"
-        >
-          <icon.svg class="w-[25px] sm:w-full" width={icon.width} height={icon.width} />
+      SOCIAL.map(({ url, icon, label }: Social) => (
+        <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
+          <icon.svg class="hover:drop-shadow-primary h-auto w-8 drop-shadow-lg duration-300 hover:scale-110 sm:w-12" />
         </a>
       ))
     }
   </div>
 
-  <div class="relative flex items-center justify-center gap-4 sm:gap-8">
-    <!-- conponentizar -->
+  <div class="text-secondary flex items-center justify-center gap-4 sm:gap-8">
     <a
-      href="/#contact"
-      class="bg-primary border-primary hover:shadow-primary text-secondary flex h-[40px] w-[120px] items-center justify-center rounded-lg border p-2 text-[14px] duration-300 hover:scale-105 hover:shadow-md sm:h-[47px] sm:w-[200px] sm:text-[16px]"
+      href="#contact"
+      class="bg-primary border-primary w-30 item-center flex h-10 justify-center rounded-lg border p-2 text-sm duration-300 hover:scale-105 sm:h-12 sm:w-52 sm:text-lg"
     >
       Contáctanos
     </a>
 
     <a
-      href="/#service"
-      class="text-secondary border-primary hover:shadow-primary flex h-[40px] w-[120px] items-center justify-center rounded-lg border bg-transparent p-2 text-[14px] duration-300 hover:scale-105 hover:shadow-md sm:h-[47px] sm:w-[200px] sm:text-[16px]"
-      >Ver Servicios</a
+      href="#service"
+      class="border-primary w-30 flex h-10 items-center justify-center rounded-lg border p-2 text-sm duration-300 hover:scale-105 sm:h-12 sm:w-52 sm:text-lg"
     >
+      Ver Servicios
+    </a>
   </div>
 </section>
-
