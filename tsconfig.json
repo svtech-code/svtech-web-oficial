@@ -30,6 +30,9 @@
       ],
       "types/*": [
         "src/types/*"
+      ],
+      "lib/*": [
+        "src/lib/*"
       ]
     }
   }
