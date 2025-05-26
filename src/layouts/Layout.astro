@@ -14,7 +14,7 @@ const { title = fixedTitle } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -22,7 +22,7 @@ const { title = fixedTitle } = Astro.props;
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Preload de las fuentes para que no se vea el cambio de fuente al cargar la pagina -->
+    <!-- preloading web fonts -->
     <link
       rel="preload"
       href="/fonts/poppins-latin-400-normal.woff2"
@@ -45,10 +45,10 @@ const { title = fixedTitle } = Astro.props;
       crossorigin="anonymous"
     />
 
-    <!-- prueba para barra superior e inferior de moviles -->
-    <meta name="theme-color" content="#00252d" />
+    <!-- theme for the top bar of the browser in mobile version -->
+    <meta name="theme-color" content="#001217" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#00252d" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#001217" />
 
     <meta name="description" content="Soporte Informático y Desarrollo de Aplicaciones Web" />
 
@@ -92,7 +92,6 @@ const { title = fixedTitle } = Astro.props;
 </html>
 
 <style>
-  html,
   body {
     margin: 0;
     width: 100%;
