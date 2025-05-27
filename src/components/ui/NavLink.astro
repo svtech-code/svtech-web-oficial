@@ -7,9 +7,9 @@ interface Props {
 const { title, url } = Astro.props;
 ---
 
-<li class="relative ml-6 sm:ml-12 flex md:justify-start md:ml-0">
+<li class="relative ml-6 flex sm:ml-12 md:ml-0 md:justify-start">
   <a
-    class="text-gradient-primary md:text-primary hover:text-secondary relative flex items-center justify-center p-2 text-xl md:text-lg duration-300 hover:scale-105"
+    class="text-gradient-primary md:text-primary hover:text-secondary relative flex items-center justify-center p-2 text-xl font-semibold duration-300 hover:scale-105 md:text-lg"
     href={url}
   >
     {title}
@@ -33,8 +33,8 @@ const { title, url } = Astro.props;
   a:hover::before {
     width: 90%;
   }
-  
-  @media(width >= 48rem) {
+
+  @media (width >= 48rem) {
     a::before {
       background-color: var(--color-primary);
     }
