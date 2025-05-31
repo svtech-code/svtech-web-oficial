@@ -4,8 +4,6 @@ export interface Service {
   description: string;
   icon: {
     svg: any;
-    width: number;
-    height: number;
   };
   features: string[];
   featured: boolean;
