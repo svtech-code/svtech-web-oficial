@@ -7,7 +7,7 @@ import NavbarContactButton from './NavbarContactButton.astro';
 
 <div
   id="content-navbar-desktop"
-  class="bg-gradient-secondary/80 relative flex h-full w-full max-w-[1200px] items-center p-8 shadow-lg shadow-black backdrop-blur-3xl duration-300 md:bg-transparent md:shadow-none md:backdrop-blur-none lg:rounded-2xl"
+  class="bg-gradient-secondary/80 relative flex h-full w-full max-w-[1200px] items-center p-8 shadow-lg shadow-black backdrop-blur-3xl duration-300 lg:rounded-2xl lg:bg-transparent lg:shadow-none lg:backdrop-blur-none"
 >
   <!-- logo de la web -->
   <a href="/" class="cursor-pointer transition duration-300 hover:scale-105">
@@ -19,7 +19,7 @@ import NavbarContactButton from './NavbarContactButton.astro';
     id="navbar-desktop"
     role="navigation"
     aria-label="barra de navegación desktop"
-    class="hidden w-full justify-end md:flex"
+    class="hidden w-full justify-end lg:flex"
   >
     <ul class="flex items-center justify-end gap-4 duration-300">
       {MENU.map(({ title, url }) => <NavLink title={title} url={url} />)}

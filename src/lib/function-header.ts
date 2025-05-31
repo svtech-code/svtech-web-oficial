@@ -9,15 +9,15 @@ export const functionHeader = () => {
   const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
     if (!entry.isIntersecting) {
       contentNavbarDesktop?.classList.remove(
-        'md:backdrop-blur-none',
-        'md:bg-transparent',
-        'md:shadow-none',
+        'lg:backdrop-blur-none',
+        'lg:bg-transparent',
+        'lg:shadow-none',
       );
     } else {
       contentNavbarDesktop?.classList.add(
         'md:backdrop-blur-none',
-        'md:bg-transparent',
-        'md:shadow-none',
+        'lg:bg-transparent',
+        'lg:shadow-none',
       );
     }
   };
