@@ -1,10 +1,6 @@
 ---
 interface Props {
-  icon: {
-    svg: any;
-    width: number;
-    height: number;
-  };
+  icon: { svg: any };
   title: string;
   description: string;
 }
@@ -13,44 +9,37 @@ const { title, description, icon } = Astro.props;
 ---
 
 <article
-  class="border-primary shadow-primary/80 group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-5 shadow-sm transition-all duration-300 hover:shadow-lg sm:w-[380px] md:p-7"
+  class="border-primary shadow-primary/80 group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-5 shadow-sm duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px] md:p-7"
 >
-  <header
-    class="text-secondary-size text-primary relative flex flex-col items-start gap-2 font-semibold"
-  >
-    <div
-      class="bg-tertiary/10 group-hover:bg-tertiary/40 rounded-xl p-2 duration-300 group-hover:scale-105"
-    >
-      <icon.svg
-        class="h-full w-[35px] transition-all duration-300 md:w-full"
-        width={icon.width}
-        height={icon.height}
-      />
-    </div>
-    <h3 class="md:text-secondary-size text-[16px] transition-all duration-300">{title}</h3>
-  </header>
-
-  <div
-    class="blur-xs absolute -right-36 -top-0 z-10 rotate-45 scale-150 opacity-0 transition-all duration-300 group-hover:right-4 group-hover:top-4 group-hover:opacity-100"
-  >
-    <icon.svg class="h-full w-[75px] md:w-full" width={100} height={100} />
+  <div>
+    <icon.svg
+      class="sm:blur-xs absolute right-0 top-0 h-auto w-28 rotate-45 blur-md duration-300 sm:-translate-y-24 sm:translate-x-28 sm:group-hover:translate-x-2 sm:group-hover:translate-y-0"
+    />
   </div>
 
-  <section class="pb-8 pt-4">
-    <p
-      class="text-secondary line-clamp-3 text-[14px] font-normal transition-all duration-300 md:text-[16px]"
+  <header class="flex flex-col items-start gap-2">
+    <div
+      class="bg-tertiary/10 group-hover:bg-tertiary/40 relative z-10 hidden rounded-xl p-2 duration-300 sm:block"
     >
+      <icon.svg class="h-auto w-12" />
+    </div>
+
+    <h3 class="text-primary md:text-subtitle-size text-[16px] font-semibold">{title}</h3>
+  </header>
+
+  <section class="z-10 pb-8 pt-4">
+    <p class="text-secondary line-clamp-3 text-[14px] font-medium duration-300 md:text-[16px]">
       {description}
     </p>
   </section>
 
   <footer>
-    <button
-      aria-label={`Botón para ver más sobre el servicio ${title}`}
-      class="text-tertiary/60 group-hover:text-tertiary group origin-left cursor-pointer font-medium transition-transform duration-300 hover:scale-105"
+    <a
+      href="#"
+      class="text-tertiary/80 group-hover:text-tertiary group inline-block origin-left cursor-pointer font-medium duration-300 hover:scale-105"
     >
       Saber más
-      <span class="pl-2 text-xs text-red-500 group-hover:scale-105">proximamente !</span>
-    </button>
+      <span class="pl-2 text-xs text-red-500/80 group-hover:text-red-500">Proximamente !</span>
+    </a>
   </footer>
 </article>
