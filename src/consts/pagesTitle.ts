@@ -1,4 +1,4 @@
-export const fixedTitle: string = 'Sv Tech';
+export const fixedTitle: string = 'Sv Tech | Soporte Informático y Desarrollo Web';
 
 // servicios
 export const titleSerive: string = 'Nuestros Servicios';
@@ -11,7 +11,7 @@ export const titleWhy: string = 'Experiencia y calidad a tu sercicio';
 export const textWhy: string =
   'Aumenta el rendimiento de tus equipos y mejora la productividad de tu negocio, manteniendo sus equipos tecnológicos y sistemas web en óptimas condiciones.';
 
-
 // proyectos
-export const titleProject: string = "Proyectos Realizados"
-export const subTitleProject: string = "Conoce algunos de los trabajos más destacados, que han sido desarrollados e implementados en pequeñas y medianas empresas"
+export const titleProject: string = 'Proyectos Realizados';
+export const subTitleProject: string =
+  'Conoce algunos de los trabajos más destacados, que han sido desarrollados e implementados en pequeñas y medianas empresas';
