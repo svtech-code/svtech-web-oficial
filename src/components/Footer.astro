@@ -5,37 +5,43 @@ import Logo from 'assets/logo.svg';
 <footer class="relative flex w-full items-center justify-center bg-black/50">
   <section class="relative my-4 flex w-full max-w-[1200px] flex-col items-center justify-center">
     <div class="flex w-full flex-col justify-between gap-10 md:flex-row md:gap-16">
-      <a href="/" class="flex items-center justify-center">
+      <a href="/" class="flex items-center justify-center" aria-label="Ir al inicio">
         <Logo class="h-auto w-60 md:w-80" />
       </a>
 
       <nav
         class="flex flex-col items-center justify-center gap-14 pb-4 sm:flex-row sm:items-start sm:justify-around md:flex-1"
       >
-        <ul>
+        <div>
           <h3>ENLACES</h3>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Servicios</a></li>
-          <li><a href="#projects">Proyectos</a></li>
-          <li><a href="#about">Nosotros</a></li>
-          <li><a href="#contact">Contacto</a></li>
-        </ul>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#about">Nosotros</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </div>
 
-        <ul>
+        <div>
           <h3>SERVICIOS</h3>
-          <li>Soporte Informático</li>
-          <li>Desarrollo Web</li>
-          <li>Consultoría TI</li>
-          <li>Administración Hosting</li>
-          <li>Bases de datos</li>
-        </ul>
+          <ul>
+            <li>Soporte Informático</li>
+            <li>Desarrollo Web</li>
+            <li>Consultoría TI</li>
+            <li>Administración Hosting</li>
+            <li>Bases de datos</li>
+          </ul>
+        </div>
 
-        <ul>
+        <div>
           <h3>CONTACTO</h3>
-          <li>WhatsApp</li>
-          <li>Correo Electrónico</li>
-          <li>Linares, Maule. Chile.</li>
-        </ul>
+          <ul>
+            <li>WhatsApp</li>
+            <li>Correo Electrónico</li>
+            <li>Linares, Maule. Chile.</li>
+          </ul>
+        </div>
       </nav>
     </div>
 
@@ -55,6 +61,7 @@ import Logo from 'assets/logo.svg';
 </footer>
 
 <style>
+  nav > div,
   ul {
     text-align: center;
   }
@@ -91,6 +98,7 @@ import Logo from 'assets/logo.svg';
   }
 
   @media (width >= 40rem) {
+    nav > div,
     ul {
       text-align: start;
     }
