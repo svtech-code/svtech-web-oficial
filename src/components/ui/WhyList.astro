@@ -1,0 +1,16 @@
+---
+import IconCheck from 'assets/svg/check.svg';
+
+const charaters = ['Atención personalizada', 'Innovación y calidad', 'Soporte continuo'];
+---
+
+<ul class="flex flex-col gap-5">
+  {
+    charaters.map((item) => (
+      <li class="text-md flex origin-left items-center gap-2 font-medium duration-300 hover:scale-105 sm:text-2xl">
+        <IconCheck class="h-auto w-8 sm:w-12" />
+        {item}
+      </li>
+    ))
+  }
+</ul>
