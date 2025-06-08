@@ -1,37 +1,49 @@
 ---
 import { smallTitleWhy, textWhy, titleWhy } from 'consts/pagesTitle';
-import IconCheck from 'assets/svg/check.svg';
-
-const charaters = ['Atención personalizada', 'Innovación y calidad', 'Soporte continuo'];
+import WhyList from 'components/ui/WhyList.astro';
 ---
 
-<section class="relative flex w-full flex-col items-center justify-center gap-4 bg-black/60 py-48">
-  <div class="relative grid max-w-[1200px] grid-cols-2 gap-7">
-    <div class="">
-      <header class="max-w-[35rem]">
-        <p class="bg-primary inline-block rounded-2xl p-1 px-2">{smallTitleWhy}</p>
-        <h3 class="mt-5 text-5xl font-bold">{titleWhy}</h3>
+<section
+  class="relative flex w-full flex-col items-center justify-center gap-4 bg-black/60 px-2 py-40"
+>
+  <div class="flex w-full max-w-[1200px]">
+    <article class="text-secondary z-10 flex flex-col gap-12 lg:w-2/3">
+      <header class="flex w-full flex-col items-center gap-5 md:w-[38rem] md:items-start">
+        <p
+          class="bg-primary text-gradient-secondary inline-block rounded-2xl px-4 py-1 text-sm font-medium duration-300 md:text-xl"
+        >
+          {smallTitleWhy}
+        </p>
+        <h2
+          class="text-center text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-start md:text-5xl"
+        >
+          {titleWhy}
+        </h2>
       </header>
 
-      <p class="text-secondary-size mt-12 font-medium">{textWhy}</p>
+      <p class="text-md w-full font-medium duration-300 sm:text-lg md:w-[40rem] md:text-2xl">
+        {textWhy}
+      </p>
 
-      <ul class="ml-5 flex flex-col gap-5 pt-8 text-lg font-semibold">
-        {
-          charaters.map((item) => (
-            <li class="flex items-center gap-2">
-              <IconCheck width={40} height={40} /> {item}
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+      <WhyList />
+    </article>
 
-    <div class="flex h-full w-full items-center justify-center">
-      <img
-        src="images/img-why.webp"
-        alt="Imagen de dos personas estrechando la mano"
-        class="shadow-tertiary rounded-2xl shadow-lg transition-all duration-300 will-change-transform hover:scale-105 hover:shadow-xl"
-      />
-    </div>
+    <aside
+      class="absolute right-2 top-1/2 -translate-y-1/2 items-center justify-center lg:relative lg:flex lg:translate-y-0"
+    >
+      <div
+        class="lg:shadow-tertiary/80 relative overflow-hidden rounded-2xl bg-transparent duration-300 lg:shadow-md lg:hover:shadow-lg"
+      >
+        <div
+          class="bg-gradient-primary/80 sm:bg-gradient-primary/70 lg:bg-gradient-primary/0 absolute h-full w-full backdrop-blur-sm duration-300 lg:backdrop-blur-none"
+        >
+        </div>
+        <img
+          src="images/img-why.webp"
+          alt="imagen de dos personas estrechando la mano"
+          loading="lazy"
+        />
+      </div>
+    </aside>
   </div>
 </section>
