@@ -25,7 +25,7 @@ export const SOCIAL: Social[] = [
     id: 'instagram',
     name: 'Instagram',
     url: 'https://www.instagram.com/svtech_code/',
-    label: 'Visitar Instagram de Sv Teh',
+    label: 'Visitar Instagram de Sv Tehc',
     icon: { svg: Instagram },
   },
   {
