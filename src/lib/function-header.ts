@@ -15,7 +15,7 @@ export const functionHeader = () => {
       );
     } else {
       contentNavbarDesktop?.classList.add(
-        'md:backdrop-blur-none',
+        'lg:backdrop-blur-none',
         'lg:bg-transparent',
         'lg:shadow-none',
       );
