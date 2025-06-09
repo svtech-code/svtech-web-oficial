@@ -1,4 +1,4 @@
-export const fixedTitle: string = 'Sv Tech | Soporte Informático y Desarrollo Web';
+export const fixedTitle: string = 'Sv Tech | Soporte Informático y Desarrollo Web a Medida';
 
 // servicios
 export const titleSerive: string = 'Nuestros Servicios';
