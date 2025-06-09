@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 import 'styles/global.css';
 import { fixedTitle } from 'consts/pagesTitle';
@@ -92,6 +93,8 @@ const { title = fixedTitle } = Astro.props;
     </main>
 
     <Footer />
+
+    <SpeedInsights />
   </body>
 </html>
 
