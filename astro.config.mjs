@@ -1,4 +1,5 @@
 // @ts-check
+import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
@@ -11,7 +12,6 @@ export default defineConfig({
 
   output: 'server',
   adapter: vercel(),
-  integrations: [sitemap()],
   site: 'https://www.svtech.cl',
+  integrations: [sitemap(), partytown()],
 });
-
