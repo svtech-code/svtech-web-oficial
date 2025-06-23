@@ -21,6 +21,7 @@ const { title = fixedTitle } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
 
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/images/svtech-icon-touch.png" />
 
@@ -82,10 +83,11 @@ const { title = fixedTitle } = Astro.props;
     <!-- Google tag (gtag.js) -->
     <script
       type="text/partytown"
+      is:inline
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-NX19ERRPWS"></script>
 
-    <script type="text/partytown">
+    <script type="text/partytown" is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -95,6 +97,7 @@ const { title = fixedTitle } = Astro.props;
       gtag('config', 'G-NX19ERRPWS');
     </script>
   </head>
+
   <body>
     <div
       id="smoke-screen"
