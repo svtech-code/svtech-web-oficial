@@ -3,9 +3,10 @@ interface Props {
   icon: { svg: any };
   title: string;
   description: string;
+  slug: string;
 }
 
-const { title, description, icon } = Astro.props;
+const { title, description, icon, slug } = Astro.props;
 ---
 
 <article
@@ -24,22 +25,23 @@ const { title, description, icon } = Astro.props;
       <icon.svg class="h-auto w-12" />
     </div>
 
-    <h3 class="text-primary md:text-subtitle-size text-[16px] font-semibold">{title}</h3>
+    <h3 class="text-primary md:text-subtitle-size text-[16px] font-semibold">
+      {title}
+    </h3>
   </header>
 
   <section class="z-10 pb-8 pt-4">
-    <p class="text-secondary line-clamp-3 text-[14px] font-medium duration-300 md:text-[16px]">
+    <p class="text-secondary line-clamp-3 text-sm font-medium duration-300 md:text-base">
       {description}
     </p>
   </section>
 
   <footer>
     <a
-      href="#"
+      href={`/services/${slug}`}
       class="text-tertiary/80 group-hover:text-tertiary group inline-block origin-left cursor-pointer font-medium duration-300 hover:scale-105"
     >
-      Saber más
-      <span class="pl-2 text-xs text-red-500/80 group-hover:text-red-500">Proximamente !</span>
+      Saber más →
     </a>
   </footer>
 </article>
