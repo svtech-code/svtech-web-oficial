@@ -22,7 +22,7 @@ export const SERVICE: Service[] = [
     id: 'desarrollo-web',
     title: 'Desarrollor web',
     description:
-      'Creación de sistemas web y landing page modernas, flexibles, escalables y responsivas.',
+      'Desarrollo de aplicaciones web y landing page modernas, flexibles, escalables y responsivas.',
     icon: { svg: DesarrolloWeb },
     features: ['Diseño UX/UI', 'aplicaciones web', 'responsive designe'],
     featured: false,
@@ -42,7 +42,7 @@ export const SERVICE: Service[] = [
     id: 'administracion-hosting',
     title: 'Administración hosting',
     description:
-      'Administración, configuración mantenimiento o migración de servicio de alojamiento web.',
+      'Administración, configuración, mantenimiento o migración de servicio de alojamiento web.',
     icon: { svg: AdministracionHosting },
     features: [],
     featured: false,
@@ -62,7 +62,7 @@ export const SERVICE: Service[] = [
     id: 'soporte-personalizado',
     title: 'Soporte personalizado',
     description:
-      'Asesoramiento tecnológico para mejorar y optimizar procesos y recursos de tu empresa o emprendimiento.',
+      'Soporte tecnológico personalizado, para mejorar y optimizar procesos o recursos de tu empresa o emprendimiento.',
     icon: { svg: SoportePersonalizado },
     features: ['Continuidad', 'Responsabilidad', 'Acompañamiento'],
     featured: false,
