@@ -1,0 +1,93 @@
+---
+import { getCollection, render } from 'astro:content';
+import ServiceLayout from 'layouts/ServiceLayout.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { data } = service;
+const { title, image } = data;
+
+const { Content } = await render(service);
+
+export const prerender = true;
+---
+
+<ServiceLayout title={`${title} | SV Tech`}>
+  <section
+    class="item-center relative flex w-full max-w-[1200px] flex-col justify-start px-4 pb-32"
+  >
+    <div class="fixed left-0 top-6 z-40 flex w-full items-center justify-center">
+      <div class="mr-4 flex w-full max-w-[1200px] items-center justify-end lg:mr-0">
+        <button
+          type="button"
+          aria-label="Volver a la página principal"
+          onclick="history.back()"
+          class="text-tertiary border-tertiary bg-gradient-primary/20 rounded-lg border-2 px-4 py-2 text-sm font-medium backdrop-blur-xl sm:rounded-2xl sm:text-xl"
+        >
+          ← Volver atrás
+        </button>
+      </div>
+    </div>
+
+    <header class="relative pb-8 pt-24 sm:py-14">
+      <h1
+        class="text-primary text-center text-3xl font-semibold uppercase duration-300 sm:text-start sm:text-4xl md:text-5xl"
+      >
+        {title}
+      </h1>
+    </header>
+
+    <div class="flex flex-col gap-8">
+      <article class="flex items-center justify-center">
+        <img
+          src={image}
+          widht="1000"
+          height="600"
+          alt="Imagen de un computador que muestra en su pantalla un editor de texto con código"
+          class="shadow-tertiary/60 animate-scale-in h-auto w-full max-w-[90%] rounded-2xl shadow-md"
+        />
+      </article>
+
+      <article
+        class={`
+          prose-invert prose 
+          prose-p:leading-[28px] prose-p:md:text-2xl propse-p:text-md prose-p:sm:text-lg
+          prose-h2:leading-[24px] prose-h2:md:text-4xl prose-h2:text-primary prose-h2:sm:text-3xl prose-h2:text-2xl 
+          prose-ul:m-0 prose-ul:sm:text-2xl prose-ul:mb-[2em] prose-ul:text-md
+          prose-li:mt-0 prose-li:mb-1
+          max-w-none font-medium text-base
+        `}
+      >
+        <Content />
+      </article>
+    </div>
+  </section>
+</ServiceLayout>
+
+<!-- class="shadow-tertiary/60 animate-scale-in h-[600px] w-[1000px] rounded-2xl shadow-md" -->
+
+<style>
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.4);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out both;
+    transform-origin: center;
+  }
+</style>
