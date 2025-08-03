@@ -27,7 +27,7 @@ import type { Social } from 'types/social';
     calidad
   </p>
 
-  <div class="flex gap-6 pb-16 sm:gap-12 sm:pb-24">
+  <main class="flex gap-6 pb-16 sm:gap-12 sm:pb-24">
     {
       SOCIAL.map(({ url, icon, label }: Social) => (
         <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
@@ -35,9 +35,9 @@ import type { Social } from 'types/social';
         </a>
       ))
     }
-  </div>
+  </main>
 
-  <div class="flex items-center justify-center gap-4 sm:gap-8">
+  <footer class="flex items-center justify-center gap-4 sm:gap-8">
     <a
       href="#contact"
       class="text-gradient-secondary bg-primary border-primary w-30 item-center flex h-10 justify-center rounded-lg border p-2 text-sm font-medium duration-300 hover:scale-105 sm:h-12 sm:w-52 sm:text-lg"
@@ -51,5 +51,5 @@ import type { Social } from 'types/social';
     >
       Ver Servicios
     </a>
-  </div>
+  </footer>
 </section>

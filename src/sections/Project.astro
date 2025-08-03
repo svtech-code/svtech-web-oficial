@@ -12,7 +12,7 @@ import { PROJECT } from 'consts/project';
       </h3>
     </header>
 
-    <section class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20">
+    <main class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20">
       {
         PROJECT.map(({ title, type, image, technology }) => (
         <article class="gap-8 p-6 border-tertiary relative flex h-[290px] w-[380px] flex-col justify-end rounded-2xl border shadow-sm hover:shadow-lg shadow-tertiary/80 transition-shadow duration-300">
@@ -35,47 +35,7 @@ import { PROJECT } from 'consts/project';
           </article>
         ))
       }
-    </section>
+    </main>
   </div>
 </section>
 
-
-
-
-<!-- posible modularizacion del nuevo elemento -->
-<!-- --- -->
-<!-- export interface Project { -->
-<!--   title: string; -->
-<!--   type: string; -->
-<!--   image: string; -->
-<!--   technology?: { icon: string; label: string }[]; -->
-<!-- } -->
-<!---->
-<!-- const { title, type, image, technology } = Astro.props; -->
-<!-- --- -->
-<!-- <article class="gap-8 p-6 border-tertiary relative flex h-[290px] w-[380px] flex-col justify-end rounded-2xl border"> -->
-<!--   <img src={image} alt={title} class="absolute inset-0 h-full w-full object-cover rounded-2xl" /> -->
-<!--   <button class="absolute top-6 right-6" aria-label={`Ver ${title}`}> -->
-<!--     ver -->
-<!--   </button> -->
-<!--   <header class="flex flex-col items-start justify-start"> -->
-<!--     <p>{type}</p> -->
-<!--     <h4>{title}</h4> -->
-<!--   </header> -->
-<!--   <footer> -->
-<!--     {technology?.map(({ icon, label }) => ( -->
-<!--       <a href="#" class="inline-block px-2 py-1 text-sm">{label}</a> -->
-<!--     ))} -->
-<!--   </footer> -->
-<!-- </article> -->
-<!-- ``` -->
-<!---->
-<!-- Luego, en `Project.astro`, puedes usar este componente: -->
-<!-- ```astro -->
-<!-- import ProjectCard from '../components/ProjectCard.astro'; -->
-<!---->
-<!-- <section class="relative grid w-full grid-cols-3 place-items-center gap-8 pb-32 pt-20"> -->
-<!--   {PROJECT.map((project) => ( -->
-<!--     <ProjectCard {...project} /> -->
-<!--   ))} -->
-<!-- </section> -->
