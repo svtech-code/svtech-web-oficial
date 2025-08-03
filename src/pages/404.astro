@@ -2,4 +2,35 @@
 import Layout from 'layouts/Layout.astro';
 ---
 
-<Layout title="404 - Sv Tech"> Página 404 </Layout>
+<Layout title="404 - Página no encontrada - Sv Tech">
+  <section class="flex h-screen w-full flex-col items-center justify-center px-4">
+    <p
+      id="attampted-url"
+      class="text-tertiary/60 p-4 text-center text-4xl"
+      aria-label="URL solicitada"
+      aria-live="polite"
+    >
+    </p>
+
+    <header class="flex flex-col items-center justify-center gap-2 py-8">
+      <h1 class="text-primary/80 text-8xl font-bold">404</h1>
+      <h2 class="text-primary/60 text-6xl font-semibold">Not Found</h2>
+    </header>
+
+    <main role="main">
+      <p class="text-secondary mb-8 max-w-xl text-center text-xl font-medium">
+        Lo sentimos, el sitio al cual intenta acceder no existe, por favor, intenta más tarde o
+        visita un sitio válido.
+      </p>
+    </main>
+  </section>
+</Layout>
+
+<script>
+  // Captura y visualización de la URL solicitada
+  document.addEventListener('DOMContentLoaded', (): void => {
+    const urlElement: HTMLElement | null = document.getElementById('attampted-url');
+
+    if (urlElement) urlElement.textContent = `Intentaste acceder a: ${window.location.pathname}`;
+  });
+</script>
