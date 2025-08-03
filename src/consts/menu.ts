@@ -3,18 +3,18 @@ import type { Menu } from 'types/menu';
 export const MENU: Menu[] = [
   {
     title: 'Home',
-    url: '#home',
+    url: '/#home',
   },
   {
     title: 'Servicios',
-    url: '#services',
+    url: '/#services',
   },
   {
     title: 'Proyectos',
-    url: '#project',
+    url: '/#project',
   },
   {
     title: 'Nosotros',
-    url: '#about',
+    url: '/#about',
   },
 ];
