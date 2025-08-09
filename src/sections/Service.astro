@@ -11,7 +11,7 @@ const SERVICES = (await getCollection('services')).sort(
 
 <section
   id="services"
-  class="relative flex w-full max-w-[1200px] scroll-mt-28 flex-col items-center justify-center gap-20 px-2 py-40 md:scroll-mt-36"
+  class="relative flex w-full max-w-[1200px] -scroll-mt-10 flex-col items-center justify-center gap-20 px-2 py-40 md:scroll-mt-6"
 >
   <header class="flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
     <h2 class="text-secondary text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-5xl">
@@ -27,7 +27,7 @@ const SERVICES = (await getCollection('services')).sort(
       SERVICES.map((service) => {
         const { slug, data } = service;
         const { title, description } = data;
-        const icon = serviceIcons[slug];
+        const icon = serviceIcons[slug] ?? { svg: '' };
 
         return <ServiceCard title={title} description={description} icon={icon} slug={slug} />;
       })
