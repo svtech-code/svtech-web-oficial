@@ -1,11 +1,7 @@
-type SocialId = 'x' | 'instagram' | 'whatsApp' | 'linkedin' | 'discord' | 'email';
-type SocialName = 'X' | 'Instagram' | 'WhatsApp' | 'LinkedIn' | 'Discord' | 'Email';
+import type { IconName } from 'consts/icons';
 
 export interface Social {
-  id: SocialId;
-  name: SocialName;
+  name: IconName;
   url: string;
   label: string;
-  followers?: string;
-  icon: any;
 }
