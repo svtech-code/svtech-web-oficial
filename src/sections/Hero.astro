@@ -1,6 +1,6 @@
 ---
+import Icon from 'components/ui/Icon.astro';
 import { SOCIAL } from 'consts/social';
-import type { Social } from 'types/social';
 ---
 
 <section
@@ -29,9 +29,12 @@ import type { Social } from 'types/social';
 
   <main class="flex gap-6 pb-16 sm:gap-12 sm:pb-24">
     {
-      SOCIAL.map(({ url, icon, label }: Social) => (
+      SOCIAL.map(({ name, url, label }) => (
         <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
-          <icon.svg class="hover:drop-shadow-primary h-auto w-8 drop-shadow-lg duration-300 hover:scale-110 sm:w-12" />
+          <Icon
+            name={name}
+            class="hover:drop-shadow-primary h-auto w-8 drop-shadow-lg duration-300 hover:scale-110 sm:w-12"
+          />
         </a>
       ))
     }
