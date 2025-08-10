@@ -1,0 +1,29 @@
+---
+import type { IconName } from 'consts/icons';
+
+interface Props {
+  name: IconName;
+  class?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  [key: string]: any;
+}
+
+const { name, class: className = '', size = 'md', ...props } = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-4 h-4',
+  md: 'w-6 h-6',
+  lg: 'w-8 h-8',
+  xl: 'w-12 h-12',
+};
+
+// imports dinámicos de iconos
+const { icons } = await import('consts/icons.ts');
+const IconComponent = icons[name];
+---
+
+{
+  IconComponent && (
+    <IconComponent class:list={[size ? sizeClasses[size] : '', className]} {...props} />
+  )
+}
