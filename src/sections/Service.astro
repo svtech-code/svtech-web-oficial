@@ -1,8 +1,8 @@
 ---
 import ServiceCard from 'components/ServiceCard.astro';
 import { subTitleService, titleSerive } from 'consts/pagesTitle';
-import { serviceIcons } from 'consts/serviceIcons';
 import { getCollection } from 'astro:content';
+import type { IconName } from 'consts/icons';
 
 const SERVICES = (await getCollection('services')).sort(
   (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
@@ -27,9 +27,11 @@ const SERVICES = (await getCollection('services')).sort(
       SERVICES.map((service) => {
         const { slug, data } = service;
         const { title, description } = data;
-        const icon = serviceIcons[slug] ?? { svg: '' };
+        const iconName = slug as IconName;
 
-        return <ServiceCard title={title} description={description} icon={icon} slug={slug} />;
+        return (
+          <ServiceCard title={title} description={description} iconName={iconName} slug={slug} />
+        );
       })
     }
   </main>
