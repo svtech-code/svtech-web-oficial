@@ -1,0 +1,85 @@
+---
+import type { Customer } from 'types/customer';
+import Icon from './ui/Icon.astro';
+import type { IconName } from 'consts/icons';
+
+interface Props {
+  customer: Customer;
+}
+
+const { customer } = Astro.props;
+const { id, name, description, industry, location, socialMedia } = customer;
+---
+
+<aside
+  class="flex h-auto w-full flex-col gap-6 px-12 md:h-[350px] md:flex-row md:py-6"
+  data-customer="detail-component"
+>
+  <figure
+    class="bg-secondary/20 relative mx-auto flex h-auto w-[200px] items-center justify-center rounded-2xl p-2 sm:w-[300px] md:w-[400px]"
+    data-customer="logo-customer"
+  >
+    <Icon name={id} class="h-auto w-full object-contain" />
+  </figure>
+
+  <article class="flex flex-1 flex-col gap-4 text-center md:text-start">
+    <header class="flex-0">
+      <h3
+        data-customer="name-customer"
+        class="text-secondary text-sm font-semibold sm:text-lg md:text-3xl"
+      >
+        {name}
+      </h3>
+    </header>
+
+    <main
+      class="text-secondary flex flex-1 flex-col gap-4 text-sm font-medium sm:text-lg md:text-xl"
+    >
+      <span
+        class="bg-primary/80 text-secondary self-center rounded-2xl px-4 py-1 md:self-start"
+        data-customer="industry-customer">{industry}</span
+      >
+
+      <p class="pt-4" data-customer="description-customer">{description}</p>
+
+      <div class="flex items-center justify-center gap-2 md:justify-start">
+        <Icon name="location" class="stroke-tertiary h-6 w-6 stroke-2" />
+        <p class="text-tertiary" data-customer="location-customer">{location}</p>
+      </div>
+    </main>
+
+    <footer
+      class="flex-0 relative flex justify-center gap-4 md:justify-start"
+      data-customer="social-customer"
+    >
+      {
+        Object.entries(socialMedia).map(([platform, url]) => (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relative duration-300 hover:scale-105"
+          >
+            <Icon name={platform as IconName} class="h-8 w-8" />
+          </a>
+        ))
+      }
+    </footer>
+  </article>
+
+  <style>
+    aside[data-customer='detail-component'] {
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    aside[data-customer='detail-component'].is-changing {
+      opacity: 0;
+    }
+
+    figure[data-customer='logo-customer'] :global(svg) {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  </style>
+</aside>

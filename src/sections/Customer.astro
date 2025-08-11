@@ -1,0 +1,181 @@
+---
+import CustomerCard from 'components/CustomerCard.astro';
+import CustomerDetail from 'components/CustomerDetail.astro';
+import { CUSTOMERS } from 'consts/customers';
+import { subTitleCustomer, titleCustomer } from 'consts/pagesTitle';
+import type { Customer } from 'types/customer';
+
+const initialCustomer = CUSTOMERS[0] as Customer;
+---
+
+<section
+  id="customers"
+  class="relative flex w-full max-w-[1200px] scroll-mt-28 flex-col items-center justify-center gap-10 px-2 py-40 md:scroll-mt-36 md:gap-20"
+  aria-label="Sección de clientes"
+  info-customers={JSON.stringify(CUSTOMERS)}
+>
+  <header class="flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
+    <h2 class="text-secondary text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-5xl">
+      {titleCustomer}
+    </h2>
+    <h3 class="text-primary text-sm font-medium sm:text-lg md:text-3xl">{subTitleCustomer}</h3>
+  </header>
+
+  <!-- Se asigna el cliente principal -->
+  <CustomerDetail customer={initialCustomer} />
+
+  <!-- Cinta infinita en movimiento -->
+  <main class="customer-marquee-container relative w-full overflow-hidden rounded-xl py-10">
+    <div class="customer-marquee flex">
+      {CUSTOMERS.map((customer) => <CustomerCard customer={customer} />)}
+      {CUSTOMERS.map((customer) => <CustomerCard customer={customer} />)}
+    </div>
+  </main>
+</section>
+
+<style>
+  .customer-marquee-container::before,
+  .customer-marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .customer-marquee-container::before {
+    left: 0;
+    background: linear-gradient(90deg, #00252d 0%, transparent 100%);
+  }
+
+  .customer-marquee-container::after {
+    right: 0;
+    background: linear-gradient(270deg, #00252d 0%, transparent 100%);
+  }
+
+  .customer-marquee {
+    animation: scroll-left 20s linear infinite;
+    width: max-content;
+  }
+
+  .customer-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Responsive para móviles */
+  @media (max-width: 768px) {
+    .customer-marquee {
+      animation-duration: 25s;
+      gap: 1.5rem;
+    }
+
+    .customer-marquee-container::before,
+    .customer-marquee-container::after {
+      width: 50px;
+    }
+  }
+</style>
+
+<script>
+  import type { Customer, SocialMedia } from 'types/customer';
+  import { logoSvgMap, socialIconsMap, type SocialPlatform } from 'consts/iconsMap';
+
+  document.addEventListener('astro:page-load', () => {
+    const customerSection = document.querySelector<HTMLElement>('#customers');
+    if (!customerSection) return;
+
+    // obtención de los mapas de datos
+    const customersData: Customer[] = JSON.parse(
+      customerSection.getAttribute('info-customers') || '[]',
+    );
+
+    const customersCard = document.querySelectorAll<HTMLDivElement>('[data-target]');
+
+    customersCard.forEach((customer) => {
+      customer.addEventListener('click', () => {
+        const clickedId = customer.id;
+        const selectedCustomer = customersData.find((item: Customer) => item.id === clickedId);
+
+        if (selectedCustomer) {
+          updateCustomerDetail(selectedCustomer);
+        }
+      });
+    });
+  });
+
+  function updateCustomerDetail(customer: Customer) {
+    // Referencia a los documentos específicos a utilizar y actualizar
+    const detailCustomer = document.querySelector<HTMLElement>(
+      "[data-customer='detail-component']",
+    );
+    const logoCustomer = document.querySelector<HTMLElement>("[data-customer='logo-customer']");
+    const nameCustomer = document.querySelector<HTMLElement>("[data-customer='name-customer']");
+    const industryCustomer = document.querySelector<HTMLElement>(
+      "[data-customer='industry-customer']",
+    );
+    const descriptionCustomer = document.querySelector<HTMLElement>(
+      "[data-customer='description-customer']",
+    );
+    const locationCustomer = document.querySelector<HTMLElement>(
+      "[data-customer='location-customer']",
+    );
+    const socialCustomer = document.querySelector<HTMLElement>("[data-customer='social-customer']");
+
+    if (detailCustomer) {
+      detailCustomer.classList.add('is-changing');
+
+      setTimeout(() => {
+        // Actualizar el texto
+        if (nameCustomer) nameCustomer.textContent = customer.name;
+        if (industryCustomer) industryCustomer.textContent = customer.industry;
+        if (descriptionCustomer) descriptionCustomer.textContent = customer.description;
+        if (locationCustomer) locationCustomer.textContent = customer.location;
+
+        // Actualizar el logo
+        if (logoCustomer) {
+          const logoSvg = logoSvgMap[customer.id as keyof typeof logoSvgMap];
+          if (logoSvg) logoCustomer.innerHTML = logoSvg;
+        }
+
+        // Acutalizar redes sociales
+        if (socialCustomer) updateSocialCustomer(customer.socialMedia, socialCustomer);
+
+        detailCustomer?.classList.remove('is-changing');
+      }, 300);
+    }
+  }
+
+  function updateSocialCustomer(socialMedia: SocialMedia, socialCustomer: HTMLElement) {
+    socialCustomer.innerHTML = '';
+
+    Object.entries(socialMedia).forEach(([platform, url]) => {
+      if (url && platform in socialIconsMap) {
+        const iconSvg = socialIconsMap[platform as SocialPlatform];
+        if (iconSvg) {
+          const link = document.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.classList.add('duration-300', 'hover:scale-105');
+          link.innerHTML = iconSvg;
+
+          const svgElement = link.querySelector('svg');
+          svgElement?.classList.add('h-8', 'w-8');
+
+          socialCustomer.appendChild(link);
+        }
+      }
+    });
+  }
+</script>

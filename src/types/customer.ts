@@ -1,21 +1,19 @@
+import type { IconName } from 'consts/icons';
+
 export interface SocialMedia {
   instagram?: string;
   facebook?: string;
   linkedin?: string;
-  twitter?: string;
+  x?: string;
   website?: string;
+  whatsApp?: string;
 }
 
 export interface Customer {
-  id: string;
+  id: IconName;
   name: string;
   shortName: string;
   description: string;
-  fullDescription: string;
-  logo: {
-    svg: any;
-  };
-  url: string;
   socialMedia: SocialMedia;
   industry: string;
   location: string;

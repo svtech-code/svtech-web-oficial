@@ -1,0 +1,28 @@
+---
+import type { Customer } from 'types/customer';
+import Icon from './ui/Icon.astro';
+
+interface Props {
+  customer: Customer;
+}
+
+const { customer } = Astro.props;
+const { id, name, shortName, description } = customer;
+---
+
+<article
+  class="flex min-w-[100px] shrink-0 cursor-pointer items-center justify-center md:min-w-[180px]"
+  id={id}
+  data-target
+  aria-label={`Cliente: ${name}`}
+>
+  <figure
+    class="bg-secondary/30 hover:bg-secondary/40 relative rounded-2xl duration-300 hover:rounded-3xl"
+  >
+    <Icon
+      name={id}
+      class="h-auto w-24 object-contain p-4 duration-300 hover:scale-125 sm:w-32"
+      aria-label={description || shortName}
+    />
+  </figure>
+</article>
