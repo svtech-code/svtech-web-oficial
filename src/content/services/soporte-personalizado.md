@@ -1,6 +1,6 @@
 ---
 order: 6
-title: 'Soporte perosnalizado'
+title: 'Soporte personalizado'
 image: '/images/services/soporte-personalizado.webp'
 description: 'Soporte tecnológico personalizado para mejorar y optimizar procesos o recursos de tu empresa o emprendimiento.'
 ---

@@ -1,6 +1,6 @@
 ---
 import ServiceCard from 'components/ServiceCard.astro';
-import { subTitleService, titleSerive } from 'consts/pagesTitle';
+import { subTitleService, titleService } from 'consts/pagesTitle';
 import { getCollection } from 'astro:content';
 import type { IconName } from 'consts/icons';
 
@@ -15,7 +15,7 @@ const SERVICES = (await getCollection('services')).sort(
 >
   <header class="flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
     <h2 class="text-secondary text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-5xl">
-      {titleSerive}
+      {titleService}
     </h2>
     <h3 class="text-primary text-sm font-medium sm:text-lg md:text-3xl">{subTitleService}</h3>
   </header>

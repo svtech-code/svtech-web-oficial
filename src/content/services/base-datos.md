@@ -1,6 +1,6 @@
 ---
 order: 5
-title: 'Base datos'
+title: 'Base de datos'
 image: '/images/services/base-datos.webp'
 description: 'Diseño, implementación y mantenimiento de bases de datos relacionales, para cualquier tipo de negocio.'
 ---
