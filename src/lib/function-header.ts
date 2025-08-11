@@ -7,7 +7,7 @@ export const functionHeader = () => {
   const navbarMobileLinks = navbarMobile?.querySelectorAll('ul li a');
 
   const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
-    if (!entry.isIntersecting) {
+    if (!entry?.isIntersecting) {
       contentNavbarDesktop?.classList.remove(
         'lg:backdrop-blur-none',
         'lg:bg-transparent',
@@ -31,10 +31,10 @@ export const functionHeader = () => {
   const toggleMenu = () => {
     navbarButton?.classList.toggle('open');
     contentNavbarMobile?.classList.toggle('w-full');
-    const isOpenMenuMobil = navbarMobile?.classList.toggle('w-[60%]');
+    const isOpenMenuMobile = navbarMobile?.classList.toggle('w-[60%]');
 
-    navbarMobile?.setAttribute('aria-hidden', `${isOpenMenuMobil}`);
-    navbarMobile?.setAttribute('aria-expanded', `${isOpenMenuMobil}`);
+    navbarMobile?.setAttribute('aria-hidden', `${isOpenMenuMobile}`);
+    navbarMobile?.setAttribute('aria-expanded', `${isOpenMenuMobile}`);
   };
 
   const toggleMenuLinks = () => {
