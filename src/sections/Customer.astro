@@ -168,6 +168,7 @@ const initialCustomer = CUSTOMERS[0] as Customer;
           link.target = '_blank';
           link.rel = 'noopener noreferrer';
           link.classList.add('duration-300', 'hover:scale-105');
+          link.setAttribute('aria-label', `Visitanos en ${platform}`);
           link.innerHTML = iconSvg;
 
           const svgElement = link.querySelector('svg');

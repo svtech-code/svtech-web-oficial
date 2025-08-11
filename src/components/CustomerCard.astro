@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { customer } = Astro.props;
-const { id, name, shortName, description } = customer;
+const { id, name } = customer;
 ---
 
 <article
@@ -22,7 +22,7 @@ const { id, name, shortName, description } = customer;
     <Icon
       name={id}
       class="h-auto w-24 object-contain p-4 duration-300 hover:scale-125 sm:w-32"
-      aria-label={description || shortName}
+      aria-label={name}
     />
   </figure>
 </article>
