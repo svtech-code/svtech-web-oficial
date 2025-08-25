@@ -19,3 +19,9 @@ export const subTitleProject: string =
 // clientes
 export const titleCustomer: string = 'Clientes';
 export const subTitleCustomer: string = 'Clientes que han confiado en nuestros servicios';
+
+// contacts
+export const questionTitleContact: string = '¿Tienes un idea?';
+export const titleContact: string = 'Contáctanos';
+export const textContact: string =
+  'Estamos listos para ayudarte con tun próximo proyecto o resolver tus dudas. Háblanos y nos pondremos en contacto a la brevedad.';
