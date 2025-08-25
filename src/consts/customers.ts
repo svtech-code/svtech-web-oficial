@@ -10,7 +10,7 @@ export const CUSTOMERS: Customer[] = [
     industry: 'Construcción',
     location: 'Valparaíso, Chile',
     socialMedia: {
-      website: 'https://www.construbya.cl',
+      'chrome-color': 'https://www.construbya.cl',
     },
   },
   {
@@ -22,7 +22,7 @@ export const CUSTOMERS: Customer[] = [
     industry: 'Salud',
     location: 'Maule, Chile',
     socialMedia: {
-      website: 'https://www.gesmedic.cl',
+      'chrome-color': 'https://www.gesmedic.cl',
     },
   },
   {
@@ -33,8 +33,8 @@ export const CUSTOMERS: Customer[] = [
     industry: 'Telemedicina',
     location: 'Maule y Metropolitana, Chile',
     socialMedia: {
-      website: 'https://www.samed.cl',
-      whatsApp: 'https://wa.me/56991088675',
+      'chrome-color': 'https://www.samed.cl',
+      'whatsApp-color': 'https://wa.me/56991088675',
     },
   },
   {
@@ -46,7 +46,7 @@ export const CUSTOMERS: Customer[] = [
     industry: 'Mecánica Automotriz',
     location: 'Maule, Chile',
     socialMedia: {
-      whatsApp: 'https://wa.me/56996983055',
+      'whatsApp-color': 'https://wa.me/56996983055',
     },
   },
   {
@@ -58,8 +58,8 @@ export const CUSTOMERS: Customer[] = [
     industry: 'Turismo',
     location: 'Maule, Chile',
     socialMedia: {
-      instagram: 'https://www.instagram.com/senderismolinares/',
-      facebook: 'https://www.facebook.com/100063594189647',
+      'instagram-color': 'https://www.instagram.com/senderismolinares/',
+      'facebook-color': 'https://www.facebook.com/100063594189647',
     },
   },
   {
@@ -71,8 +71,8 @@ export const CUSTOMERS: Customer[] = [
     industry: 'Eventos',
     location: 'Maule, Chile',
     socialMedia: {
-      website: 'https://www.feem.cl',
-      instagram: 'https://www.instagram.com/feem_feria_empresarial_/',
+      'chrome-color': 'https://www.feem.cl',
+      'instagram-color': 'https://www.instagram.com/feem_feria_empresarial_/',
     },
   },
 ];

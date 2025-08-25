@@ -5,11 +5,11 @@ import Customer4 from 'assets/customers/customer-04.svg?raw';
 import Customer5 from 'assets/customers/customer-05.svg?raw';
 import Customer6 from 'assets/customers/customer-06.svg?raw';
 
-import Instagram from 'assets/svg/instagram.svg?raw';
-import Facebook from 'assets/svg/facebook.svg?raw';
+import InstagramColor from 'assets/svg/instagram-color.svg?raw';
+import FacebookColor from 'assets/svg/facebook-color.svg?raw';
 import X from 'assets/svg/x.svg?raw';
-import WhatsApp from 'assets/svg/whatsapp.svg?raw';
-import Website from 'assets/svg/chrome.svg?raw';
+import WhatsAppColor from 'assets/svg/whatsapp-color.svg?raw';
+import ChromeColor from 'assets/svg/chrome-color.svg?raw';
 
 export const logoSvgMap = {
   'customer-01': Customer1,
@@ -21,11 +21,11 @@ export const logoSvgMap = {
 } as const;
 
 export const socialIconsMap = {
-  instagram: Instagram,
-  facebook: Facebook,
+  'instagram-color': InstagramColor,
+  'facebook-color': FacebookColor,
   x: X,
-  website: Website,
-  whatsApp: WhatsApp,
+  'chrome-color': ChromeColor,
+  'whatsApp-color': WhatsAppColor,
 } as const;
 
 export type LogoId = keyof typeof logoSvgMap;

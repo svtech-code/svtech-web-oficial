@@ -3,7 +3,9 @@ import X from 'assets/svg/x.svg';
 import Instagram from 'assets/svg/instagram.svg';
 import Discord from 'assets/svg/discord.svg';
 import WhatsApp from 'assets/svg/whatsapp.svg';
-import Facebook from 'assets/svg/facebook.svg';
+import InstagramColor from 'assets/svg/instagram-color.svg';
+import WhatsAppColor from 'assets/svg/whatsapp-color.svg';
+import FacebookColor from 'assets/svg/facebook-color.svg';
 
 // servicios
 import SoporteInformatico from 'assets/services/soporte-informatico.svg';
@@ -24,7 +26,12 @@ import Customer6 from 'assets/customers/customer-06.svg';
 // others
 import IconCheck from 'assets/svg/check.svg';
 import Location from 'assets/svg/location.svg';
-import Chrome from 'assets/svg/chrome.svg';
+import ChromeColor from 'assets/svg/chrome-color.svg';
+import Clock from 'assets/svg/clock.svg';
+import Phone from 'assets/svg/phone.svg';
+import Mail from 'assets/svg/mail.svg';
+import Calendar from 'assets/svg/calendar.svg';
+import Map from 'assets/svg/map.svg';
 
 export const icons = {
   // redes sociales
@@ -32,8 +39,10 @@ export const icons = {
   instagram: Instagram,
   discord: Discord,
   whatsApp: WhatsApp,
-  facebook: Facebook,
-  website: Chrome,
+  'instagram-color': InstagramColor,
+  'whatsApp-color': WhatsAppColor,
+  'facebook-color': FacebookColor,
+  'chrome-color': ChromeColor,
 
   // servicios
   'soporte-informatico': SoporteInformatico,
@@ -54,6 +63,11 @@ export const icons = {
   // others
   check: IconCheck,
   location: Location,
+  clock: Clock,
+  phone: Phone,
+  mail: Mail,
+  map: Map,
+  calendar: Calendar,
 } as const;
 
 export type IconName = keyof typeof icons;
