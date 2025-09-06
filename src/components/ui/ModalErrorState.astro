@@ -1,0 +1,47 @@
+---
+export interface Props {
+  state?: 'loading' | 'success' | 'error';
+  errorMessage?: string;
+}
+
+const {
+  state = 'success',
+  errorMessage = 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.',
+} = Astro.props;
+---
+
+<div id="error-content" class={`modal-state ${state === 'error' ? '' : 'hidden'}`}>
+  <div class="error-icon">
+    <svg
+      class="mx-auto mb-4 h-16 w-16 text-red-500"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"
+      ></path>
+    </svg>
+  </div>
+  <h3 class="mb-2 text-center text-xl font-semibold text-gray-800">Error al enviar</h3>
+  <p class="mb-6 text-center text-gray-600" id="error-message">
+    {errorMessage}
+  </p>
+  <div class="flex justify-center gap-3">
+    <button
+      id="modal-retry-btn"
+      class="bg-primary hover:bg-primary/80 rounded-lg px-6 py-3 font-medium text-white transition-all duration-200 focus:ring-4 focus:ring-blue-200"
+    >
+      Reintentar
+    </button>
+    <button
+      id="modal-cancel-btn"
+      class="rounded-lg bg-gray-200 px-6 py-3 font-medium text-gray-700 transition-all duration-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-200"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+---
+export interface Props {
+  type?: 'text' | 'email' | 'tel';
+  name: string;
+  id: string;
+  label: string;
+  required?: boolean;
+  error?: string;
+  class?: string;
+}
+
+const { 
+  type = 'text', 
+  name, 
+  id, 
+  label, 
+  required = false,
+  error, 
+  class: additionalClass = '' 
+} = Astro.props;
+---
+
+<div class={`space-y-2 ${additionalClass}`}>
+  <label for={id} class="text-secondary text-md block font-medium">
+    {label}
+    {required && <span class="text-red-500 ml-1">*</span>}
+  </label>
+
+  <div class="input-wrapper relative">
+    <input
+      type={type}
+      id={id}
+      name={name}
+      required={required}
+      class={`relative w-full px-4 py-2 border rounded-lg duration-300 text-secondary
+      focus:border-transparent focus:ring-2 focus:ring-primary z-[2] bg-transparent ${
+        error 
+          ? 'border-red-500 focus:ring-red-500' 
+          : 'border-primary'
+      }`}
+    />
+  </div>
+  
+  {error && (
+    <p class="mt-1 text-sm text-red-600 flex items-center">
+      <svg class="w-4 h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </svg>
+      {error}
+    </p>
+  )}
+</div>
+
+<style>
+  .input-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1); /* Tu color transparente */
+    backdrop-filter: blur(10px); /* Efecto glassmorphism */
+    border-radius: 0.5rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+</style>
+
+<!-- class={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${ -->
+<!--   error ? 'border-red-500 bg-red-50' : 'border-gray-300' -->
+<!-- }`} -->
+<!-- {error && <p class="mt-1 text-sm text-red-600">{error}</p>} -->

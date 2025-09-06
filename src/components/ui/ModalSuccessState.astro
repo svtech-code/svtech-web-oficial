@@ -1,0 +1,36 @@
+---
+export interface Props {
+  state?: 'loading' | 'success' | 'error';
+}
+
+const { state = 'success' } = Astro.props;
+---
+
+<div id="success-content" class={`modal-state ${state === 'success' ? '' : 'hidden'}`}>
+  <div class="success-icon">
+    <svg
+      class="mx-auto mb-4 h-16 w-16 text-green-500"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+  </div>
+  <h3 class="mb-2 text-center text-xl font-semibold text-gray-800">¡Mensaje Enviado!</h3>
+  <p class="mb-6 text-center text-gray-600">
+    Tu mensaje ha sido enviado correctamente. Nos pondremos en contacto contigo pronto.
+  </p>
+  <div class="flex justify-center">
+    <button
+      id="modal-accept-btn"
+      class="bg-primary hover:bg-primary/80 rounded-lg px-8 py-3 font-medium text-white transition-all duration-200 focus:ring-4 focus:ring-blue-200"
+    >
+      Aceptar
+    </button>
+  </div>
+</div>
