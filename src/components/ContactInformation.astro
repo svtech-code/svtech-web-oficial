@@ -1,0 +1,49 @@
+---
+import { questionTitleContact, titleContact, textContact } from 'consts/pagesTitle';
+import { SOCIAL } from 'consts/social';
+import Icon from './ui/Icon.astro';
+import SchedulesAndContact from './ui/SchedulesAndContact.astro';
+---
+
+<article class="text-secondary flex w-full flex-col gap-4 lg:w-1/2">
+  <header class="flex w-full flex-col items-center gap-8 lg:w-[38rem] lg:items-start">
+    <p
+      class="bg-primary text-gradient-secondary inline-block rounded-2xl px-4 py-1 text-sm font-medium duration-300 md:text-xl"
+    >
+      {questionTitleContact}
+    </p>
+
+    <h2
+      class="text-center text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-start md:text-5xl"
+    >
+      {titleContact}
+    </h2>
+  </header>
+
+  <main
+    class="flex w-full flex-col items-center gap-8 p-6 text-center md:p-0 lg:items-start lg:text-start"
+  >
+    <p class="text-md w-full font-medium duration-300 sm:text-lg md:w-[40rem] md:text-2xl">
+      {textContact}
+    </p>
+
+    <SchedulesAndContact />
+  </main>
+
+  <footer class="flex flex-col gap-4 pt-12">
+    <header class="text-center lg:text-start">
+      <h3 class="text-medium text-tertiary text-xl">Visita nuestras redes</h3>
+    </header>
+
+    <main class="flex justify-center gap-4 sm:gap-8 lg:justify-start">
+      {
+        SOCIAL.map(({ name, url, label }) => (
+          <Icon
+            name={name}
+            class="hover:drop-shadow-primary h-auto w-10 drop-shadow-lg duration-300 hover:scale-110 sm:w-10"
+          />
+        ))
+      }
+    </main>
+  </footer>
+</article>
