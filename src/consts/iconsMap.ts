@@ -8,7 +8,7 @@ import Customer6 from 'assets/customers/customer-06.svg?raw';
 import InstagramColor from 'assets/svg/instagram-color.svg?raw';
 import FacebookColor from 'assets/svg/facebook-color.svg?raw';
 import X from 'assets/svg/x.svg?raw';
-import WhatsAppColor from 'assets/svg/whatsapp-color.svg?raw';
+import WhatsAppColor from 'assets/svg/whatsApp-color.svg?raw';
 import ChromeColor from 'assets/svg/chrome-color.svg?raw';
 
 export const logoSvgMap = {

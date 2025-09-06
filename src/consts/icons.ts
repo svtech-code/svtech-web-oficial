@@ -4,7 +4,7 @@ import Instagram from 'assets/svg/instagram.svg';
 import Discord from 'assets/svg/discord.svg';
 import WhatsApp from 'assets/svg/whatsapp.svg';
 import InstagramColor from 'assets/svg/instagram-color.svg';
-import WhatsAppColor from 'assets/svg/whatsapp-color.svg';
+import WhatsAppColor from 'assets/svg/whatsApp-color.svg';
 import FacebookColor from 'assets/svg/facebook-color.svg';
 
 // servicios
