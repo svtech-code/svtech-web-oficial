@@ -1,0 +1,348 @@
+---
+import FormButton from './ui/FormButton.astro';
+import FormInput from './ui/FormInput.astro';
+import FormTextarea from './ui/FormTextarea.astro';
+import Modal from './Modal.astro';
+---
+
+<article class="flex w-full flex-col items-center justify-center gap-4 px-4 md:px-0 lg:w-1/2">
+  <div
+    class="border-primary shadow-primary shadow-xs relative h-full w-full max-w-[500px] rounded-2xl border p-5"
+  >
+    <header class="pb-8">
+      <h3 class="text-primary text-2xl font-medium">Envíanos tu mensaje</h3>
+    </header>
+
+    <form id="contact-form" class="relative flex flex-col gap-12">
+      <main class="flex flex-col gap-5">
+        <div class="flex flex-col gap-5 md:flex-row md:gap-2">
+          <FormInput
+            id="name"
+            name="name"
+            label="Nombres"
+            required={true}
+            class="w-full md:w-3/5"
+          />
+          <FormInput
+            id="phone"
+            name="phone"
+            label="Teléfono"
+            type="tel"
+            required={false}
+            class="w-full md:w-2/5"
+          />
+        </div>
+
+        <FormInput id="email" name="email" label="Email" type="email" required={true} />
+
+        <FormTextarea id="message" name="message" label="Mensaje" required={true} />
+      </main>
+
+      <footer class="flex w-full items-center justify-center">
+        <FormButton
+          id="submit-btn"
+          type="submit"
+          class="w-full max-w-[250px]"
+          text="Enviar mensaje"
+        />
+      </footer>
+    </form>
+  </div>
+</article>
+
+<Modal />
+
+<script>
+  import type { ContactFormData, FormState } from '../types/contact';
+  import { validateField, sendContactForm } from '../lib/emailjs-client';
+
+  document.addEventListener('astro:page-load', () => {
+    const form = document.querySelector('#contact-form') as HTMLFormElement;
+    const modal = document.querySelector('#success-modal') as HTMLDivElement;
+    const submitBtn = document.querySelector('#submit-btn') as HTMLButtonElement;
+
+    // Elementos del modal
+    const acceptBtn = document.querySelector('#modal-accept-btn') as HTMLButtonElement;
+    const retryBtn = document.querySelector('#modal-retry-btn') as HTMLButtonElement;
+    const cancelBtn = document.querySelector('#modal-cancel-btn') as HTMLButtonElement;
+
+    // Estados del modal
+    const loadingContent = document.querySelector('#loading-content') as HTMLDivElement;
+    const successContent = document.querySelector('#success-content') as HTMLDivElement;
+    const errorContent = document.querySelector('#error-content') as HTMLDivElement;
+    const errorMessage = document.querySelector('#error-message') as HTMLParagraphElement;
+
+    // Elementos del formulario
+    const nameInput = document.querySelector('#name') as HTMLInputElement;
+    const emailInput = document.querySelector('#email') as HTMLInputElement;
+    const phoneInput = document.querySelector('#phone') as HTMLInputElement;
+    const messageTextarea = document.querySelector('#message') as HTMLTextAreaElement;
+
+    let formState: FormState = {
+      isLoading: false,
+      isSuccess: false,
+      error: null,
+    };
+
+    let currentFormData: ContactFormData | null = null;
+
+    // Estado de errores por campo
+    let fieldErrors: Record<string, string> = {};
+
+    // Función para mostrar/ocultar error en un campo específico
+    function showFieldError(fieldName: string, errorMsg: string) {
+      fieldErrors[fieldName] = errorMsg;
+      updateFieldDisplay(fieldName);
+    }
+
+    function clearFieldError(fieldName: string) {
+      delete fieldErrors[fieldName];
+      updateFieldDisplay(fieldName);
+    }
+
+    function updateFieldDisplay(fieldName: string) {
+      const fieldElement = document.querySelector(`#${fieldName}`) as
+        | HTMLInputElement
+        | HTMLTextAreaElement;
+      const fieldContainer = fieldElement?.closest('.space-y-2');
+
+      if (!fieldElement || !fieldContainer) return;
+
+      // Remover error previo
+      const existingError = fieldContainer.querySelector('.field-error-message');
+      existingError?.remove();
+
+      if (fieldErrors[fieldName]) {
+        // Agregar clase de error al input
+        fieldElement.classList.add('border-red-500', 'focus:ring-red-500');
+        fieldElement.classList.remove('border-primary', 'focus:ring-primary');
+
+        // Crear mensaje de error
+        const errorElement = document.createElement('p');
+        errorElement.className = 'mt-1 text-sm text-red-600 flex items-center field-error-message';
+        errorElement.innerHTML = `
+          <svg class="w-4 h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          ${fieldErrors[fieldName]}
+        `;
+
+        fieldContainer.appendChild(errorElement);
+      } else {
+        // Remover clase de error del input
+        fieldElement.classList.remove('border-red-500', 'focus:ring-red-500');
+        fieldElement.classList.add('border-primary', 'focus:ring-primary');
+      }
+    }
+
+    // Función para validar un campo individual
+    function validateSingleField(fieldName: keyof ContactFormData, value: string) {
+      const error = validateField(fieldName, value);
+      if (error) {
+        showFieldError(fieldName, error);
+        return false;
+      } else {
+        clearFieldError(fieldName);
+        return true;
+      }
+    }
+
+    // Event listeners para validación en tiempo real
+    function setupFieldValidation() {
+      // Validación al perder el foco (onBlur)
+      nameInput?.addEventListener('blur', (e) => {
+        const target = e.target as HTMLInputElement;
+        validateSingleField('name', target.value);
+      });
+
+      emailInput?.addEventListener('blur', (e) => {
+        const target = e.target as HTMLInputElement;
+        validateSingleField('email', target.value);
+      });
+
+      phoneInput?.addEventListener('blur', (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.value.trim()) {
+          // Solo validar si hay contenido
+          validateSingleField('phone', target.value);
+        } else {
+          clearFieldError('phone'); // Limpiar error si está vacío (es opcional)
+        }
+      });
+
+      messageTextarea?.addEventListener('blur', (e) => {
+        const target = e.target as HTMLTextAreaElement;
+        validateSingleField('message', target.value);
+      });
+
+      // Limpiar errores al empezar a escribir (onInput)
+      nameInput?.addEventListener('input', () => clearFieldError('name'));
+      emailInput?.addEventListener('input', () => clearFieldError('email'));
+      phoneInput?.addEventListener('input', () => clearFieldError('phone'));
+      messageTextarea?.addEventListener('input', () => clearFieldError('message'));
+    }
+
+    // Función para mostrar modal en estado específico
+    function showModal(state: 'loading' | 'success' | 'error', message?: string) {
+      // Actualizar data-state del modal
+      modal.setAttribute('data-state', state);
+
+      // Ocultar todos los contenidos
+      loadingContent?.classList.add('hidden');
+      successContent?.classList.add('hidden');
+      errorContent?.classList.add('hidden');
+
+      // Mostrar el contenido correspondiente
+      switch (state) {
+        case 'loading':
+          loadingContent?.classList.remove('hidden');
+          break;
+        case 'success':
+          successContent?.classList.remove('hidden');
+          break;
+        case 'error':
+          errorContent?.classList.remove('hidden');
+          if (message && errorMessage) {
+            errorMessage.textContent = message;
+          }
+          break;
+      }
+
+      // Mostrar el modal
+      modal?.classList.remove('hidden');
+    }
+
+    // Función para ocultar modal
+    function hideModal() {
+      modal?.classList.add('hidden');
+    }
+
+    // Función para manejar el envío del formulario
+    async function handleFormSubmit(contactData: ContactFormData) {
+      // Mostrar modal en loading inmediatamente
+      showModal('loading');
+
+      // Deshabilitar botón y cambiar estado
+      setFormState({ isLoading: true, isSuccess: false, error: null });
+      updateSubmitButton();
+
+      try {
+        await sendContactForm(contactData);
+
+        // Éxito: cambiar a estado success
+        setFormState({ isLoading: false, isSuccess: true, error: null });
+        showModal('success');
+        form.reset();
+
+        // Limpiar todos los errores
+        fieldErrors = {};
+        ['name', 'email', 'phone', 'message'].forEach((field) => updateFieldDisplay(field));
+      } catch (error) {
+        // Error: cambiar a estado error
+        const errorMsg = 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.';
+        setFormState({
+          isLoading: false,
+          isSuccess: false,
+          error: errorMsg,
+        });
+        showModal('error', errorMsg);
+      }
+
+      updateSubmitButton();
+    }
+
+    // Función para actualizar el estado del botón
+    function updateSubmitButton() {
+      if (submitBtn) {
+        submitBtn.disabled = formState.isLoading;
+
+        // Actualizar contenido del botón manualmente
+        if (formState.isLoading) {
+          submitBtn.innerHTML = `
+            <span class="flex items-center justify-center">
+              <svg class="-ml-1 mr-3 h-5 w-5 animate-spin text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            </span>
+          `;
+        } else {
+          submitBtn.innerHTML = '<span>Enviar mensaje</span>';
+        }
+      }
+    }
+
+    // Event listener del formulario
+    if (form) {
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Obtener los datos del formulario
+        const formData = new FormData(form);
+        const contactData: ContactFormData = {
+          name: formData.get('name')?.toString() || '',
+          email: formData.get('email')?.toString() || '',
+          phone: formData.get('phone')?.toString() || '',
+          message: formData.get('message')?.toString() || '',
+        };
+
+        // Validar todos los campos
+        let isValid = true;
+        isValid = validateSingleField('name', contactData.name) && isValid;
+        isValid = validateSingleField('email', contactData.email) && isValid;
+        isValid = validateSingleField('message', contactData.message) && isValid;
+
+        // Validar teléfono solo si tiene contenido
+        if (contactData.phone && contactData.phone.trim()) {
+          isValid = validateSingleField('phone', contactData.phone) && isValid;
+        }
+
+        if (!isValid) {
+          // Hacer scroll al primer error
+          const firstErrorField = document.querySelector('.border-red-500');
+          firstErrorField?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        // Guardar datos para posible reintento
+        currentFormData = contactData;
+
+        // Manejar envío
+        await handleFormSubmit(contactData);
+      });
+    }
+
+    // Event listeners del modal
+
+    // Botón Aceptar (success)
+    acceptBtn?.addEventListener('click', () => {
+      hideModal();
+      setFormState({ isLoading: false, isSuccess: false, error: null });
+      updateSubmitButton();
+    });
+
+    // Botón Reintentar (error)
+    retryBtn?.addEventListener('click', async () => {
+      if (currentFormData) {
+        await handleFormSubmit(currentFormData);
+      }
+    });
+
+    // Botón Cancelar (error)
+    cancelBtn?.addEventListener('click', () => {
+      hideModal();
+      setFormState({ isLoading: false, isSuccess: false, error: null });
+      updateSubmitButton();
+      currentFormData = null;
+    });
+
+    // Función helper para actualizar estado
+    function setFormState(newState: Partial<FormState>) {
+      formState = { ...formState, ...newState };
+    }
+
+    // Inicializar validación de campos
+    setupFieldValidation();
+  });
+</script>
