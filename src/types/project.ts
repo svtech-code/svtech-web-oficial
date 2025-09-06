@@ -1,5 +1,7 @@
+import type { IconName } from 'consts/icons';
+
 interface Technology {
-  icon: any;
+  icon: IconName;
   label: string;
 }
 
