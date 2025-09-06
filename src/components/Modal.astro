@@ -1,0 +1,85 @@
+---
+import ModalLoadingState from './ui/ModalLoadingState.astro';
+import ModalSuccessState from './ui/ModalSuccessState.astro';
+import ModalErrorState from './ui/ModalErrorState.astro';
+
+export interface Props {
+  isOpen?: boolean;
+  state?: 'loading' | 'success' | 'error';
+  errorMessage?: string;
+}
+
+const {
+  isOpen = false,
+  state = 'success',
+  errorMessage = 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.',
+} = Astro.props;
+---
+
+<div id="success-modal" class={`modal-overlay ${isOpen ? '' : 'hidden'}`} data-state={state}>
+  <div class="modal-content">
+    <div class="modal-body">
+      <ModalLoadingState state={state} />
+      <ModalSuccessState state={state} />
+      <ModalErrorState state={state} errorMessage={errorMessage} />
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .modal-content {
+    background: white;
+    max-width: 500px;
+    width: 90%;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+
+  .modal-overlay:not(.hidden) .modal-content {
+    transform: scale(1);
+  }
+
+  .modal-body {
+    text-align: center;
+  }
+
+  .modal-state {
+    transition: opacity 0.3s ease;
+  }
+
+  .modal-state.hidden {
+    display: none;
+  }
+
+  /* Loading state específico */
+  .modal-overlay[data-state='loading'] {
+    pointer-events: all;
+  }
+
+  .modal-overlay[data-state='loading'] .modal-content {
+    pointer-events: none;
+  }
+</style>
