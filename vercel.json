@@ -3,6 +3,27 @@
   "builds": [{ "src": "package.json", "use": "@vercel/static-build" }],
   "routes": [
     {
+      "src": "/favicon.svg",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      },
+      "dest": "/favicon.svg"
+    },
+    {
+      "src": "/og.png",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      },
+      "dest": "/og.png"
+    },
+    {
+      "src": "/robots.txt",
+      "headers": {
+        "Cache-Control": "public, max-age=86400"
+      },
+      "dest": "/robots.txt"
+    },
+    {
       "src": "/fonts/(.*)",
       "headers": {
         "Cache-Control": "public, max-age=31536000, immutable"
