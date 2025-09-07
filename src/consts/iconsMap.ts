@@ -1,9 +1,5 @@
-import Customer1 from 'assets/customers/customer-01.svg?raw';
-import Customer2 from 'assets/customers/customer-02.svg?raw';
-import Customer3 from 'assets/customers/customer-03.svg?raw';
-import Customer4 from 'assets/customers/customer-04.svg?raw';
-import Customer5 from 'assets/customers/customer-05.svg?raw';
-import Customer6 from 'assets/customers/customer-06.svg?raw';
+// Optimización: Usar rutas estáticas en lugar de imports raw para reducir bundle size
+// Los SVGs de customers ahora se cargan desde public/images/customers/ como archivos estáticos
 
 import InstagramColor from 'assets/svg/instagram-color.svg?raw';
 import FacebookColor from 'assets/svg/facebook-color.svg?raw';
@@ -12,12 +8,12 @@ import WhatsAppColor from 'assets/svg/whatsApp-color.svg?raw';
 import ChromeColor from 'assets/svg/chrome-color.svg?raw';
 
 export const logoSvgMap = {
-  'customer-01': Customer1,
-  'customer-02': Customer2,
-  'customer-03': Customer3,
-  'customer-04': Customer4,
-  'customer-05': Customer5,
-  'customer-06': Customer6,
+  'customer-01': '/images/customers/customer-01.svg',
+  'customer-02': '/images/customers/customer-02.svg',
+  'customer-03': '/images/customers/customer-03.svg',
+  'customer-04': '/images/customers/customer-04.svg',
+  'customer-05': '/images/customers/customer-05.svg',
+  'customer-06': '/images/customers/customer-06.svg',
 } as const;
 
 export const socialIconsMap = {
