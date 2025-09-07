@@ -131,8 +131,8 @@ import Modal from './Modal.astro';
           // @ts-ignore
           window.turnstile.render('#turnstile-widget', {
             sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
-            theme: 'auto',
-            size: 'normal',
+            theme: 'dark',
+            size: 'flexible',
             appearence: 'always',
             callback: (token: string) => {
               turnstileToken = token;
