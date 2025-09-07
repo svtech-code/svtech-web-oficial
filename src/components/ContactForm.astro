@@ -92,8 +92,18 @@ import Modal from './Modal.astro';
     // Variable para el token de Turnstile
     let turnstileToken: string | null = null;
 
+    // Variable para controlar si Turnstile ya fue cargado
+    let turnstileLoaded = false;
+
     // Estado de errores por campo
     let fieldErrors: Record<string, string> = {};
+
+    // Función para cargar Turnstile bajo demanda
+    function loadTurnstileOnDemand() {
+      if (turnstileLoaded) return;
+      turnstileLoaded = true;
+      loadTurnstile();
+    }
 
     // Función para cargar y configurar Turnstile
     function loadTurnstile() {
@@ -454,7 +464,9 @@ import Modal from './Modal.astro';
     // Inicializar validación de campos
     setupFieldValidation();
 
-    // Cargar Turnstile
-    loadTurnstile();
+    // Cargar Turnstile después de 2 segundos O cuando el usuario interactúe (lo que ocurra primero)
+    setTimeout(loadTurnstileOnDemand, 2000);
+    form?.addEventListener('focusin', loadTurnstileOnDemand, { once: true });
+    form?.addEventListener('click', loadTurnstileOnDemand, { once: true });
   });
 </script>
