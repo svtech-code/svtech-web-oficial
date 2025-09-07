@@ -2,6 +2,7 @@
 order: 4
 title: 'Administración hosting'
 image: '/images/services/administracion-hosting.webp'
+imageAlt: 'Imagen que presenta el nombre de servicios de hosting, adquisición de dominios y cpanel de administracion'
 description: 'Administración, configuración, mantenimiento y migración de servicios de alojamiento web.'
 ---
 

@@ -2,6 +2,7 @@
 order: 1
 title: 'Soporte Informático'
 image: '/images/services/soporte-informatico.webp'
+imageAlt: 'Imagen que muestra gran variedad de servicios, piezas de computador, programas de ofimática y sistemas operativos'
 description: 'Mantenimiento preventivo y correctivo de equipos informáticos, servidores y sistemas operativos.'
 ---
 

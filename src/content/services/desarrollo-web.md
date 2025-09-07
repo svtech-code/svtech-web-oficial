@@ -2,6 +2,7 @@
 order: 2
 title: 'Desarrollo web'
 image: '/images/services/desarrollo-web.webp'
+imageAlt: 'Imagen que muestra dispositivos que hacen relacion al responsive y al rededor, logos de lenguajes de programacion y herramientas de edición y maquetado'
 description: 'Desarrollo de aplicaciones web y landing page modernas, flexibles, escalables y responsivas.'
 ---
 

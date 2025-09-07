@@ -2,6 +2,7 @@
 order: 6
 title: 'Soporte personalizado'
 image: '/images/services/soporte-personalizado.webp'
+imageAlt: 'Imagen que muestra equipos de diferentes marca y el nombre de aplicaciones para conexión remota'
 description: 'Soporte tecnológico personalizado para mejorar y optimizar procesos o recursos de tu empresa o emprendimiento.'
 ---
 

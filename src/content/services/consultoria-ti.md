@@ -2,6 +2,7 @@
 order: 3
 title: 'Consultoría TI'
 image: '/images/services/consultoria-ti.webp'
+imageAlt: 'Imagen que muestra sub imagenes de gente revisando documentos que hace relación a auditorias'
 description: 'Asesoramiento tecnológico para mejorar y optimizar procesos y recursos de tu empresa o emprendimiento.'
 ---
 
