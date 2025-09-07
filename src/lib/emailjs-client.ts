@@ -26,6 +26,29 @@ function sanitizeString(input: string): string {
 }
 
 /**
+ * Verifica el token de Turnstile con el servidor
+ */
+async function verifyTurnstile(token: string): Promise<boolean> {
+  try {
+    const response = await fetch('/api/verify-turnstile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
+
+    if (!response.ok) {
+      return false;
+    }
+
+    const result = await response.json();
+    return result.success;
+  } catch (error) {
+    console.error('Error verificando Turnstile:', error);
+    return false;
+  }
+}
+
+/**
  * Valida un campo específico del formulario
  */
 export function validateField(fieldName: keyof ContactFormData, value: string): string | null {
@@ -150,7 +173,18 @@ function sanitizeContactFormData(data: ContactFormData): ContactFormData {
 /**
  * Envía el formulario de contacto via EmailJS
  */
-export async function sendContactForm(data: ContactFormData): Promise<EmailJSResponse> {
+export async function sendContactForm(
+  data: ContactFormData,
+  turnstileToken?: string,
+): Promise<EmailJSResponse> {
+  // Verificar Turnstile primero si se proporciona token
+  if (turnstileToken) {
+    const isValidToken = await verifyTurnstile(turnstileToken);
+    if (!isValidToken) {
+      throw new Error('Verificación de seguridad fallida. Por favor, inténtalo nuevamente.');
+    }
+  }
+
   // Sanitizar datos antes del envío
   const sanitizedData = sanitizeContactFormData(data);
 

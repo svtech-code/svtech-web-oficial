@@ -13,7 +13,7 @@ import Modal from './Modal.astro';
       <h3 class="text-primary text-2xl font-medium">Envíanos tu mensaje</h3>
     </header>
 
-    <form id="contact-form" class="relative flex flex-col gap-12">
+    <form id="contact-form" class="relative flex flex-col gap-6">
       <main class="flex flex-col gap-5">
         <div class="flex flex-col gap-5 md:flex-row md:gap-2">
           <FormInput
@@ -38,7 +38,10 @@ import Modal from './Modal.astro';
         <FormTextarea id="message" name="message" label="Mensaje" required={true} />
       </main>
 
-      <footer class="flex w-full items-center justify-center">
+      <footer class="flex w-full flex-col items-center justify-center gap-8">
+        <!-- Widget de Turnstile -->
+        <div id="turnstile-widget" class="flex items-center justify-center"></div>
+
         <FormButton
           id="submit-btn"
           type="submit"
@@ -86,8 +89,88 @@ import Modal from './Modal.astro';
 
     let currentFormData: ContactFormData | null = null;
 
+    // Variable para el token de Turnstile
+    let turnstileToken: string | null = null;
+
     // Estado de errores por campo
     let fieldErrors: Record<string, string> = {};
+
+    // Función para cargar y configurar Turnstile
+    function loadTurnstile() {
+      // Verificar si el script ya existe
+      if (document.querySelector('script[src*="turnstile"]')) {
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        // @ts-ignore
+        if (window.turnstile) {
+          // Observar cambios en el widget para aplicar estilos cuando se cree el iframe
+          const widget = document.querySelector('#turnstile-widget');
+          if (widget) {
+            const observer = new MutationObserver((mutations) => {
+              mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                  applyTurnstileStyles();
+                }
+              });
+            });
+
+            observer.observe(widget, {
+              childList: true,
+              subtree: true,
+            });
+          }
+
+          // @ts-ignore
+          window.turnstile.render('#turnstile-widget', {
+            sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
+            theme: 'auto',
+            size: 'normal',
+            appearence: 'always',
+            callback: (token: string) => {
+              turnstileToken = token;
+            },
+            'error-callback': () => {
+              turnstileToken = null;
+              console.error('Error en Turnstile');
+            },
+            'expired-callback': () => {
+              turnstileToken = null;
+              console.warn('Token de Turnstile expirado');
+            },
+          });
+        }
+      };
+
+      script.onerror = () => {
+        console.error('Error al cargar Turnstile');
+      };
+    }
+
+    // Función para aplicar estilos dinámicamente
+    function applyTurnstileStyles() {
+      const widget = document.querySelector('#turnstile-widget');
+      if (widget) {
+        const turnstileDiv = widget.querySelector('div');
+
+        if (turnstileDiv) {
+          turnstileDiv.classList.add(
+            'flex',
+            'rounded-xl',
+            'overflow-hidden',
+            'border-primary',
+            'border-2',
+          );
+        }
+      }
+    }
 
     // Función para mostrar/ocultar error en un campo específico
     function showFieldError(fieldName: string, errorMsg: string) {
@@ -227,7 +310,8 @@ import Modal from './Modal.astro';
       updateSubmitButton();
 
       try {
-        await sendContactForm(contactData);
+        // Enviar formulario con token de Turnstile
+        await sendContactForm(contactData, turnstileToken || undefined);
 
         // Éxito: cambiar a estado success
         setFormState({ isLoading: false, isSuccess: true, error: null });
@@ -237,15 +321,34 @@ import Modal from './Modal.astro';
         // Limpiar todos los errores
         fieldErrors = {};
         ['name', 'email', 'phone', 'message'].forEach((field) => updateFieldDisplay(field));
+
+        // Resetear Turnstile
+        turnstileToken = null;
+        // @ts-ignore
+        if (window.turnstile) {
+          // @ts-ignore
+          window.turnstile.reset('#turnstile-widget');
+        }
       } catch (error) {
         // Error: cambiar a estado error
-        const errorMsg = 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.';
+        const errorMsg =
+          error instanceof Error
+            ? error.message
+            : 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.';
         setFormState({
           isLoading: false,
           isSuccess: false,
           error: errorMsg,
         });
         showModal('error', errorMsg);
+
+        // Resetear Turnstile en caso de error
+        turnstileToken = null;
+        // @ts-ignore
+        if (window.turnstile) {
+          // @ts-ignore
+          window.turnstile.reset('#turnstile-widget');
+        }
       }
 
       updateSubmitButton();
@@ -298,6 +401,12 @@ import Modal from './Modal.astro';
           isValid = validateSingleField('phone', contactData.phone) && isValid;
         }
 
+        // Validar Turnstile
+        if (!turnstileToken) {
+          showModal('error', 'Por favor completa la verificación de seguridad');
+          return;
+        }
+
         if (!isValid) {
           // Hacer scroll al primer error
           const firstErrorField = document.querySelector('.border-red-500');
@@ -344,5 +453,8 @@ import Modal from './Modal.astro';
 
     // Inicializar validación de campos
     setupFieldValidation();
+
+    // Cargar Turnstile
+    loadTurnstile();
   });
 </script>
