@@ -16,7 +16,13 @@ const {
 } = Astro.props;
 ---
 
-<div id="success-modal" class={`modal-overlay ${isOpen ? '' : 'hidden'}`} data-state={state}>
+<div
+  id="success-modal"
+  role="dialog"
+  aria-modal="true"
+  class={`modal-overlay ${isOpen ? '' : 'hidden'}`}
+  data-state={state}
+>
   <div class="modal-content">
     <div class="modal-body">
       <ModalLoadingState state={state} />
