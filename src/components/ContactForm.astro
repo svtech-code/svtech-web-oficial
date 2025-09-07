@@ -418,9 +418,18 @@ import Modal from './Modal.astro';
         }
 
         if (!isValid) {
-          // Hacer scroll al primer error
-          const firstErrorField = document.querySelector('.border-red-500');
-          firstErrorField?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // ✅ Usar requestAnimationFrame para evitar forced reflow
+          // Permite que los estilos se apliquen antes del scroll
+          requestAnimationFrame(() => {
+            const firstErrorField = document.querySelector('.border-red-500') as HTMLElement;
+            if (firstErrorField) {
+              firstErrorField.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center',
+                inline: 'nearest'
+              });
+            }
+          });
           return;
         }
 
