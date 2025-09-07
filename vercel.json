@@ -24,14 +24,21 @@
       "dest": "/_astro/$1"
     },
     {
+      "src": "/~partytown/(.*)",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      },
+      "dest": "/~partytown/$1"
+    },
+    {
       "src": "/(.*)",
       "headers": {
-        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com; img-src 'self' data: https://www.svtech.cl; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; frame-src 'self' https://challenges.cloudflare.com; object-src 'none';",
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://*.cloudflare.com; worker-src 'self' blob:; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://*.cloudflare.com; img-src 'self' data: https://www.svtech.cl; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; frame-src 'self' https://challenges.cloudflare.com https://*.cloudflare.com; object-src 'none';",
         "X-Frame-Options": "DENY",
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "strict-origin-when-cross-origin",
         "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-        "Permissions-Policy": ""
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), browsing-topics=(), interest-cohort=()"
       },
       "dest": "/"
     }
