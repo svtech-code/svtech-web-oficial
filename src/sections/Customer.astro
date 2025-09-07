@@ -58,12 +58,17 @@ const initialCustomer = CUSTOMERS[0] as Customer;
   .customer-marquee {
     animation: scroll-left 20s linear infinite;
     width: max-content;
+    /* ✅ Performance hint para el navegador */
+    will-change: transform;
+    /* ✅ Forzar layer de composición para mejor performance */
+    transform: translateZ(0);
   }
 
   .customer-marquee:hover {
     animation-play-state: paused;
   }
 
+  /* ✅ Animación optimizada usando solo transform */
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
@@ -142,10 +147,12 @@ const initialCustomer = CUSTOMERS[0] as Customer;
         if (descriptionCustomer) descriptionCustomer.textContent = customer.description;
         if (locationCustomer) locationCustomer.textContent = customer.location;
 
-        // Actualizar el logo
+        // Actualizar el logo usando <img> en lugar de innerHTML para mejor performance
         if (logoCustomer) {
-          const logoSvg = logoSvgMap[customer.id as keyof typeof logoSvgMap];
-          if (logoSvg) logoCustomer.innerHTML = logoSvg;
+          const logoSrc = logoSvgMap[customer.id as keyof typeof logoSvgMap];
+          if (logoSrc) {
+            logoCustomer.innerHTML = `<img src="${logoSrc}" alt="Logo de ${customer.name}" loading="lazy" class="w-full h-full object-contain">`;
+          }
         }
 
         // Acutalizar redes sociales

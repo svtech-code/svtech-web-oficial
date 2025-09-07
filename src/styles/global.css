@@ -44,11 +44,11 @@
 }
 
 @layer utilities {
+  /* ✅ Animaciones optimizadas para mejor performance */
   @keyframes shimmer {
     0% {
       background-position: 0% 0;
     }
-
     100% {
       background-position: 200% 0;
     }
@@ -58,7 +58,6 @@
     0% {
       transform: translateX(-100%) rotate(30deg);
     }
-
     100% {
       transform: translateX(100%) rotate(30deg);
     }
@@ -69,18 +68,18 @@
       left: 0%;
       /* Empieza fuera de la barra */
     }
-
     50% {
       left: 100%;
       /* Termina fuera del lado derecho */
     }
-
     100% {
       left: 0%;
       /* Vuelve al inicio */
     }
   }
+}
 
+@layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
