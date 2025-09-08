@@ -113,8 +113,8 @@ const initialCustomer = CUSTOMERS[0] as Customer;
 <script>
   import { CustomerCarousel } from '../lib/customer-carousel';
 
-  // ✅ Inicializar el carrusel de clientes cuando la página se carga
-  document.addEventListener('astro:page-load', () => {
+  // ✅ Escuchar evento personalizado para inicialización defer
+  document.addEventListener('init-customer-carousel', () => {
     CustomerCarousel.initialize('#customers');
   });
 </script>

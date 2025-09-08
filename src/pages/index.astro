@@ -18,3 +18,23 @@ export const prerender = true;
   <Customer />
   <Contact />
 </Layout>
+
+<!-- ✅ DEFER Customer JavaScript (Astro way) -->
+<script>
+  // ✅ ASTRO EVENT - funciona con View Transitions y SPA
+  document.addEventListener('astro:page-load', () => {
+    // ✅ DELAY de 500ms para que primero se renderice lo crítico
+    setTimeout(() => {
+      // ✅ Verificar si el carrusel ya está inicializado
+      const customerSection = document.getElementById('customers');
+      if (customerSection && !customerSection.dataset.initialized) {
+        // ✅ Marcar como inicializado
+        customerSection.dataset.initialized = 'true';
+        
+        // ✅ Crear evento personalizado para inicializar el carrusel
+        const initEvent = new CustomEvent('init-customer-carousel');
+        document.dispatchEvent(initEvent);
+      }
+    }, 500);
+  });
+</script>
