@@ -120,10 +120,25 @@ async function loadEmailJS(): Promise<any> {
   if (emailjsInstance) return emailjsInstance;
 
   try {
-    // @ts-ignore: Import dinámico desde CDN
-    const emailjs = await import('https://cdn.skypack.dev/@emailjs/browser');
-    emailjs.default.init(EMAILJS_CONFIG.publicKey);
-    emailjsInstance = emailjs.default;
+    // ✅ Optimización: Usar fetch para cargar el script cuando se necesite
+    if (!document.querySelector('script[src*="emailjs"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      script.async = true;
+
+      await new Promise((resolve, reject) => {
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    // @ts-ignore: EmailJS se carga globalmente
+    const emailjs = window.emailjs;
+    if (!emailjs) throw new Error('EmailJS not loaded');
+
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+    emailjsInstance = emailjs;
     return emailjsInstance;
   } catch (error) {
     throw new Error('Error al cargar EmailJS');
