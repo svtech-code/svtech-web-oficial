@@ -59,10 +59,34 @@ import Modal from './Modal.astro';
   import type { ContactFormData, FormState } from '../types/contact';
   import { validateField, sendContactForm } from '../lib/emailjs-client';
 
-  document.addEventListener('astro:page-load', () => {
+  // ✅ Batch DOM operations usando requestAnimationFrame
+  function updateFieldState(fieldElement: HTMLElement, hasError: boolean) {
+    requestAnimationFrame(() => {
+      // Usar className para una sola operación DOM en lugar de múltiples classList
+      if (hasError) {
+        fieldElement.className = fieldElement.className
+          .replace(/border-primary|focus:ring-primary/g, '')
+          .concat(' border-red-500 focus:ring-red-500')
+          .replace(/\s+/g, ' ')
+          .trim();
+      } else {
+        fieldElement.className = fieldElement.className
+          .replace(/border-red-500|focus:ring-red-500/g, '')
+          .concat(' border-primary focus:ring-primary')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+    });
+  }
+
+  // ✅ Usar lazy loading con Intersection Observer para cargar el script solo cuando sea necesario
+  function initializeContactForm() {
     const form = document.querySelector('#contact-form') as HTMLFormElement;
     const modal = document.querySelector('#success-modal') as HTMLDivElement;
     const submitBtn = document.querySelector('#submit-btn') as HTMLButtonElement;
+
+    // Early return si no encontramos elementos críticos
+    if (!form || !modal || !submitBtn) return;
 
     // Elementos del modal
     const acceptBtn = document.querySelector('#modal-accept-btn') as HTMLButtonElement;
@@ -193,6 +217,26 @@ import Modal from './Modal.astro';
       updateFieldDisplay(fieldName);
     }
 
+    // ✅ Batch DOM operations usando requestAnimationFrame
+    function updateFieldState(fieldElement: HTMLElement, hasError: boolean) {
+      requestAnimationFrame(() => {
+        // Usar className para una sola operación DOM en lugar de múltiples classList
+        if (hasError) {
+          fieldElement.className = fieldElement.className
+            .replace(/border-primary|focus:ring-primary/g, '')
+            .concat(' border-red-500 focus:ring-red-500')
+            .replace(/\s+/g, ' ')
+            .trim();
+        } else {
+          fieldElement.className = fieldElement.className
+            .replace(/border-red-500|focus:ring-red-500/g, '')
+            .concat(' border-primary focus:ring-primary')
+            .replace(/\s+/g, ' ')
+            .trim();
+        }
+      });
+    }
+
     function updateFieldDisplay(fieldName: string) {
       const fieldElement = document.querySelector(`#${fieldName}`) as
         | HTMLInputElement
@@ -206,9 +250,8 @@ import Modal from './Modal.astro';
       existingError?.remove();
 
       if (fieldErrors[fieldName]) {
-        // Agregar clase de error al input
-        fieldElement.classList.add('border-red-500', 'focus:ring-red-500');
-        fieldElement.classList.remove('border-primary', 'focus:ring-primary');
+        // ✅ Una sola operación DOM batched
+        updateFieldState(fieldElement, true);
 
         // Crear mensaje de error
         const errorElement = document.createElement('p');
@@ -222,9 +265,8 @@ import Modal from './Modal.astro';
 
         fieldContainer.appendChild(errorElement);
       } else {
-        // Remover clase de error del input
-        fieldElement.classList.remove('border-red-500', 'focus:ring-red-500');
-        fieldElement.classList.add('border-primary', 'focus:ring-primary');
+        // ✅ Una sola operación DOM batched
+        updateFieldState(fieldElement, false);
       }
     }
 
@@ -477,5 +519,36 @@ import Modal from './Modal.astro';
     setTimeout(loadTurnstileOnDemand, 2000);
     form?.addEventListener('focusin', loadTurnstileOnDemand, { once: true });
     form?.addEventListener('click', loadTurnstileOnDemand, { once: true });
+  }
+
+  // ✅ Lazy loading del contacto form usando Intersection Observer
+  document.addEventListener('astro:page-load', () => {
+    const contactSection = document.querySelector('#contact-form');
+    if (!contactSection) return;
+
+    // ✅ Usar Intersection Observer para cargar el script cuando la sección sea visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Inicializar el formulario cuando sea visible
+          initializeContactForm();
+          // Desconectar el observer después de la primera carga
+          observer.disconnect();
+        }
+      });
+    }, {
+      // Trigger cuando esté 50% visible o 200px antes de ser visible
+      threshold: 0.1,
+      rootMargin: '200px 0px'
+    });
+
+    observer.observe(contactSection);
+
+    // ✅ Fallback: Si después de 3 segundos no se ha cargado, cargarlo anyway
+    setTimeout(() => {
+      if (contactSection.querySelector('input')) return; // Ya se inicializó
+      initializeContactForm();
+      observer.disconnect();
+    }, 3000);
   });
 </script>
