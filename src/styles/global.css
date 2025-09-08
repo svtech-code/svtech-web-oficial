@@ -140,3 +140,44 @@ html {
   background: #001217;
   scroll-behavior: smooth;
 }
+
+@layer utilities {
+  /* ✅ CSS Containment optimizado para componentes específicos que causan reflows */
+
+  /* Contenedor de detalles del customer - solo style para preservar layout */
+  [data-customer='detail-component'] {
+    contain: style;
+  }
+
+  /* Marquee de customers - layout y style para mejor performance */
+  .customer-marquee-container {
+    contain: layout style;
+  }
+
+  /* Navbar containers - paint containment para mejor compositing */
+  #content-navbar-desktop,
+  #content-navbar-mobile {
+    contain: layout style paint;
+  }
+
+  /* Modal container */
+  .modal-overlay {
+    contain: layout style paint;
+  }
+
+  /* Elementos que cambian frecuentemente */
+  .customer-marquee {
+    contain: layout style;
+    will-change: transform;
+  }
+
+  /* Elementos con animaciones - solo style para preservar efectos */
+  .animate-fade-out {
+    contain: style;
+  }
+
+  /* ✅ Optimización adicional para elementos que cambian dinámicamente */
+  [data-customer] {
+    contain: style;
+  }
+}
