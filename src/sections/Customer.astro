@@ -110,11 +110,4 @@ const initialCustomer = CUSTOMERS[0] as Customer;
   }
 </style>
 
-<script>
-  import { CustomerCarousel } from '../lib/customer-carousel';
 
-  // ✅ Escuchar evento personalizado para inicialización defer
-  document.addEventListener('init-customer-carousel', () => {
-    CustomerCarousel.initialize('#customers');
-  });
-</script>

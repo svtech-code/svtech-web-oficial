@@ -19,22 +19,33 @@ export const prerender = true;
   <Contact />
 </Layout>
 
-<!-- ✅ DEFER Customer JavaScript (Astro way) -->
+<!-- ✅ LAZY LOAD Customer JavaScript usando Intersection Observer -->
 <script>
-  // ✅ ASTRO EVENT - funciona con View Transitions y SPA
   document.addEventListener('astro:page-load', () => {
-    // ✅ DELAY de 500ms para que primero se renderice lo crítico
-    setTimeout(() => {
-      // ✅ Verificar si el carrusel ya está inicializado
-      const customerSection = document.getElementById('customers');
-      if (customerSection && !customerSection.dataset.initialized) {
-        // ✅ Marcar como inicializado
-        customerSection.dataset.initialized = 'true';
-        
-        // ✅ Crear evento personalizado para inicializar el carrusel
-        const initEvent = new CustomEvent('init-customer-carousel');
-        document.dispatchEvent(initEvent);
-      }
-    }, 500);
+    const customerSection = document.getElementById('customers');
+    
+    if (customerSection && !customerSection.dataset.initialized) {
+      // ✅ Usar Intersection Observer para carga lazy real
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // ✅ Marcar como inicializado
+            customerSection.dataset.initialized = 'true';
+            
+            // ✅ Importar dinámicamente el módulo del carrusel
+            import('../lib/customer-carousel.ts').then((module) => {
+              module.CustomerCarousel.initialize('#customers');
+            });
+            
+            // ✅ Dejar de observar una vez inicializado
+            observer.unobserve(customerSection);
+          }
+        });
+      }, {
+        rootMargin: '50px' // Cargar cuando esté 50px antes de ser visible
+      });
+      
+      observer.observe(customerSection);
+    }
   });
 </script>
