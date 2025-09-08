@@ -19,33 +19,11 @@ export const prerender = true;
   <Contact />
 </Layout>
 
-<!-- ✅ LAZY LOAD Customer JavaScript usando Intersection Observer -->
+<!-- ✅ LAZY LOAD Customer JavaScript usando LazyLoader -->
 <script>
+  import { LazyLoader } from '../lib/lazy-loader';
+
   document.addEventListener('astro:page-load', () => {
-    const customerSection = document.getElementById('customers');
-    
-    if (customerSection && !customerSection.dataset.initialized) {
-      // ✅ Usar Intersection Observer para carga lazy real
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // ✅ Marcar como inicializado
-            customerSection.dataset.initialized = 'true';
-            
-            // ✅ Importar dinámicamente el módulo del carrusel
-            import('../lib/customer-carousel.ts').then((module) => {
-              module.CustomerCarousel.initialize('#customers');
-            });
-            
-            // ✅ Dejar de observar una vez inicializado
-            observer.unobserve(customerSection);
-          }
-        });
-      }, {
-        rootMargin: '50px' // Cargar cuando esté 50px antes de ser visible
-      });
-      
-      observer.observe(customerSection);
-    }
+    LazyLoader.initializeCustomerCarousel();
   });
 </script>
