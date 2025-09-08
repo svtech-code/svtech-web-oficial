@@ -34,6 +34,7 @@ const initialCustomer = CUSTOMERS[0] as Customer;
 </section>
 
 <style>
+  /* ✅ Optimización: Gradientes para efecto fade en los bordes */
   .customer-marquee-container::before,
   .customer-marquee-container::after {
     content: '';
@@ -55,17 +56,14 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     background: linear-gradient(270deg, #00252d 0%, transparent 100%);
   }
 
+  /* ✅ Animación optimizada usando solo transform para evitar reflows */
   .customer-marquee {
     animation: scroll-left 20s linear infinite;
     width: max-content;
-    /* ✅ Performance hint para el navegador */
+    /* ✅ Performance hints para el navegador */
     will-change: transform;
     /* ✅ Forzar layer de composición para mejor performance */
     transform: translateZ(0);
-  }
-
-  .customer-marquee:hover {
-    animation-play-state: paused;
   }
 
   /* ✅ Animación optimizada usando solo transform */
@@ -78,16 +76,36 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     }
   }
 
-  /* Responsive para móviles */
+  /* ✅ Hover optimizado */
+  .customer-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* ✅ Cards de customers optimizadas */
+  .customer-marquee > article {
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .customer-marquee > article:hover {
+    transform: scale(1.05);
+  }
+
+  /* ✅ Mejorar performance de responsive */
   @media (max-width: 768px) {
     .customer-marquee {
-      animation-duration: 25s;
-      gap: 1.5rem;
+      animation-duration: 15s;
     }
+  }
 
-    .customer-marquee-container::before,
-    .customer-marquee-container::after {
-      width: 50px;
+  /* ✅ Respetar preferencias de accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    .customer-marquee {
+      animation: none;
+    }
+    
+    .customer-marquee > article {
+      transition: none;
     }
   }
 </style>
@@ -96,39 +114,67 @@ const initialCustomer = CUSTOMERS[0] as Customer;
   import type { Customer, SocialMedia } from 'types/customer';
   import { logoSvgMap, socialIconsMap, type SocialPlatform } from 'consts/iconsMap';
 
-  document.addEventListener('astro:page-load', () => {
-    const customerSection = document.querySelector<HTMLElement>('#customers');
-    if (!customerSection) return;
+  // ✅ Usar DocumentFragment para batch DOM operations
+  function updateLogoCustomer(logoCustomer: HTMLElement, customer: any, logoSvgMap: any) {
+    requestAnimationFrame(() => {
+      const logoSrc = logoSvgMap[customer.id as keyof typeof logoSvgMap];
+      if (logoSrc) {
+        // Crear img element en lugar de innerHTML
+        const existingImg = logoCustomer.querySelector('img');
+        if (existingImg) {
+          // Reutilizar elemento existente para evitar reflow
+          existingImg.src = logoSrc;
+          existingImg.alt = `Logo de ${customer.name}`;
+        } else {
+          // Crear nuevo elemento solo si no existe
+          const imgElement = document.createElement('img');
+          imgElement.src = logoSrc;
+          imgElement.alt = `Logo de ${customer.name}`;
+          imgElement.loading = 'lazy';
+          imgElement.className = 'w-full h-full object-contain';
+          logoCustomer.replaceChildren(imgElement);
+        }
+      }
+    });
+  }
 
-    // obtención de los mapas de datos
-    const customersData: Customer[] = JSON.parse(
-      customerSection.getAttribute('info-customers') || '[]',
-    );
+  function updateSocialCustomer(socialMedia: SocialMedia, socialCustomer: HTMLElement) {
+    requestAnimationFrame(() => {
+      // ✅ Usar DocumentFragment para batching
+      const fragment = document.createDocumentFragment();
 
-    const customersCard = document.querySelectorAll<HTMLDivElement>('[data-target]');
+      Object.entries(socialMedia).forEach(([platform, url]) => {
+        if (url && platform in socialIconsMap) {
+          const iconSvg = socialIconsMap[platform as SocialPlatform];
+          if (iconSvg) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'duration-300 hover:scale-105';
+            link.setAttribute('aria-label', `Visitanos en ${platform}`);
+            link.innerHTML = iconSvg;
 
-    customersCard.forEach((customer) => {
-      customer.addEventListener('click', () => {
-        const clickedId = customer.id;
-        const selectedCustomer = customersData.find((item: Customer) => item.id === clickedId);
+            const svgElement = link.querySelector('svg');
+            svgElement?.classList.add('h-8', 'w-8');
 
-        if (selectedCustomer) {
-          updateCustomerDetail(selectedCustomer);
+            fragment.appendChild(link);
+          }
         }
       });
+
+      // ✅ Una sola operación DOM en lugar de innerHTML = '' + múltiples appendChild
+      socialCustomer.replaceChildren(fragment);
     });
-  });
+  }
 
   function updateCustomerDetail(customer: Customer) {
-    // Referencia a los documentos específicos a utilizar y actualizar
-    const detailCustomer = document.querySelector<HTMLElement>(
-      "[data-customer='detail-component']",
-    );
-    const logoCustomer = document.querySelector<HTMLElement>("[data-customer='logo-customer']");
+    const detailCustomer = document.querySelector<HTMLElement>("[data-customer='detail-component']");
     const nameCustomer = document.querySelector<HTMLElement>("[data-customer='name-customer']");
     const industryCustomer = document.querySelector<HTMLElement>(
       "[data-customer='industry-customer']",
     );
+    const logoCustomer = document.querySelector<HTMLElement>("[data-customer='logo-customer']");
     const descriptionCustomer = document.querySelector<HTMLElement>(
       "[data-customer='description-customer']",
     );
@@ -147,43 +193,56 @@ const initialCustomer = CUSTOMERS[0] as Customer;
         if (descriptionCustomer) descriptionCustomer.textContent = customer.description;
         if (locationCustomer) locationCustomer.textContent = customer.location;
 
-        // Actualizar el logo usando <img> en lugar de innerHTML para mejor performance
+        // ✅ Actualizar el logo de forma optimizada
         if (logoCustomer) {
-          const logoSrc = logoSvgMap[customer.id as keyof typeof logoSvgMap];
-          if (logoSrc) {
-            logoCustomer.innerHTML = `<img src="${logoSrc}" alt="Logo de ${customer.name}" loading="lazy" class="w-full h-full object-contain">`;
-          }
+          updateLogoCustomer(logoCustomer, customer, logoSvgMap);
         }
 
-        // Acutalizar redes sociales
-        if (socialCustomer) updateSocialCustomer(customer.socialMedia, socialCustomer);
+        // ✅ Actualizar redes sociales de forma optimizada
+        if (socialCustomer) {
+          updateSocialCustomer(customer.socialMedia, socialCustomer);
+        }
 
         detailCustomer?.classList.remove('is-changing');
       }, 300);
     }
   }
 
-  function updateSocialCustomer(socialMedia: SocialMedia, socialCustomer: HTMLElement) {
-    socialCustomer.innerHTML = '';
+  // ✅ Defer script execution hasta que el elemento sea visible o la página esté idle
+  function initializeCustomerInteraction() {
+    const customerSection = document.querySelector<HTMLElement>('#customers');
+    if (!customerSection) return;
 
-    Object.entries(socialMedia).forEach(([platform, url]) => {
-      if (url && platform in socialIconsMap) {
-        const iconSvg = socialIconsMap[platform as SocialPlatform];
-        if (iconSvg) {
-          const link = document.createElement('a');
-          link.href = url;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.classList.add('duration-300', 'hover:scale-105');
-          link.setAttribute('aria-label', `Visitanos en ${platform}`);
-          link.innerHTML = iconSvg;
+    // obtención de los mapas de datos
+    const customersData: Customer[] = JSON.parse(
+      customerSection.getAttribute('info-customers') || '[]',
+    );
 
-          const svgElement = link.querySelector('svg');
-          svgElement?.classList.add('h-8', 'w-8');
+    // ✅ Usar event delegation en lugar de múltiples listeners para evitar problemas con IDs duplicados
+    const customerMarquee = document.querySelector('.customer-marquee');
+    if (customerMarquee) {
+      customerMarquee.addEventListener('click', (event) => {
+        // Buscar el customer card más cercano
+        const customerCard = (event.target as HTMLElement).closest('[data-target]') as HTMLElement;
+        if (customerCard) {
+          const clickedId = customerCard.id;
+          const selectedCustomer = customersData.find((item: Customer) => item.id === clickedId);
 
-          socialCustomer.appendChild(link);
+          if (selectedCustomer) {
+            updateCustomerDetail(selectedCustomer);
+          }
         }
-      }
-    });
+      });
+    }
   }
+
+  // ✅ Usar requestIdleCallback para ejecutar cuando el browser esté idle
+  document.addEventListener('astro:page-load', () => {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initializeCustomerInteraction, { timeout: 2000 });
+    } else {
+      // Fallback para browsers que no soportan requestIdleCallback
+      setTimeout(initializeCustomerInteraction, 100);
+    }
+  });
 </script>
