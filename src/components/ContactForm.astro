@@ -64,24 +64,27 @@ import Modal from './Modal.astro';
     if (!contactSection) return;
 
     // ✅ Usar Intersection Observer para cargar el script cuando la sección sea visible
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          try {
-            // Inicializar el formulario cuando sea visible usando la nueva clase
-            new ContactFormManager('#contact-form');
-          } catch (error) {
-            console.error('Error inicializando formulario de contacto:', error);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            try {
+              // Inicializar el formulario cuando sea visible usando la nueva clase
+              new ContactFormManager('#contact-form');
+            } catch (error) {
+              console.error('Error inicializando formulario de contacto:', error);
+            }
+            // Desconectar el observer después de la primera carga
+            observer.disconnect();
           }
-          // Desconectar el observer después de la primera carga
-          observer.disconnect();
-        }
-      });
-    }, {
-      // Trigger cuando esté 50% visible o 200px antes de ser visible
-      threshold: 0.1,
-      rootMargin: '200px 0px'
-    });
+        });
+      },
+      {
+        // Trigger cuando esté 50% visible o 200px antes de ser visible
+        threshold: 0.1,
+        rootMargin: '200px 0px',
+      },
+    );
 
     observer.observe(contactSection);
 
@@ -94,6 +97,6 @@ import Modal from './Modal.astro';
         console.error('Error en fallback del formulario de contacto:', error);
       }
       observer.disconnect();
-    }, 3000);
+    }, 1000);
   });
 </script>
