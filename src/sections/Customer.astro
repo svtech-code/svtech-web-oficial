@@ -26,7 +26,7 @@ const initialCustomer = CUSTOMERS[0] as Customer;
 
   <!-- Cinta infinita en movimiento -->
   <main class="customer-marquee-container relative w-full overflow-hidden rounded-xl py-10">
-    <div class="customer-marquee flex">
+    <div class="customer-marquee flex gap-6 md:gap-0">
       {CUSTOMERS.map((customer) => <CustomerCard customer={customer} />)}
       {CUSTOMERS.map((customer) => <CustomerCard customer={customer} />)}
     </div>
@@ -103,11 +103,9 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     .customer-marquee {
       animation: none;
     }
-    
+
     .customer-marquee > article {
       transition: none;
     }
   }
 </style>
-
-
