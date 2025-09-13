@@ -9,10 +9,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
-      // ✅ Optimizaciones para reducir bundle size y mejorar loading
+      // Optimizaciones para reducir bundle size y mejorar loading
       rollupOptions: {
         output: {
-          // ✅ Separar vendor chunks para mejor caching
+          // Separar vendor chunks para mejor caching
           manualChunks: {
             // Separar EmailJS en su propio chunk (solo se carga cuando se necesita)
             emailjs: ['src/lib/emailjs-client.ts'],
@@ -21,12 +21,12 @@ export default defineConfig({
           },
         },
       },
-      // ✅ Optimizar CSS
+      // Optimizar CSS
       cssCodeSplit: true,
-      // ✅ Reducir threshold para chunks más pequeños
+      // Reducir threshold para chunks más pequeños
       chunkSizeWarningLimit: 1000,
     },
-    // ✅ Optimizaciones de performance
+    // Optimizaciones de performance
     optimizeDeps: {
       // Pre-bundle solo dependencias críticas
       include: [],
@@ -39,7 +39,7 @@ export default defineConfig({
   site: 'https://www.svtech.cl',
   integrations: [sitemap(), partytown()],
 
-  // ✅ Optimizaciones de build
+  // Optimizaciones de build
   build: {
     // Inlinear assets pequeños
     inlineStylesheets: 'auto',
