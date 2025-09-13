@@ -29,7 +29,6 @@ const { title = fixedTitle } = Astro.props;
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <!-- preloading web fonts -->
-
     <link
       rel="preload"
       href="/fonts/poppins-latin-400-normal.woff2"
@@ -139,7 +138,6 @@ const { title = fixedTitle } = Astro.props;
     align-items: center;
   }
 
-  /* ✅ Animación optimizada para fade-out */
   @keyframes fade-out {
     0% {
       opacity: 1;
@@ -151,7 +149,6 @@ const { title = fixedTitle } = Astro.props;
 
   .animate-fade-out {
     animation: fade-out 0.8s ease-in-out forwards;
-    /* ✅ Performance hint para animación de opacidad */
     will-change: opacity;
   }
 </style>
