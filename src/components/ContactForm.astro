@@ -57,46 +57,14 @@ import Modal from './Modal.astro';
 
 <script>
   import { ContactFormManager } from '../lib/contact-form-manager';
+  import { LazyObserver } from '../lib/lazy-observer';
 
-  // ✅ Lazy loading del contacto form usando Intersection Observer
   document.addEventListener('astro:page-load', () => {
-    const contactSection = document.querySelector('#contact-form');
-    if (!contactSection) return;
-
-    // ✅ Usar Intersection Observer para cargar el script cuando la sección sea visible
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            try {
-              // Inicializar el formulario cuando sea visible usando la nueva clase
-              new ContactFormManager('#contact-form');
-            } catch (error) {
-              console.error('Error inicializando formulario de contacto:', error);
-            }
-            // Desconectar el observer después de la primera carga
-            observer.disconnect();
-          }
-        });
-      },
-      {
-        // Trigger cuando esté 50% visible o 200px antes de ser visible
-        threshold: 0.1,
-        rootMargin: '200px 0px',
-      },
-    );
-
-    observer.observe(contactSection);
-
-    // ✅ Fallback: Si después de 3 segundos no se ha cargado, cargarlo anyway
-    setTimeout(() => {
-      if (contactSection.querySelector('input')) return; // Ya se inicializó
-      try {
-        new ContactFormManager('#contact-form');
-      } catch (error) {
-        console.error('Error en fallback del formulario de contacto:', error);
-      }
-      observer.disconnect();
-    }, 1000);
+    // Inicializar formulario de contacto con lazy loading
+    LazyObserver.create('#contact-form', () => void new ContactFormManager('#contact-form'), {
+      threshold: 0.1,
+      rootMargin: '200px 0px',
+      timeout: 1000,
+    });
   });
 </script>
