@@ -18,6 +18,7 @@ const { title, description, iconName, slug } = Astro.props;
   <div>
     <Icon
       name={iconName}
+      aria-hidden="true"
       class="sm:blur-xs absolute right-0 top-0 h-auto w-28 rotate-45 blur-md duration-300 sm:-translate-y-24 sm:translate-x-28 sm:group-hover:translate-x-2 sm:group-hover:translate-y-0"
     />
   </div>
@@ -26,7 +27,7 @@ const { title, description, iconName, slug } = Astro.props;
     <div
       class="bg-tertiary/10 group-hover:bg-tertiary/40 relative z-10 hidden rounded-xl p-2 duration-300 sm:block"
     >
-      <Icon name={iconName} class="h-auto w-12" />
+      <Icon name={iconName} class="h-auto w-12" aria-hidden="true" />
     </div>
 
     <h3 class="text-primary md:text-subtitle-size text-[16px] font-semibold">
@@ -43,6 +44,7 @@ const { title, description, iconName, slug } = Astro.props;
   <footer>
     <a
       href={`/services/${slug}`}
+      atia-label=`Ver detalles sobre ${title}`
       class="text-tertiary/80 group-hover:text-tertiary group inline-block origin-left cursor-pointer font-medium duration-300 hover:scale-105"
     >
       Saber más →

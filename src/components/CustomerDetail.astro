@@ -19,7 +19,7 @@ const { id, name, description, industry, location, socialMedia } = customer;
     class="bg-secondary/20 relative mx-auto flex h-auto w-[200px] items-center justify-center rounded-2xl p-2 sm:w-[300px] md:w-[400px]"
     data-customer="logo-customer"
   >
-    <Icon name={id} class="h-auto w-full object-contain" />
+    <Icon name={id} class="h-auto w-full object-contain" aria-hidden="true" />
   </figure>
 
   <article class="flex flex-1 flex-col gap-4 text-center md:text-start">
@@ -43,7 +43,7 @@ const { id, name, description, industry, location, socialMedia } = customer;
       <p class="pt-4" data-customer="description-customer">{description}</p>
 
       <div class="flex items-center justify-center gap-2 md:justify-start">
-        <Icon name="location" class="stroke-tertiary h-6 w-6 stroke-2" />
+        <Icon name="location" class="stroke-tertiary h-6 w-6 stroke-2" aria-hidden="true" />
         <p class="text-tertiary" data-customer="location-customer">{location}</p>
       </div>
     </main>
@@ -59,7 +59,7 @@ const { id, name, description, industry, location, socialMedia } = customer;
             target="_blank"
             rel="noopener noreferrer"
             class="relative duration-300 hover:scale-105"
-            aria-label={`Visitamnos en ${platform}`}
+            aria-label={`Visítanos en ${platform}`}
           >
             <Icon name={platform as IconName} class="h-8 w-8" />
           </a>
