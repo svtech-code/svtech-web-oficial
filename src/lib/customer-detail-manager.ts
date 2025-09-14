@@ -22,18 +22,28 @@ export class CustomerDetailManager {
 
   private initializeElements(): void {
     this.detailElement = document.querySelector<HTMLElement>("[data-customer='detail-component']");
-    this.nameElement = document.querySelector<HTMLElement>("[data-customer='name-customer']");
-    this.industryElement = document.querySelector<HTMLElement>(
-      "[data-customer='industry-customer']",
-    );
-    this.logoElement = document.querySelector<HTMLElement>("[data-customer='logo-customer']");
-    this.descriptionElement = document.querySelector<HTMLElement>(
-      "[data-customer='description-customer']",
-    );
-    this.locationElement = document.querySelector<HTMLElement>(
-      "[data-customer='location-customer']",
-    );
-    this.socialElement = document.querySelector<HTMLElement>("[data-customer='social-customer']");
+
+    if (this.detailElement) {
+      // Una sola búsqueda en el contenedor, no en todo el document
+      this.nameElement = this.detailElement.querySelector<HTMLElement>(
+        "[data-customer='name-customer']",
+      );
+      this.industryElement = this.detailElement.querySelector<HTMLElement>(
+        "[data-customer='industry-customer']",
+      );
+      this.logoElement = this.detailElement.querySelector<HTMLElement>(
+        "[data-customer='logo-customer']",
+      );
+      this.descriptionElement = this.detailElement.querySelector<HTMLElement>(
+        "[data-customer='description-customer']",
+      );
+      this.locationElement = this.detailElement.querySelector<HTMLElement>(
+        "[data-customer='location-customer']",
+      );
+      this.socialElement = this.detailElement.querySelector<HTMLElement>(
+        "[data-customer='social-customer']",
+      );
+    }
   }
 
   public updateCustomerDetail(customer: Customer): void {

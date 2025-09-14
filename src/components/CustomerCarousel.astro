@@ -1,0 +1,121 @@
+<div
+  id="customers-carousel"
+  class="customer-marquee-container relative w-full overflow-hidden rounded-xl py-10"
+  aria-label="Carrusel de clientes - pausa al pasar el cursor"
+>
+  <!-- Placeholder ligero - cero costo inicial -->
+  <div class="customer-marquee-placeholder flex h-32 items-center justify-center">
+    <div class="loading-skeleton bg-secondary/20 animate-pulse rounded-lg px-6 py-3">
+      <span class="text-tertiary text-sm">Cargando clientes...</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Gradientes optimizados */
+  .customer-marquee-container::before,
+  .customer-marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    z-index: 10;
+    pointer-events: none;
+    will-change: auto; /* Evitar layer innecesario */
+  }
+
+  .customer-marquee-container::before {
+    left: 0;
+    background: linear-gradient(90deg, #00252d 0%, transparent 100%);
+  }
+
+  .customer-marquee-container::after {
+    right: 0;
+    background: linear-gradient(270deg, #00252d 0%, transparent 100%);
+  }
+
+  /* Animación optimizada - CSS GLOBAL para contenido dinámico */
+  :global(.customer-marquee) {
+    width: max-content;
+    animation: none;
+    contain: layout style paint;
+    transform: translateZ(0);
+    opacity: 1;
+  }
+
+  :global(.customer-marquee.active) {
+    animation: scroll-left 20s linear infinite;
+    will-change: transform;
+    transform: translateX(0);
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Interacciones optimizadas */
+  :global(.customer-marquee.active:hover) {
+    animation-play-state: paused;
+  }
+
+  /* Estilos para customer cards generados dinámicamente */
+  :global(.customer-marquee .customer-card) {
+    transition: transform 0.3s ease;
+    contain: layout style paint;
+  }
+
+  :global(.customer-marquee .customer-card:hover) {
+    transform: scale(1.05);
+    will-change: transform;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    :global(.customer-marquee.active) {
+      animation-duration: 15s;
+    }
+
+    .customer-marquee-container::before,
+    .customer-marquee-container::after {
+      width: 100px;
+    }
+  }
+
+  /* Reducir motion para usuarios con preferencia */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.customer-marquee.active) {
+      animation: none;
+    }
+
+    :global(.customer-marquee .customer-card:hover) {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  import { LazyObserver } from '../lib/lazy-observer';
+
+  document.addEventListener('astro:page-load', () => {
+    // Usar el nuevo LazyObserver unificado
+    LazyObserver.create(
+      '#customers-carousel',
+      async () => {
+        // Importación dinámica para code splitting
+        const module = await import('../lib/customer-carousel');
+        module.CustomerCarousel.renderAndInitialize('#customers-carousel');
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '200px 0px',
+        timeout: 3000, // Fallback más largo para conexiones lentas
+      },
+    );
+  });
+</script>
