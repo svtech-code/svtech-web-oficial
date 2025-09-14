@@ -11,6 +11,7 @@ import WhyList from 'components/ui/WhyList.astro';
       <header class="flex w-full flex-col items-center gap-5 md:w-[38rem] md:items-start">
         <p
           class="bg-primary text-gradient-secondary inline-block rounded-2xl px-4 py-1 text-sm font-medium duration-300 md:text-xl"
+          role="note"
         >
           {smallTitleWhy}
         </p>
@@ -35,16 +36,25 @@ import WhyList from 'components/ui/WhyList.astro';
     >
       <div
         class="lg:shadow-tertiary/80 relative overflow-hidden rounded-2xl bg-transparent duration-300 lg:shadow-md lg:hover:shadow-lg"
+        aria-hidden="true"
       >
         <div
           class="bg-gradient-primary/80 sm:bg-gradient-primary/70 lg:bg-gradient-primary/0 absolute h-full w-full backdrop-blur-sm duration-300 lg:backdrop-blur-none"
+          aria-hidden="true"
         >
         </div>
-        <img
-          src="images/img-why.webp"
-          alt="imagen de dos personas estrechando la mano"
-          loading="lazy"
-        />
+
+        <picture>
+          <source srcset="images/img-why.webp" type="image/webp" />
+          <img
+            src="images/img-why.webp"
+            alt="Imagen de dos personas estrechando la mano"
+            loading="lazy"
+            width="400"
+            height="300"
+            class="h-auto w-full"
+          />
+        </picture>
       </div>
     </aside>
   </div>
