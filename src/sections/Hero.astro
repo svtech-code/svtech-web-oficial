@@ -27,7 +27,7 @@ import { SOCIAL } from 'consts/social';
     calidad
   </p>
 
-  <main class="flex gap-6 pb-16 sm:gap-12 sm:pb-24">
+  <nav aria-label="Redes sociales" class="flex gap-6 pb-16 sm:gap-12 sm:pb-24">
     {
       SOCIAL.map(({ name, url, label }) => (
         <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
@@ -38,7 +38,7 @@ import { SOCIAL } from 'consts/social';
         </a>
       ))
     }
-  </main>
+  </nav>
 
   <footer class="flex items-center justify-center gap-4 sm:gap-8">
     <a
