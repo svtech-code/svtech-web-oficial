@@ -4,22 +4,19 @@ export const functionHeader = () => {
   const contentNavbarDesktop = document.querySelector<HTMLDivElement>('#content-navbar-desktop');
   const contentNavbarMobile = document.querySelector<HTMLDivElement>('#content-navbar-mobile');
   const navbarMobile = document.querySelector<HTMLElement>('#navbar-mobile');
-  const navbarMobileLinks = navbarMobile?.querySelectorAll('ul li a');
 
-  // ✅ Agregar variable de estado para evitar cambios innecesarios
   let isTransparent = true;
 
+  // Intersection observer
   const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
     const shouldBeTransparent = Boolean(entry?.isIntersecting);
 
-    // ✅ Solo modificar DOM si el estado realmente cambió
+    // Solo modificar DOM si el estado realmente cambió
     if (shouldBeTransparent !== isTransparent) {
       isTransparent = shouldBeTransparent;
 
-      // ✅ Usar requestAnimationFrame para batching de cambios DOM
       requestAnimationFrame(() => {
         if (contentNavbarDesktop) {
-          // ✅ Usar toggle con condition en lugar de add/remove separados
           contentNavbarDesktop.classList.toggle('lg:backdrop-blur-none', isTransparent);
           contentNavbarDesktop.classList.toggle('lg:bg-transparent', isTransparent);
           contentNavbarDesktop.classList.toggle('lg:shadow-none', isTransparent);
@@ -29,38 +26,54 @@ export const functionHeader = () => {
   };
 
   const createObserver = (target: Element, callback: IntersectionObserverCallback) => {
-    // ✅ Usar rootMargin para trigger más temprano y threshold optimizado
     const observer = new IntersectionObserver(callback, {
       threshold: 0,
       rootMargin: '0px 0px -10px 0px',
     });
-    observer.observe(target);
-    return () => observer.disconnect();
+
+    const observe = (): void => observer.observe(target);
+    if (document.readyState === 'complete') {
+      observe();
+    } else if ('requestIdleCallback' in window) {
+      (window as Window).requestIdleCallback(observe, { timeout: 200 });
+    } else {
+      (window as Window).addEventListener('load', observe, { once: true });
+    }
+
+    // observer.observe(target);
+    return () => observer.disconnect(); // cleanup function
   };
 
-  // ✅ Debounce para el toggle del menú móvil
-  let toggleTimeout: ReturnType<typeof setTimeout>;
+  // Toggle menu movile
   const toggleMenu = () => {
-    clearTimeout(toggleTimeout);
-    toggleTimeout = setTimeout(() => {
-      requestAnimationFrame(() => {
-        navbarButton?.classList.toggle('open');
-        contentNavbarMobile?.classList.toggle('w-full');
-        const isOpenMenuMobile = navbarMobile?.classList.toggle('w-[60%]');
-
-        navbarMobile?.setAttribute('aria-hidden', `${!isOpenMenuMobile}`);
-        navbarMobile?.setAttribute('aria-expanded', `${isOpenMenuMobile}`);
-      });
-    }, 16); // ~60fps
-  };
-
-  const toggleMenuLinks = () => {
-    navbarMobileLinks?.forEach((link) => {
-      link.addEventListener('click', toggleMenu, { passive: true });
+    requestAnimationFrame(() => {
+      navbarButton?.classList.toggle('open');
+      contentNavbarMobile?.classList.toggle('w-full');
+      const isOpenMenuMobile = navbarMobile?.classList.toggle('w-[60%]');
+      navbarMobile?.setAttribute('aria-hidden', `${!isOpenMenuMobile}`);
+      navbarMobile?.setAttribute('aria-expanded', `${isOpenMenuMobile}`);
     });
   };
 
-  if (target) createObserver(target, handleIntersection);
+  // Enlaces del menu mobile
+  const attachedLinks: HTMLAnchorElement[] = [];
+  const attachLinkListeners = () => {
+    const links = navbarMobile?.querySelectorAll<HTMLAnchorElement>('ul li a');
+    links?.forEach((link) => {
+      link.addEventListener('click', toggleMenu, { passive: true });
+      attachedLinks.push(link); // guardamos para limpieza
+    });
+  };
+
+  // Inicialización
+  const disconnectObserver = target ? createObserver(target, handleIntersection) : null;
   navbarButton?.addEventListener('click', toggleMenu, { passive: true });
-  toggleMenuLinks();
+  attachLinkListeners();
+
+  // Función de limpieza
+  return () => {
+    disconnectObserver?.();
+    navbarButton?.removeEventListener('click', toggleMenu);
+    attachedLinks.forEach((link) => link.removeEventListener('click', toggleMenu));
+  };
 };
