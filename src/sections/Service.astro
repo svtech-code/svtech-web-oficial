@@ -1,12 +1,7 @@
 ---
 import ServiceCard from 'components/ServiceCard.astro';
 import { subTitleService, titleService } from 'consts/pagesTitle';
-import { getCollection } from 'astro:content';
-import type { IconName } from 'consts/icons';
-
-const SERVICES = (await getCollection('services')).sort(
-  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
-);
+import { SERVICES_STATIC } from 'consts/services';
 ---
 
 <section
@@ -24,15 +19,14 @@ const SERVICES = (await getCollection('services')).sort(
     class="relative flex w-full flex-col flex-wrap items-center justify-center gap-4 md:flex-row"
   >
     {
-      SERVICES.map((service) => {
-        const { slug, data } = service;
-        const { title, description } = data;
-        const iconName = slug as IconName;
-
-        return (
-          <ServiceCard title={title} description={description} iconName={iconName} slug={slug} />
-        );
-      })
+      SERVICES_STATIC.map((service) => (
+        <ServiceCard
+          title={service.title}
+          description={service.description}
+          iconName={service.iconName}
+          slug={service.slug}
+        />
+      ))
     }
   </main>
 </section>
