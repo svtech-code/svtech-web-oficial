@@ -18,11 +18,3 @@ export const prerender = true;
   <Customer />
   <Contact />
 </Layout>
-
-<script>
-  import { LazyLoader } from '../lib/lazy-loader';
-
-  document.addEventListener('astro:page-load', () => {
-    LazyLoader.initializeCustomerCarousel();
-  });
-</script>

@@ -34,7 +34,6 @@ const initialCustomer = CUSTOMERS[0] as Customer;
 </section>
 
 <style>
-  /* ✅ Optimización: Gradientes para efecto fade en los bordes */
   .customer-marquee-container::before,
   .customer-marquee-container::after {
     content: '';
@@ -56,17 +55,13 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     background: linear-gradient(270deg, #00252d 0%, transparent 100%);
   }
 
-  /* ✅ Animación optimizada usando solo transform para evitar reflows */
   .customer-marquee {
     animation: scroll-left 20s linear infinite;
     width: max-content;
-    /* ✅ Performance hints para el navegador */
     will-change: transform;
-    /* ✅ Forzar layer de composición para mejor performance */
     transform: translateZ(0);
   }
 
-  /* ✅ Animación optimizada usando solo transform */
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
@@ -76,12 +71,10 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     }
   }
 
-  /* ✅ Hover optimizado */
   .customer-marquee:hover {
     animation-play-state: paused;
   }
 
-  /* ✅ Cards de customers optimizadas */
   .customer-marquee > article {
     transition: transform 0.3s ease;
     will-change: transform;
@@ -91,14 +84,12 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     transform: scale(1.05);
   }
 
-  /* ✅ Mejorar performance de responsive */
   @media (max-width: 768px) {
     .customer-marquee {
       animation-duration: 15s;
     }
   }
 
-  /* ✅ Respetar preferencias de accesibilidad */
   @media (prefers-reduced-motion: reduce) {
     .customer-marquee {
       animation: none;
@@ -109,3 +100,11 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     }
   }
 </style>
+
+<script>
+  import { LazyLoader } from '../lib/lazy-loader';
+
+  document.addEventListener('astro:page-load', () => {
+    LazyLoader.initializeCustomerCarousel();
+  });
+</script>
