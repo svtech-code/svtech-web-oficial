@@ -61,10 +61,10 @@ import Modal from './Modal.astro';
 
   document.addEventListener('astro:page-load', () => {
     // Inicializar formulario de contacto con lazy loading
-    LazyObserver.create('#contact-form', () => void new ContactFormManager('#contact-form'), {
-      threshold: 0.1,
-      rootMargin: '200px 0px',
-      timeout: 1000,
-    });
+    LazyObserver.create(
+      '#contact-form', 
+      () => void new ContactFormManager('#contact-form'),
+      { preset: 'form' }
+    );
   });
 </script>

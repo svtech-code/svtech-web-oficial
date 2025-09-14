@@ -3,7 +3,7 @@
   class="customer-marquee-container relative w-full overflow-hidden rounded-xl py-10"
   aria-label="Carrusel de clientes - pausa al pasar el cursor"
 >
-  <!-- Placeholder ligero - cero costo inicial -->
+  <!-- Módulo de carga inicial con coste mínimo -->
   <div class="customer-marquee-placeholder flex h-32 items-center justify-center">
     <div class="loading-skeleton bg-secondary/20 animate-pulse rounded-lg px-6 py-3">
       <span class="text-tertiary text-sm">Cargando clientes...</span>
@@ -22,7 +22,7 @@
     width: 200px;
     z-index: 10;
     pointer-events: none;
-    will-change: auto; /* Evitar layer innecesario */
+    will-change: auto;
   }
 
   .customer-marquee-container::before {
@@ -100,22 +100,14 @@
 </style>
 
 <script>
+  import { CustomerCarouselManager } from '../lib/customer-carousel-manager';
   import { LazyObserver } from '../lib/lazy-observer';
 
   document.addEventListener('astro:page-load', () => {
-    // Usar el nuevo LazyObserver unificado
     LazyObserver.create(
       '#customers-carousel',
-      async () => {
-        // Importación dinámica para code splitting
-        const module = await import('../lib/customer-carousel');
-        module.CustomerCarousel.renderAndInitialize('#customers-carousel');
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '200px 0px',
-        timeout: 3000, // Fallback más largo para conexiones lentas
-      },
+      () => void new CustomerCarouselManager('#customers-carousel'),
+      { preset: 'carousel' }
     );
   });
 </script>
