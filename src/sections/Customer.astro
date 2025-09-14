@@ -1,6 +1,6 @@
 ---
-import CustomerCard from 'components/CustomerCard.astro';
 import CustomerDetail from 'components/CustomerDetail.astro';
+import CustomerCarousel from 'components/CustomerCarousel.astro';
 import { CUSTOMERS } from 'consts/customers';
 import { subTitleCustomer, titleCustomer } from 'consts/pagesTitle';
 import type { Customer } from 'types/customer';
@@ -12,7 +12,6 @@ const initialCustomer = CUSTOMERS[0] as Customer;
   id="customers"
   class="relative flex w-full max-w-[1200px] scroll-mt-28 flex-col items-center justify-center gap-10 px-2 py-20 sm:py-40 md:scroll-mt-36 md:gap-20"
   aria-label="Sección de clientes"
-  info-customers={JSON.stringify(CUSTOMERS)}
 >
   <header class="flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
     <h2 class="text-secondary text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-5xl">
@@ -21,80 +20,9 @@ const initialCustomer = CUSTOMERS[0] as Customer;
     <h3 class="text-primary text-sm font-medium sm:text-lg md:text-3xl">{subTitleCustomer}</h3>
   </header>
 
-  <!-- Se asigna el cliente principal -->
+  <!-- Tarjeta con cliente principal -->
   <CustomerDetail customer={initialCustomer} />
 
-  <!-- Cinta infinita en movimiento -->
-  <main class="customer-marquee-container relative w-full overflow-hidden rounded-xl py-10">
-    <div class="customer-marquee flex gap-6 md:gap-0">
-      {CUSTOMERS.map((customer) => <CustomerCard customer={customer} />)}
-      {CUSTOMERS.map((customer) => <CustomerCard customer={customer} />)}
-    </div>
-  </main>
+  <!-- Carrusel de clientes -->
+  <CustomerCarousel />
 </section>
-
-<style>
-  .customer-marquee-container::before,
-  .customer-marquee-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 200px;
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .customer-marquee-container::before {
-    left: 0;
-    background: linear-gradient(90deg, #00252d 0%, transparent 100%);
-  }
-
-  .customer-marquee-container::after {
-    right: 0;
-    background: linear-gradient(270deg, #00252d 0%, transparent 100%);
-  }
-
-  .customer-marquee {
-    animation: scroll-left 20s linear infinite;
-    width: max-content;
-    will-change: transform;
-    transform: translateZ(0);
-  }
-
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .customer-marquee:hover {
-    animation-play-state: paused;
-  }
-
-  .customer-marquee > article {
-    transition: transform 0.3s ease;
-    will-change: transform;
-  }
-
-  .customer-marquee > article:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    .customer-marquee {
-      animation-duration: 15s;
-    }
-  }
-</style>
-
-<script>
-  import { LazyLoader } from '../lib/lazy-loader';
-
-  document.addEventListener('astro:page-load', () => {
-    LazyLoader.initializeCustomerCarousel();
-  });
-</script>
