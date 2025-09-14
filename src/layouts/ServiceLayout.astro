@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import SpeedInsights from '@vercel/speed-insights/astro';
 
 import 'styles/global.css';
+import MetaTag from 'components/MetaTag.astro';
 import Footer from 'components/Footer.astro';
 
 interface Props {
@@ -13,10 +14,10 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
 
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -51,35 +52,8 @@ const { title } = Astro.props;
       crossorigin
     />
 
-    <!-- theme for the top bar of the browser in mobile version -->
-    <meta name="theme-color" content="#001217" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-status-bar-style" content="#001217" />
-
-    <meta
-      name="description"
-      content="Soporte Informático y Desarrollo de Aplicaciones Web a Medida"
-    />
-
-    <meta property="og:url" content="https://www.svtech.cl" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sv Tech" />
-    <meta
-      property="og:description"
-      content="Soporte Informático y Desarrollo de Aplicaciones Web a Medida"
-    />
-    <meta property="og:image" content="https://www.svtech.cl/og.png" />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Sv Tech" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@svtech" />
-    <meta name="twitter:creator" content="@svtech" />
-    <meta name="twitter:title" content="Soporte Informático y Desarrollo de Aplicaciones Web" />
-    <meta
-      name="twitter:description"
-      content="Soporte Informático y Desarrollo de Aplicaciones Web a Medida"
-    />
+    <!-- Open Graph -->
+    <MetaTag />
 
     <ClientRouter />
 
@@ -99,16 +73,48 @@ const { title } = Astro.props;
 
       gtag('config', 'G-NX19ERRPWS');
     </script>
+
+    <!-- Datos estructurados para mejorar SEO -->
+    <script is:inline type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "SVTech",
+        "id": "https://www.svtech.cl",
+        "url": "https://www.svtech.cl",
+        "description": "Soporte Informático y Desarrollo de Aplicaciones Web a Medida",
+        "image": "https://www.svtech.cl/og.png",
+        "logo": "https://www.svtech.cl/favicon.svg",
+        "sameAs": [
+          "https://twitter.com/svtech_code",
+          "https://www.instagram.com/svtech_code/",
+          "https://discord.gg/DUhM8uc3HM"
+        ],
+        "serviceArea": {
+          "@type": "Country",
+          "name": "Chile"
+        },
+        "knowsAbout": ["Desarrollo Web", "Soporte Informático", "Consultoría TI"]
+      }
+    </script>
   </head>
 
   <body>
     <div
       id="smoke-screen"
+      aria-hidden="true"
       class="animate-fade-out pointer-events-none fixed inset-0 z-50 bg-gradient-to-br from-[#00252d] to-[#0096b8]"
     >
     </div>
 
-    <main>
+    <a
+      href="#main-content-service"
+      class="focus:bg-primary sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:px-4 focus:py-2 focus:text-white"
+    >
+      Saltar al contenido principal
+    </a>
+
+    <main id="main-content-service" role="main">
       <slot />
     </main>
 
