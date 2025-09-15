@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 const { data } = service;
-const { title, image } = data;
+const { title, image, imageAlt } = data;
 
 const { Content } = await render(service);
 
@@ -25,16 +25,14 @@ export const prerender = true;
     class="item-center relative flex w-full max-w-[1200px] flex-col justify-start px-4 pb-32"
   >
     <div class="fixed left-0 top-6 z-40 flex w-full items-center justify-center">
-      <div class="mr-4 flex w-full max-w-[1200px] items-center justify-end lg:mr-0">
-        <button
-          type="button"
-          aria-label="Volver a la página principal"
-          onclick="history.back()"
+      <nav class="mr-4 flex w-full max-w-[1200px] items-center justify-end lg:mr-0">
+        <a
+          href="/#services"
           class="text-tertiary border-tertiary bg-gradient-primary/20 hover:bg-gradient-primary/40 cursor-pointer rounded-lg border-2 px-4 py-2 text-sm font-medium backdrop-blur-xl duration-300 hover:scale-105 sm:rounded-2xl sm:text-xl"
         >
           ← Volver atrás
-        </button>
-      </div>
+        </a>
+      </nav>
     </div>
 
     <header class="relative pb-8 pt-24 sm:py-14">
@@ -51,7 +49,7 @@ export const prerender = true;
           src={image}
           width="1000"
           height="600"
-          alt="Imagen de un computador que muestra en su pantalla un editor de texto con código"
+          alt={imageAlt}
           loading="eager"
           decoding="async"
           class="shadow-tertiary/60 animate-scale-in h-auto w-full max-w-[90%] rounded-2xl shadow-md"
@@ -61,7 +59,7 @@ export const prerender = true;
       <article
         class={`
           prose-invert prose 
-          prose-p:leading-[28px] prose-p:md:text-2xl propse-p:text-md prose-p:sm:text-lg
+          prose-p:leading-[28px] prose-p:md:text-2xl prose-p:text-md prose-p:sm:text-lg
           prose-h2:leading-[24px] prose-h2:md:text-4xl prose-h2:text-primary prose-h2:sm:text-3xl prose-h2:text-2xl 
           prose-ul:m-0 prose-ul:sm:text-2xl prose-ul:mb-[2em] prose-ul:text-md
           prose-li:mt-0 prose-li:mb-1
