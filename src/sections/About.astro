@@ -1,0 +1,72 @@
+---
+import { titleAbout, smallTitleAbout } from 'consts/pagesTitle';
+import AboutList from 'components/ui/AboutList.astro';
+import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
+---
+
+<section
+  id="about"
+  class="relative flex w-full -scroll-mt-10 flex-col items-center justify-center gap-4 bg-black/60 px-2 py-40 md:scroll-mt-6"
+>
+  <div
+    class="relative flex w-full max-w-[1200px] flex-col-reverse gap-20 px-2 lg:flex-row lg:gap-8"
+  >
+    <picture class="relative flex h-auto w-full items-center justify-center">
+      <source srcset="images/img-about.webp" type="image/webp" />
+      <img
+        src="images/img-about.webp"
+        alt="Imagen de dos personas estrechando la mano"
+        loading="lazy"
+        width="400"
+        height="300"
+        class="h-auto w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px]"
+      />
+    </picture>
+
+    <article class="z-10 flex w-full flex-col gap-12 lg:w-1/2">
+      <header class="flex w-full flex-col items-center gap-5 lg:items-start">
+        <p
+          class="bg-primary text-gradient-secondary inline-block rounded-2xl px-4 py-1 text-sm font-medium duration-300 md:text-xl"
+          role="note"
+        >
+          {smallTitleAbout}
+        </p>
+        <h2
+          class="text-secondary text-center text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-start md:text-5xl"
+        >
+          {titleAbout}
+        </h2>
+      </header>
+
+      <main class="flex flex-col gap-4">
+        <p
+          class="text-md text-secondary w-full text-center font-medium duration-300 sm:text-lg md:text-2xl lg:text-start"
+        >
+          En <span class="text-tertiary font-semibold">SV TECH</span>, nos dedicamos a ofrecer
+          soluciones informáticas de calidad, con el objetivo de entregar a nuestros clientes un
+          soporte integral.
+        </p>
+
+        <p
+          class="text-md text-secondary w-full text-center font-medium duration-300 sm:text-lg md:text-2xl lg:text-start"
+        >
+          Entendemos que cada negocio es único, por lo que adaptamos nuestras soluciones a cada
+          cliente, con la finalidad de mejorar sus procesos para alcanzar sus objetivos de negocio.
+        </p>
+      </main>
+
+      <footer class="flex justify-center lg:justify-start">
+        <AboutList />
+      </footer>
+    </article>
+  </div>
+
+  <div class="flex w-full flex-col items-center justify-center gap-4 pt-12 lg:pt-20">
+    <header class="text-center lg:text-start">
+      <h3 class="text-medium text-tertiary text-xl">
+        Tambien puedes encontrarnos en nuestras redes
+      </h3>
+    </header>
+    <SocialNetworkIcons class="gap-4 sm:gap-8" />
+  </div>
+</section>
