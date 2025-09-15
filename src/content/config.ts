@@ -5,6 +5,7 @@ const services = defineCollection({
     order: z.number(),
     title: z.string(),
     image: z.string(),
+    imageAlt: z.string(),
     description: z.string(),
   }),
 });
