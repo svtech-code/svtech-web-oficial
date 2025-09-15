@@ -1,6 +1,5 @@
 ---
-import Icon from 'components/ui/Icon.astro';
-import { SOCIAL } from 'consts/social';
+import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 ---
 
 <section
@@ -20,25 +19,16 @@ import { SOCIAL } from 'consts/social';
     </h1>
   </header>
 
-  <p
-    class="text-secondary text-md w-[85%] py-8 text-center font-medium duration-300 sm:text-lg md:w-[75%] md:min-w-[780px] md:text-3xl"
-  >
-    Comprometidos con la innovación y el uso de las nuevas tecnologías, para entregar soluciones de
-    calidad
-  </p>
+  <main class="flex w-full flex-col items-center justify-center">
+    <p
+      class="text-secondary text-md w-[85%] py-8 text-center font-medium duration-300 sm:text-lg md:w-[75%] md:min-w-[780px] md:text-3xl"
+    >
+      Comprometidos con la innovación y el uso de las nuevas tecnologías, para entregar soluciones
+      de calidad
+    </p>
 
-  <nav aria-label="Redes sociales" class="flex gap-6 pb-16 sm:gap-12 sm:pb-24">
-    {
-      SOCIAL.map(({ name, url, label }) => (
-        <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
-          <Icon
-            name={name}
-            class="hover:drop-shadow-primary h-auto w-8 drop-shadow-lg duration-300 hover:scale-110 sm:w-12"
-          />
-        </a>
-      ))
-    }
-  </nav>
+    <SocialNetworkIcons class="gap-6 pb-16 sm:gap-12 sm:pb-24" />
+  </main>
 
   <footer class="flex items-center justify-center gap-4 sm:gap-8">
     <a

@@ -1,0 +1,25 @@
+---
+import { SOCIAL } from 'consts/social';
+import Icon from './Icon.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: additionalClasses } = Astro.props;
+const baseClasses = 'flex justify-center';
+const navClasses = additionalClasses ? `${baseClasses} ${additionalClasses}` : baseClasses;
+---
+
+<nav aria-label="Redes sociales" class={navClasses}>
+  {
+    SOCIAL.map(({ name, url, label }) => (
+      <a href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
+        <Icon
+          name={name}
+          class="hover:drop-shadow-primary h-auto w-8 drop-shadow-lg duration-300 hover:scale-110 sm:w-11"
+        />
+      </a>
+    ))
+  }
+</nav>

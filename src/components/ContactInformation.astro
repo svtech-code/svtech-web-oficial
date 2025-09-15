@@ -1,8 +1,7 @@
 ---
 import { questionTitleContact, titleContact, textContact } from 'consts/pagesTitle';
-import { SOCIAL } from 'consts/social';
-import Icon from './ui/Icon.astro';
 import SchedulesAndContact from './ui/SchedulesAndContact.astro';
+import SocialNetworkIcons from './ui/SocialNetworkIcons.astro';
 ---
 
 <article class="text-secondary flex w-full flex-col gap-4 lg:w-1/2">
@@ -35,15 +34,6 @@ import SchedulesAndContact from './ui/SchedulesAndContact.astro';
       <h4 class="text-medium text-tertiary text-xl">Visita nuestras redes</h4>
     </header>
 
-    <main class="flex justify-center gap-4 sm:gap-8 lg:justify-start">
-      {
-        SOCIAL.map(({ name, url, label }) => (
-          <Icon
-            name={name}
-            class="hover:drop-shadow-primary h-auto w-10 drop-shadow-lg duration-300 hover:scale-110 sm:w-10"
-          />
-        ))
-      }
-    </main>
+    <SocialNetworkIcons class="gap-4 sm:gap-8 lg:justify-start" />
   </footer>
 </article>
