@@ -16,6 +16,10 @@ export const titleProject: string = 'Proyectos Realizados';
 export const subTitleProject: string =
   'Conoce algunos de los trabajos más destacados, que han sido desarrollados e implementados en pequeñas y medianas empresas';
 
+// nosotros
+export const titleAbout: string = 'Nosotros';
+export const smallTitleAbout: string = '¿Quiénes somos?';
+
 // clientes
 export const titleCustomer: string = 'Clientes';
 export const subTitleCustomer: string = 'Clientes que han confiado en nuestros servicios';
