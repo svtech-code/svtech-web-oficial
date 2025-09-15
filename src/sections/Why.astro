@@ -4,9 +4,10 @@ import WhyList from 'components/ui/WhyList.astro';
 ---
 
 <section
-  class="relative flex w-full flex-col items-center justify-center gap-4 bg-black/60 px-4 py-40"
+  id="why"
+  class="relative flex w-full flex-col items-center justify-center gap-4 bg-black/60 px-2 py-40"
 >
-  <div class="flex w-full max-w-[1200px]">
+  <div class="flex w-full max-w-[1200px] px-2">
     <article class="z-10 flex w-full flex-col gap-12 lg:w-2/3">
       <header class="flex w-full flex-col items-center gap-5 md:w-[38rem] md:items-start">
         <p
@@ -22,13 +23,17 @@ import WhyList from 'components/ui/WhyList.astro';
         </h2>
       </header>
 
-      <p
-        class="text-md text-secondary w-full text-center font-medium duration-300 sm:text-lg md:w-[40rem] md:text-start md:text-2xl"
-      >
-        {textWhy}
-      </p>
+      <main>
+        <p
+          class="text-md text-secondary w-full text-center font-medium duration-300 sm:text-lg md:w-[40rem] md:text-start md:text-2xl"
+        >
+          {textWhy}
+        </p>
+      </main>
 
-      <WhyList />
+      <footer>
+        <WhyList />
+      </footer>
     </article>
 
     <aside
