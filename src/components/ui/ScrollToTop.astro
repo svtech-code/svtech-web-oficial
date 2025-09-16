@@ -1,0 +1,79 @@
+<button
+  type="button"
+  id="scroll-to-top"
+  class="bg-primary hover:shadow-tertiary/40 focus:ring-primary group pointer-events-none fixed bottom-6 right-6 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full opacity-0 shadow-lg duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:h-14 sm:w-14"
+  aria-label="Volver al inicio"
+>
+  <span
+    class="text-gradient-secondary arrow-hover flex items-center justify-center text-2xl font-bold duration-300 group-hover:text-4xl sm:text-3xl"
+  >
+    ↑
+  </span>
+</button>
+
+<style>
+  @keyframes arrowFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.1);
+  }
+
+  @media (min-width: 640px) {
+    .group:hover .arrow-hover {
+      animation: arrowFloat 1.5s ease-in-out infinite;
+    }
+  }
+</style>
+
+<script>
+  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  const servicesSection = document.getElementById('services');
+
+  if (scrollToTopBtn && servicesSection) {
+    const showButtonThreshold = servicesSection.offsetTop;
+    let ticking = false;
+
+    function toggleButton() {
+      const scrollY = window.scrollY;
+
+      if (scrollY >= showButtonThreshold) {
+        scrollToTopBtn?.classList.remove('opacity-0', 'pointer-events-none');
+        scrollToTopBtn?.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        scrollToTopBtn?.classList.add('opacity-0', 'pointer-events-none');
+        scrollToTopBtn?.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(toggleButton);
+        ticking = true;
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', onScroll, { passive: true });
+    scrollToTopBtn.addEventListener('click', scrollToTop);
+
+    // Check initial state
+    toggleButton();
+  }
+</script>
