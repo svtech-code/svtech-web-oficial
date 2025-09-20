@@ -14,12 +14,12 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
     <h1
       class="text-secondary text-center text-[28px] font-bold uppercase duration-300 sm:text-5xl md:text-6xl"
     >
-      Soporte Informático <br />
-      <span class="text-primary">Desarrollo Web</span>
+      Soporte Informático
+      <span class="text-primary block">Desarrollo Web</span>
     </h1>
   </header>
 
-  <main class="flex w-full flex-col items-center justify-center">
+  <div class="flex w-full flex-col items-center justify-center">
     <p
       class="text-secondary text-md w-[85%] py-8 text-center font-medium duration-300 sm:text-lg md:w-[75%] md:min-w-[780px] md:text-3xl"
     >
@@ -28,11 +28,12 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
     </p>
 
     <SocialNetworkIcons class="gap-6 pb-16 sm:gap-12 sm:pb-24" />
-  </main>
+  </div>
 
   <footer class="flex items-center justify-center gap-4 sm:gap-8">
     <a
       href="#contact"
+      aria-label="Ir a la sección de contacto"
       class="text-gradient-secondary bg-primary border-primary w-30 item-center flex h-10 justify-center rounded-lg border p-2 text-sm font-medium duration-300 hover:scale-105 sm:h-12 sm:w-52 sm:text-lg"
     >
       Contáctanos
@@ -40,6 +41,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 
     <a
       href="#services"
+      aria-label="Ir a la sección de servicios"
       class="text-secondary border-primary w-30 flex h-10 items-center justify-center rounded-lg border p-2 text-sm font-medium duration-300 hover:scale-105 sm:h-12 sm:w-52 sm:text-lg"
     >
       Ver Servicios
