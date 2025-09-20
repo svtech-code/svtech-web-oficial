@@ -45,7 +45,7 @@
 }
 
 @layer utilities {
-  /* ✅ Animaciones optimizadas para mejor performance */
+  /* Animaciones optimizadas para mejor performance */
   @keyframes shimmer {
     0% {
       background-position: 0% 0;
