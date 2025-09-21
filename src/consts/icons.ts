@@ -33,6 +33,7 @@ import Mail from 'assets/svg/mail.svg';
 import Calendar from 'assets/svg/calendar.svg';
 import Map from 'assets/svg/map.svg';
 import Open from 'assets/svg/open.svg';
+import UpArrow from 'assets/svg/UpArrow.svg';
 
 export const icons = {
   // redes sociales
@@ -70,6 +71,7 @@ export const icons = {
   map: Map,
   calendar: Calendar,
   open: Open,
+  upArrow: UpArrow,
 } as const;
 
 export type IconName = keyof typeof icons;
