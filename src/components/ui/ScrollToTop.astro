@@ -1,14 +1,15 @@
+---
+import Icon from './Icon.astro';
+---
+
 <button
   type="button"
   id="scroll-to-top"
   class="bg-primary hover:shadow-tertiary/40 focus:ring-primary group pointer-events-none fixed bottom-6 right-6 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full opacity-0 shadow-lg duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:h-14 sm:w-14"
   aria-label="Volver al inicio"
+  aria-hidden="true"
 >
-  <span
-    class="text-gradient-secondary arrow-hover flex items-center justify-center text-2xl font-bold duration-300 group-hover:text-4xl sm:text-3xl"
-  >
-    ↑
-  </span>
+  <Icon name="upArrow" class="arrow-hover h-auto w-6 sm:w-8" />
 </button>
 
 <style>
@@ -47,9 +48,11 @@
       if (scrollY >= showButtonThreshold) {
         scrollToTopBtn?.classList.remove('opacity-0', 'pointer-events-none');
         scrollToTopBtn?.classList.add('opacity-100', 'pointer-events-auto');
+        scrollToTopBtn?.removeAttribute('aria-hidden');
       } else {
         scrollToTopBtn?.classList.add('opacity-0', 'pointer-events-none');
         scrollToTopBtn?.classList.remove('opacity-100', 'pointer-events-auto');
+        scrollToTopBtn?.setAttribute('aria-hidden', 'true');
       }
 
       ticking = false;
@@ -69,7 +72,7 @@
       });
     }
 
-    // Event listeners
+    // // Event listeners
     window.addEventListener('scroll', onScroll, { passive: true });
     scrollToTopBtn.addEventListener('click', scrollToTop);
 
