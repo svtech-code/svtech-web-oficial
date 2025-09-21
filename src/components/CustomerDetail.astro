@@ -32,12 +32,12 @@ const { id, name, description, industry, location, socialMedia } = customer;
       </h3>
     </header>
 
-    <main
+    <div
       class="text-secondary flex flex-1 flex-col gap-4 text-sm font-medium sm:text-lg md:text-xl"
     >
-      <span
+      <mark
         class="bg-primary/80 text-gradient-secondary self-center rounded-2xl px-4 py-1 md:self-start"
-        data-customer="industry-customer">{industry}</span
+        data-customer="industry-customer">{industry}</mark
       >
 
       <p class="pt-4" data-customer="description-customer">{description}</p>
@@ -46,7 +46,7 @@ const { id, name, description, industry, location, socialMedia } = customer;
         <Icon name="location" class="stroke-tertiary h-6 w-6 stroke-2" aria-hidden="true" />
         <p class="text-tertiary" data-customer="location-customer">{location}</p>
       </div>
-    </main>
+    </div>
 
     <footer
       class="flex-0 relative flex justify-center gap-4 md:justify-start"
@@ -58,7 +58,7 @@ const { id, name, description, industry, location, socialMedia } = customer;
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            class="relative duration-300 hover:scale-105"
+            class="focus:ring-primary relative rounded-full p-1 duration-300 hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
             aria-label={`Visítanos en ${platform}`}
           >
             <Icon name={platform as IconName} class="h-8 w-8" />

@@ -25,11 +25,11 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 
     <article class="z-10 flex w-full flex-col gap-12 lg:w-1/2">
       <header class="flex w-full flex-col items-center gap-5 lg:items-start">
-        <span
+        <mark
           class="bg-primary text-gradient-secondary inline-block rounded-2xl px-4 py-1 text-sm font-medium duration-300 md:text-xl"
         >
           {smallTitleAbout}
-        </span>
+        </mark>
         <h2
           class="text-secondary text-center text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-start md:text-5xl"
         >
@@ -37,7 +37,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
         </h2>
       </header>
 
-      <main class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4">
         <p
           class="text-md text-secondary w-full text-center font-medium duration-300 sm:text-lg md:text-2xl lg:text-start"
         >
@@ -52,7 +52,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
           Entendemos que cada negocio es único, por lo que adaptamos nuestras soluciones a cada
           cliente, con la finalidad de mejorar sus procesos para alcanzar sus objetivos de negocio.
         </p>
-      </main>
+      </div>
 
       <footer class="flex justify-center lg:justify-start">
         <AboutList />
@@ -63,7 +63,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
   <div class="flex w-full flex-col items-center justify-center gap-4 pt-12 lg:pt-20">
     <header class="text-center lg:text-start">
       <h3 class="text-medium text-tertiary text-xl">
-        Tambien puedes encontrarnos en nuestras redes
+        También puedes encontrarnos en nuestras redes sociales
       </h3>
     </header>
     <SocialNetworkIcons class="gap-4 sm:gap-8" />

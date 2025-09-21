@@ -3,14 +3,14 @@ import { CONTACT_INFO, CONTACT_SCHEDULE } from 'consts/contact';
 import Icon from './Icon.astro';
 ---
 
-<section class="flex justify-center gap-8 md:gap-24 lg:gap-12">
+<div class="flex justify-center gap-8 md:gap-24 lg:gap-12">
   <div class="space-y-4 md:flex-1">
     {
       CONTACT_INFO.map(({ icon, label, description }) => (
         <div class="flex items-center gap-3">
           <Icon name={icon} class="hidden h-auto w-10 sm:flex" />
           <div class="text-start">
-            <h3 class="text-primary text-md font-medium md:text-lg">{label}</h3>
+            <h4 class="text-primary text-md font-medium md:text-lg">{label}</h4>
             <p>{description}</p>
           </div>
         </div>
@@ -24,11 +24,11 @@ import Icon from './Icon.astro';
         <div class="flex items-center gap-3">
           <Icon name={icon} class="hidden h-auto w-10 sm:flex" />
           <div class="text-start">
-            <h3 class="text-primary text-md font-medium md:text-lg">{label}</h3>
+            <h4 class="text-primary text-md font-medium md:text-lg">{label}</h4>
             <p>{description}</p>
           </div>
         </div>
       ))
     }
   </div>
-</section>
+</div>

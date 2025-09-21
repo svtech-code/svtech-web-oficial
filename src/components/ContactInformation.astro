@@ -6,11 +6,11 @@ import SocialNetworkIcons from './ui/SocialNetworkIcons.astro';
 
 <article class="text-secondary flex w-full flex-col gap-4 lg:w-1/2">
   <header class="flex w-full flex-col items-center gap-8 lg:w-[38rem] lg:items-start">
-    <span
+    <mark
       class="bg-primary text-gradient-secondary inline-block rounded-2xl px-4 py-1 text-sm font-medium duration-300 md:text-xl"
     >
       {questionTitleContact}
-    </span>
+    </mark>
 
     <h2
       class="text-center text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-start md:text-5xl"
@@ -19,7 +19,7 @@ import SocialNetworkIcons from './ui/SocialNetworkIcons.astro';
     </h2>
   </header>
 
-  <main
+  <div
     class="flex w-full flex-col items-center gap-8 p-6 text-center md:p-0 lg:items-start lg:text-start"
   >
     <p class="text-md w-full font-medium duration-300 sm:text-lg md:w-[40rem] md:text-2xl">
@@ -27,12 +27,12 @@ import SocialNetworkIcons from './ui/SocialNetworkIcons.astro';
     </p>
 
     <SchedulesAndContact />
-  </main>
+  </div>
 
   <footer class="flex flex-col gap-4 pt-12">
-    <header class="text-center lg:text-start">
+    <div class="text-center lg:text-start">
       <h4 class="text-medium text-tertiary text-xl">Visita nuestras redes</h4>
-    </header>
+    </div>
 
     <SocialNetworkIcons class="gap-4 sm:gap-8 lg:justify-start" />
   </footer>

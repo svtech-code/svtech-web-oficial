@@ -3,17 +3,22 @@ import Logo from 'assets/logo.svg';
 ---
 
 <footer class="relative flex w-full items-center justify-center bg-black/60">
-  <section class="relative my-4 flex w-full max-w-[1200px] flex-col items-center justify-center">
+  <div class="relative my-4 flex w-full max-w-[1200px] flex-col items-center justify-center">
     <div class="flex w-full flex-col justify-between gap-10 md:flex-row md:gap-16">
-      <a href="/" class="flex items-center justify-center" aria-label="Ir al inicio">
+      <a
+        href="/"
+        class="focus:ring-primary flex items-center justify-center rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-2"
+        aria-label="Ir al inicio"
+      >
         <Logo class="h-auto w-60 md:w-80" />
       </a>
 
       <nav
         class="flex flex-col items-center justify-center gap-14 pb-4 sm:flex-row sm:items-start sm:justify-around md:flex-1"
+        aria-label="Barra de navegación del footer"
       >
         <div>
-          <h3>ENLACES</h3>
+          <h4>ENLACES</h4>
           <ul>
             <li><a href="/#home">Home</a></li>
             <li><a href="/#services">Servicios</a></li>
@@ -24,7 +29,7 @@ import Logo from 'assets/logo.svg';
         </div>
 
         <div>
-          <h3>SERVICIOS</h3>
+          <h4>SERVICIOS</h4>
           <ul>
             <li>Soporte Informático</li>
             <li>Desarrollo Web</li>
@@ -35,7 +40,7 @@ import Logo from 'assets/logo.svg';
         </div>
 
         <div>
-          <h3>CONTACTO</h3>
+          <h4>CONTACTO</h4>
           <ul>
             <li>WhatsApp</li>
             <li>Correo Electrónico</li>
@@ -57,7 +62,7 @@ import Logo from 'assets/logo.svg';
       <br aria-hidden="true" class="block md:hidden" />
       Todos los derechos reservados.
     </p>
-  </section>
+  </div>
 </footer>
 
 <style>
@@ -66,7 +71,7 @@ import Logo from 'assets/logo.svg';
     text-align: center;
   }
 
-  h3 {
+  h4 {
     padding-bottom: 8px;
     color: var(--color-primary);
     font-size: 1.4rem;
@@ -107,7 +112,7 @@ import Logo from 'assets/logo.svg';
       transform-origin: left;
     }
 
-    h3 {
+    h4 {
       font-size: 1rem;
     }
   }

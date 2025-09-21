@@ -14,7 +14,7 @@ import Modal from './Modal.astro';
     </header>
 
     <form id="contact-form" class="relative flex flex-col gap-6">
-      <main class="flex flex-col gap-5">
+      <div class="flex flex-col gap-5">
         <div class="flex flex-col gap-5 md:flex-row md:gap-2">
           <FormInput
             id="name"
@@ -36,7 +36,7 @@ import Modal from './Modal.astro';
         <FormInput id="email" name="email" label="Email" type="email" required={true} />
 
         <FormTextarea id="message" name="message" label="Mensaje" required={true} />
-      </main>
+      </div>
 
       <footer class="flex w-full flex-col items-center justify-center gap-8">
         <!-- Widget de Turnstile -->
@@ -61,10 +61,8 @@ import Modal from './Modal.astro';
 
   document.addEventListener('astro:page-load', () => {
     // Inicializar formulario de contacto con lazy loading
-    LazyObserver.create(
-      '#contact-form', 
-      () => void new ContactFormManager('#contact-form'),
-      { preset: 'form' }
-    );
+    LazyObserver.create('#contact-form', () => void new ContactFormManager('#contact-form'), {
+      preset: 'form',
+    });
   });
 </script>
