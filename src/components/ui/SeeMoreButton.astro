@@ -9,13 +9,13 @@ interface Props {
 const { section, mobileLimit, tabletLimit } = Astro.props;
 ---
 
-<footer class="flex items-center justify-center">
+<footer class="flex w-40 items-center justify-center">
   <button
     id={`${section}-see-more-btn`}
     data-mobile-limit={mobileLimit}
     data-tablet-limit={tabletLimit}
     aria-label={`Ver más ${section}`}
-    class="hover:shadow-tertiary text-gradient-secondary focus:ring-primary relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg p-2 text-lg duration-500 hover:scale-105 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
+    class="hover:shadow-tertiary text-gradient-secondary focus:ring-primary relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg p-2 text-lg duration-500 hover:scale-105 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
   >
     <span class="see-more-text">Ver más</span>
   </button>
