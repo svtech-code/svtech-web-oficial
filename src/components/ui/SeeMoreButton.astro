@@ -1,0 +1,46 @@
+---
+// componentizar el boton de ver mas pero ver que pasa con el script
+interface Props {
+  section: string;
+  mobileLimit: number;
+  tabletLimit: number;
+}
+
+const { section, mobileLimit, tabletLimit } = Astro.props;
+---
+
+<footer class="flex items-center justify-center">
+  <button
+    id={`${section}-see-more-btn`}
+    data-mobile-limit={mobileLimit}
+    data-tablet-limit={tabletLimit}
+    aria-label={`Ver más ${section}`}
+    class="hover:shadow-tertiary text-gradient-secondary focus:ring-primary relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg p-2 text-lg duration-500 hover:scale-105 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
+  >
+    <span class="see-more-text">Ver más</span>
+  </button>
+</footer>
+
+<style>
+  @reference "styles/global.css";
+
+  button {
+    @apply from-primary to-primary bg-gradient-to-r via-[#00D0FF];
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    will-change: background-position;
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    @apply via-primary/40 bg-gradient-to-r from-transparent to-transparent;
+    transform: rotate(30deg);
+    animation: shine 3s linear infinite;
+    will-change: transform;
+  }
+</style>
