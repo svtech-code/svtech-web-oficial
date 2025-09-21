@@ -2,6 +2,7 @@
 import ServiceCard from 'components/ServiceCard.astro';
 import { subTitleService, titleService } from 'consts/pagesTitle';
 import { SERVICES_STATIC } from 'consts/services';
+import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 ---
 
 <section
@@ -15,18 +16,30 @@ import { SERVICES_STATIC } from 'consts/services';
     <h3 class="text-primary text-sm font-medium sm:text-lg md:text-3xl">{subTitleService}</h3>
   </header>
 
-  <main
+  <div
+    id="services-container"
     class="relative flex w-full flex-col flex-wrap items-center justify-center gap-4 md:flex-row"
   >
     {
-      SERVICES_STATIC.map((service) => (
+      SERVICES_STATIC.map((service, index) => (
         <ServiceCard
           title={service.title}
           description={service.description}
           iconName={service.iconName}
           slug={service.slug}
+          index={index}
         />
       ))
     }
-  </main>
+  </div>
+
+  <SeeMoreButton section="services" mobileLimit={2} tabletLimit={4} />
 </section>
+
+<script>
+  import { setupServiceVisibility } from 'lib/element-visibility-manager';
+
+  document.addEventListener('astro:page-load', () => {
+    setupServiceVisibility();
+  });
+</script>

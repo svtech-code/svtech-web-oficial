@@ -7,13 +7,15 @@ interface Props {
   title: string;
   description: string;
   slug: string;
+  index: number;
 }
 
-const { title, description, iconName, slug } = Astro.props;
+const { title, description, iconName, slug, index } = Astro.props;
 ---
 
 <article
-  class="border-primary shadow-primary/80 group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-5 shadow-sm duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px] md:p-7"
+  class="border-primary service-card shadow-primary/80 group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-5 shadow-sm duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px] md:p-7"
+  data-index={index}
 >
   <div>
     <Icon
@@ -44,8 +46,8 @@ const { title, description, iconName, slug } = Astro.props;
   <footer>
     <a
       href={`/services/${slug}`}
-      atia-label=`Ver detalles sobre ${title}`
-      class="text-tertiary/80 group-hover:text-tertiary group inline-block origin-left cursor-pointer font-medium duration-300 hover:scale-105"
+      aria-label=`Ver detalles sobre ${title}`
+      class="text-tertiary/80 group-hover:text-tertiary focus:ring-primary group inline-block origin-left cursor-pointer rounded-xl font-medium duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
     >
       Saber más →
     </a>
