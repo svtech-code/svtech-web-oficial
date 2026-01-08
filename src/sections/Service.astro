@@ -21,13 +21,13 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
     class="relative flex w-full flex-col flex-wrap items-center justify-center gap-4 md:flex-row"
   >
     {
-      SERVICES_STATIC.map((service, index) => (
+      SERVICES_STATIC.map((service) => (
         <ServiceCard
+          index={service.order}
           title={service.title}
           description={service.description}
           iconName={service.iconName}
           slug={service.slug}
-          index={index}
         />
       ))
     }
