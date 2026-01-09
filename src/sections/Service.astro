@@ -10,10 +10,10 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
   class="relative flex w-full max-w-[1200px] -scroll-mt-10 flex-col items-center justify-center gap-20 px-2 py-40 md:scroll-mt-6"
 >
   <header class="flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
-    <h2 class="text-secondary text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-5xl">
+    <h2 class="text-2xl font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl">
       {titleService}
     </h2>
-    <h3 class="text-primary text-sm font-medium sm:text-lg md:text-3xl">{subTitleService}</h3>
+    <h3 class="text-sm font-medium text-primary sm:text-lg md:text-3xl">{subTitleService}</h3>
   </header>
 
   <div
@@ -37,9 +37,13 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 </section>
 
 <script>
-  import { setupServiceVisibility } from 'lib/element-visibility-manager';
+  import { setupCardVisibility } from 'lib/generic-card-visibility-manager';
 
   document.addEventListener('astro:page-load', () => {
-    setupServiceVisibility();
+    setupCardVisibility({
+      sectionName: 'services',
+      mobileLimit: 2,
+      tabletLimit: 4,
+    });
   });
 </script>
