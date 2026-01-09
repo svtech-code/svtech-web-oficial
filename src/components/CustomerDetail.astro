@@ -16,7 +16,7 @@ const { id, name, description, industry, location, socialMedia } = customer;
   data-customer="detail-component"
 >
   <figure
-    class="bg-secondary/20 relative mx-auto flex h-auto w-[200px] items-center justify-center rounded-2xl p-2 sm:w-[300px] md:w-[400px]"
+    class="relative mx-auto flex h-auto w-[200px] items-center justify-center rounded-2xl bg-secondary/20 p-2 sm:w-[300px] md:w-[400px]"
     data-customer="logo-customer"
   >
     <Icon name={id} class="h-auto w-full object-contain" aria-hidden="true" />
@@ -26,30 +26,30 @@ const { id, name, description, industry, location, socialMedia } = customer;
     <header class="flex-0">
       <h3
         data-customer="name-customer"
-        class="text-secondary text-lg font-semibold sm:text-xl md:text-3xl"
+        class="text-lg font-semibold text-secondary sm:text-xl md:text-3xl"
       >
         {name}
       </h3>
     </header>
 
     <div
-      class="text-secondary flex flex-1 flex-col gap-4 text-sm font-medium sm:text-lg md:text-xl"
+      class="flex flex-1 flex-col gap-4 text-sm font-medium text-secondary sm:text-lg md:text-xl"
     >
       <mark
-        class="bg-primary/80 text-gradient-secondary self-center rounded-2xl px-4 py-1 md:self-start"
+        class="self-center rounded-2xl bg-primary/80 px-4 py-1 text-gradient-secondary md:self-start"
         data-customer="industry-customer">{industry}</mark
       >
 
       <p class="pt-4" data-customer="description-customer">{description}</p>
 
       <div class="flex items-center justify-center gap-2 md:justify-start">
-        <Icon name="location" class="stroke-tertiary h-6 w-6 stroke-2" aria-hidden="true" />
+        <Icon name="location" class="h-6 w-6 stroke-tertiary stroke-2" aria-hidden="true" />
         <p class="text-tertiary" data-customer="location-customer">{location}</p>
       </div>
     </div>
 
     <footer
-      class="flex-0 relative flex justify-center gap-4 md:justify-start"
+      class="relative flex flex-0 justify-center gap-4 md:justify-start"
       data-customer="social-customer"
     >
       {
@@ -58,7 +58,7 @@ const { id, name, description, industry, location, socialMedia } = customer;
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            class="focus:ring-primary relative rounded-full p-1 duration-300 hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
+            class="relative rounded-full p-1 duration-300 hover:scale-105 focus:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
             aria-label={`Visítanos en ${platform}`}
           >
             <Icon name={platform as IconName} class="h-8 w-8" />

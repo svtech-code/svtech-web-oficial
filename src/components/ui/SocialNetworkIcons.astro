@@ -20,11 +20,11 @@ const navClasses = additionalClasses ? `${baseClasses} ${additionalClasses}` : b
         rel="noopener noreferrer"
         aria-label={label}
         title={label}
-        class="focus:ring-primary rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-offset-2"
+        class="rounded-full p-1 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
       >
         <Icon
           name={name}
-          class="hover:drop-shadow-primary h-auto w-8 drop-shadow-lg duration-300 hover:scale-110 sm:w-11"
+          class="h-auto w-8 drop-shadow-lg duration-300 hover:scale-110 hover:drop-shadow-primary sm:w-11"
         />
       </a>
     ))

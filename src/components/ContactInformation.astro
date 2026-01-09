@@ -4,10 +4,10 @@ import SchedulesAndContact from './ui/SchedulesAndContact.astro';
 import SocialNetworkIcons from './ui/SocialNetworkIcons.astro';
 ---
 
-<article class="text-secondary flex w-full flex-col gap-4 lg:w-1/2">
+<article class="flex w-full flex-col gap-4 text-secondary lg:w-1/2">
   <header class="flex w-full flex-col items-center gap-8 lg:w-[38rem] lg:items-start">
     <mark
-      class="bg-primary text-gradient-secondary inline-block rounded-2xl px-4 py-1 text-sm font-medium duration-300 md:text-xl"
+      class="inline-block rounded-2xl bg-primary px-4 py-1 text-sm font-medium text-gradient-secondary duration-300 md:text-xl"
     >
       {questionTitleContact}
     </mark>
@@ -31,7 +31,7 @@ import SocialNetworkIcons from './ui/SocialNetworkIcons.astro';
 
   <footer class="flex flex-col gap-4 pt-12">
     <div class="text-center lg:text-start">
-      <h4 class="text-medium text-tertiary text-xl">Visita nuestras redes</h4>
+      <h4 class="text-medium text-xl text-tertiary">Visita nuestras redes</h4>
     </div>
 
     <SocialNetworkIcons class="gap-4 sm:gap-8 lg:justify-start" />

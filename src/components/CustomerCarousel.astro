@@ -5,8 +5,8 @@
 >
   <!-- Módulo de carga inicial con coste mínimo -->
   <div class="customer-marquee-placeholder flex h-32 items-center justify-center">
-    <div class="loading-skeleton bg-secondary/20 animate-pulse rounded-lg px-6 py-3">
-      <span class="text-tertiary text-sm">Cargando clientes...</span>
+    <div class="loading-skeleton animate-pulse rounded-lg bg-secondary/20 px-6 py-3">
+      <span class="text-sm text-tertiary">Cargando clientes...</span>
     </div>
   </div>
 </div>
@@ -107,7 +107,7 @@
     LazyObserver.create(
       '#customers-carousel',
       () => void new CustomerCarouselManager('#customers-carousel'),
-      { preset: 'carousel' }
+      { preset: 'carousel' },
     );
   });
 </script>

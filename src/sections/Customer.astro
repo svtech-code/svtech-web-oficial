@@ -14,10 +14,10 @@ const initialCustomer = CUSTOMERS[0] as Customer;
   aria-label="Sección de clientes"
 >
   <header class="flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
-    <h2 class="text-secondary text-2xl font-bold uppercase duration-300 sm:text-4xl md:text-5xl">
+    <h2 class="text-2xl font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl">
       {titleCustomer}
     </h2>
-    <h3 class="text-primary text-sm font-medium sm:text-lg md:text-3xl">{subTitleCustomer}</h3>
+    <h3 class="text-sm font-medium text-primary sm:text-lg md:text-3xl">{subTitleCustomer}</h3>
   </header>
 
   <CustomerDetail customer={initialCustomer} />

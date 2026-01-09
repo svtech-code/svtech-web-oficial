@@ -24,20 +24,20 @@ export const prerender = true;
   <section
     class="item-center relative flex w-full max-w-[1200px] flex-col justify-start px-4 pb-32"
   >
-    <div class="fixed left-0 top-6 z-40 flex w-full items-center justify-center">
+    <div class="fixed top-6 left-0 z-40 flex w-full items-center justify-center">
       <nav class="mr-4 flex w-full max-w-[1200px] items-center justify-end lg:mr-0">
         <a
           href="/#services"
-          class="text-tertiary border-tertiary bg-gradient-primary/20 hover:bg-gradient-primary/40 cursor-pointer rounded-lg border-2 px-4 py-2 text-sm font-medium backdrop-blur-xl duration-300 hover:scale-105 sm:rounded-2xl sm:text-xl"
+          class="cursor-pointer rounded-lg border-2 border-tertiary bg-gradient-primary/20 px-4 py-2 text-sm font-medium text-tertiary backdrop-blur-xl duration-300 hover:scale-105 hover:bg-gradient-primary/40 sm:rounded-2xl sm:text-xl"
         >
           ← Volver atrás
         </a>
       </nav>
     </div>
 
-    <header class="relative pb-8 pt-24 sm:py-14">
+    <header class="relative pt-24 pb-8 sm:py-14">
       <h1
-        class="text-primary text-center text-3xl font-semibold uppercase duration-300 sm:text-start sm:text-4xl md:text-5xl"
+        class="text-center text-3xl font-semibold text-primary uppercase duration-300 sm:text-start sm:text-4xl md:text-5xl"
       >
         {title}
       </h1>
@@ -52,7 +52,7 @@ export const prerender = true;
           alt={imageAlt}
           loading="eager"
           decoding="async"
-          class="shadow-tertiary/60 animate-scale-in h-auto w-full max-w-[90%] rounded-2xl shadow-md"
+          class="animate-scale-in h-auto w-full max-w-[90%] rounded-2xl shadow-md shadow-tertiary/60"
         />
       </article>
 

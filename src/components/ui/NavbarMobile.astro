@@ -6,7 +6,7 @@ import NavbarContactButton from './NavbarContactButton.astro';
 
 <div
   id="content-navbar-mobile"
-  class="bg-primary/20 fixed right-0 top-0 h-full w-0 duration-300 lg:hidden"
+  class="fixed top-0 right-0 h-full w-0 bg-primary/20 duration-300 lg:hidden"
 >
   <!-- nav mobile -->
   <nav
@@ -15,7 +15,7 @@ import NavbarContactButton from './NavbarContactButton.astro';
     aria-label="barra de navegación mobile"
     aria-hidden="false"
     aria-expanded="false"
-    class="bg-primary/70 fixed right-0 top-0 h-full w-0 backdrop-blur-2xl duration-300"
+    class="fixed top-0 right-0 h-full w-0 bg-primary/70 backdrop-blur-2xl duration-300"
   >
     <ul class="mt-16 space-y-4 px-6">
       {MENU.map(({ title, url }) => <NavLink title={title} url={url} />)}

@@ -7,18 +7,18 @@ import ServiceLayout from 'layouts/ServiceLayout.astro';
     <header class="flex flex-col items-center justify-center gap-2 py-8 text-center">
       <p
         id="attempted-url"
-        class="text-tertiary/80 py-8 text-center text-4xl"
+        class="py-8 text-center text-4xl text-tertiary/80"
         aria-label="URL solicitada"
         aria-live="polite"
       >
       </p>
 
-      <h1 class="text-primary text-8xl font-bold">404</h1>
-      <h2 class="text-primary/80 text-6xl font-semibold">Página no encontrada</h2>
+      <h1 class="text-8xl font-bold text-primary">404</h1>
+      <h2 class="text-6xl font-semibold text-primary/80">Página no encontrada</h2>
     </header>
 
     <main class="flex flex-col items-center justify-center">
-      <p class="text-secondary mb-8 max-w-xl text-center text-xl font-medium">
+      <p class="mb-8 max-w-xl text-center text-xl font-medium text-secondary">
         Lo sentimos, el sitio al cual intenta acceder no existe, por favor, intenta más tarde o
         visita un sitio válido.
       </p>
@@ -26,7 +26,7 @@ import ServiceLayout from 'layouts/ServiceLayout.astro';
       <nav>
         <a
           href="/"
-          class="text-gradient-secondary bg-primary border-primary w-30 item-center flex h-10 justify-center rounded-lg border p-2 text-sm font-medium duration-300 hover:scale-105 sm:h-12 sm:w-52 sm:text-lg"
+          class="item-center flex h-10 w-30 justify-center rounded-lg border border-primary bg-primary p-2 text-sm font-medium text-gradient-secondary duration-300 hover:scale-105 sm:h-12 sm:w-52 sm:text-lg"
         >
           Ir al inicio
         </a>

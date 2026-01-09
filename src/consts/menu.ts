@@ -11,7 +11,7 @@ export const MENU: Menu[] = [
   },
   {
     title: 'Proyectos',
-    url: '/#project',
+    url: '/#projects',
   },
   {
     title: 'Nosotros',
