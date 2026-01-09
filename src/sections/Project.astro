@@ -1,0 +1,50 @@
+---
+import { titleProject, subTitleProject } from 'consts/pagesTitle';
+import ProjectCard from 'components/ProjectCard.astro';
+import { PROJECTS_STATIC } from 'consts/projects';
+import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
+---
+
+<section
+  id="projects"
+  class="relative flex w-full max-w-[1200px] -scroll-mt-10 flex-col items-center justify-center gap-20 px-2 py-40 md:scroll-mt-6"
+>
+  <header class="flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
+    <h2 class="text-2xl font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl">
+      {titleProject}
+    </h2>
+    <h3 class="text-sm font-medium text-primary sm:text-lg md:text-3xl">{subTitleProject}</h3>
+  </header>
+
+  <div
+    id="projects-container"
+    class="relative flex w-full flex-col flex-wrap items-center justify-center gap-4 md:flex-row"
+  >
+    {
+      PROJECTS_STATIC.map((project) => (
+        <ProjectCard
+          index={project.order}
+          type={project.type}
+          title={project.title}
+          description={project.description}
+          imageSrc={project.imageSrc}
+          imageAlt={project.imageAlt}
+        />
+      ))
+    }
+  </div>
+
+  <SeeMoreButton section="projects" mobileLimit={2} tabletLimit={4} />
+</section>
+
+<script>
+  import { setupCardVisibility } from 'lib/generic-card-visibility-manager';
+
+  document.addEventListener('astro:page-load', () => {
+    setupCardVisibility({
+      sectionName: 'projects',
+      mobileLimit: 2,
+      tabletLimit: 4,
+    });
+  });
+</script>
