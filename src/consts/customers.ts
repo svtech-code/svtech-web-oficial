@@ -15,7 +15,7 @@ export const CUSTOMERS: Customer[] = [
   },
   {
     id: 'customer-02',
-    name: 'Servicios Médicos Gesmedic Limitada',
+    name: 'Servicios Médicos Gesmedic Ltda.',
     shortName: 'Gesmedic',
     description:
       'Empresa vinculada al comercio y distribución de insumos médicos, telemedicina, consultoría y acreditación.',
@@ -23,6 +23,7 @@ export const CUSTOMERS: Customer[] = [
     location: 'Maule, Chile',
     socialMedia: {
       'chrome-color': 'https://www.gesmedic.cl',
+      'instagram-color': 'https://www.instagram.com/senderismolinares/',
     },
   },
   {
@@ -73,6 +74,19 @@ export const CUSTOMERS: Customer[] = [
     socialMedia: {
       'chrome-color': 'https://www.feem.cl',
       'instagram-color': 'https://www.instagram.com/feem_feria_empresarial_/',
+    },
+  },
+  {
+    id: 'customer-07',
+    name: 'CFT Estatal del maule',
+    shortName: 'CFT Maule',
+    description:
+      'Centro de Formación Técnica de la región del Maule. Es una Institución de Educación Superior de la región del Maule, con precencia en Linares y Parral.',
+    industry: 'Educación',
+    location: 'Maule, Chile',
+    socialMedia: {
+      'chrome-color': 'https://2.cftmaule.cl',
+      'instagram-color': 'https://www.instagram.com/cftmaule/',
     },
   },
 ];

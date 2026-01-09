@@ -14,6 +14,7 @@ export const logoSvgMap = {
   'customer-04': '/images/customers/customer-04.svg',
   'customer-05': '/images/customers/customer-05.svg',
   'customer-06': '/images/customers/customer-06.svg',
+  'customer-07': '/images/customers/customer-07.svg',
 } as const;
 
 export const socialIconsMap = {
