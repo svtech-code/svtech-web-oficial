@@ -3,6 +3,11 @@ import { validateField, sendContactForm } from './emailjs-client';
 import { TurnstileManager } from './turnstile-manager';
 import { ModalManager } from './modal-manager';
 
+/**
+ * Gestiona el formulario de contacto con validación, envío y manejo de errores.
+ * Responsabilidad: Coordinar validación en tiempo real, integración con Turnstile,
+ * manejo de estados de carga y mostrar feedback visual al usuario.
+ */
 export class ContactFormManager {
   private form: HTMLFormElement;
   private submitBtn: HTMLButtonElement;
@@ -24,6 +29,10 @@ export class ContactFormManager {
   private phoneInput: HTMLInputElement;
   private messageTextarea: HTMLTextAreaElement;
 
+  /**
+   * Inicializa el gestor del formulario de contacto
+   * @param formSelector - Selector CSS del formulario (por defecto '#contact-form')
+   */
   constructor(formSelector: string = '#contact-form') {
     const form = document.querySelector(formSelector) as HTMLFormElement;
     const submitBtn = document.querySelector('#submit-btn') as HTMLButtonElement;
@@ -46,12 +55,18 @@ export class ContactFormManager {
     this.initialize();
   }
 
+  /**
+   * Inicializa los event listeners, validación y carga de Turnstile
+   */
   private initialize(): void {
     this.setupEventListeners();
     this.setupFieldValidation();
     this.initializeTurnstile();
   }
 
+  /**
+   * Carga Turnstile de forma lazy después de 2 segundos o al interactuar con el formulario
+   */
   private initializeTurnstile(): void {
     // Cargar Turnstile después de 2 segundos O cuando el usuario interactúe
     setTimeout(() => this.turnstileManager.loadOnDemand(), 2000);
@@ -61,6 +76,9 @@ export class ContactFormManager {
     this.form.addEventListener('click', () => this.turnstileManager.loadOnDemand(), { once: true });
   }
 
+  /**
+   * Configura event listeners para submit del formulario y modal
+   */
   private setupEventListeners(): void {
     this.form.addEventListener('submit', this.handleSubmit.bind(this));
     this.modalManager.setupEventListeners(
@@ -69,6 +87,9 @@ export class ContactFormManager {
     );
   }
 
+  /**
+   * Configura validación en tiempo real para todos los campos del formulario
+   */
   private setupFieldValidation(): void {
     // Validación al perder el foco (onBlur)
     this.nameInput?.addEventListener('blur', (e) => {
@@ -102,6 +123,10 @@ export class ContactFormManager {
     this.messageTextarea?.addEventListener('input', () => this.clearFieldError('message'));
   }
 
+  /**
+   * Maneja el envío del formulario con validación completa y verificación Turnstile
+   * @param e - Evento de submit del formulario
+   */
   private async handleSubmit(e: Event): Promise<void> {
     e.preventDefault();
 
@@ -143,6 +168,11 @@ export class ContactFormManager {
     await this.handleFormSubmit(contactData, turnstileToken);
   }
 
+  /**
+   * Envía los datos del formulario a través de EmailJS con manejo de estados
+   * @param contactData - Datos del formulario validados
+   * @param turnstileToken - Token de verificación Turnstile
+   */
   private async handleFormSubmit(
     contactData: ContactFormData,
     turnstileToken: string,
@@ -181,6 +211,9 @@ export class ContactFormManager {
     this.updateSubmitButton();
   }
 
+  /**
+   * Reintenta el envío del formulario con los datos previamente capturados
+   */
   private handleRetry(): void {
     if (this.currentFormData) {
       const turnstileToken = this.turnstileManager.getToken();
@@ -195,6 +228,9 @@ export class ContactFormManager {
     }
   }
 
+  /**
+   * Cancela la operación actual y resetea el estado del formulario
+   */
   private handleCancel(): void {
     this.modalManager.hide();
     this.setFormState({ isLoading: false, isSuccess: false, error: null });
@@ -202,6 +238,9 @@ export class ContactFormManager {
     this.currentFormData = null;
   }
 
+  /**
+   * Limpia completamente el formulario y resetea todos los errores
+   */
   private resetForm(): void {
     this.form.reset();
     this.fieldErrors = {};
@@ -209,6 +248,11 @@ export class ContactFormManager {
     this.turnstileManager.reset();
   }
 
+  /**
+   * Valida un campo individual del formulario
+   * @param fieldName - Nombre del campo a validar
+   * @param value - Valor del campo
+   */
   private validateSingleField(fieldName: keyof ContactFormData, value: string): boolean {
     const error = validateField(fieldName, value);
     if (error) {
@@ -220,16 +264,29 @@ export class ContactFormManager {
     }
   }
 
+  /**
+   * Muestra un mensaje de error para un campo específico
+   * @param fieldName - Nombre del campo
+   * @param errorMsg - Mensaje de error a mostrar
+   */
   private showFieldError(fieldName: string, errorMsg: string): void {
     this.fieldErrors[fieldName] = errorMsg;
     this.updateFieldDisplay(fieldName);
   }
 
+  /**
+   * Limpia el error de un campo específico
+   * @param fieldName - Nombre del campo a limpiar
+   */
   private clearFieldError(fieldName: string): void {
     delete this.fieldErrors[fieldName];
     this.updateFieldDisplay(fieldName);
   }
 
+  /**
+   * Actualiza la visualización de un campo (error/normal) en el DOM
+   * @param fieldName - Nombre del campo a actualizar
+   */
   private updateFieldDisplay(fieldName: string): void {
     const fieldElement = document.querySelector(`#${fieldName}`) as
       | HTMLInputElement
@@ -261,6 +318,11 @@ export class ContactFormManager {
     }
   }
 
+  /**
+   * Cambia el estado visual de un campo (normal/error)
+   * @param fieldElement - Elemento del campo a actualizar
+   * @param hasError - Si el campo tiene error
+   */
   private updateFieldState(fieldElement: HTMLElement, hasError: boolean): void {
     requestAnimationFrame(() => {
       if (hasError) {
@@ -279,6 +341,9 @@ export class ContactFormManager {
     });
   }
 
+  /**
+   * Hace scroll suave hasta el primer campo con error
+   */
   private scrollToFirstError(): void {
     requestAnimationFrame(() => {
       const firstErrorField = document.querySelector('.border-red-500') as HTMLElement;
@@ -292,6 +357,9 @@ export class ContactFormManager {
     });
   }
 
+  /**
+   * Actualiza el estado visual del botón de envío (loading/normal)
+   */
   private updateSubmitButton(): void {
     if (this.submitBtn) {
       this.submitBtn.disabled = this.formState.isLoading;
@@ -312,6 +380,10 @@ export class ContactFormManager {
     }
   }
 
+  /**
+   * Actualiza el estado interno del formulario
+   * @param newState - Nuevo estado parcial a aplicar
+   */
   private setFormState(newState: Partial<FormState>): void {
     this.formState = { ...this.formState, ...newState };
   }

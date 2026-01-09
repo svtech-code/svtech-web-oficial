@@ -11,7 +11,9 @@ const EMAILJS_CONFIG = {
 let emailjsInstance: any = null;
 
 /**
- * Sanitiza una cadena de texto para prevenir XSS y caracteres peligrosos
+ * Sanitiza una cadena de texto para prevenir XSS y caracteres peligrosos.
+ * Responsabilidad: Eliminar caracteres potencialmente dañinos y limitar longitud.
+ * @param input - Cadena de texto a sanitizar
  */
 function sanitizeString(input: string): string {
   if (typeof input !== 'string') return '';
@@ -26,7 +28,9 @@ function sanitizeString(input: string): string {
 }
 
 /**
- * Verifica el token de Turnstile con el servidor
+ * Verifica el token de Turnstile con el servidor de verificación.
+ * Responsabilidad: Validar que el token Turnstile es auténtico y válido.
+ * @param token - Token de Turnstile a verificar
  */
 async function verifyTurnstile(token: string): Promise<boolean> {
   try {
@@ -49,7 +53,10 @@ async function verifyTurnstile(token: string): Promise<boolean> {
 }
 
 /**
- * Valida un campo específico del formulario
+ * Valida un campo específico del formulario con reglas personalizadas.
+ * Responsabilidad: Aplicar validaciones específicas según el tipo de campo.
+ * @param fieldName - Nombre del campo a validar
+ * @param value - Valor del campo a validar
  */
 export function validateField(fieldName: keyof ContactFormData, value: string): string | null {
   const sanitizedValue = sanitizeString(value);
@@ -114,7 +121,8 @@ export function validateField(fieldName: keyof ContactFormData, value: string): 
 }
 
 /**
- * Carga EmailJS de forma lazy (solo cuando se necesita)
+ * Carga EmailJS de forma lazy cuando se necesita por primera vez.
+ * Responsabilidad: Cargar dinámicamente el script de EmailJS y configurarlo.
  */
 async function loadEmailJS(): Promise<any> {
   if (emailjsInstance) return emailjsInstance;
@@ -146,7 +154,9 @@ async function loadEmailJS(): Promise<any> {
 }
 
 /**
- * Valida los datos del formulario completo
+ * Valida todos los campos del formulario de contacto.
+ * Responsabilidad: Coordinar la validación completa del formulario.
+ * @param data - Datos completos del formulario
  */
 export function validateContactForm(data: ContactFormData): ContactFormValidation {
   const errors: ContactFormValidation['errors'] = {};
@@ -174,7 +184,9 @@ export function validateContactForm(data: ContactFormData): ContactFormValidatio
 }
 
 /**
- * Sanitiza todos los datos del formulario antes del envío
+ * Sanitiza todos los campos del formulario antes del envío.
+ * Responsabilidad: Aplicar sanitización a todos los campos del formulario.
+ * @param data - Datos del formulario a sanitizar
  */
 function sanitizeContactFormData(data: ContactFormData): ContactFormData {
   return {
@@ -186,7 +198,11 @@ function sanitizeContactFormData(data: ContactFormData): ContactFormData {
 }
 
 /**
- * Envía el formulario de contacto via EmailJS
+ * Envía el formulario de contacto via EmailJS con validación y verificación completa.
+ * Responsabilidad: Coordinar todo el proceso de envío incluyendo validación,
+ * sanitización, verificación Turnstile y envío via EmailJS.
+ * @param data - Datos del formulario de contacto
+ * @param turnstileToken - Token opcional de verificación Turnstile
  */
 export async function sendContactForm(
   data: ContactFormData,

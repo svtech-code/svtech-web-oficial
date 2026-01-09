@@ -4,6 +4,11 @@ export interface LazyObserverOptions {
   timeout?: number;
 }
 
+/**
+ * Utilidad para observación lazy con Intersection Observer API.
+ * Responsabilidad: Ejecutar callbacks cuando elementos entran en viewport,
+ * con configuraciones predefinidas y fallback de timeout.
+ */
 export class LazyObserver {
   private static defaultOptions: LazyObserverOptions = {
     threshold: 0.1,
@@ -18,6 +23,12 @@ export class LazyObserver {
     image: { threshold: 0.5, rootMargin: '50px 0px', timeout: 500 },
   };
 
+  /**
+   * Crea un observer para ejecutar callback cuando elemento entra en viewport
+   * @param selector - Selector CSS del elemento a observar
+   * @param callback - Función a ejecutar cuando elemento es visible
+   * @param options - Opciones de configuración incluyendo preset opcional
+   */
   public static create(
     selector: string,
     callback: () => void | Promise<void>,

@@ -7,6 +7,11 @@ import {
   replaceElementContent,
 } from './dom-utils';
 
+/**
+ * Gestiona la actualización del detalle de cliente seleccionado.
+ * Responsabilidad: Actualizar dinámicamente la información del cliente,
+ * incluyendo logo, datos, redes sociales y optimizar operaciones DOM.
+ */
 export class CustomerDetailManager {
   private detailElement: HTMLElement | null = null;
   private nameElement: HTMLElement | null = null;

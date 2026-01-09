@@ -1,3 +1,8 @@
+/**
+ * Inicializa el comportamiento del header con transparencia dinámica y menú móvil.
+ * Responsabilidad: Gestionar la transparencia del navbar basada en scroll,
+ * manejar el toggle del menú móvil y limpiar event listeners.
+ */
 export const functionHeader = () => {
   const target = document.querySelector<HTMLDivElement>('[data-target]');
   const navbarButton = document.querySelector<HTMLElement>('#navbar-button');
@@ -7,7 +12,10 @@ export const functionHeader = () => {
 
   let isTransparent = true;
 
-  // Intersection observer
+  /**
+   * Maneja cambios de intersección para transparencia del navbar
+   * @param entry - Entrada del IntersectionObserver
+   */
   const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
     const shouldBeTransparent = Boolean(entry?.isIntersecting);
 
@@ -25,6 +33,11 @@ export const functionHeader = () => {
     }
   };
 
+  /**
+   * Crea y configura un IntersectionObserver optimizado
+   * @param target - Elemento a observar
+   * @param callback - Función callback para cambios de intersección
+   */
   const createObserver = (target: Element, callback: IntersectionObserverCallback) => {
     const observer = new IntersectionObserver(callback, {
       threshold: 0,
@@ -44,7 +57,9 @@ export const functionHeader = () => {
     return () => observer.disconnect(); // cleanup function
   };
 
-  // Toggle menu movile
+  /**
+   * Alterna la visibilidad del menú móvil
+   */
   const toggleMenu = () => {
     requestAnimationFrame(() => {
       navbarButton?.classList.toggle('open');
@@ -57,6 +72,9 @@ export const functionHeader = () => {
 
   // Enlaces del menu mobile
   const attachedLinks: HTMLAnchorElement[] = [];
+  /**
+   * Configura event listeners para enlaces del menú móvil
+   */
   const attachLinkListeners = () => {
     const links = navbarMobile?.querySelectorAll<HTMLAnchorElement>('ul li a');
     links?.forEach((link) => {

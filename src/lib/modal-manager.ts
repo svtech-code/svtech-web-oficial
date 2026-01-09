@@ -1,3 +1,8 @@
+/**
+ * Gestiona la visualización y estado de modales para feedback del usuario.
+ * Responsabilidad: Controlar estados de carga, éxito y error en modales,
+ * manejando la transición entre diferentes contenidos.
+ */
 export class ModalManager {
   private modal: HTMLDivElement;
   private loadingContent: HTMLDivElement;
@@ -10,6 +15,10 @@ export class ModalManager {
   private retryBtn: HTMLButtonElement;
   private cancelBtn: HTMLButtonElement;
 
+  /**
+   * Inicializa el gestor de modal
+   * @param modalSelector - Selector CSS del modal (por defecto '#success-modal')
+   */
   constructor(modalSelector: string = '#success-modal') {
     this.modal = document.querySelector(modalSelector) as HTMLDivElement;
 
@@ -29,6 +38,11 @@ export class ModalManager {
     this.errorMessage = document.querySelector('#error-message') as HTMLParagraphElement;
   }
 
+  /**
+   * Muestra el modal en el estado especificado
+   * @param state - Estado del modal ('loading', 'success', 'error')
+   * @param message - Mensaje opcional para estado de error
+   */
   public show(state: 'loading' | 'success' | 'error', message?: string): void {
     // Actualizar data-state del modal
     this.modal.setAttribute('data-state', state);
@@ -58,10 +72,18 @@ export class ModalManager {
     this.modal?.classList.remove('hidden');
   }
 
+  /**
+   * Oculta el modal
+   */
   public hide(): void {
     this.modal?.classList.add('hidden');
   }
 
+  /**
+   * Configura los event listeners para los botones del modal
+   * @param onRetry - Callback para botón de reintentar
+   * @param onCancel - Callback para botón de cancelar
+   */
   public setupEventListeners(onRetry: () => void, onCancel: () => void): void {
     // Botón Aceptar (success)
     this.acceptBtn?.addEventListener('click', () => {
