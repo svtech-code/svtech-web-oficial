@@ -7,7 +7,7 @@ import Icon from './Icon.astro';
   id="scroll-to-top"
   class="group pointer-events-none fixed right-6 bottom-6 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary opacity-0 shadow-lg duration-300 hover:shadow-tertiary/40 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-14 sm:w-14"
   aria-label="Volver al inicio"
-  aria-hidden="true"
+  tabindex="-1"
 >
   <Icon name="upArrow" class="arrow-hover h-auto w-6 sm:w-8" />
 </button>
@@ -48,11 +48,11 @@ import Icon from './Icon.astro';
       if (scrollY >= showButtonThreshold) {
         scrollToTopBtn?.classList.remove('opacity-0', 'pointer-events-none');
         scrollToTopBtn?.classList.add('opacity-100', 'pointer-events-auto');
-        scrollToTopBtn?.removeAttribute('aria-hidden');
+        scrollToTopBtn?.removeAttribute('tabindex');
       } else {
         scrollToTopBtn?.classList.add('opacity-0', 'pointer-events-none');
         scrollToTopBtn?.classList.remove('opacity-100', 'pointer-events-auto');
-        scrollToTopBtn?.setAttribute('aria-hidden', 'true');
+        scrollToTopBtn?.setAttribute('tabindex', '-1');
       }
 
       ticking = false;

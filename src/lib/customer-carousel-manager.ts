@@ -76,6 +76,8 @@ export class CustomerCarouselManager {
             src="/images/customers/${customer.id}.svg"
             alt="${customer.name}"
             class="h-auto w-28 object-contain p-4 duration-300 hover:scale-110 sm:w-40 md:hover:scale-125"
+            width=112
+            height=112
             loading="lazy"
             aria-label="${customer.name}"
           />
