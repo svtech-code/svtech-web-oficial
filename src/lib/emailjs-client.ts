@@ -5,6 +5,7 @@ const EMAILJS_CONFIG = {
   publicKey: import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY,
   serviceId: import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
   templateId: import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+  toName: import.meta.env.PUBLIC_EMAILJS_TO_NAME,
 };
 
 // Variable para controlar si EmailJS ya se cargó
@@ -233,7 +234,7 @@ export async function sendContactForm(
       from_email: sanitizedData.email,
       phone: sanitizedData.phone || 'No proporcionado',
       message: sanitizedData.message,
-      to_name: 'SV Tech',
+      to_name: EMAILJS_CONFIG.toName,
     });
 
     return response;

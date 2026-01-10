@@ -243,27 +243,3 @@ export function setupCardVisibility(config: CardVisibilityConfig) {
   // Retornar cleanup para uso manual
   return cleanup;
 }
-
-// // FUNCIONES DE CONVENIENCIA PARA RETROCOMPATIBILIDAD
-//
-// /**
-//  * Función de conveniencia para Services (mantiene compatibilidad)
-//  */
-// export function setupServiceVisibility() {
-//   return setupCardVisibility({
-//     sectionName: 'services',
-//     mobileLimit: 2,
-//     tabletLimit: 4,
-//   });
-// }
-//
-// /**
-//  * Función de conveniencia para Projects
-//  */
-// export function setupProjectVisibility(mobileLimit: number = 3, tabletLimit: number = 6) {
-//   return setupCardVisibility({
-//     sectionName: 'projects',
-//     mobileLimit,
-//     tabletLimit,
-//   });
-// }
