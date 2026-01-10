@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { index, type, title, description, imageSrc, imageAlt } = Astro.props;
+
+const serviceType: boolean = type === 'servicio';
 ---
 
 <article
@@ -18,10 +20,14 @@ const { index, type, title, description, imageSrc, imageAlt } = Astro.props;
   aria-label={`Proyecto: ${title} - ${type}`}
   class="group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border border-tertiary p-[2px] shadow-sm shadow-tertiary/80 duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px]"
 >
-  <div class="absolute top-2 right-2 z-20">
-    <span class="text-normal rounded-xl bg-primary px-3 py-1 font-medium text-secondary capitalize">
-      {type}
-    </span>
+  <div class="absolute top-2 right-2 z-20 duration-300 group-hover:-top-8 group-hover:-right-10">
+    <div class="rounded-lg bg-gradient-primary/70 px-3 py-1 backdrop-blur-2xl">
+      <span
+        class={`${serviceType ? 'text-primary' : 'text-tertiary'} text-normal font-medium capitalize`}
+      >
+        {type}
+      </span>
+    </div>
   </div>
 
   <img
@@ -33,9 +39,13 @@ const { index, type, title, description, imageSrc, imageAlt } = Astro.props;
 
   <footer class="absolute bottom-0 left-0 z-20 h-3/6 w-full p-2 duration-300 group-hover:h-1/4">
     <header
-      class="relative h-full w-full space-y-2 overflow-hidden rounded-xl bg-gradient-secondary/60 p-2 backdrop-blur-sm"
+      class="relative h-full w-full space-y-2 overflow-hidden rounded-xl bg-gradient-primary/70 p-2 backdrop-blur-xl"
     >
-      <h3 class="text-[16px] font-semibold text-tertiary capitalize">{title}</h3>
+      <h3
+        class={`${serviceType ? 'text-primary' : 'text-tertiary'} text-[16px] font-semibold capitalize`}
+      >
+        {title}
+      </h3>
       <p class="line-clamp-2 text-sm font-normal text-secondary duration-300 group-hover:invisible">
         {description}
       </p>
@@ -44,7 +54,11 @@ const { index, type, title, description, imageSrc, imageAlt } = Astro.props;
         id={`button-${index}`}
         class="absolute top-1 right-1 cursor-pointer duration-300 hover:scale-110"
       >
-        <Icon name="open" class="h-auto w-8" aria-hidden="true" />
+        <Icon
+          name="open-vector"
+          class={`${serviceType ? 'text-primary' : 'text-tertiary'} h-auto w-8 text-primary`}
+          aria-hidden="true"
+        />
       </button>
     </header>
   </footer>
