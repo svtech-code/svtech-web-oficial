@@ -35,6 +35,7 @@ import Calendar from 'assets/svg/calendar.svg';
 import Map from 'assets/svg/map.svg';
 import Open from 'assets/svg/open.svg';
 import OpenVector from 'assets/svg/open-vector.svg';
+import CloseVector from 'assets/svg/close-vector.svg';
 import UpArrow from 'assets/svg/upArrow.svg';
 
 export const icons = {
@@ -75,6 +76,7 @@ export const icons = {
   calendar: Calendar,
   open: Open,
   'open-vector': OpenVector,
+  'close-vector': CloseVector,
   upArrow: UpArrow,
 } as const;
 
