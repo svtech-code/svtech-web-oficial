@@ -1,0 +1,19 @@
+---
+interface Props {
+  type?: 'desarrollo' | 'servicio';
+  divId?: string;
+  spanId?: string;
+}
+
+const { type, divId, spanId } = Astro.props;
+const extraClass = type === 'servicio' ? 'text-primary' : 'text-tertiary';
+---
+
+<div
+  id={divId || 'undefined'}
+  class="rounded-lg bg-gradient-primary/70 px-3 py-1 backdrop-blur-2xl"
+>
+  <span id={spanId || 'undefined'} class={`${extraClass} text-normal font-medium capitalize`}
+    >{type || ''}</span
+  >
+</div>
