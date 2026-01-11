@@ -78,7 +78,7 @@ export const CUSTOMERS: Customer[] = [
   },
   {
     id: 'customer-07',
-    name: 'CFT Estatal del maule',
+    name: 'CFT Estatal del Maule',
     shortName: 'CFT Maule',
     description:
       'Centro de Formación Técnica de la región del Maule. Es una Institución de Educación Superior de la región del Maule, con precencia en Linares y Parral.',
