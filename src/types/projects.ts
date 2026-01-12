@@ -17,9 +17,9 @@ export interface Project {
   imageAlt: string;
   customer: string;
   // Información extendida para el modal
-  fullDescription?: string;
+  fullDescription: string;
   technologies?: string[];
-  status?: StatusProject;
+  status: StatusProject;
   duration?: string;
   links?: Links;
   features?: string[];
