@@ -23,16 +23,18 @@ const { id = 'project-modal' } = Astro.props;
   <!-- Modal Container -->
   <div
     id="modal-project-container"
-    class="relative mx-4 max-h-[95vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white/20 p-1 shadow-md backdrop-blur-sm"
+    class="relative mx-4 h-[80vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white/20 p-1 shadow-md backdrop-blur-sm sm:h-[95vh] sm:max-h-[40rem]"
     role="document"
   >
     <!-- Close Button -->
     <ButtonCloseModal />
 
     <!-- Modal Content -->
-    <section class="flex h-full max-h-[95vh] flex-col overflow-hidden rounded-t-xl">
+    <div class="flex h-full flex-col rounded-xl">
       <!-- Project Image -->
-      <div class="relative h-[10rem] w-full overflow-hidden md:h-[20rem]">
+      <section
+        class="relative h-[10rem] w-full flex-shrink-0 overflow-hidden rounded-t-xl md:h-[20rem]"
+      >
         <img
           id="modal-project-image"
           src=""
@@ -43,17 +45,18 @@ const { id = 'project-modal' } = Astro.props;
         <div class="absolute top-4 left-4">
           <ProjectTypeBadge divId="modal-project-type-badge" spanId="modal-project-type" />
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section
-      class="flex flex-1 flex-col gap-4 overflow-y-auto rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl md:flex-row"
-    >
-      <!-- sidebar info -->
-      <ProjectModalAsideInfo />
+      <!-- Scrollable Content Section -->
+      <section
+        class="flex h-full flex-col gap-4 overflow-y-auto rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl md:flex-row"
+      >
+        <!-- sidebar info -->
+        <ProjectModalAsideInfo />
 
-      <!-- Main conntent -->
-      <ProjectModalArticleContent />
-    </section>
+        <!-- Main content -->
+        <ProjectModalArticleContent />
+      </section>
+    </div>
   </div>
 </article>
