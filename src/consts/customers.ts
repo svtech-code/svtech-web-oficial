@@ -72,7 +72,6 @@ export const CUSTOMERS: Customer[] = [
     industry: 'Eventos',
     location: 'Maule, Chile',
     socialMedia: {
-      'chrome-color': 'https://www.feem.cl',
       'instagram-color': 'https://www.instagram.com/feem_feria_empresarial_/',
     },
   },
@@ -87,6 +86,18 @@ export const CUSTOMERS: Customer[] = [
     socialMedia: {
       'chrome-color': 'https://2.cftmaule.cl',
       'instagram-color': 'https://www.instagram.com/cftmaule/',
+    },
+  },
+  {
+    id: 'customer-08',
+    name: 'Mecánica Vásquez',
+    shortName: 'Mecánica Vásquez',
+    description:
+      'Taller Mecánico Automotriz de Linares. Mantenimiento preventivo y correctivo y reparaciones varias.',
+    industry: 'Mecánica Automotriz',
+    location: 'Maule, Chile',
+    socialMedia: {
+      'whatsApp-color': 'https://wa.me/56933819645',
     },
   },
 ];

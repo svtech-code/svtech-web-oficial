@@ -23,6 +23,7 @@ import Customer4 from 'assets/customers/customer-04.svg';
 import Customer5 from 'assets/customers/customer-05.svg';
 import Customer6 from 'assets/customers/customer-06.svg';
 import Customer7 from 'assets/customers/customer-07.svg';
+import Customer8 from 'assets/customers/customer-08.svg';
 
 // others
 import IconCheck from 'assets/svg/check.svg';
@@ -65,6 +66,7 @@ export const icons = {
   'customer-05': Customer5,
   'customer-06': Customer6,
   'customer-07': Customer7,
+  'customer-08': Customer8,
 
   // others
   check: IconCheck,
