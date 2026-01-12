@@ -30,7 +30,7 @@ const isService: boolean = type === 'servicio';
     class="h-full w-full rounded-xl object-cover duration-300 group-hover:scale-110"
   />
 
-  <footer class="absolute bottom-0 left-0 z-20 h-3/6 w-full p-2 duration-300 group-hover:h-1/4">
+  <footer class="absolute bottom-0 left-0 z-20 h-3/6 w-full p-2 duration-300 sm:group-hover:h-1/4">
     <header
       class="relative h-full w-full space-y-2 overflow-hidden rounded-xl bg-gradient-primary/70 p-2 backdrop-blur-xl"
     >
@@ -39,7 +39,9 @@ const isService: boolean = type === 'servicio';
       >
         {title}
       </h3>
-      <p class="line-clamp-2 text-sm font-normal text-secondary duration-300 group-hover:invisible">
+      <p
+        class="invisible line-clamp-2 text-sm font-normal text-secondary duration-300 group-hover:invisible sm:visible"
+      >
         {description}
       </p>
 

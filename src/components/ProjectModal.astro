@@ -32,7 +32,7 @@ const { id = 'project-modal' } = Astro.props;
     <!-- Modal Content -->
     <section class="flex h-full max-h-[95vh] flex-col overflow-hidden rounded-t-xl">
       <!-- Project Image -->
-      <div class="relative h-[30rem] w-full overflow-hidden md:h-[20rem]">
+      <div class="relative h-[10rem] w-full overflow-hidden md:h-[20rem]">
         <img
           id="modal-project-image"
           src=""
@@ -47,7 +47,7 @@ const { id = 'project-modal' } = Astro.props;
     </section>
 
     <section
-      class="flex flex-1 gap-4 overflow-y-auto rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl"
+      class="flex flex-1 flex-col gap-4 overflow-y-auto rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl md:flex-row"
     >
       <!-- sidebar info -->
       <ProjectModalAsideInfo />
