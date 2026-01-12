@@ -1,6 +1,7 @@
 ---
 import { titleProject, subTitleProject } from 'consts/pagesTitle';
 import ProjectCard from 'components/ProjectCard.astro';
+import ProjectModal from 'components/ProjectModal.astro';
 import { PROJECTS_STATIC } from 'consts/projects';
 import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 ---
@@ -20,31 +21,49 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
     id="projects-container"
     class="relative flex w-full flex-col flex-wrap items-center justify-center gap-4 md:flex-row"
   >
-    {
-      PROJECTS_STATIC.map((project) => (
-        <ProjectCard
-          index={project.order}
-          type={project.type}
-          title={project.title}
-          description={project.description}
-          imageSrc={project.imageSrc}
-          imageAlt={project.imageAlt}
-        />
-      ))
-    }
+    {PROJECTS_STATIC.map((project) => <ProjectCard project={project} />)}
   </div>
 
   <SeeMoreButton section="projects" mobileLimit={2} tabletLimit={4} />
 </section>
 
+<!-- Project Modal -->
+<ProjectModal />
+
 <script>
   import { setupCardVisibility } from 'lib/generic-card-visibility-manager';
+  import { ProjectModalManager } from 'lib/project-modal-manager';
+  import type { Project } from 'types/projects';
 
   document.addEventListener('astro:page-load', () => {
+    // Configurar visibilidad de tarjetas
     setupCardVisibility({
       sectionName: 'projects',
       mobileLimit: 2,
       tabletLimit: 4,
+    });
+
+    // Configurar modal de proyectos
+    const modalManager = new ProjectModalManager();
+
+    // Agregar event listeners a todos los botones de proyecto
+    const projectButtons = document.querySelectorAll('.project-modal-trigger');
+
+    projectButtons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const card = (e.target as HTMLElement).closest('article');
+        if (card) {
+          const projectData = card.getAttribute('data-project');
+          if (projectData) {
+            try {
+              const project: Project = JSON.parse(projectData);
+              modalManager.show(project);
+            } catch (error) {
+              console.error('Error al parsear datos del proyecto:', error);
+            }
+          }
+        }
+      });
     });
   });
 </script>
