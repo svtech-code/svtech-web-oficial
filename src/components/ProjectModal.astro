@@ -1,0 +1,59 @@
+---
+import ButtonCloseModal from './ui/ButtonCloseModal.astro';
+import ProjectTypeBadge from './ui/ProyectTypeBadge.astro';
+import ProjectModalAsideInfo from './ui/ProjectModalAsideInfo.astro';
+import ProjectModalArticleContent from './ui/ProjectModalArticleContent.astro';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'project-modal' } = Astro.props;
+---
+
+<!-- Project Modal Overlay -->
+<article
+  id={id}
+  class="fixed inset-0 z-50 hidden items-center justify-center border-b-gradient-primary/50 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+>
+  <!-- Modal Container -->
+  <div
+    id="modal-project-container"
+    class="relative mx-4 max-h-[95vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white/20 p-1 shadow-md backdrop-blur-sm"
+    role="document"
+  >
+    <!-- Close Button -->
+    <ButtonCloseModal />
+
+    <!-- Modal Content -->
+    <section class="flex h-full max-h-[95vh] flex-col overflow-hidden rounded-t-xl">
+      <!-- Project Image -->
+      <div class="relative h-[30rem] w-full overflow-hidden md:h-[20rem]">
+        <img
+          id="modal-project-image"
+          src=""
+          alt=""
+          class="h-full w-full object-cover duration-300 hover:scale-105"
+        />
+        <!-- Project Type Badge -->
+        <div class="absolute top-4 left-4">
+          <ProjectTypeBadge divId="modal-project-type-badge" spanId="modal-project-type" />
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-1 gap-4 overflow-y-auto rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl"
+    >
+      <!-- sidebar info -->
+      <ProjectModalAsideInfo />
+
+      <!-- Main conntent -->
+      <ProjectModalArticleContent />
+    </section>
+  </div>
+</article>
