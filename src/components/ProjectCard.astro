@@ -1,33 +1,26 @@
 ---
 import Icon from './ui/Icon.astro';
+import type { Project } from '../types/projects';
+import ProjectTypeBadge from './ui/ProyectTypeBadge.astro';
 
 interface Props {
-  index: number;
-  type: string;
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
+  project: Project;
 }
 
-const { index, type, title, description, imageSrc, imageAlt } = Astro.props;
+const { project } = Astro.props;
+const { order, type, title, description, imageSrc, imageAlt } = project;
 
-const serviceType: boolean = type === 'servicio';
+const isService: boolean = type === 'servicio';
 ---
 
 <article
-  data-index={index}
+  data-index={order}
+  data-project={JSON.stringify(project)}
   aria-label={`Proyecto: ${title} - ${type}`}
   class="group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border border-tertiary p-[2px] shadow-sm shadow-tertiary/80 duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px]"
 >
   <div class="absolute top-2 right-2 z-20 duration-300 group-hover:-top-8 group-hover:-right-10">
-    <div class="rounded-lg bg-gradient-primary/70 px-3 py-1 backdrop-blur-2xl">
-      <span
-        class={`${serviceType ? 'text-primary' : 'text-tertiary'} text-normal font-medium capitalize`}
-      >
-        {type}
-      </span>
-    </div>
+    <ProjectTypeBadge type={type} />
   </div>
 
   <img
@@ -42,7 +35,7 @@ const serviceType: boolean = type === 'servicio';
       class="relative h-full w-full space-y-2 overflow-hidden rounded-xl bg-gradient-primary/70 p-2 backdrop-blur-xl"
     >
       <h3
-        class={`${serviceType ? 'text-primary' : 'text-tertiary'} text-[16px] font-semibold capitalize`}
+        class={`${isService ? 'text-primary' : 'text-tertiary'} text-[16px] font-semibold capitalize`}
       >
         {title}
       </h3>
@@ -51,14 +44,14 @@ const serviceType: boolean = type === 'servicio';
       </p>
 
       <button
-        id={`button-${index}`}
-        class="absolute top-1 right-1 cursor-pointer duration-300 hover:scale-110"
+        data-project-button={order}
+        class="project-modal-trigger absolute top-1 right-1 cursor-pointer duration-300 hover:scale-110"
         aria-label={`Ver más detalles de ${title}`}
         type="button"
       >
         <Icon
           name="open-vector"
-          class={`${serviceType ? 'text-primary' : 'text-tertiary'} h-auto w-8 text-primary`}
+          class={`${isService ? 'text-primary' : 'text-tertiary'} h-auto w-8 text-primary`}
           aria-hidden="true"
         />
       </button>
