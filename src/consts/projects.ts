@@ -18,7 +18,7 @@ export const PROJECTS_STATIC: Project[] = [
     title: 'sistema para pre-matrícula',
     description:
       'Sistema para proceso de pre-matrícula de un establecimiento educacional de Linares.',
-    imageSrc: path('sistema-prematricula'),
+    imageSrc: path('sistema-prematricula-lvl'),
     imageAlt: 'Imagen que presenta en diferentes dispositivos, la página web de pre-matrícula',
     customer: 'Liceo Valentín Letelier Madariaga',
     fullDescription:
@@ -48,12 +48,12 @@ export const PROJECTS_STATIC: Project[] = [
     type: 'servicio',
     title: 'asesoría en servicios informáticos',
     description:
-      'Asesoría en servicios informáticos, considerando ofimática, diseño, gestión de correo y sistemas web.',
-    imageSrc: path('sistema-alerta-temprana'),
+      'Asesoría servicios informáticos en ofimática, diseño, gestión de correo y sistemas web.',
+    imageSrc: path('asesoria-mecanica-vasquez'),
     imageAlt: 'Imagen que presenta asesoría en servicios informáticos',
     customer: 'Mecánica Vásquez',
     fullDescription:
-      'Asesoría en servicios informáticos, en donde, se proporcionó la creación y configuración de cuentas de correo, diseño e implementación de ordenes de trabajo, asesoría en uso y desarrollo de sistemas web.',
+      'Asesoría de servicios informáticos, en donde, se proporcionó la creación y configuración de cuentas de correo, diseño e implementación de ordenes de trabajo, asesoría en uso y desarrollo de sistemas web.',
     status: 'completado',
     duration: '2 semanas',
     features: [
@@ -71,41 +71,41 @@ export const PROJECTS_STATIC: Project[] = [
     //   github: 'https://github.com/svtech-code/front_matricula_lvl',
     // },
   },
-  // {
-  //   order: 3,
-  //   type: 'desarrollo',
-  //   title: 'sistema alerta temprana',
-  //   description:
-  //     'Sistema de alerta temprana, para la identificacion de estudiantes con riesgo de descerción.',
-  //   imageSrc: path('sistema-alerta-temprana'),
-  //   imageAlt: 'Imagen que presenta en diferentes dispositivos, el sistema de alerta temprana',
-  //   // customer: 'CFT del Maule',
-  //   customer: customerName('CFT Maule'),
-  //   fullDescription:
-  //     'Plataforma de machine learning que analiza patrones de comportamiento estudiantil para identificar tempranamente a estudiantes en riesgo de deserción académica. Utiliza algoritmos predictivos basados en asistencia, calificaciones y otros factores socio-académicos.',
-  //   technologies: ['Python', 'Django', 'PostgreSQL', 'Scikit-learn', 'Chart.js', 'Docker'],
-  //   status: 'completado',
-  //   duration: '4 meses',
-  //   features: [
-  //     'Algoritmos de machine learning predictivo',
-  //     'Dashboard de visualización de datos',
-  //     'Sistema de alertas automáticas',
-  //     'Análisis de patrones comportamentales',
-  //     'Reportes detallados por estudiante',
-  //     'Interface para coordinadores académicos',
-  //   ],
-  //   challenges: [
-  //     'Desarrollo de modelos predictivos precisos',
-  //     'Procesamiento de grandes volúmenes de datos estudiantiles',
-  //     'Implementación de alertas en tiempo real',
-  //     'Integración con múltiples fuentes de datos académicos',
-  //   ],
-  //   // links: {
-  //   //   website: 'https://matricula.lvl.cl', // ver agregar demo
-  //   //   demo: 'https://matricula.lvl.cl', // ver agregar demo
-  //   //   github: 'https://github.com/svtech-code/front_matricula_lvl',
-  //   // },
-  // },
+  {
+    order: 3,
+    type: 'desarrollo',
+    title: 'sistema alerta temprana',
+    description:
+      'Sistema de alerta temprana, para la identificacion de estudiantes con riesgo de descerción.',
+    imageSrc: path('sistema-alerta-temprana-cft'),
+    imageAlt: 'Imagen que presenta en diferentes dispositivos, el sistema de alerta temprana',
+    customer: customerName('CFT Maule'),
+    fullDescription:
+      'Participación como desarrollador FrontEnd, en sistema de alerta temprana, para una institución educacional Técnico Profesional de la Región del Maule. Sistema empleado para la detección y acompañamiento de estudiantes que presentan riesgo de descepción escolar, el cual, efectua su cálculo, con base en indicadores de riesgos predefinidos por la institución.',
+    technologies: ['ReactJS', 'Axios', 'CriptoJS', 'TailwindCSS', 'Clean Arquitecture'],
+    status: 'completado',
+    duration: '6 meses',
+    features: [
+      'Contol de acceso por cuenta de usuario y tipo de privilegio',
+      'Dashboard interactivo en tiempo real',
+      'Tablas de datos con filtros de busqueda y selección',
+      'Integración con fuentes de datos externas',
+      'Emisión de reportes detallados por feature',
+      'Descarga de reportes CSV/PDF',
+      'Gestión de cuentas de usuario',
+    ],
+    challenges: [
+      'Integración de gráficos interactivos',
+      'Aplicación de técnicas de seguridad del lado del cliente',
+      'Implementación de notificaciones por usuario',
+      'Integración con diferentes fuentes de datos',
+    ],
+    // links: {
+    //   website: 'https://matricula.lvl.cl', // ver agregar demo
+    //   demo: 'https://matricula.lvl.cl', // ver agregar demo
+    //   github: 'https://github.com/svtech-code/front_matricula_lvl',
+    // },
+  },
   // {
   //   order: 4,
   //   type: 'servicio',
