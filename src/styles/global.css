@@ -41,6 +41,11 @@
     scrollbar-color: var(--color-primary) var(--color-gradient-primary);
     scrollbar-width: thin;
   }
+
+  .modal-scroll {
+    scrollbar-color: var(--color-primary) var(--color-gradient-secondary);
+    scrollbar-width: thin;
+  }
 }
 
 @layer utilities {
