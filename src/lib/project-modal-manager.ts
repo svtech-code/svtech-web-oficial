@@ -19,8 +19,6 @@ export class ProjectModalManager {
     type: HTMLSpanElement;
     typeBadge: HTMLElement;
     title: HTMLHeadingElement;
-    // features: HTMLUListElement;
-    // featuresContainer: HTMLElement;
     // challenges: HTMLUListElement;
     // challengesContainer: HTMLElement;
     asideInfo: HTMLElement;
@@ -38,6 +36,8 @@ export class ProjectModalManager {
     articleContent: HTMLElement;
     titleFullDescription: HTMLHeadingElement;
     fullDescription: HTMLParagraphElement;
+    featuresContainer: HTMLElement;
+    features: HTMLUListElement;
   };
 
   /**
@@ -75,8 +75,6 @@ export class ProjectModalManager {
       type: document.querySelector('#modal-project-type') as HTMLSpanElement,
       typeBadge: document.querySelector('#modal-project-type-badge') as HTMLElement,
       title: document.querySelector('#modal-title') as HTMLHeadingElement,
-      // features: document.querySelector('#modal-features') as HTMLUListElement,
-      // featuresContainer: document.querySelector('#modal-features-container') as HTMLElement,
       // challenges: document.querySelector('#modal-challenges') as HTMLUListElement,
       // challengesContainer: document.querySelector('#modal-challenges-container') as HTMLElement,
       asideInfo: document.querySelector('#aside-info') as HTMLElement,
@@ -96,6 +94,8 @@ export class ProjectModalManager {
         '#modal-title-description',
       ) as HTMLHeadingElement,
       fullDescription: document.querySelector('#modal-full-description') as HTMLParagraphElement,
+      featuresContainer: document.querySelector('#modal-features-container') as HTMLElement,
+      features: document.querySelector('#modal-features') as HTMLUListElement,
     };
   }
 
@@ -276,6 +276,9 @@ export class ProjectModalManager {
     // Información básica del contenido del modal
     this.elements.fullDescription.textContent = project.fullDescription;
 
+    // Features del modal
+    this.updateFeatures(project.features);
+
     // Descripción completa (opcional)
     // this.updateFullDescription(project.fullDescription);
 
@@ -420,26 +423,31 @@ export class ProjectModalManager {
     }
   }
 
-  // /**
-  //  * Actualiza las características si existen
-  //  */
-  // private updateFeatures(features?: string[]): void {
-  //   if (features && features.length > 0) {
-  //     this.elements.features.innerHTML = '';
-  //     features.forEach((feature) => {
-  //       const li = document.createElement('li');
-  //       li.className = 'flex items-start space-x-2';
-  //       li.innerHTML = `
-  //         <span class="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0"></span>
-  //         <span>${feature}</span>
-  //       `;
-  //       this.elements.features.appendChild(li);
-  //     });
-  //     this.elements.featuresContainer.classList.remove('hidden');
-  //   } else {
-  //     this.elements.featuresContainer.classList.add('hidden');
-  //   }
-  // }
+  /**
+   * Actualiza las características si existen
+   */
+  private updateFeatures(features?: string[]): void {
+    if (features && features.length > 0) {
+      // Limpieza de los elementos
+      this.elements.features.innerHTML = '';
+      features.forEach((feature) => {
+        // Creación de los elementos li
+        const li = document.createElement('li');
+        li.className = 'flex items-start space-x-2';
+        li.innerHTML = `
+          <span class="mt-1.5 h-2 w-2 rounded-full bg-secondary flex-shrink-0"></span>
+          <span>${feature}</span>
+          `;
+
+        // Agergar al elemento UL los li hijos creados
+        this.elements.features.appendChild(li);
+      });
+
+      this.elements.featuresContainer.classList.remove('hidden');
+    } else {
+      this.elements.featuresContainer.classList.add('hidden');
+    }
+  }
 
   // /**
   //  * Actualiza los desafíos si existen
@@ -520,5 +528,32 @@ export class ProjectModalManager {
    */
   public isModalVisible(): boolean {
     return this.isVisible;
+  }
+
+  /**
+   * Inicializa los event listeners para todos los botones de proyecto
+   * @param selector - Selector de los botones trigger (default: '.project-modal-trigger')
+   */
+  public initializeProjectButtons(): void {
+    const projectButtons = document.querySelectorAll('.project-modal-trigger');
+
+    projectButtons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const card = (e.target as HTMLElement).closest('article');
+
+        if (card) {
+          const projectData = card.getAttribute('data-project');
+
+          if (projectData) {
+            try {
+              const project: Project = JSON.parse(projectData);
+              this.show(project);
+            } catch (error) {
+              console.error('Error al parsear datos del proyecto:', error);
+            }
+          }
+        }
+      });
+    });
   }
 }
