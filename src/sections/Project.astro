@@ -33,7 +33,6 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 <script>
   import { setupCardVisibility } from 'lib/generic-card-visibility-manager';
   import { ProjectModalManager } from 'lib/project-modal-manager';
-  import type { Project } from 'types/projects';
 
   document.addEventListener('astro:page-load', () => {
     // Configurar visibilidad de tarjetas
@@ -45,25 +44,6 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 
     // Configurar modal de proyectos
     const modalManager = new ProjectModalManager();
-
-    // Agregar event listeners a todos los botones de proyecto
-    const projectButtons = document.querySelectorAll('.project-modal-trigger');
-
-    projectButtons.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        const card = (e.target as HTMLElement).closest('article');
-        if (card) {
-          const projectData = card.getAttribute('data-project');
-          if (projectData) {
-            try {
-              const project: Project = JSON.parse(projectData);
-              modalManager.show(project);
-            } catch (error) {
-              console.error('Error al parsear datos del proyecto:', error);
-            }
-          }
-        }
-      });
-    });
+    modalManager.initializeProjectButtons();
   });
 </script>
