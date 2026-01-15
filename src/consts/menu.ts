@@ -2,7 +2,7 @@ import type { Menu } from 'types/menu';
 
 export const MENU: Menu[] = [
   {
-    title: 'Home',
+    title: 'Inicio',
     url: '/#home',
   },
   {
