@@ -17,9 +17,10 @@ const sizeClasses = {
   xl: 'w-12 h-12',
 };
 
-// imports dinámicos de iconos
+// Importar una sola vez y crear mapa para acceso rápido
 const { icons } = await import('consts/icons.ts');
-const IconComponent = icons[name];
+const IconMap = new Map(Object.entries(icons));
+const IconComponent = IconMap.get(name);
 ---
 
 {
