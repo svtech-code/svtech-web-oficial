@@ -1,7 +1,7 @@
 export const fixedTitle: string = 'Sv Tech | Soporte Informático y Desarrollo Web a Medida';
 
 // servicios
-export const titleService: string = 'Nuestros Servicios';
+export const titleService: string = 'Servicios';
 export const subTitleService: string =
   'Brindamos servicios de calidad, asegurando la continuidad operativa de equipos tecnológicos y sistemas informáticos';
 
@@ -12,7 +12,7 @@ export const textWhy: string =
   'Aumenta el rendimiento de tus equipos y mejora la productividad de tu negocio, manteniendo sus equipos tecnológicos y sistemas web en óptimas condiciones.';
 
 // proyectos
-export const titleProject: string = 'Proyectos Realizados';
+export const titleProject: string = 'Proyectos';
 export const subTitleProject: string =
   'Conoce algunos de los trabajos más destacados, que han sido desarrollados e implementados en pequeñas y medianas empresas';
 
@@ -26,6 +26,6 @@ export const subTitleCustomer: string = 'Clientes que han confiado en nuestros s
 
 // contacts
 export const questionTitleContact: string = '¿Tienes una idea?';
-export const titleContact: string = 'Contáctanos';
+export const titleContact: string = 'Contacto';
 export const textContact: string =
   'Estamos listos para ayudarte con tu próximo proyecto o resolver tus dudas. Háblanos y nos pondremos en contacto a la brevedad.';
