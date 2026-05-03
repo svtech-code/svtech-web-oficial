@@ -92,7 +92,7 @@ export class TurnstileManager {
       sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
       theme: 'dark',
       size: 'flexible',
-      appearence: 'always',
+      apperance: 'always',
       callback: (token: string) => {
         this.token = token;
       },
