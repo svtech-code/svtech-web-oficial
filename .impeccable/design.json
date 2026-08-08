@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-08T19:35:27Z",
+  "title": "Design System: SV Tech",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Signal Cyan",
+        "canonical": "#0096b8",
+        "tonalRamp": [
+          "#00313c",
+          "#004a5c",
+          "#00607a",
+          "#00759a",
+          "#0096b8",
+          "#26aed1",
+          "#5cc8e8",
+          "#9ee3f4"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Instrument White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#d6d6d6",
+          "#e3e3e3",
+          "#ececec",
+          "#f3f3f3",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff"
+        ]
+      },
+      "tertiary": {
+        "role": "tertiary",
+        "displayName": "Melted Amber",
+        "canonical": "#ff8810",
+        "tonalRamp": [
+          "#4a2500",
+          "#7a3c00",
+          "#a85200",
+          "#d06b00",
+          "#ff8810",
+          "#ffa545",
+          "#ffc27d",
+          "#ffdcb8"
+        ]
+      },
+      "midnight-abyss": {
+        "role": "neutral",
+        "displayName": "Midnight Abyss",
+        "canonical": "#001217",
+        "tonalRamp": [
+          "#000507",
+          "#000b10",
+          "#001217",
+          "#0a2026",
+          "#17333a",
+          "#26474f",
+          "#385e68",
+          "#4d7783"
+        ]
+      },
+      "lagoon-depths": {
+        "role": "neutral",
+        "displayName": "Lagoon Depths",
+        "canonical": "#00252d",
+        "tonalRamp": [
+          "#000d11",
+          "#00181e",
+          "#00252d",
+          "#0c3640",
+          "#1a4954",
+          "#295d69",
+          "#3a737f",
+          "#4d8b97"
+        ]
+      },
+      "glow-cyan": {
+        "role": "primary",
+        "displayName": "Glow Cyan",
+        "canonical": "#00D0FF",
+        "tonalRamp": [
+          "#003b49",
+          "#005b70",
+          "#007a99",
+          "#00a6cb",
+          "#00D0FF",
+          "#45dfff",
+          "#8deaff",
+          "#c9f6ff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "H1 del Hero únicamente; mayúsculas, Poppins 700."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "H2 de secciones; mayúsculas, Poppins 700."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de tarjeta y encabezados del modal."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Párrafos y contenido; Poppins 500."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Chips de sección, labels de inputs, badges, footer."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-glow-cyan",
+        "value": "0 1px 2px 0 rgba(0, 150, 184, 0.8)",
+        "purpose": "Tarjetas de servicio y formulario en reposo."
+      },
+      {
+        "name": "card-glow-amber",
+        "value": "0 1px 2px 0 rgba(255, 136, 16, 0.8)",
+        "purpose": "Tarjetas de proyecto en reposo."
+      },
+      {
+        "name": "card-glow-on",
+        "value": "0 10px 15px -3px rgba(0, 150, 184, 0.4)",
+        "purpose": "Hover de tarjetas; resplandor intensificado."
+      },
+      {
+        "name": "image-glow",
+        "value": "0 4px 6px -1px rgba(255, 136, 16, 0.6)",
+        "purpose": "Imagen de cabecera de páginas de servicio."
+      },
+      {
+        "name": "navbar-float",
+        "value": "0 10px 15px -3px rgba(0, 0, 0, 1)",
+        "purpose": "Navbar de cristal en móvil; única sombra negra."
+      },
+      {
+        "name": "modal-elevation",
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        "purpose": "Modal de estados del formulario; única superficie blanca."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Easing por defecto para transiciones de estado."
+      },
+      {
+        "name": "shimmer",
+        "value": "shimmer 3s linear infinite",
+        "purpose": "Animación de fondo del botón de cristal luminoso."
+      },
+      {
+        "name": "shine",
+        "value": "shine 3s linear infinite",
+        "purpose": "Barrido diagonal del botón de cristal luminoso."
+      },
+      {
+        "name": "marquee",
+        "value": "scroll-left 20s linear infinite",
+        "purpose": "Cinta infinita de clientes (15s en móvil), pausa al hover."
+      },
+      {
+        "name": "footer-dot",
+        "value": "moveDot 8s ease-in-out infinite",
+        "purpose": "Punto ámbar que recorre el divisor del footer."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal: fondo Signal Cyan, texto Lagoon Depths, escala al hover.",
+      "html": "<button class=\"ds-btn-primary\">Contáctanos</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 2.5rem; border: 1px solid #0096b8; border-radius: 8px; background: #0096b8; color: #00252d; font-family: Poppins, system-ui, sans-serif; font-size: 1.125rem; font-weight: 500; cursor: pointer; transition: transform 300ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-primary:hover { transform: scale(1.05); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #0096b8, 0 0 0 4px rgba(0,18,23,0.9); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secundario: borde Signal Cyan, texto blanco, fondo transparente.",
+      "html": "<button class=\"ds-btn-ghost\">Ver Servicios</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 2.5rem; border: 1px solid #0096b8; border-radius: 8px; background: transparent; color: #ffffff; font-family: Poppins, system-ui, sans-serif; font-size: 1.125rem; font-weight: 500; cursor: pointer; transition: transform 300ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-ghost:hover { transform: scale(1.05); } .ds-btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 2px #0096b8, 0 0 0 4px rgba(0,18,23,0.9); }"
+    },
+    {
+      "name": "Glow Shimmer Button",
+      "kind": "button",
+      "refersTo": "button-glow",
+      "description": "Firma del sistema: gradiente cian animado con barrido de luz. Navbar 'Contacto' y 'Ver más'.",
+      "html": "<button class=\"ds-btn-glow\"><span class=\"ds-btn-glow-label\">Contacto</span></button>",
+      "css": ".ds-btn-glow { position: relative; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; padding: 0.5rem 1.5rem; border: none; border-radius: 8px; background: linear-gradient(90deg, #0096b8, #00D0FF, #0096b8); background-size: 200% 100%; color: #00252d; font-family: Poppins, system-ui, sans-serif; font-size: 1.125rem; font-weight: 500; cursor: pointer; animation: ds-shimmer 3s linear infinite; transition: transform 300ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-glow::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(90deg, transparent, rgba(0,150,184,0.4), transparent); transform: rotate(30deg); animation: ds-shine 3s linear infinite; } .ds-btn-glow:hover { transform: scale(1.05); } .ds-btn-glow:focus-visible { outline: none; box-shadow: 0 0 0 2px #0096b8, 0 0 0 4px rgba(0,18,23,0.9); } @keyframes ds-shimmer { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } } @keyframes ds-shine { 0% { transform: translateX(-100%) rotate(30deg); } 100% { transform: translateX(100%) rotate(30deg); } }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-surface",
+      "description": "Tarjeta de servicio: borde Signal Cyan, resplandor cian, chip de icono ámbar translúcido.",
+      "html": "<article class=\"ds-card-service\"><div class=\"ds-chip\"><svg viewBox=\"0 0 24 24\" width=\"48\" height=\"48\" fill=\"none\" stroke=\"#ff8810\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z\"/><path d=\"M12 8v4l3 3\"/></svg></div><h3 class=\"ds-card-title\">Soporte Informático</h3><p class=\"ds-card-desc\">Soporte técnico especializado para mantener tus sistemas funcionando de manera óptima.</p><a class=\"ds-card-link\" href=\"#\">Saber más →</a></article>",
+      "css": ".ds-card-service { position: relative; display: flex; flex-direction: column; gap: 0.5rem; width: 380px; padding: 1.75rem; border: 1px solid #0096b8; border-radius: 16px; background: rgba(0,18,23,0.6); box-shadow: 0 1px 2px 0 rgba(0,150,184,0.8); transition: transform 300ms cubic-bezier(0.4,0,0.2,1), box-shadow 300ms cubic-bezier(0.4,0,0.2,1); } .ds-card-service:hover { transform: scale(1.01); box-shadow: 0 10px 15px -3px rgba(0,150,184,0.4); } .ds-chip { align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem; border-radius: 12px; background: rgba(255,136,16,0.1); transition: background 300ms; } .ds-card-service:hover .ds-chip { background: rgba(255,136,16,0.4); } .ds-card-title { color: #0096b8; font-family: Poppins, system-ui, sans-serif; font-size: 1.375rem; font-weight: 600; } .ds-card-desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: #ffffff; font-family: Poppins, system-ui, sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.6; } .ds-card-link { color: rgba(255,136,16,0.8); font-family: Poppins, system-ui, sans-serif; font-weight: 500; text-decoration: none; } .ds-card-link:hover { color: #ff8810; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-surface",
+      "description": "Tarjeta de proyecto: marco ámbar, imagen a sangre, overlay de cristal abisal.",
+      "html": "<article class=\"ds-card-project\"><div class=\"ds-pj-badge\">desarrollo</div><img class=\"ds-pj-img\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='380' height='200'%3E%3Crect width='380' height='200' fill='%2300252d'/%3E%3Crect x='40' y='70' width='300' height='60' rx='8' fill='%230096b8' opacity='0.7'/%3E%3C/svg%3E\" alt=\"\"/><div class=\"ds-pj-footer\"><h3 class=\"ds-pj-title\">Sistema para pre-matrícula</h3></div></article>",
+      "css": ".ds-card-project { position: relative; width: 380px; overflow: hidden; border-radius: 16px; padding: 2px; border: 1px solid #ff8810; background: transparent; box-shadow: 0 1px 2px 0 rgba(255,136,16,0.8); transition: transform 300ms cubic-bezier(0.4,0,0.2,1), box-shadow 300ms cubic-bezier(0.4,0,0.2,1); } .ds-card-project:hover { transform: scale(1.01); box-shadow: 0 10px 15px -3px rgba(255,136,16,0.4); } .ds-pj-badge { position: absolute; top: 8px; right: 8px; z-index: 2; padding: 0.25rem 0.75rem; border-radius: 8px; background: rgba(0,18,23,0.7); color: #ff8810; font-family: Poppins, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; text-transform: capitalize; backdrop-filter: blur(20px); } .ds-pj-img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; transition: transform 300ms; } .ds-card-project:hover .ds-pj-img { transform: scale(1.1); } .ds-pj-footer { position: absolute; bottom: 0; left: 0; z-index: 2; width: 100%; padding: 0.5rem; } .ds-pj-footer > div { padding: 0.5rem; border-radius: 12px; background: rgba(0,18,23,0.7); backdrop-filter: blur(20px); } .ds-pj-title { margin: 0; color: #ff8810; font-family: Poppins, system-ui, sans-serif; font-size: 1rem; font-weight: 600; text-transform: capitalize; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Input con cristal trasero, borde Signal Cyan y anillo cian al foco.",
+      "html": "<div class=\"ds-input-wrap\"><label class=\"ds-input-label\" for=\"ds-mail\">Email</label><input class=\"ds-input\" id=\"ds-mail\" type=\"email\" placeholder=\"correo@ejemplo.cl\"/></div>",
+      "css": ".ds-input-wrap { position: relative; display: flex; flex-direction: column; gap: 0.5rem; } .ds-input-label { color: #ffffff; font-family: Poppins, system-ui, sans-serif; font-size: 1rem; font-weight: 500; } .ds-input-wrap::before { content: ''; position: absolute; top: 24px; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 8px; pointer-events: none; } .ds-input { position: relative; z-index: 2; width: 100%; padding: 0.5rem 1rem; border: 1px solid #0096b8; border-radius: 8px; background: transparent; color: #ffffff; font-family: Poppins, system-ui, sans-serif; font-size: 1rem; outline: none; transition: border-color 300ms; } .ds-input:focus { border-color: transparent; box-shadow: 0 0 0 2px #0096b8; } .ds-input::placeholder { color: rgba(255,255,255,0.5); }"
+    },
+    {
+      "name": "Section Eyebrow Chip",
+      "kind": "chip",
+      "refersTo": "badge-project",
+      "description": "Chip de sección: Signal Cyan sólido, texto Lagoon Depths.",
+      "html": "<span class=\"ds-chip-eyebrow\">¿Por qué elegirnos?</span>",
+      "css": ".ds-chip-eyebrow { display: inline-block; padding: 0.25rem 1rem; border-radius: 16px; background: #0096b8; color: #00252d; font-family: Poppins, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; }"
+    },
+    {
+      "name": "Project Type Badge",
+      "kind": "chip",
+      "refersTo": "badge-project",
+      "description": "Badge flotante sobre tarjetas de proyecto; texto ámbar sobre cristal abisal.",
+      "html": "<span class=\"ds-badge-type\">desarrollo</span>",
+      "css": ".ds-badge-type { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 8px; background: rgba(0,18,23,0.7); color: #ff8810; font-family: Poppins, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; text-transform: capitalize; backdrop-filter: blur(20px); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "button-ghost",
+      "description": "Enlace de navegación con subrayado cian animado que crece al hover.",
+      "html": "<nav class=\"ds-nav\"><ul class=\"ds-nav-list\"><li><a class=\"ds-nav-link\" href=\"#\">Servicios</a></li><li><a class=\"ds-nav-link\" href=\"#\">Proyectos</a></li><li><a class=\"ds-nav-link\" href=\"#\">Nosotros</a></li></ul></nav>",
+      "css": ".ds-nav-list { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; } .ds-nav-link { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem; color: #0096b8; font-family: Poppins, system-ui, sans-serif; font-size: 1rem; font-weight: 600; text-decoration: none; transition: transform 300ms cubic-bezier(0.4,0,0.2,1), color 300ms; } .ds-nav-link::before { content: ''; position: absolute; bottom: 8px; left: 50%; width: 0; height: 2px; background: #0096b8; transform: translateX(-50%); transition: width 300ms ease-in-out; } .ds-nav-link:hover::before { width: 90%; } .ds-nav-link:hover { transform: scale(1.05); color: #ffffff; } .ds-nav-link:focus-visible { outline: none; border-radius: 9999px; box-shadow: 0 0 0 2px #0096b8, 0 0 0 4px rgba(0,18,23,0.9); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Deepwater Control Room",
+    "overview": "SV Tech se sumerge en un abismo técnico: el fondo es un degradado fijo de dos azules profundos (de Midnight Abyss a Lagoon Depths), sobre el que flotan paneles de cristal translúcido. La luz de este mundo nunca es blanca plana: son instrumentos — Signal Cyan como el color funcional y activo, Melted Amber como el acento cálido que señala, alerta y distingue lo destacado. La página se comporta como la consola de una sala de control submarina: oscura, precisa, con cada elemento encendiéndose y escalando al contacto. El sitio es una one-page con anclas (Inicio, Servicios, Proyectos, Clientes, Nosotros, Contacto) más páginas de detalle por servicio. La densidad es generosa: secciones de 10rem de respiro vertical, tarjetas centradas, tipografía Poppins en mayúsculas para títulos. Todo respira lentamente; las animaciones (shimmer, shine, marquee, punto del divisor) son constantes pero sutiles, y se apagan por completo bajo prefers-reduced-motion.",
+    "keyCharacteristics": [
+      "Superficies de cristal (glassmorphism) sobre un degradado abisal fijo.",
+      "Luz de instrumento: cian como señal funcional, ámbar como acento cálido.",
+      "Bordes de color de 1px y sombras de color difuminadas, nunca grises neutras.",
+      "Títulos Poppins en mayúsculas y negrita; cuerpo en peso 500.",
+      "Componentes táctiles: hover con escala (scale-1.01–1.05) y encendido.",
+      "Respeto total de prefers-reduced-motion en toda animación."
+    ],
+    "rules": [
+      {
+        "name": "The Beacon Rule",
+        "body": "Signal Cyan y Melted Amber son luces de instrumento: viven en bordes, iconos, chips, badges y botones pequeños. Ninguno debe usarse como superficie de gran tamaño; su rareza es lo que los hace funcionar sobre el abismo.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Neutral-Shadow Rule",
+        "body": "Las sombras siempre llevan color (cian o ámbar), nunca gris neutro, excepto la elevación del modal (rgba(0,0,0,0.25)), que es la única superficie \"real\" fuera del abismo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Uppercase Signal Rule",
+        "body": "Todos los H1/H2 se escriben en mayúsculas (tanto en el código como visualmente vía uppercase). El cuerpo nunca usa mayúsculas sostenidas.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Las superficies están en reposo con solo el resplandor fino de color. Las sombras grandes y el blur intenso aparecen solo como respuesta al estado (hover, abrir modal, fijar navbar). La elevación nunca es permanente en tarjetas.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar Signal Cyan como el color de acción e interacción, y Melted Amber solo para lo destacable o lo cálido — su escasez es lo que lo hace señalizar.",
+      "Do mantener las superficies en cristal translúcido sobre el degradado del abismo; nunca reemplazar el fondo por un gris sólido.",
+      "Do escalar tarjetas y botones al hover (scale-[1.01]–1.05) con duration-300 y encender sus sombras de color.",
+      "Do escribir H1/H2 en mayúsculas con Poppins 700 y respetar el peso 500 para el cuerpo.",
+      "Do usar rounded-8/12/16 según jerarquía: controles → 8px, superficies internas → 12px, tarjetas/paneles → 16px.",
+      "Do respetar prefers-reduced-motion desactivando todas las animaciones cuando esté activo."
+    ],
+    "donts": [
+      "Don't usar sombras grises neutras en tarjetas, botones o paneles — las sombras llevan cian o ámbar. (La excepción confirmada: modal del formulario y navbar móvil.)",
+      "Don't pintar superficies grandes con Signal Cyan o Melted Amber; son acentos, no fondos.",
+      "Don't romper el cristal: los paneles llevan backdrop-blur sobre el degradado; sin blur el sistema pierde su capa de profundidad.",
+      "Don't introducir una segunda tipografía; Poppins con sus tres pesos (400/500/700) es el único cuerpo tipográfico.",
+      "Don't fabricar una paleta de acentos adicional; cian, ámbar y los dos azules del abismo son toda la paleta.",
+      "Don't invertir el texto de los botones cian: sobre Signal Cyan el texto va en Lagoon Depths (oscuro), no en blanco."
+    ]
+  }
+}
