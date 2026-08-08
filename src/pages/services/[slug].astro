@@ -38,6 +38,7 @@ export const prerender = true;
     <header class="relative pt-24 pb-8 sm:py-14">
       <h1
         class="text-center text-3xl font-semibold text-primary uppercase duration-300 sm:text-start sm:text-4xl md:text-5xl"
+        transition:name={`service-title-${service.slug}`}
       >
         {title}
       </h1>
