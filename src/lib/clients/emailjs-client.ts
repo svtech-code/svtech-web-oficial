@@ -1,4 +1,4 @@
-import type { ContactFormData, EmailJSResponse, ContactFormValidation } from '../types/contact';
+import type { ContactFormData, EmailJSResponse, ContactFormValidation } from 'types/contact';
 
 // Configuración EmailJS desde variables de entorno
 const EMAILJS_CONFIG = {

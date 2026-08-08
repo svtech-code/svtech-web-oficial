@@ -1,5 +1,5 @@
 ---
-import Icon from './Icon.astro';
+import Icon from 'components/ui/Icon.astro';
 ---
 
 <button
@@ -35,7 +35,7 @@ import Icon from './Icon.astro';
 </style>
 
 <script>
-  import { initScrollToTop } from 'lib/scroll-to-top';
+  import { initScrollToTop } from 'lib/managers/scroll-to-top';
 
   initScrollToTop({
     buttonId: 'scroll-to-top',

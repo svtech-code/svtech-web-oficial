@@ -1,8 +1,8 @@
 ---
-import FormButton from './ui/FormButton.astro';
-import FormInput from './ui/FormInput.astro';
-import FormTextarea from './ui/FormTextarea.astro';
-import Modal from './Modal.astro';
+import FormButton from './FormButton.astro';
+import FormInput from './FormInput.astro';
+import FormTextarea from './FormTextarea.astro';
+import Modal from 'components/modals/Modal.astro';
 ---
 
 <article class="flex w-full flex-col items-center justify-center gap-4 px-4 md:px-0 lg:w-1/2">
@@ -56,8 +56,8 @@ import Modal from './Modal.astro';
 <Modal />
 
 <script>
-  import { ContactFormManager } from '../lib/contact-form-manager';
-  import { LazyObserver } from '../lib/lazy-observer';
+  import { ContactFormManager } from 'lib/managers/contact-form-manager';
+  import { LazyObserver } from 'lib/dom/lazy-observer';
 
   document.addEventListener('astro:page-load', () => {
     // Inicializar formulario de contacto con lazy loading

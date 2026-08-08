@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import ServiceCard from 'components/ServiceCard.astro';
+import ServiceCard from 'components/cards/ServiceCard.astro';
 import { subTitleService, titleService } from 'consts/pagesTitle';
 import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 import type { IconName } from 'consts/icons';
@@ -64,7 +64,7 @@ const services = servicesEntries
 </section>
 
 <script>
-  import { setupCardVisibility } from 'lib/generic-card-visibility-manager';
+  import { setupCardVisibility } from 'lib/managers/generic-card-visibility-manager';
 
   document.addEventListener('astro:page-load', () => {
     setupCardVisibility({

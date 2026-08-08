@@ -1,11 +1,11 @@
-import type { Customer, SocialMedia } from '../types/customer';
-import { logoSvgMap, socialIconsMap, type SocialPlatform } from '../consts/iconsMap';
+import type { Customer, SocialMedia } from 'types/customer';
+import { logoSvgMap, socialIconsMap, type SocialPlatform } from 'consts/iconsMap';
 import {
   updateImageSrc,
   createSocialLink,
   createFragment,
   replaceElementContent,
-} from './dom-utils';
+} from 'lib/dom/dom-utils';
 
 /**
  * Gestiona la actualización del detalle de cliente seleccionado.

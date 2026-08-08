@@ -1,6 +1,6 @@
-import type { ContactFormData, FormState } from '../types/contact';
-import { validateField, sendContactForm } from './emailjs-client';
-import { TurnstileManager } from './turnstile-manager';
+import type { ContactFormData, FormState } from 'types/contact';
+import { validateField, sendContactForm } from 'lib/clients/emailjs-client';
+import { TurnstileManager } from 'lib/clients/turnstile-manager';
 import { ModalManager } from './modal-manager';
 
 /**

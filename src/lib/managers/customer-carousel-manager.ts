@@ -1,5 +1,5 @@
-import { CUSTOMERS } from '../consts/customers';
-import type { Customer } from '../types/customer';
+import { CUSTOMERS } from 'consts/customers';
+import type { Customer } from 'types/customer';
 import { CustomerDetailManager } from './customer-detail-manager';
 
 /**

@@ -1,7 +1,7 @@
 ---
-import NavbarButton from './ui/NavbarButton.astro';
-import NavbarDesktop from './ui/NavbarDesktop.astro';
-import NavbarMobile from './ui/NavbarMobile.astro';
+import NavbarButton from './NavbarButton.astro';
+import NavbarDesktop from './NavbarDesktop.astro';
+import NavbarMobile from './NavbarMobile.astro';
 ---
 
 <NavbarButton />
@@ -16,7 +16,7 @@ import NavbarMobile from './ui/NavbarMobile.astro';
 <div data-target class="absolute top-[60px]"></div>
 
 <script>
-  import { functionHeader } from 'lib/function-header';
+  import { functionHeader } from 'lib/managers/function-header';
 
   document.addEventListener('astro:page-load', () => {
     functionHeader();

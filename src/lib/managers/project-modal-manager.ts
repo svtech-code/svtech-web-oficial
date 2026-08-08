@@ -1,4 +1,4 @@
-import type { Project } from '../types/projects';
+import type { Project } from 'types/projects';
 
 /**
  * Gestiona la funcionalidad del modal de proyectos.

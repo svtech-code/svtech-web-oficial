@@ -100,8 +100,8 @@
 </style>
 
 <script>
-  import { CustomerCarouselManager } from '../lib/customer-carousel-manager';
-  import { LazyObserver } from '../lib/lazy-observer';
+  import { CustomerCarouselManager } from 'lib/managers/customer-carousel-manager';
+  import { LazyObserver } from 'lib/dom/lazy-observer';
 
   document.addEventListener('astro:page-load', () => {
     LazyObserver.create(

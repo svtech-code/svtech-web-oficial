@@ -1,7 +1,7 @@
 ---
 import { titleProject, subTitleProject } from 'consts/pagesTitle';
-import ProjectCard from 'components/ProjectCard.astro';
-import ProjectModal from 'components/ProjectModal.astro';
+import ProjectCard from 'components/cards/ProjectCard.astro';
+import ProjectModal from 'components/modals/ProjectModal.astro';
 import { PROJECTS_STATIC } from 'consts/projects';
 import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 ---
@@ -36,8 +36,8 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
 <ProjectModal />
 
 <script>
-  import { setupCardVisibility } from 'lib/generic-card-visibility-manager';
-  import { ProjectModalManager } from 'lib/project-modal-manager';
+  import { setupCardVisibility } from 'lib/managers/generic-card-visibility-manager';
+  import { ProjectModalManager } from 'lib/managers/project-modal-manager';
 
   document.addEventListener('astro:page-load', () => {
     // Configurar visibilidad de tarjetas

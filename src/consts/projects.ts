@@ -1,4 +1,4 @@
-import type { Project } from '../types/projects';
+import type { Project } from 'types/projects';
 import { CUSTOMERS } from './customers';
 
 const path = (name: string): string => {
