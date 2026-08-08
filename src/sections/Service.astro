@@ -1,8 +1,20 @@
 ---
+import { getCollection } from 'astro:content';
 import ServiceCard from 'components/ServiceCard.astro';
 import { subTitleService, titleService } from 'consts/pagesTitle';
-import { SERVICES_STATIC } from 'consts/services';
 import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
+import type { IconName } from 'consts/icons';
+
+const servicesEntries = await getCollection('services');
+const services = servicesEntries
+  .map((entry) => ({
+    order: entry.data.order,
+    title: entry.data.title,
+    description: entry.data.description,
+    slug: entry.slug,
+    iconName: entry.slug as IconName,
+  }))
+  .sort((a, b) => a.order - b.order);
 ---
 
 <section
@@ -21,7 +33,7 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
     class="relative flex w-full flex-col flex-wrap items-center justify-center gap-4 md:flex-row"
   >
     {
-      SERVICES_STATIC.map((service) => (
+      services.map((service) => (
         <ServiceCard
           index={service.order}
           title={service.title}
