@@ -146,41 +146,23 @@ export function setupCardVisibility(config: CardVisibilityConfig) {
     requestAnimationFrame(() => {
       elements.cards.forEach((card) => {
         card.style.display = 'flex';
-        card.style.opacity = '1';
-        card.style.transform = 'scale(1)';
       });
     });
   }
 
   /**
-   * Muestra un número específico de tarjetas con animación escalonada
+   * Muestra un número específico de tarjetas en función de los límites
    * @param visibleCount - Número de tarjetas a mostrar
    */
   function showCardsWithAnimation(visibleCount: number) {
-    clearAllTimeouts(); // Limpiar animaciones previas
+    clearAllTimeouts();
 
     requestAnimationFrame(() => {
       elements.cards.forEach((card, index) => {
         if (index < visibleCount) {
-          // Mostrar tarjeta
           card.style.display = 'flex';
-
-          const timeout = setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          }, index * settings.animationDelay);
-
-          animationTimeouts.add(timeout);
         } else {
-          // Ocultar tarjeta
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.95)';
-
-          const timeout = setTimeout(() => {
-            card.style.display = 'none';
-          }, settings.transitionDuration);
-
-          animationTimeouts.add(timeout);
+          card.style.display = 'none';
         }
       });
     });

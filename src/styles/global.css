@@ -193,3 +193,76 @@ html {
   background: #001217;
   scroll-behavior: smooth;
 }
+
+/* Sistema de Animaciones Scroll Reveal */
+.reveal,
+.reveal-fade,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal {
+  transform: translateY(28px);
+}
+
+.reveal-left {
+  transform: translateX(-28px);
+}
+
+.reveal-right {
+  transform: translateX(28px);
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal.active,
+.reveal-fade.active,
+.reveal-left.active,
+.reveal-right.active {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Sistema de Animaciones Scroll Reveal para Tarjetas (Entran por la izquierda, salen por la derecha) */
+.reveal-card {
+  opacity: 0;
+  transform: translateX(-36px);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-card.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-card.exiting-right {
+  opacity: 0;
+  transform: translateX(36px);
+}
+
+/* Escalonamiento de animación (staggering delays) */
+.reveal-delay-1 {
+  transition-delay: 0.08s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.16s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.24s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.32s;
+}
+.reveal-delay-5 {
+  transition-delay: 0.4s;
+}
