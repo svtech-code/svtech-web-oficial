@@ -13,14 +13,18 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 const { data } = service;
-const { title, image, imageAlt } = data;
+const { title, image, imageAlt, description } = data;
 
 const { Content } = await render(service);
 
 export const prerender = true;
 ---
 
-<ServiceLayout title={`${title} | SV Tech`}>
+<ServiceLayout
+  title={`${title} | SV Tech`}
+  description={description}
+  image={image}
+>
   <section
     class="item-center relative flex w-full max-w-[1200px] flex-col justify-start px-4 pb-32"
   >

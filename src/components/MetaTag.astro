@@ -1,27 +1,44 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  type?: string;
+}
+
+const {
+  title = 'Sv Tech | Soporte Informático y Desarrollo Web a Medida',
+  description = 'Soporte Informático y Desarrollo de Aplicaciones Web a Medida',
+  image = 'https://www.svtech.cl/og.png',
+  canonicalURL = Astro.url.href,
+  type = 'website',
+} = Astro.props;
+---
+
 <!-- theme for the top bar of the browser in mobile version -->
 <meta name="theme-color" content="#001217" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-status-bar-style" content="#001217" />
 
-<!-- SEO and social network -->
-<meta name="description" content="Soporte Informático y Desarrollo de Aplicaciones Web a Medida" />
+<!-- SEO and canonical -->
+<link rel="canonical" href={canonicalURL} />
+<meta name="description" content={description} />
 
-<meta property="og:url" content="https://www.svtech.cl" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Sv Tech" />
-<meta
-  property="og:description"
-  content="Soporte Informático y Desarrollo de Aplicaciones Web a Medida"
-/>
-<meta property="og:image" content="https://www.svtech.cl/og.png" />
+<!-- Open Graph / Facebook -->
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
 <meta property="og:locale" content="es_CL" />
 <meta property="og:site_name" content="Sv Tech" />
 
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@svtech" />
-<meta name="twitter:creator" content="@svtech" />
-<meta name="twitter:title" content="Soporte Informático y Desarrollo de Aplicaciones Web" />
-<meta
-  name="twitter:description"
-  content="Soporte Informático y Desarrollo de Aplicaciones Web a Medida"
-/>
+<meta name="twitter:site" content="@svtech_code" />
+<meta name="twitter:creator" content="@svtech_code" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
