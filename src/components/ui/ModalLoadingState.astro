@@ -8,7 +8,7 @@ const { state = 'success' } = Astro.props;
 
 <div id="loading-content" class={`modal-state ${state === 'loading' ? '' : 'hidden'}`}>
   <div class="loading-icon">
-    <svg class="mx-auto mb-4 h-16 w-16 animate-spin text-blue-500" fill="none" viewBox="0 0 24 24">
+    <svg class="mx-auto mb-4 h-16 w-16 animate-spin text-primary" fill="none" viewBox="0 0 24 24">
       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
       ></circle>
       <path
@@ -18,6 +18,6 @@ const { state = 'success' } = Astro.props;
       ></path>
     </svg>
   </div>
-  <h3 class="mb-2 text-center text-xl font-semibold text-gray-800">Enviando mensaje...</h3>
-  <p class="mb-6 text-center text-gray-600">Por favor espera mientras procesamos tu mensaje.</p>
+  <h3 class="mb-2 text-center text-xl font-semibold text-secondary">Enviando mensaje...</h3>
+  <p class="mb-6 text-center text-secondary/70">Por favor espera mientras procesamos tu mensaje.</p>
 </div>

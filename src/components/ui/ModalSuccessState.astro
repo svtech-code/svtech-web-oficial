@@ -9,7 +9,7 @@ const { state = 'success' } = Astro.props;
 <div id="success-content" class={`modal-state ${state === 'success' ? '' : 'hidden'}`}>
   <div class="success-icon">
     <svg
-      class="mx-auto mb-4 h-16 w-16 text-green-500"
+      class="mx-auto mb-4 h-16 w-16 text-primary"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -21,14 +21,14 @@ const { state = 'success' } = Astro.props;
         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
     </svg>
   </div>
-  <h3 class="mb-2 text-center text-xl font-semibold text-gray-800">¡Mensaje Enviado!</h3>
-  <p class="mb-6 text-center text-gray-600">
+  <h3 class="mb-2 text-center text-xl font-semibold text-secondary">¡Mensaje Enviado!</h3>
+  <p class="mb-6 text-center text-secondary/70">
     Tu mensaje ha sido enviado correctamente. Nos pondremos en contacto contigo pronto.
   </p>
   <div class="flex justify-center">
     <button
       id="modal-accept-btn"
-      class="rounded-lg bg-primary px-8 py-3 font-medium text-white transition-all duration-200 hover:bg-primary/80 focus:ring-4 focus:ring-blue-200"
+      class="rounded-lg bg-primary px-8 py-3 font-medium text-gradient-secondary transition-all duration-200 hover:bg-primary/80 focus:ring-4 focus:ring-primary/30"
     >
       Aceptar
     </button>

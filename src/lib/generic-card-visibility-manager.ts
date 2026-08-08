@@ -17,6 +17,8 @@ export interface CardVisibilityConfig {
   sectionName: string; // Nombre de la sección (ej: 'services', 'projects')
   mobileLimit?: number; // Límite en móvil (default: 2)
   tabletLimit?: number; // Límite en tablet (default: 4)
+  collapsedLabel?: string; // Texto del botón colapsado (default: 'Ver más')
+  expandedLabel?: string; // Texto del botón expandido (default: 'Ver menos')
   animationDelay?: number; // Delay entre animaciones (default: 30ms)
   transitionDuration?: number; // Duración de transición (default: 200ms)
   resizeThrottle?: number; // Throttle para resize (default: 150ms)
@@ -34,6 +36,8 @@ export function setupCardVisibility(config: CardVisibilityConfig) {
     sectionName: config.sectionName,
     mobileLimit: config.mobileLimit ?? 2,
     tabletLimit: config.tabletLimit ?? 4,
+    collapsedLabel: config.collapsedLabel ?? 'Ver más',
+    expandedLabel: config.expandedLabel ?? 'Ver menos',
     animationDelay: config.animationDelay ?? 30,
     transitionDuration: config.transitionDuration ?? 200,
     resizeThrottle: config.resizeThrottle ?? 150,
@@ -127,7 +131,9 @@ export function setupCardVisibility(config: CardVisibilityConfig) {
     if (elements.cards.length > limit) {
       elements.button && (elements.button.style.display = 'flex');
       elements.buttonText &&
-        (elements.buttonText.textContent = settings.isExpanded ? 'Ver menos' : 'Ver más');
+        (elements.buttonText.textContent = settings.isExpanded
+          ? settings.expandedLabel
+          : settings.collapsedLabel);
     } else {
       elements.button && (elements.button.style.display = 'none');
     }

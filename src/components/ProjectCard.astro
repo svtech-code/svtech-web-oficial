@@ -17,7 +17,9 @@ const isService: boolean = type === 'servicio';
   data-index={order}
   data-project={JSON.stringify(project)}
   aria-label={`Proyecto: ${title} - ${type}`}
-  class="group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border border-tertiary p-[2px] shadow-sm shadow-tertiary/80 duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px]"
+  class={`group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-[2px] shadow-sm duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px] ${
+    isService ? 'border-primary shadow-primary/80' : 'border-tertiary shadow-tertiary/80'
+  }`}
 >
   <div class="absolute top-2 right-2 z-20 duration-300 group-hover:-top-8 group-hover:-right-10">
     <ProjectTypeBadge type={type} />

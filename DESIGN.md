@@ -8,6 +8,7 @@ colors:
   midnight-abyss: "#001217"
   lagoon-depths: "#00252d"
   glow-cyan: "#00D0FF"
+  error: "#ef4444"
 typography:
   display:
     fontFamily: "Poppins, system-ui, -apple-system, sans-serif"
@@ -114,11 +115,12 @@ Paleta de dos temperaturas sobre un abismo azul: cian frío como sistema, ámbar
 - **Midnight Abyss** (#001217): Negro azulado, el punto más profundo del degradado de fondo y de los overlays de tarjetas (`bg-gradient-primary/70`).
 - **Lagoon Depths** (#00252d): Teal profundo, el color final del degradado de fondo, el panel del navbar en móvil y el texto sobre el cian (efecto "texto de gradiente").
 - **Glow Cyan** (#00D0FF): Cian más claro, el punto de máxima luz del degradado shimmer de los botones de cristal luminoso. Nunca se usa solo; siempre dentro del gradiente animado.
+- **Error (funcional)** (#ef4444): El único color fuera de la pareja de acentos, reservado en exclusiva para estados de error: validación de campos del formulario (borde y anillo) y el estado de error del modal de envío. No se usa como acento decorativo.
 
 ### Named Rules
 **The Beacon Rule.** Signal Cyan y Melted Amber son luces de instrumento: viven en bordes, iconos, chips, badges y botones pequeños. Ninguno debe usarse como superficie de gran tamaño; su rareza es lo que los hace funcionar sobre el abismo.
 
-**The No-Neutral-Shadow Rule.** Las sombras siempre llevan color (cian o ámbar), nunca gris neutro, excepto la elevación del modal (`rgba(0,0,0,0.25)`), que es la única superficie "real" fuera del abismo.
+**The No-Neutral-Shadow Rule.** Las sombras siempre llevan color (cian, ámbar o rojo de error), nunca gris neutro. El modal del formulario conserva una sombra oscura de apoyo (`rgba(0,0,0,0.6)`) para despegarse del abismo, pero siempre acompañada de un glow de color (cian en loading/success, rojo en error).
 
 ## Typography
 
@@ -154,7 +156,7 @@ Cristal sobre abismo. No hay sombras grises ni superficies sólidas: la profundi
 - **Card Glow — Encendido** (`shadow-lg`, con el mismo color por tipo): Hover de tarjetas; el resplandor se intensifica con la escala.
 - **Image Glow** (`0 4px 6px -1px rgb(255 136 16 / 0.6)`, `shadow-md shadow-tertiary/60`): Imagen de cabecera de las páginas de servicio.
 - **Navbar Float** (`0 10px 15px -3px rgb(0 0 0 / 1)`, `shadow-lg shadow-black`): El navbar de cristal en móvil, la única sombra negra del sistema.
-- **Modal Elevation** (`0 25px 50px -12px rgb(0 0 0 / 0.25)`): El modal de estados del formulario, la única superficie blanca sólida.
+- **Modal Elevation** (`0 25px 50px -12px rgb(0 0 0 / 0.6)` + `0 0 24px rgb(0 150 184 / 0.28)`): El modal de estados del formulario — un panel de cristal que se despega del abismo con sombra oscura de apoyo y un glow cian; en el estado de error el glow y el borde pasan al rojo de error.
 
 ### Named Rules
 **The Flat-By-Default Rule.** Las superficies están en reposo con solo el resplandor fino de color. Las sombras grandes y el blur intenso aparecen solo como respuesta al estado (hover, abrir modal, fijar navbar). La elevación nunca es permanente en tarjetas.
@@ -172,11 +174,11 @@ Los bordes son de 1px de color puro: cian en servicios y formulario, ámbar en p
 - **Primary Solid:** Fondo Signal Cyan, texto Lagoon Depths, `hover:scale-105`. Encabeza el Hero y las CTA principales ("Contáctanos").
 - **Ghost / Secondary:** Fondo transparente, borde de 1px Signal Cyan, texto Instrument White ("Ver Servicios"). Mismo comportamiento de escala.
 - **Glow Shimmer:** La firma del sistema. Fondo `linear-gradient(90deg, #0096b8, #00D0FF, #0096b8)` con `background-size: 200%` y animación `shimmer 3s linear infinite`, más un barrido diagonal `shine 3s` que cruza el botón cada 3s. Texto Lagoon Depths. Usado en el navbar ("Contacto") y en los "Ver más" de Servicios y Proyectos. Es el único botón con movimiento permanente.
-- **FormButton:** Fondo Signal Cyan `hover:bg-primary/80`, `py-3 px-6`, `focus:ring-4`, estados `disabled` (opacity 50%) y `loading` con spinner.
+- **FormButton:** Fondo Signal Cyan, texto Lagoon Depths (`text-gradient-secondary`), `py-3 px-6`, `focus:ring-4` con anillo cian, estados `disabled` (opacity 50%) y `loading` con spinner. Variante secundaria: cristal translúcido (`bg-white/10` + borde cian al 40%), texto blanco.
 
 ### Cards / Containers
-- **ServiceCard:** `rounded-2xl` (16px), borde 1px Signal Cyan, `shadow-sm shadow-primary/80`, hover `scale-[1.01]` + `shadow-lg`. Icono del servicio en chip `bg-tertiary/10` (`hover:bg-tertiary/40`), más un icono decorativo grande rotado 45° y desenfocado (`blur-md`) en la esquina superior. Enlace "Saber más →" en Melted Amber con subrayado que crece al hover.
-- **ProjectCard:** `rounded-2xl`, borde ámbar con `p-[2px]`, imagen a sangre con hover `scale-110`. Footer de cristal `bg-gradient-primary/70 backdrop-blur-xl` que cubre la parte baja; el título cambia a cian o ámbar según el tipo de proyecto. Badge de tipo en esquina superior.
+- **ServiceCard:** `rounded-2xl` (16px), borde 1px Signal Cyan, `shadow-sm shadow-primary/80`, hover `scale-[1.01]` + `shadow-lg`. Icono del servicio en chip `bg-tertiary/10` (`hover:bg-tertiary/40`), más un icono decorativo grande rotado 45° y desenfocado (`blur-md`) en la esquina superior. Enlace "Saber más →" en Melted Amber con subrayado que crece al hover. Todas las tarjetas de servicio comparten este mismo tratamiento.
+- **ProjectCard:** `rounded-2xl`, borde de color según el tipo de proyecto con `p-[2px]` (cian para tipo servicio, ámbar para tipo desarrollo), imagen a sangre con hover `scale-110`. Footer de cristal `bg-gradient-primary/70 backdrop-blur-xl` que cubre la parte baja; el título cambia a cian o ámbar según el tipo de proyecto. Badge de tipo en esquina superior. El color de borde y título siempre coinciden con el tipo.
 - **CustomerCard:** `rounded-2xl`, fondo `bg-secondary/30` (blanco al 30%), hover a `rounded-3xl` y `bg-secondary/40`. Es el logo del cliente sobre cristal.
 - **Modal de proyecto:** contenedor `rounded-2xl bg-white/20 backdrop-blur-sm`, imagen superior `rounded-t-xl`, cuerpo `rounded-b-xl bg-gradient-secondary backdrop-blur-2xl`.
 
@@ -197,7 +199,7 @@ Los bordes son de 1px de color puro: cian en servicios y formulario, ámbar en p
 - **Customer Marquee:** cinta infinita de logos con animación `scroll-left 20s linear infinite` (15s en móvil), que se pausa al hover, con desvanecido de los bordes (`linear-gradient(90deg, #00252d, transparent)`).
 - **Scroll-to-top:** botón circular `rounded-full bg-primary` de 48–64px, con flecha que flota al hover; aparece con opacidad desde la sección Servicios.
 - **Divisor del footer:** línea `bg-tertiary/40` de 3px con un punto ámbar animado (`moveDot 8s ease-in-out infinite`) que la recorre, con `box-shadow` cian y blanco.
-- **Modal de formulario:** overlay `rgba(0,0,0,0.5)` + `blur(8px)`; tarjeta blanca con `box-shadow` alto, estados loading/success/error con iconos.
+- **Modal de formulario:** overlay `rgba(0,0,0,0.6)` + `blur(8px)`; panel de cristal en degradado Midnight Abyss→Lagoon Depths (`rounded-2xl`, borde cian al 45%, `backdrop-blur-2xl`) con glow de color según estado — cian en loading/success, rojo de error en el estado de error. Estados con iconos y botones en lenguaje de sistema: texto Lagoon Depths sobre Signal Cyan, cancelar como cristal ghost.
 
 ## Do's and Don'ts
 

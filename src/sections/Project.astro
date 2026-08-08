@@ -24,7 +24,12 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
     {PROJECTS_STATIC.map((project) => <ProjectCard project={project} />)}
   </div>
 
-  <SeeMoreButton section="projects" mobileLimit={2} tabletLimit={4} />
+  <SeeMoreButton
+    section="projects"
+    mobileLimit={3}
+    tabletLimit={4}
+    label="Ver más proyectos"
+  />
 </section>
 
 <!-- Project Modal -->
@@ -38,8 +43,10 @@ import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
     // Configurar visibilidad de tarjetas
     setupCardVisibility({
       sectionName: 'projects',
-      mobileLimit: 2,
+      mobileLimit: 3,
       tabletLimit: 4,
+      collapsedLabel: 'Ver más proyectos',
+      expandedLabel: 'Ver menos proyectos',
     });
 
     // Configurar modal de proyectos

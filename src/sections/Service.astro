@@ -45,7 +45,22 @@ const services = servicesEntries
     }
   </div>
 
-  <SeeMoreButton section="services" mobileLimit={2} tabletLimit={4} />
+  <SeeMoreButton
+    section="services"
+    mobileLimit={2}
+    tabletLimit={4}
+    label="Ver más servicios"
+  />
+
+  <footer class="flex justify-center">
+    <a
+      href="#contact"
+      class="inline-flex items-center gap-2 rounded-lg border border-tertiary/60 bg-tertiary/10 px-5 py-2.5 text-sm font-medium text-tertiary duration-300 hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-base"
+      aria-label="Hablar con SV Tech sin saber qué servicio necesita"
+    >
+      ¿No estás seguro de qué necesitas? Hablemos
+    </a>
+  </footer>
 </section>
 
 <script>
@@ -56,6 +71,8 @@ const services = servicesEntries
       sectionName: 'services',
       mobileLimit: 2,
       tabletLimit: 4,
+      collapsedLabel: 'Ver más servicios',
+      expandedLabel: 'Ver menos servicios',
     });
   });
 </script>

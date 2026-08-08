@@ -93,6 +93,21 @@
           "#8deaff",
           "#c9f6ff"
         ]
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Error (funcional)",
+        "canonical": "#ef4444",
+        "tonalRamp": [
+          "#4a0a0a",
+          "#731717",
+          "#9b2323",
+          "#c13232",
+          "#ef4444",
+          "#ff6b5e",
+          "#ff938a",
+          "#ffc4bf"
+        ]
       }
     },
     "typographyMeta": {
@@ -145,8 +160,8 @@
       },
       {
         "name": "modal-elevation",
-        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-        "purpose": "Modal de estados del formulario; única superficie blanca."
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 150, 184, 0.28)",
+        "purpose": "Modal de estados del formulario: sombra oscura de apoyo + glow cian (rojo en estado de error)."
       }
     ],
     "motion": [
@@ -275,7 +290,7 @@
       },
       {
         "name": "The No-Neutral-Shadow Rule",
-        "body": "Las sombras siempre llevan color (cian o ámbar), nunca gris neutro, excepto la elevación del modal (rgba(0,0,0,0.25)), que es la única superficie \"real\" fuera del abismo.",
+        "body": "Las sombras siempre llevan color (cian, ámbar o rojo de error), nunca gris neutro. El modal del formulario conserva una sombra oscura de apoyo (rgba(0,0,0,0.6)) para despegarse del abismo, pero siempre acompañada de un glow de color (cian en loading/success, rojo en error).",
         "section": "colors"
       },
       {

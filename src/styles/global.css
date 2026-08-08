@@ -22,7 +22,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background-color: var(--color-primary-light);
+    background-color: var(--color-gradient-primary);
   }
 
   ::-webkit-scrollbar-thumb {

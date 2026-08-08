@@ -1,5 +1,6 @@
 ---
 import Logo from 'assets/logo.svg';
+import { SERVICES_STATIC } from 'consts/services';
 ---
 
 <footer class="relative flex w-full items-center justify-center bg-black/60">
@@ -20,9 +21,10 @@ import Logo from 'assets/logo.svg';
         <div>
           <h4>ENLACES</h4>
           <ul>
-            <li><a href="/#home">Home</a></li>
+            <li><a href="/#home">Inicio</a></li>
             <li><a href="/#services">Servicios</a></li>
             <li><a href="/#projects">Proyectos</a></li>
+            <li><a href="/#customers">Clientes</a></li>
             <li><a href="/#about">Nosotros</a></li>
             <li><a href="/#contact">Contacto</a></li>
           </ul>
@@ -31,20 +33,24 @@ import Logo from 'assets/logo.svg';
         <div>
           <h4>SERVICIOS</h4>
           <ul>
-            <li>Soporte Informático</li>
-            <li>Desarrollo Web</li>
-            <li>Consultoría TI</li>
-            <li>Administración Hosting</li>
-            <li>Bases de datos</li>
+            {SERVICES_STATIC.map(({ title, slug }) => (
+              <li>
+                <a href={`/services/${slug}`}>{title}</a>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
           <h4>CONTACTO</h4>
           <ul>
-            <li>WhatsApp</li>
-            <li>Correo Electrónico</li>
-            <li>Linares, Maule. Chile.</li>
+            <li>
+              <a href="https://wa.me/56987933282" target="_blank" rel="noopener noreferrer"
+                >WhatsApp</a
+              >
+            </li>
+            <li><a href="mailto:contacto@svtech.cl">Correo Electrónico</a></li>
+            <li class="footer-plain">Linares, Maule. Chile.</li>
           </ul>
         </div>
       </nav>
@@ -78,14 +84,33 @@ import Logo from 'assets/logo.svg';
     font-weight: 500;
   }
 
-  li {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li a {
+    display: inline-block;
     transform-origin: center;
     transition-duration: 300ms;
     color: var(--color-secondary);
+    text-decoration: none;
+    border-radius: 8px;
   }
 
-  li:hover {
-    scale: 1.2;
+  li a:hover {
+    scale: 1.05;
+  }
+
+  li a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+
+  .footer-plain {
+    color: var(--color-secondary);
   }
 
   .dot {
@@ -108,7 +133,7 @@ import Logo from 'assets/logo.svg';
       text-align: start;
     }
 
-    li {
+    li a {
       transform-origin: left;
     }
 
