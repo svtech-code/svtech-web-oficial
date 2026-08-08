@@ -58,7 +58,7 @@ export const PROJECTS_STATIC: Project[] = [
     duration: '2 semanas',
     features: [
       'Creación y configuración de correo',
-      'Disñeo de Órdenes de trabajo',
+      'Diseño de Órdenes de trabajo',
       'Diseño de logo de la marca',
     ],
     challenges: [
@@ -81,7 +81,7 @@ export const PROJECTS_STATIC: Project[] = [
     imageAlt: 'Imagen que presenta en diferentes dispositivos, el sistema de alerta temprana',
     customer: customerName('CFT Maule'),
     fullDescription:
-      'Participación como desarrollador FrontEnd, en sistema de alerta temprana, para una institución educacional Técnico Profesional de la Región del Maule. Sistema empleado para la detección y acompañamiento de estudiantes que presentan riesgo de desepción escolar, el cual, efectúa su cálculo, con base en indicadores de riesgos predefinidos por la institución.',
+      'Participación como desarrollador FrontEnd, en sistema de alerta temprana, para una institución educacional Técnico Profesional de la Región del Maule. Sistema empleado para la detección y acompañamiento de estudiantes que presentan riesgo de deserción escolar, el cual, efectúa su cálculo, con base en indicadores de riesgos predefinidos por la institución.',
     technologies: ['ReactJS', 'Axios', 'CriptoJS', 'TailwindCSS', 'Clean Arquitecture'],
     status: 'completado',
     duration: '6 meses',
