@@ -1,3 +1,5 @@
+import { initCardStagger } from './card-stagger-manager';
+
 /**
  * Manager para la animación de revelado de elementos al hacer scroll (Scroll Reveal).
  * Responsabilidad: Utilizar IntersectionObserver para activar (.active) y desactivar (.exiting-right)
@@ -64,6 +66,10 @@ export class ScrollRevealManager {
 export function initScrollReveal(): () => void {
   const manager = new ScrollRevealManager();
   manager.observe();
+  const stopCardStagger = initCardStagger();
 
-  return () => manager.disconnect();
+  return () => {
+    manager.disconnect();
+    stopCardStagger();
+  };
 }

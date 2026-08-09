@@ -147,6 +147,7 @@ export function setupCardVisibility(config: CardVisibilityConfig) {
       elements.cards.forEach((card) => {
         card.style.display = 'flex';
       });
+      window.dispatchEvent(new Event('sv:stagger-update'));
     });
   }
 
@@ -165,6 +166,7 @@ export function setupCardVisibility(config: CardVisibilityConfig) {
           card.style.display = 'none';
         }
       });
+      window.dispatchEvent(new Event('sv:stagger-update'));
     });
   }
 
