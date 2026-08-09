@@ -38,6 +38,7 @@ export class ProjectModalManager {
     fullDescription: HTMLParagraphElement;
     featuresContainer: HTMLElement;
     features: HTMLUListElement;
+    cta: HTMLAnchorElement;
   };
 
   /**
@@ -96,6 +97,7 @@ export class ProjectModalManager {
       fullDescription: document.querySelector('#modal-full-description') as HTMLParagraphElement,
       featuresContainer: document.querySelector('#modal-features-container') as HTMLElement,
       features: document.querySelector('#modal-features') as HTMLUListElement,
+      cta: document.querySelector('#modal-cta') as HTMLAnchorElement,
     };
   }
 
@@ -251,6 +253,9 @@ export class ProjectModalManager {
     // Badge del tipo de proyecto
     this.updateProjectTypeBadge(project.type);
 
+    // Color del CTA de WhatsApp según el tipo de proyecto
+    this.updateCtaColor(project.type);
+
     // SECCIÓN DEL ASIDE DE INFORMACIÓN DEL MODAL
     this.elements.customer.textContent = project.customer;
 
@@ -293,6 +298,46 @@ export class ProjectModalManager {
 
     // Enlaces (opcional)
     // this.updateLinks(project.links);
+  }
+
+  /**
+   * Actualiza el color del CTA de WhatsApp según el tipo de proyecto
+   */
+  private updateCtaColor(type: string): void {
+    const isService = type === 'servicio';
+
+    // Limpiar las clases de color
+    this.elements.cta.classList.remove(
+      'border-primary',
+      'bg-primary/10',
+      'text-primary',
+      'hover:bg-primary/20',
+      'focus:ring-primary',
+      'border-tertiary',
+      'bg-tertiary/10',
+      'text-tertiary',
+      'hover:bg-tertiary/20',
+      'focus:ring-tertiary',
+    );
+
+    // Aplicar las clases según el tipo
+    if (isService) {
+      this.elements.cta.classList.add(
+        'border-primary',
+        'bg-primary/10',
+        'text-primary',
+        'hover:bg-primary/20',
+        'focus:ring-primary',
+      );
+    } else {
+      this.elements.cta.classList.add(
+        'border-tertiary',
+        'bg-tertiary/10',
+        'text-tertiary',
+        'hover:bg-tertiary/20',
+        'focus:ring-tertiary',
+      );
+    }
   }
 
   /**

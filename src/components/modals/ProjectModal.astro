@@ -50,30 +50,29 @@ const { id = 'project-modal' } = Astro.props;
 
       <!-- Scrollable Content Section -->
       <section
-        class="modal-scroll flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto scroll-smooth rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl md:flex-row"
+        class="modal-scroll flex min-h-0 flex-1 flex-col flex-wrap gap-4 overflow-y-auto scroll-smooth rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl md:flex-row"
       >
         <!-- sidebar info -->
         <ProjectModalAsideInfo />
 
         <!-- Main content -->
         <ProjectModalArticleContent />
-      </section>
 
-      <!-- Next step -->
-      <footer
-        class="flex flex-shrink-0 items-center justify-center border-t border-white/20 bg-gradient-primary/60 p-4 backdrop-blur-2xl"
-      >
-        <a
-          href="https://wa.me/56987933282"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-lg border border-tertiary bg-tertiary/10 px-5 py-2.5 text-sm font-medium text-tertiary duration-300 hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-base"
-          aria-label="Hablar por WhatsApp sobre un proyecto similar"
-        >
-          <Icon name="whatsApp" class="h-5 w-5" aria-hidden="true" />
-          Hablemos de tu proyecto
-        </a>
-      </footer>
+        <!-- Next step -->
+        <footer class="flex w-full justify-center pt-2">
+          <a
+            id="modal-cta"
+            href="https://wa.me/56987933282"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-tertiary bg-tertiary/10 px-5 py-2.5 text-sm font-medium text-tertiary duration-300 hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-base"
+            aria-label="Hablar por WhatsApp sobre un proyecto similar"
+          >
+            <Icon name="whatsApp" class="h-5 w-5" aria-hidden="true" />
+            Hablemos de tu proyecto
+          </a>
+        </footer>
+      </section>
     </div>
   </div>
 </article>
