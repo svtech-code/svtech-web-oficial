@@ -14,20 +14,20 @@ const { title, description, iconName, slug, index } = Astro.props;
 ---
 
 <article
-  class={`reveal-card group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border border-primary/70 p-5 shadow-sm shadow-primary/80 duration-300 ease-out hover:scale-[1.01] hover:border-primary hover:shadow-lg hover:shadow-primary/30 sm:w-[380px] md:p-7`}
+  class={`reveal-card group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border border-primary/70 p-5 shadow-sm shadow-primary/80 [backface-visibility:hidden] [transform-style:preserve-3d] transition-[transform,scale,box-shadow,border-color] duration-300 ease-out hover:scale-[1.01] hover:border-primary hover:shadow-lg hover:shadow-primary/30 sm:w-[380px] md:p-7`}
   data-index={index}
 >
-  <div>
+  <div class="pointer-events-none select-none">
     <Icon
       name={iconName}
       aria-hidden="true"
-      class="absolute top-0 right-0 h-auto w-28 rotate-45 blur-md transition-transform duration-500 ease-out sm:translate-x-28 sm:-translate-y-24 sm:blur-xs sm:group-hover:translate-x-2 sm:group-hover:translate-y-0"
+      class="pointer-events-none absolute top-0 right-0 h-auto w-28 rotate-45 blur-md transition-transform duration-500 ease-out select-none sm:translate-x-28 sm:-translate-y-24 sm:blur-xs sm:group-hover:translate-x-2 sm:group-hover:translate-y-0"
     />
   </div>
 
-  <header class="flex flex-col items-start gap-2">
+  <header class="relative z-10 flex flex-col items-start gap-2">
     <div
-      class="relative z-10 hidden rounded-xl bg-tertiary/10 p-2 transition-[transform,background-color] duration-300 ease-out group-hover:scale-110 group-hover:bg-tertiary/30 sm:block"
+      class="relative z-10 hidden rounded-xl bg-tertiary/10 p-2 transition-colors duration-300 ease-out group-hover:bg-tertiary/30 sm:block"
     >
       <Icon name={iconName} class="h-auto w-12" aria-hidden="true" />
     </div>
@@ -40,21 +40,23 @@ const { title, description, iconName, slug, index } = Astro.props;
     </h3>
   </header>
 
-  <section class="z-10 pt-4 pb-8">
-    <p
-      class="line-clamp-3 text-sm font-medium text-secondary transition-colors duration-300 md:text-base"
-    >
+  <section class="relative z-10 w-full pt-4 pb-8">
+    <p class="line-clamp-3 text-sm leading-relaxed font-medium text-secondary md:text-base">
       {description}
     </p>
   </section>
 
-  <footer>
+  <footer class="relative z-10">
     <a
       href={`/services/${slug}`}
       aria-label=`Ver detalles sobre ${title}`
-      class="group inline-block origin-left cursor-pointer rounded-xl font-medium text-tertiary/80 transition-[transform,color] duration-300 ease-out hover:scale-105 hover:text-tertiary focus:px-2 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+      class="inline-flex origin-left cursor-pointer items-center gap-1 rounded-xl font-medium text-tertiary/80 transition-[transform,scale,color] duration-300 ease-out group-hover:text-tertiary hover:scale-105 hover:text-tertiary focus:px-2 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
     >
-      Saber más →
+      <span>Saber más</span>
+      <span
+        class="inline-block transition-transform duration-300 ease-out group-hover:translate-x-1"
+        aria-hidden="true">→</span
+      >
     </a>
   </footer>
 </article>
