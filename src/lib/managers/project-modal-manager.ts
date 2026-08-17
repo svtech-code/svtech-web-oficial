@@ -192,14 +192,25 @@ export class ProjectModalManager {
     }, 10);
 
     // Animación de entrada
-    requestAnimationFrame(() => {
-      this.modal.style.opacity = '0';
-      this.modal.style.transform = 'scale(0.95)';
+    const container = this.elements.modalContainer;
 
+    this.modal.style.opacity = '0';
+    this.modal.style.transition = 'opacity 0.3s ease-out';
+    if (container) {
+      container.style.opacity = '0';
+      container.style.transform = 'scale(0.75)';
+      container.style.transformOrigin = 'center center';
+      container.style.transition =
+        'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+    }
+
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        this.modal.style.transition = 'opacity 0.2s ease-out, transform 0.2s ease-out';
         this.modal.style.opacity = '1';
-        this.modal.style.transform = 'scale(1)';
+        if (container) {
+          container.style.opacity = '1';
+          container.style.transform = 'scale(1)';
+        }
       });
     });
   }
@@ -211,9 +222,14 @@ export class ProjectModalManager {
     if (!this.isVisible) return;
 
     // Animación de salida
-    this.modal.style.transition = 'opacity 0.15s ease-in, transform 0.15s ease-in';
+    const container = this.elements.modalContainer;
+    this.modal.style.transition = 'opacity 0.2s ease-in';
     this.modal.style.opacity = '0';
-    this.modal.style.transform = 'scale(0.95)';
+    if (container) {
+      container.style.transition = 'opacity 0.2s ease-in, transform 0.2s ease-in';
+      container.style.opacity = '0';
+      container.style.transform = 'scale(0.75)';
+    }
 
     setTimeout(() => {
       this.modal.classList.remove('flex');
@@ -228,10 +244,15 @@ export class ProjectModalManager {
       // Reset estilos
       this.modal.style.transition = '';
       this.modal.style.opacity = '';
-      this.modal.style.transform = '';
+      if (container) {
+        container.style.transition = '';
+        container.style.opacity = '';
+        container.style.transform = '';
+        container.style.transformOrigin = '';
+      }
 
       this.isVisible = false;
-    }, 150);
+    }, 200);
   }
 
   /**

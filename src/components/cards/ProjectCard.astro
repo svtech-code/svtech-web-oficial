@@ -17,11 +17,15 @@ const isService: boolean = type === 'servicio';
   data-index={order}
   data-project={JSON.stringify(project)}
   aria-label={`Proyecto: ${title} - ${type}`}
-  class={`reveal-card group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-[2px] shadow-sm duration-300 hover:scale-[1.01] hover:shadow-lg sm:w-[380px] ${
-    isService ? 'border-primary shadow-primary/80' : 'border-tertiary shadow-tertiary/80'
+  class={`reveal-card group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-[2px] shadow-sm transition-[border-color,box-shadow] duration-300 ease-out hover:shadow-lg sm:w-[380px] ${
+    isService
+      ? 'border-primary shadow-primary/80 hover:shadow-primary/40'
+      : 'border-tertiary shadow-tertiary/80 hover:shadow-tertiary/40'
   }`}
 >
-  <div class="absolute top-2 right-2 z-20 duration-300 group-hover:-top-8 group-hover:-right-10">
+  <div
+    class="absolute top-2 right-2 z-20 transition-transform duration-300 ease-out group-hover:translate-x-16 group-hover:-translate-y-16"
+  >
     <ProjectTypeBadge type={type} />
   </div>
 
@@ -29,10 +33,12 @@ const isService: boolean = type === 'servicio';
     src={imageSrc}
     alt={imageAlt}
     loading="lazy"
-    class="h-full w-full rounded-xl object-cover duration-300 group-hover:scale-110"
+    class="h-full w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-110"
   />
 
-  <footer class="absolute bottom-0 left-0 z-20 h-3/6 w-full p-2 duration-300 sm:group-hover:h-1/4">
+  <footer
+    class="absolute bottom-0 left-0 z-20 h-3/6 w-full p-2 transition-[height] duration-300 ease-out sm:group-hover:h-1/4"
+  >
     <header
       class="relative h-full w-full space-y-2 overflow-hidden rounded-xl bg-gradient-primary/70 p-2 backdrop-blur-xl"
     >
@@ -42,14 +48,14 @@ const isService: boolean = type === 'servicio';
         {title}
       </h3>
       <p
-        class="invisible line-clamp-2 text-sm font-normal text-secondary duration-300 group-hover:invisible sm:visible"
+        class="line-clamp-2 text-sm font-normal text-secondary transition-opacity duration-300 ease-out sm:opacity-100 sm:group-hover:opacity-0"
       >
         {description}
       </p>
 
       <button
         data-project-button={order}
-        class="project-modal-trigger absolute top-1 right-1 cursor-pointer duration-300 hover:scale-110"
+        class="project-modal-trigger absolute top-1 right-1 cursor-pointer transition-[transform,scale] duration-300 ease-out hover:scale-110 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
         aria-label={`Ver más detalles de ${title}`}
         type="button"
       >
