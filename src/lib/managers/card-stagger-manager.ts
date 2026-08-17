@@ -31,7 +31,9 @@ export function applyRowGroupedStagger(containerId: string): void {
 
   if (window.innerWidth < MOBILE_BREAKPOINT) {
     cards.forEach((card, index) => {
-      card.style.transitionDelay = `${index * MOBILE_CARD_DELAY_MS}ms`;
+      if (!card.classList.contains('active')) {
+        card.style.transitionDelay = `${index * MOBILE_CARD_DELAY_MS}ms`;
+      }
     });
     return;
   }
@@ -48,7 +50,9 @@ export function applyRowGroupedStagger(containerId: string): void {
   rowTops.forEach((top, rowIndex) => {
     const delay = rowIndex * ROW_DELAY_MS;
     rows.get(top)?.forEach((card) => {
-      card.style.transitionDelay = `${delay}ms`;
+      if (!card.classList.contains('active')) {
+        card.style.transitionDelay = `${delay}ms`;
+      }
     });
   });
 }

@@ -19,6 +19,14 @@ export class ScrollRevealManager {
           if (entry.isIntersecting) {
             target.classList.remove('exiting-right');
             target.classList.add('active');
+
+            if (target.classList.contains('reveal-card') && target.style.transitionDelay) {
+              const clearDelay = () => {
+                target.style.transitionDelay = '';
+              };
+              target.addEventListener('transitionend', clearDelay, { once: true });
+              setTimeout(clearDelay, 600);
+            }
           } else {
             if (target.classList.contains('active')) {
               target.classList.remove('active');

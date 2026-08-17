@@ -237,12 +237,26 @@ html {
   will-change: opacity, transform;
   transition:
     opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    scale 0.3s ease-out,
+    translate 0.3s ease-out,
+    box-shadow 0.3s ease-out,
+    border-color 0.3s ease-out;
 }
 
 .reveal-card.active {
   opacity: 1;
   transform: translateX(0);
+}
+
+.reveal-card.active:hover {
+  transition-delay: 0s !important;
+  transition:
+    transform 0.3s ease-out,
+    scale 0.3s ease-out,
+    translate 0.3s ease-out,
+    box-shadow 0.3s ease-out,
+    border-color 0.3s ease-out;
 }
 
 .reveal-card.exiting-right {
