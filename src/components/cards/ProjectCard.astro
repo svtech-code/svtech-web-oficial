@@ -17,7 +17,7 @@ const isService: boolean = type === 'servicio';
   data-index={order}
   data-project={JSON.stringify(project)}
   aria-label={`Proyecto: ${title} - ${type}`}
-  class={`reveal-card group relative flex w-[80%] flex-col overflow-hidden rounded-2xl border p-[2px] shadow-sm transition-[border-color,box-shadow] duration-300 ease-out hover:shadow-lg sm:w-[380px] ${
+  class={`reveal-card group relative flex aspect-[4/3] w-[85%] flex-col overflow-hidden rounded-2xl border p-[2px] shadow-sm transition-[border-color,box-shadow] duration-300 ease-out hover:shadow-lg sm:w-[380px] md:w-full md:max-w-[540px] md:aspect-[16/10] last:odd:md:col-span-2 last:odd:md:justify-self-center ${
     isService
       ? 'border-primary shadow-primary/80 hover:shadow-primary/40'
       : 'border-tertiary shadow-tertiary/80 hover:shadow-tertiary/40'
@@ -37,31 +37,31 @@ const isService: boolean = type === 'servicio';
   />
 
   <footer
-    class="absolute bottom-0 left-0 z-20 h-3/6 w-full p-2 transition-[height] duration-300 ease-out sm:group-hover:h-1/4"
+    class="absolute bottom-0 left-0 z-20 h-auto w-full p-2 transition-[height] duration-300 ease-out sm:h-3/6 md:h-[42%] sm:group-hover:h-1/4 md:group-hover:h-[26%]"
   >
     <header
-      class="relative h-full w-full space-y-2 overflow-hidden rounded-xl bg-gradient-primary/70 p-2 backdrop-blur-xl"
+      class="relative h-full w-full space-y-1.5 overflow-hidden rounded-xl bg-gradient-primary/70 p-2.5 backdrop-blur-xl sm:space-y-2 sm:p-3 md:space-y-2 md:p-3.5"
     >
       <h3
-        class={`${isService ? 'text-primary' : 'text-tertiary'} text-[16px] font-semibold capitalize`}
+        class={`${isService ? 'text-primary' : 'text-tertiary'} pr-9 text-[15px] font-semibold leading-snug capitalize sm:pr-10 sm:text-[16px] md:text-[18px] lg:text-[19px] sm:truncate`}
       >
         {title}
       </h3>
       <p
-        class="line-clamp-2 text-sm font-normal text-secondary transition-opacity duration-300 ease-out sm:opacity-100 sm:group-hover:opacity-0"
+        class="hidden line-clamp-2 text-sm font-normal text-secondary transition-opacity duration-300 ease-out sm:block md:text-[15px] md:leading-relaxed sm:opacity-100 sm:group-hover:opacity-0"
       >
         {description}
       </p>
 
       <button
         data-project-button={order}
-        class="project-modal-trigger absolute top-1 right-1 cursor-pointer transition-[transform,scale] duration-300 ease-out hover:scale-110 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+        class="project-modal-trigger absolute top-2 right-2 cursor-pointer transition-[transform,scale] duration-300 ease-out hover:scale-110 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:top-2 sm:right-2 md:top-2.5 md:right-2.5"
         aria-label={`Ver más detalles de ${title}`}
         type="button"
       >
         <Icon
           name="open-vector"
-          class={`${isService ? 'text-primary' : 'text-tertiary'} h-auto w-8 text-primary`}
+          class={`${isService ? 'text-primary' : 'text-tertiary'} h-auto w-7 sm:w-8`}
           aria-hidden="true"
         />
       </button>

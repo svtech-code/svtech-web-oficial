@@ -15,7 +15,7 @@ const { id = 'project-modal' } = Astro.props;
 <!-- Project Modal Overlay -->
 <article
   id={id}
-  class="fixed inset-0 z-50 hidden items-center justify-center border-b-gradient-primary/50 backdrop-blur-sm"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 backdrop-blur-md bg-black/60"
   role="dialog"
   aria-modal="true"
   aria-labelledby="modal-title"
@@ -24,17 +24,17 @@ const { id = 'project-modal' } = Astro.props;
   <!-- Modal Container -->
   <div
     id="modal-project-container"
-    class="relative mx-4 max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white/20 p-1 shadow-md backdrop-blur-sm"
+    class="relative w-full max-w-4xl max-h-[92dvh] sm:max-h-[90vh] overflow-hidden rounded-2xl bg-gradient-primary/90 border border-white/10 p-1 shadow-2xl backdrop-blur-xl"
     role="document"
   >
     <!-- Close Button -->
     <ButtonCloseModal />
 
     <!-- Modal Content -->
-    <div class="flex max-h-[calc(90vh-0.5rem)] flex-col overflow-hidden rounded-xl">
+    <div class="flex max-h-[calc(92dvh-0.5rem)] sm:max-h-[calc(90vh-0.5rem)] flex-col overflow-hidden rounded-xl">
       <!-- Project Image -->
       <section
-        class="relative h-[10rem] w-full flex-shrink-0 overflow-hidden rounded-t-xl md:h-[20rem]"
+        class="relative h-36 sm:h-48 md:h-64 w-full flex-shrink-0 overflow-hidden rounded-t-xl"
       >
         <img
           id="modal-project-image"
@@ -43,29 +43,31 @@ const { id = 'project-modal' } = Astro.props;
           class="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-105"
         />
         <!-- Project Type Badge -->
-        <div class="absolute top-4 left-4">
+        <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
           <ProjectTypeBadge divId="modal-project-type-badge" spanId="modal-project-type" />
         </div>
       </section>
 
       <!-- Scrollable Content Section -->
       <section
-        class="modal-scroll flex min-h-0 flex-1 flex-col flex-wrap gap-4 overflow-y-auto scroll-smooth rounded-b-xl bg-gradient-secondary p-4 backdrop-blur-2xl md:flex-row"
+        class="modal-scroll flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto scroll-smooth rounded-b-xl bg-gradient-secondary p-3.5 sm:p-5 md:p-6 backdrop-blur-2xl"
       >
-        <!-- sidebar info -->
-        <ProjectModalAsideInfo />
+        <div class="flex flex-col gap-4 md:flex-row md:items-start">
+          <!-- sidebar info -->
+          <ProjectModalAsideInfo />
 
-        <!-- Main content -->
-        <ProjectModalArticleContent />
+          <!-- Main content -->
+          <ProjectModalArticleContent />
+        </div>
 
         <!-- Next step -->
-        <footer class="flex w-full justify-center pt-2">
+        <footer class="flex w-full justify-center pt-2 pb-1 md:pt-4">
           <a
             id="modal-cta"
             href="https://wa.me/56987933282"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-lg border border-tertiary bg-tertiary/10 px-5 py-2.5 text-sm font-medium text-tertiary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-base"
+            class="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl border border-tertiary bg-tertiary/10 px-5 py-2.5 text-sm font-medium text-tertiary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-base"
             aria-label="Hablar por WhatsApp sobre un proyecto similar"
           >
             <Icon name="whatsApp" class="h-5 w-5" aria-hidden="true" />

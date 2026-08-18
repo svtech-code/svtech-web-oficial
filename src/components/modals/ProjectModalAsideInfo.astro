@@ -1,34 +1,33 @@
 <aside
   id="aside-info"
-  class="h-fit w-full space-y-4 rounded-xl bg-gradient-primary p-4 md:w-[18rem]"
+  class="h-fit w-full rounded-xl bg-gradient-primary/80 p-3.5 sm:p-4 md:w-[17rem] md:flex-shrink-0"
 >
-  <!-- Project status -->
-  <section>
-    <h3 class="text-lg font-semibold tracking-wide uppercase">Estado</h3>
-    <div class="flex items-center gap-2">
-      <div id="modal-status-indicator" class="h-4 w-4 rounded-full"></div>
-      <p id="modal-status" class="text-sm font-medium text-secondary capitalize">
-        <!-- Status will be injected here -->
+  <div class="flex flex-col gap-3 sm:gap-4">
+    <!-- Project status -->
+    <section>
+      <h3 class="text-xs font-semibold tracking-wide uppercase sm:text-sm md:text-base">Estado</h3>
+      <div class="mt-1 flex items-center gap-2">
+        <div id="modal-status-indicator" class="h-3 w-3 sm:h-3.5 sm:w-3.5 rounded-full flex-shrink-0"></div>
+        <p id="modal-status" class="text-xs font-medium text-secondary capitalize sm:text-sm">
+          <!-- Status will be injected here -->
+        </p>
+      </div>
+    </section>
+
+    <!-- Client -->
+    <section>
+      <h3 class="text-xs font-semibold tracking-wide uppercase sm:text-sm md:text-base">Cliente</h3>
+      <p id="modal-customer" class="mt-1 text-xs font-medium text-secondary sm:text-sm">
+        <!-- Customer will be injected here -->
       </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Client -->
-  <section>
-    <h3 class="text-lg font-semibold tracking-wide uppercase">Cliente</h3>
-    <p id="modal-customer" class="text-sm font-medium text-secondary">
-      <!-- Customer will be injected here -->
-    </p>
-  </section>
-
-  <!-- Duration (if available) -->
-  <section id="modal-duration-container" class="hidden">
-    <h3 class="text-lg font-semibold tracking-wide uppercase">Duración</h3>
-    <p id="modal-duration" class="text-sm font-medium text-secondary">
-      <!-- Duration will be injected here -->
-    </p>
-  </section>
-
-  <!-- Technologies -->
-  <!-- links -->
+    <!-- Duration (if available) -->
+    <section id="modal-duration-container" class="hidden">
+      <h3 class="text-xs font-semibold tracking-wide uppercase sm:text-sm md:text-base">Duración</h3>
+      <p id="modal-duration" class="mt-1 text-xs font-medium text-secondary sm:text-sm">
+        <!-- Duration will be injected here -->
+      </p>
+    </section>
+  </div>
 </aside>
