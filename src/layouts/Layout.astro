@@ -17,6 +17,7 @@ interface Props {
   type?: string;
   showHeader?: boolean;
   showScrollToTop?: boolean;
+  showSmokeScreen?: boolean;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   type,
   showHeader = true,
   showScrollToTop = true,
+  showSmokeScreen = true,
 } = Astro.props;
 ---
 
@@ -130,12 +132,15 @@ const {
   </head>
 
   <body>
-    <div
-      id="smoke-screen"
-      aria-hidden="true"
-      class="animate-fade-out pointer-events-none fixed inset-0 z-50 bg-gradient-to-br from-[#00252d] to-[#0096b8]"
-    >
-    </div>
+    {
+      showSmokeScreen && (
+        <div
+          id="smoke-screen"
+          aria-hidden="true"
+          class="animate-fade-out pointer-events-none fixed inset-0 z-50 bg-gradient-to-br from-[#00252d] to-[#0096b8]"
+        />
+      )
+    }
 
     {showHeader && <Header />}
 

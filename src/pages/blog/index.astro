@@ -1,0 +1,149 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from 'layouts/Layout.astro';
+import BlogCard from 'components/cards/BlogCard.astro';
+import Icon from 'components/ui/Icon.astro';
+import { titleBlog, subTitleBlog } from 'consts/pagesTitle';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+---
+
+<Layout
+  title={`${titleBlog} | SV Tech`}
+  description={subTitleBlog}
+>
+  <div class="relative flex w-full max-w-[1200px] flex-col items-center gap-12 px-4 pt-32 pb-24 md:pt-40 md:pb-32">
+    <!-- Header Hero con convención estándar de SV Tech -->
+    <header class="reveal flex w-[90%] flex-col items-center justify-center gap-4 text-center md:w-[100%]">
+      <h1 class="text-2xl font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl">
+        {titleBlog}
+      </h1>
+      <h2 class="text-sm font-medium text-primary sm:text-lg md:text-3xl">
+        {subTitleBlog}
+      </h2>
+    </header>
+
+    <!-- Buscador en tiempo real -->
+    <div class="reveal w-full max-w-xl px-2">
+      <div class="group relative flex items-center">
+        <span class="pointer-events-none absolute left-4 text-secondary/70 transition-colors duration-300 group-focus-within:text-primary">
+          <Icon name="search" class="h-5 w-5" aria-hidden="true" />
+        </span>
+        <input
+          type="search"
+          id="blog-search-input"
+          placeholder="Buscar por palabra clave, herramienta o etiqueta..."
+          aria-label="Buscar guías y artículos"
+          class="w-full rounded-2xl border border-white/10 bg-gradient-primary/80 py-3.5 pr-10 pl-12 text-sm text-secondary placeholder:text-secondary/70 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 ease-out focus:border-primary focus:shadow-lg focus:shadow-primary/20 focus:outline-none sm:text-base [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
+        />
+        <button
+          id="clear-search-btn"
+          type="button"
+          class="absolute right-3.5 hidden h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-white/10 text-secondary/70 transition hover:bg-white/20 hover:text-white focus:outline-none"
+          aria-label="Limpiar búsqueda"
+        >
+          ✕
+        </button>
+      </div>
+      <p id="search-results-counter" class="mt-2 text-center text-xs font-medium text-secondary/60"></p>
+    </div>
+
+    <!-- Listado de Artículos -->
+    <section class="w-full">
+      <div
+        id="blog-cards-container"
+        class="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2"
+      >
+        {sortedPosts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+
+      <!-- Estado vacío cuando no hay resultados de búsqueda -->
+      <div
+        id="no-search-results"
+        class="hidden flex-col items-center justify-center rounded-2xl border border-white/10 bg-gradient-primary/50 p-12 text-center"
+      >
+        <span class="text-3xl">🔍</span>
+        <p class="mt-3 text-lg font-semibold text-secondary">
+          No se encontraron artículos
+        </p>
+        <p class="mt-1 text-sm text-secondary/70">
+          Intenta buscar con otra palabra clave o término.
+        </p>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  function setupBlogSearch() {
+    const searchInput = document.getElementById('blog-search-input') as HTMLInputElement | null;
+    const clearBtn = document.getElementById('clear-search-btn') as HTMLButtonElement | null;
+    const counter = document.getElementById('search-results-counter') as HTMLParagraphElement | null;
+    const noResults = document.getElementById('no-search-results') as HTMLDivElement | null;
+    const cards = document.querySelectorAll<HTMLElement>('[data-blog-card]');
+
+    if (!searchInput || cards.length === 0) return;
+
+    function filterCards() {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      if (clearBtn) {
+        if (query.length > 0) {
+          clearBtn.classList.remove('hidden');
+          clearBtn.classList.add('flex');
+        } else {
+          clearBtn.classList.add('hidden');
+          clearBtn.classList.remove('flex');
+        }
+      }
+
+      cards.forEach((card) => {
+        const searchable = card.getAttribute('data-searchable') || '';
+        const matches = query === '' || searchable.includes(query);
+
+        if (matches) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (counter) {
+        if (query.length > 0) {
+          counter.textContent = `${visibleCount} ${visibleCount === 1 ? 'resultado encontrado' : 'resultados encontrados'}`;
+        } else {
+          counter.textContent = '';
+        }
+      }
+
+      if (noResults) {
+        if (visibleCount === 0 && query.length > 0) {
+          noResults.classList.remove('hidden');
+          noResults.classList.add('flex');
+        } else {
+          noResults.classList.add('hidden');
+          noResults.classList.remove('flex');
+        }
+      }
+    }
+
+    searchInput.addEventListener('input', filterCards);
+
+    clearBtn?.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+        filterCards();
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupBlogSearch);
+</script>

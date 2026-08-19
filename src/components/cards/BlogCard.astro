@@ -1,0 +1,83 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const slug = post.slug || post.id;
+const { title, description, pubDate, category, image, imageAlt, readTime, tags } = post.data;
+
+const formattedDate = new Intl.DateTimeFormat('es-CL', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(pubDate);
+
+const searchableText = `${title} ${description} ${category} ${tags.join(' ')}`.toLowerCase();
+---
+
+<article
+  data-blog-card
+  data-searchable={searchableText}
+  class="reveal-card group relative flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-primary/80 p-[2px] shadow-lg shadow-black/40 backdrop-blur-xl transition-[transform,scale,border-color,box-shadow] duration-300 ease-out hover:scale-[1.01] hover:border-primary/50 hover:shadow-primary/20"
+>
+  <a
+    href={`/blog/${slug}`}
+    class="flex h-full w-full flex-col overflow-hidden rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+    aria-label={`Leer artículo: ${title}`}
+  >
+    <!-- Imagen del artículo -->
+    <div class="relative aspect-[16/9] w-full overflow-hidden bg-gradient-secondary/50">
+      <img
+        src={image}
+        alt={imageAlt}
+        loading="lazy"
+        transition:name={`blog-image-${slug}`}
+        class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <!-- Fallback en caso de que aún no exista la imagen local -->
+      <div
+        class="hidden h-full w-full items-center justify-center bg-gradient-secondary p-6 text-center"
+      >
+        <span class="text-3xl">💻</span>
+      </div>
+    </div>
+
+    <!-- Contenido del artículo -->
+    <div class="flex flex-1 flex-col justify-between p-5 md:p-6">
+      <div class="space-y-2.5">
+        <!-- Metadatos (Fecha y tiempo de lectura con color naranja opaco) -->
+        <div class="flex items-center gap-2 text-xs font-medium text-tertiary/75">
+          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+          <span>•</span>
+          <span>{readTime}</span>
+        </div>
+
+        <!-- Título -->
+        <h3
+          class="text-lg font-bold text-secondary transition-colors duration-300 group-hover:text-primary md:text-xl"
+          transition:name={`blog-title-${slug}`}
+        >
+          {title}
+        </h3>
+
+        <!-- Descripción -->
+        <p class="line-clamp-2 text-sm leading-relaxed text-secondary/80">
+          {description}
+        </p>
+      </div>
+
+      <!-- Botón de lectura alineado a la derecha -->
+      <div class="mt-6 flex items-center justify-end gap-2 font-medium text-tertiary">
+        <span class="text-sm">Leer guía completa</span>
+        <span
+          class="inline-block transition-transform duration-300 ease-out group-hover:translate-x-1"
+          aria-hidden="true">→</span
+        >
+      </div>
+    </div>
+  </a>
+</article>

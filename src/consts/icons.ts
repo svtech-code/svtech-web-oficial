@@ -38,6 +38,8 @@ import Open from 'assets/svg/open.svg';
 import OpenVector from 'assets/svg/open-vector.svg';
 import CloseVector from 'assets/svg/close-vector.svg';
 import UpArrow from 'assets/svg/upArrow.svg';
+import Search from 'assets/svg/search.svg';
+import Download from 'assets/svg/download.svg';
 
 export const icons = {
   // redes sociales
@@ -80,6 +82,8 @@ export const icons = {
   'open-vector': OpenVector,
   'close-vector': CloseVector,
   upArrow: UpArrow,
+  search: Search,
+  download: Download,
 } as const;
 
 export type IconName = keyof typeof icons;

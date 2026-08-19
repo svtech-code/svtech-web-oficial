@@ -29,3 +29,9 @@ export const questionTitleContact: string = '¿Tienes una idea?';
 export const titleContact: string = 'Contacto';
 export const textContact: string =
   'Estamos listos para ayudarte con tu próximo proyecto o resolver tus dudas. Háblanos y nos pondremos en contacto a la brevedad.';
+
+// blog
+export const titleBlog: string = 'Blog';
+export const subTitleBlog: string =
+  'Guías prácticas, tutoriales de soporte remoto y herramientas digitales desarrolladas por SV Tech';
+
