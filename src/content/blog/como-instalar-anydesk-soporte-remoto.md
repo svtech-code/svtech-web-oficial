@@ -2,7 +2,7 @@
 title: 'Cómo descargar e instalar AnyDesk para soporte remoto paso a paso'
 description: 'Guía práctica para clientes de SV Tech: descarga segura, instalación rápida y cómo compartir tu código de acceso para recibir asistencia técnica remota inmediata.'
 pubDate: 2026-08-17
-author: 'SV Tech'
+author: 'Sv Tech'
 category: 'soporte'
 image: '/images/blog/instalacion-anydesk/cover.webp'
 imageAlt: 'Captura de AnyDesk y soporte informático para asistencia remota'
