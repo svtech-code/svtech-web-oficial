@@ -4,15 +4,17 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 
 <section
   id="home"
-  class="relative flex min-h-screen w-full max-w-[1200px] flex-col items-center justify-center px-2"
+  class="relative flex min-h-screen w-full max-w-[1200px] flex-col items-center justify-center px-4 pt-24 pb-12 sm:pt-28 lg:pt-32"
 >
-  <header class="reveal flex flex-col items-center justify-center gap-2 md:gap-4">
-    <mark class="bg-transparent text-xs text-tertiary duration-300 sm:text-lg md:text-2xl">
+  <header class="reveal flex flex-col items-center justify-center gap-2 md:gap-3">
+    <mark
+      class="bg-transparent text-xs text-tertiary duration-300 sm:text-base md:text-lg lg:text-xl"
+    >
       Transformando ideas en realidades digitales
     </mark>
 
     <h1
-      class="text-center text-[28px] font-bold text-secondary uppercase duration-300 sm:text-5xl md:text-6xl"
+      class="text-center text-3xl font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl lg:text-6xl"
     >
       Soporte Informático
       <span class="block text-primary">Desarrollo Web</span>
@@ -21,20 +23,20 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 
   <div class="reveal reveal-delay-1 flex w-full flex-col items-center justify-center">
     <p
-      class="text-md w-[85%] py-8 text-center font-medium text-secondary duration-300 sm:text-lg md:w-[75%] md:min-w-[780px] md:text-3xl"
+      class="w-[90%] py-4 text-center text-sm font-medium text-secondary duration-300 sm:py-6 sm:text-base md:w-[80%] md:text-lg lg:max-w-3xl lg:text-xl"
     >
       Comprometidos con la innovación y el uso de las nuevas tecnologías, para entregar soluciones
       de calidad
     </p>
 
-    <SocialNetworkIcons class="gap-6 pb-16 sm:gap-12 sm:pb-24" />
+    <SocialNetworkIcons class="gap-6 pb-8 sm:gap-10 sm:pb-12 md:pb-14" />
   </div>
 
   <footer class="reveal reveal-delay-2 flex items-center justify-center gap-4 sm:gap-8">
     <a
       href="#contact"
       aria-label="Ir a la sección de contacto"
-      class="item-center flex h-10 w-30 justify-center rounded-lg border border-primary bg-primary p-2 text-sm font-medium text-gradient-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-52 sm:text-lg"
+      class="flex h-10 w-32 items-center justify-center rounded-lg border border-primary bg-primary p-2 text-sm font-medium text-gradient-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-48 sm:text-base"
     >
       Contáctanos
     </a>
@@ -42,7 +44,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
     <a
       href="#services"
       aria-label="Ir a la sección de servicios"
-      class="flex h-10 w-30 items-center justify-center rounded-lg border border-primary p-2 text-sm font-medium text-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-52 sm:text-lg"
+      class="flex h-10 w-32 items-center justify-center rounded-lg border border-primary p-2 text-sm font-medium text-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-48 sm:text-base"
     >
       Ver Servicios
     </a>
