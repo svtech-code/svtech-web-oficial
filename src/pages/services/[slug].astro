@@ -1,92 +1,281 @@
 ---
-import { getCollection, render } from 'astro:content';
-import ServiceLayout from 'layouts/ServiceLayout.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import Layout from 'layouts/Layout.astro';
+import Icon from 'components/ui/Icon.astro';
+import type { IconName } from 'consts/icons';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
   const services = await getCollection('services');
-
   return services.map((service) => ({
     params: { slug: service.slug },
     props: { service },
   }));
 }
 
-const { service } = Astro.props;
+const { slug } = Astro.params;
+const service = Astro.props.service || (slug ? await getEntry('services', slug) : null);
+
+if (!service) {
+  return Astro.redirect('/404');
+}
+
+const allServices = await getCollection('services');
+const otherServices = allServices
+  .filter((s) => s.slug !== service.slug)
+  .sort((a, b) => a.data.order - b.data.order);
+
 const { data } = service;
 const { title, image, imageAlt, description } = data;
 
 const { Content } = await render(service);
 
-export const prerender = true;
+const whatsappMessage = encodeURIComponent(
+  `Hola SV Tech, me gustaría solicitar información y cotizar el servicio de ${title}.`,
+);
+const whatsappUrl = `https://wa.me/56987933282?text=${whatsappMessage}`;
 ---
 
-<ServiceLayout title={`${title} | SV Tech`} description={description} image={image}>
-  <section
-    class="item-center relative flex w-full max-w-[1200px] flex-col justify-start px-4 pb-32"
+<Layout
+  title={`${title} | Servicios SV Tech`}
+  description={description}
+  image={image}
+  type="article"
+  showSmokeScreen={false}
+>
+  <div
+    class="relative flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-28 pb-24 md:pt-36 md:pb-32 lg:flex-row lg:items-start lg:gap-10"
   >
-    <div class="fixed top-6 left-0 z-40 flex w-full items-center justify-center">
-      <nav class="mr-4 flex w-full max-w-[1200px] items-center justify-end lg:mr-0">
-        <a
-          href="/#services"
-          class="cursor-pointer rounded-lg border-2 border-tertiary bg-gradient-primary/20 px-4 py-2 text-sm font-medium text-tertiary backdrop-blur-xl duration-300 hover:scale-105 hover:bg-gradient-primary/40 sm:rounded-2xl sm:text-xl"
-        >
-          ← Volver atrás
-        </a>
-      </nav>
-    </div>
-
-    <header class="relative pt-24 pb-8 sm:py-14">
-      <h1
-        class="text-center text-3xl font-semibold text-primary uppercase duration-300 sm:text-start sm:text-4xl md:text-5xl"
-        transition:name={`service-title-${service.slug}`}
+    <!-- Columna Principal: Detalle del Servicio -->
+    <article class="relative flex w-full min-w-0 flex-1 flex-col gap-8">
+      <!-- Breadcrumbs -->
+      <nav
+        aria-label="Breadcrumb"
+        class="flex items-center gap-2 text-xs font-medium text-secondary/60 sm:text-sm"
       >
-        {title}
-      </h1>
-    </header>
+        <a href="/" class="transition-colors hover:text-primary">Inicio</a>
+        <span>/</span>
+        <a href="/#services" class="transition-colors hover:text-primary">Servicios</a>
+        <span>/</span>
+        <span class="truncate text-secondary/90">{title}</span>
+      </nav>
 
-    <div class="flex flex-col gap-8">
-      <article class="flex items-center justify-center">
-        <img
-          src={image}
-          width="1000"
-          height="600"
-          alt={imageAlt}
-          loading="eager"
-          decoding="async"
-          class="animate-scale-in h-auto w-full max-w-[90%] rounded-2xl shadow-md shadow-tertiary/60"
-        />
-      </article>
+      <!-- Header del Servicio -->
+      <header class="space-y-5">
+        <div class="space-y-3">
+          <div
+            class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase"
+          >
+            <Icon
+              name={service.slug as IconName}
+              class="h-3.5 w-3.5 text-primary"
+              aria-hidden="true"
+            />
+            <span>Servicio Especializado</span>
+          </div>
 
-      <article
-        class={`
-          prose-invert prose 
-          prose-p:leading-[28px] prose-p:md:text-2xl prose-p:text-md prose-p:sm:text-lg
-          prose-h2:leading-[24px] prose-h2:md:text-4xl prose-h2:text-primary prose-h2:sm:text-3xl prose-h2:text-2xl 
-          prose-ul:m-0 prose-ul:sm:text-2xl prose-ul:mb-[2em] prose-ul:text-md
-          prose-li:mt-0 prose-li:mb-1
-          max-w-none font-medium text-base
-        `}
+          <h1
+            class="text-2xl leading-tight font-bold text-secondary uppercase sm:text-3xl md:text-4xl"
+            transition:name={`service-title-${service.slug}`}
+          >
+            {title}
+          </h1>
+
+          <p class="text-base leading-relaxed text-secondary/85 sm:text-lg">
+            {description}
+          </p>
+        </div>
+
+        <!-- Imagen destacada del servicio -->
+        <figure
+          class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-secondary/50 shadow-2xl shadow-black/50"
+        >
+          <img
+            src={image}
+            alt={imageAlt}
+            loading="eager"
+            decoding="async"
+            class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </figure>
+      </header>
+
+      <!-- Contenido Markdown Renderizado -->
+      <main
+        class="prose max-w-none prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-secondary prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-xl sm:prose-h2:mt-16 sm:prose-h2:mb-5 sm:prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-lg sm:prose-h3:text-xl prose-p:leading-relaxed prose-p:text-secondary/85 prose-a:font-medium prose-a:text-primary prose-a:underline prose-a:decoration-primary/40 prose-a:underline-offset-4 prose-a:transition-colors prose-a:hover:text-tertiary prose-a:hover:decoration-tertiary prose-blockquote:my-6 prose-blockquote:rounded-r-xl prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-primary/10 prose-blockquote:px-5 prose-blockquote:py-3.5 prose-blockquote:text-secondary/90 prose-blockquote:not-italic prose-blockquote:shadow-sm prose-strong:font-semibold prose-strong:text-secondary prose-code:rounded-md prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:font-normal prose-code:text-tertiary prose-code:before:content-none prose-code:after:content-none prose-ol:my-5 prose-ol:space-y-2.5 prose-ul:my-5 prose-ul:space-y-2 prose-li:text-secondary/85 prose-li:marker:text-primary prose-hr:my-10 prose-hr:border-white/10"
       >
         <Content />
-      </article>
-    </div>
-  </section>
-</ServiceLayout>
+      </main>
 
-<style>
-  @keyframes scaleIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.4);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
+      <!-- Banner CTA Final de Conversión -->
+      <section
+        class="mt-4 flex flex-col items-center justify-between gap-6 rounded-2xl border border-tertiary/40 bg-gradient-secondary p-6 text-center sm:flex-row sm:text-left"
+      >
+        <div class="flex-1 space-y-1.5">
+          <span class="text-xs font-bold tracking-wider text-tertiary uppercase">
+            Atención Rápida y Personalizada
+          </span>
+          <h3 class="text-lg font-bold text-secondary sm:text-xl">
+            ¿Listo para poner en marcha tu requerimiento?
+          </h3>
+          <p class="text-xs text-secondary/80 sm:text-sm">
+            Escríbenos directamente por WhatsApp o envíanos un mensaje por nuestro formulario web.
+          </p>
+        </div>
 
-  .animate-scale-in {
-    animation: scaleIn 0.4s ease-out both;
-    transform-origin: center;
-  }
-</style>
+        <div class="flex w-full flex-col gap-2.5 sm:w-56 sm:flex-shrink-0">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-tertiary bg-tertiary/10 px-4 text-xs font-semibold text-tertiary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-sm"
+            aria-label={`Contactar por WhatsApp para ${title}`}
+          >
+            <Icon name="whatsApp" class="h-4 w-4 text-tertiary" aria-hidden="true" />
+            <span class="whitespace-nowrap">Contáctanos</span>
+          </a>
+
+          <a
+            href="/#contact"
+            class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary px-4 text-xs font-semibold text-gradient-secondary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:text-sm"
+            aria-label="Ir al formulario de contacto"
+          >
+            <Icon name="mail" class="h-4 w-4 text-gradient-secondary" aria-hidden="true" />
+            <span class="whitespace-nowrap">Envíanos un mensaje</span>
+          </a>
+        </div>
+      </section>
+    </article>
+
+    <!-- Columna Lateral: Sidebar Sticky con Horarios, Otros Servicios e Info -->
+    <aside
+      class="relative flex w-full flex-col gap-6 lg:sticky lg:top-36 lg:w-[340px] lg:flex-shrink-0"
+    >
+      <!-- Bloque 1: Horarios de Atención & Cobertura -->
+      <div
+        class="reveal-card rounded-2xl border border-primary/40 bg-gradient-primary/90 p-6 shadow-xl shadow-black/30 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/10"
+      >
+        <div class="flex items-center gap-2">
+          <Icon name="clock" class="h-4 w-4 text-primary" aria-hidden="true" />
+          <span class="text-xs font-bold tracking-wider text-primary uppercase">
+            Horarios de Atención
+          </span>
+        </div>
+
+        <h3 class="mt-2 text-base font-bold text-secondary">Disponibilidad y Cobertura</h3>
+        <p class="mt-1.5 text-xs leading-relaxed text-secondary/75">
+          Atención técnica en Linares y la Región del Maule, y soporte remoto para todo Chile.
+        </p>
+
+        <div class="mt-4 space-y-3 border-t border-white/10 pt-4 text-xs text-secondary/85">
+          <div class="flex items-center justify-between">
+            <span class="flex items-center gap-1.5 font-medium text-secondary/70">
+              <Icon name="calendar" class="h-3.5 w-3.5 text-tertiary" aria-hidden="true" />
+              Días:
+            </span>
+            <span class="font-semibold text-secondary">Lunes a Sábado</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-secondary/70">Jornada Mañana:</span>
+            <span class="font-semibold text-primary">09:00 - 14:00 hrs.</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-secondary/70">Jornada Tarde:</span>
+            <span class="font-semibold text-primary">15:00 - 20:00 hrs.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque 2: Otros Servicios de SV Tech -->
+      <div
+        class="reveal-card reveal-delay-1 rounded-2xl border border-white/10 bg-gradient-secondary/50 p-6 shadow-xl shadow-black/30 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
+      >
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold tracking-wider text-primary uppercase">Otros Servicios</h3>
+          <a
+            href="/#services"
+            class="text-[11px] font-medium text-tertiary transition-colors hover:text-primary hover:underline"
+          >
+            Ver todos →
+          </a>
+        </div>
+
+        <div class="mt-4 flex flex-col gap-2.5 divide-y divide-white/5">
+          {
+            otherServices.map((otherService) => (
+              <a
+                href={`/services/${otherService.slug}`}
+                class="group flex items-center justify-between pt-2.5 transition-all duration-300 first:pt-0 hover:translate-x-1"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary transition-colors group-hover:border-primary group-hover:bg-primary/20">
+                    <Icon name={otherService.slug as IconName} class="h-4 w-4" aria-hidden="true" />
+                  </div>
+                  <span class="text-xs font-semibold text-secondary/90 transition-colors group-hover:text-primary">
+                    {otherService.data.title}
+                  </span>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-4 w-4 text-secondary/40 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-primary"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Bloque 3: Valores y Compromiso SV Tech -->
+      <div
+        class="reveal-card reveal-delay-2 rounded-2xl border border-white/10 bg-gradient-secondary/50 p-6 shadow-xl shadow-black/30 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
+      >
+        <h3 class="text-xs font-bold tracking-wider text-primary uppercase">¿Por qué SV Tech?</h3>
+        <ul class="mt-3.5 space-y-2.5 text-xs text-secondary/80">
+          <li class="flex items-start gap-2">
+            <span class="font-bold text-tertiary">✓</span>
+            <span
+              ><strong>Atención personalizada:</strong> Soluciones adaptadas a los procesos de tu negocio.</span
+            >
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold text-tertiary">✓</span>
+            <span
+              ><strong>Cercanía local:</strong> Presencia en Linares y la Región del Maule con trato humano
+              directo.</span
+            >
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold text-tertiary">✓</span>
+            <span
+              ><strong>Soporte continuo:</strong> Acompañamiento y mantención técnica después de cada
+              entrega.</span
+            >
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Botón Volver al Catálogo de Servicios (Cierre Global) -->
+  <nav aria-label="Navegación de retorno" class="flex w-full justify-center px-4 pb-24 md:pb-32">
+    <a
+      href="/#services"
+      class="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-8 py-3 text-sm font-medium text-secondary transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-105 hover:border-primary hover:bg-primary/10 hover:text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+    >
+      <span aria-hidden="true" class="transition-transform duration-300 group-hover:-translate-x-1"
+        >←</span
+      >
+      <span>Volver a todos los servicios</span>
+    </a>
+  </nav>
+</Layout>
