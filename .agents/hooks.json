@@ -1,5 +1,12 @@
 {
   "sv-memory": {
+    "PreInvocation": [
+      {
+        "command": "/Users/msandoval/.work/svtech/svtech-web-oficial/.agents/hooks/sv-memory-preinvocation.sh",
+        "timeout": 15,
+        "type": "command"
+      }
+    ],
     "PreToolUse": [
       {
         "hooks": [
