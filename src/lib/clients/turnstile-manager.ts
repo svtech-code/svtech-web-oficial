@@ -92,7 +92,7 @@ export class TurnstileManager {
       sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
       theme: 'dark',
       size: 'flexible',
-      apperance: 'always',
+      appearance: 'always',
       callback: (token: string) => {
         this.token = token;
       },
@@ -112,13 +112,7 @@ export class TurnstileManager {
 
     const turnstileDiv = this.widget.querySelector('div');
     if (turnstileDiv) {
-      turnstileDiv.classList.add(
-        'flex',
-        'rounded-xl',
-        'overflow-hidden',
-        'border-primary',
-        'border-2',
-      );
+      turnstileDiv.classList.add('flex', 'justify-center', 'items-center', 'w-full');
     }
   }
 }
