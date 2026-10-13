@@ -5,15 +5,21 @@ import BlogCard from 'components/cards/BlogCard.astro';
 import Icon from 'components/ui/Icon.astro';
 import { titleBlog, subTitleBlog } from 'consts/pagesTitle';
 
+export const prerender = true;
+
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
+
+const blogSeoTitle = 'Blog de Tecnología y Soporte Informático | SV Tech';
+const blogSeoDescription =
+  'Guías prácticas, tutoriales de soporte informático remoto y novedades tecnológicas de SV Tech para optimizar la productividad y seguridad de tu empresa.';
 ---
 
 <Layout
-  title={`${titleBlog} | SV Tech`}
-  description={subTitleBlog}
+  title={blogSeoTitle}
+  description={blogSeoDescription}
 >
   <div class="relative flex w-full max-w-[1200px] flex-col items-center gap-12 px-4 pt-32 pb-24 md:pt-40 md:pb-32">
     <!-- Header Hero con convención estándar de SV Tech -->

@@ -37,7 +37,28 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   site: 'https://www.svtech.cl',
-  integrations: [sitemap(), partytown()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/404') && !page.includes('/api/'),
+      serialize(item) {
+        if (item.url === 'https://www.svtech.cl/' || item.url === 'https://www.svtech.cl') {
+          item.changefreq = 'weekly';
+          item.priority = 1.0;
+        } else if (item.url.includes('/services/')) {
+          item.changefreq = 'monthly';
+          item.priority = 0.9;
+        } else if (item.url.endsWith('/blog') || item.url.endsWith('/blog/')) {
+          item.changefreq = 'weekly';
+          item.priority = 0.85;
+        } else if (item.url.includes('/blog/')) {
+          item.changefreq = 'monthly';
+          item.priority = 0.8;
+        }
+        return item;
+      },
+    }),
+    partytown(),
+  ],
 
   // Optimizaciones de build
   build: {

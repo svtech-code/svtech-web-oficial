@@ -1,4 +1,6 @@
 ---
+import { fixedTitle, defaultDescription } from 'consts/pagesTitle';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -7,13 +9,23 @@ export interface Props {
   type?: string;
 }
 
+const siteUrl = Astro.site ?? new URL('https://www.svtech.cl');
+
 const {
-  title = 'Sv Tech | Soporte Informático y Desarrollo Web a Medida',
-  description = 'Soporte Informático y Desarrollo de Aplicaciones Web a Medida',
-  image = 'https://www.svtech.cl/og.png',
-  canonicalURL = Astro.url.href,
+  title = fixedTitle,
+  description = defaultDescription,
+  image = '/og.png',
+  canonicalURL,
   type = 'website',
 } = Astro.props;
+
+// Asegurar URL absoluta y limpia para la imagen Open Graph
+const ogImage = image.startsWith('http')
+  ? image
+  : new URL(image, siteUrl).href;
+
+// URL canónica limpia (sin query params para evitar contenido duplicado en buscadores)
+const cleanCanonical = canonicalURL || new URL(Astro.url.pathname, siteUrl).href;
 ---
 
 <!-- theme for the top bar of the browser in mobile version -->
@@ -21,16 +33,23 @@ const {
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-status-bar-style" content="#001217" />
 
+<!-- Directivas de indexación y snippets -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
 <!-- SEO and canonical -->
-<link rel="canonical" href={canonicalURL} />
+<link rel="canonical" href={cleanCanonical} />
 <meta name="description" content={description} />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:url" content={canonicalURL} />
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+<meta property="og:url" content={cleanCanonical} />
 <meta property="og:type" content={type} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={image} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:secure_url" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
 <meta property="og:locale" content="es_CL" />
 <meta property="og:site_name" content="Sv Tech" />
 
@@ -40,4 +59,5 @@ const {
 <meta name="twitter:creator" content="@svtech_code" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={image} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={title} />

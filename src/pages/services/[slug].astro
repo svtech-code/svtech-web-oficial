@@ -35,15 +35,73 @@ const whatsappMessage = encodeURIComponent(
   `Hola SV Tech, me gustaría solicitar información y cotizar el servicio de ${title}.`,
 );
 const whatsappUrl = `https://wa.me/56987933282?text=${whatsappMessage}`;
+
+const siteUrl = Astro.site ?? new URL('https://www.svtech.cl');
+const serviceUrl = new URL(Astro.url.pathname, siteUrl).href;
+const serviceImage = image.startsWith('http') ? image : new URL(image, siteUrl).href;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${serviceUrl}#service`,
+      name: title,
+      description: description,
+      image: serviceImage,
+      provider: {
+        '@type': 'LocalBusiness',
+        name: 'SV Tech',
+        url: 'https://www.svtech.cl',
+        logo: 'https://www.svtech.cl/favicon.svg',
+        telephone: '+56987933282',
+        areaServed: {
+          '@type': 'Country',
+          name: 'Chile',
+        },
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Chile',
+      },
+      url: serviceUrl,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${serviceUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://www.svtech.cl',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Servicios',
+          item: 'https://www.svtech.cl/#services',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: title,
+          item: serviceUrl,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <Layout
-  title={`${title} | Servicios SV Tech`}
+  title={`${title} para Empresas | SV Tech`}
   description={description}
   image={image}
   type="article"
   showSmokeScreen={false}
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <div
     class="relative flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-28 pb-24 md:pt-36 md:pb-32 lg:flex-row lg:items-start lg:gap-10"
   >

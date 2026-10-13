@@ -7,13 +7,12 @@ import About from 'sections/About.astro';
 import Customer from 'sections/Customer.astro';
 import Contact from 'sections/Contact.astro';
 import Project from 'sections/Project.astro';
-
-const title = 'Sv Tech';
+import { fixedTitle, defaultDescription } from 'consts/pagesTitle';
 
 export const prerender = true;
 ---
 
-<Layout title={title}>
+<Layout title={fixedTitle} description={defaultDescription}>
   <Hero />
   <Service />
   <Why />
