@@ -37,11 +37,6 @@ export const PROJECTS_STATIC: Project[] = [
       'Optimización para alta concurrencia durante períodos de matrícula',
       'Envío de notificaciones por Mail con link para descarga de documentos oficiales',
     ],
-    // links: {
-    //   website: 'https://matricula.lvl.cl', // ver agregar demo
-    //   demo: 'https://matricula.lvl.cl', // ver agregar demo
-    //   github: 'https://github.com/svtech-code/front_matricula_lvl',
-    // },
   },
   {
     order: 2,
@@ -65,11 +60,6 @@ export const PROJECTS_STATIC: Project[] = [
       'Integración de diseños con imagen de la marca',
       'Integrar diseño de documentos con requerimientos de la empresa',
     ],
-    // links: {
-    //   website: 'https://matricula.lvl.cl', // ver agregar demo
-    //   demo: 'https://matricula.lvl.cl', // ver agregar demo
-    //   github: 'https://github.com/svtech-code/front_matricula_lvl',
-    // },
   },
   {
     order: 3,
@@ -98,11 +88,6 @@ export const PROJECTS_STATIC: Project[] = [
       'Implementación de notificaciones por usuario',
       'Integración con diferentes fuentes de datos',
     ],
-    // links: {
-    //   website: 'https://matricula.lvl.cl', // ver agregar demo
-    //   demo: 'https://matricula.lvl.cl', // ver agregar demo
-    //   github: 'https://github.com/svtech-code/front_matricula_lvl',
-    // },
   },
   {
     order: 4,
