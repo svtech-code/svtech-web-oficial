@@ -13,7 +13,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/partytown": "^2.1.8",
     "@astrojs/sitemap": "^3.6.1",
     "@astrojs/vercel": "^9.0.3",
     "@tailwindcss/vite": "^4.1.18",
