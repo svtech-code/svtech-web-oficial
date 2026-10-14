@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Check governance file formatting
+        run: >-
+          bunx prettier --check README.md CONTRIBUTING.md CONTRIBUTING_ES.md
+          SECURITY.md SECURITY_ES.md .github/dependabot.yml
+          .github/workflows/ci.yml .github/PULL_REQUEST_TEMPLATE.md
+
+      - name: Build
+        run: bun run build

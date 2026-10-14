@@ -278,39 +278,9 @@ setupCardVisibility({
 
 ## 🤝 Contribuir
 
-1. **Fork el proyecto**
-2. **Crea una rama para tu feature**
-
-   ```sh
-   git checkout -b feature/amazing-feature
-   ```
-
-3. **Sigue las convenciones del proyecto**
-   - TypeScript strict mode
-   - ESLint y Prettier configurados
-   - Comentarios JSDoc en managers
-   - Props tipadas en componentes
-4. **Commit tus cambios**
-
-   ```sh
-   git commit -m 'feat: add amazing feature'
-   ```
-
-5. **Push a la rama**
-
-   ```sh
-   git push origin feature/amazing-feature
-   ```
-
-6. **Abre un Pull Request**
-
-### Convenciones de Código
-
-- **Components**: PascalCase para archivos `.astro`
-- **Managers**: Suffix `Manager` para clases de lógica
-- **Types**: Interfaces en `src/types/`
-- **Constants**: UPPER_SNAKE_CASE para constantes
-- **CSS**: Prefer Tailwind classes, custom CSS solo cuando necesario
+Consulta la [guía para contribuir en español](CONTRIBUTING_ES.md) o su
+[versión en inglés](CONTRIBUTING.md) para conocer el flujo de pull requests, las
+verificaciones y las convenciones de commits.
 
 ## 🔍 Testing y Quality Assurance
 
@@ -354,10 +324,6 @@ bun build
 - **Event Delegation** optimizado para performance
 - **Accessibility-first** development approach
 - **Production-ready** con error handling robusto
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
 
 ## 📞 Contacto
 
