@@ -61,7 +61,17 @@ const { id = 'project-modal' } = Astro.props;
         </div>
 
         <!-- Next step -->
-        <footer class="flex w-full justify-center pt-2 pb-1 md:pt-4">
+        <footer class="flex w-full flex-col items-center justify-center gap-3 pt-2 pb-1 sm:flex-row md:pt-4">
+          <a
+            id="modal-project-link"
+            href="/#projects"
+            class="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-secondary transition-[transform,scale,border-color,background-color] duration-300 ease-out hover:scale-105 hover:border-primary hover:bg-primary/10 hover:text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:text-base"
+            aria-label="Ver la página completa del proyecto"
+          >
+            <Icon name="open-vector" class="h-4 w-4" aria-hidden="true" />
+            Ver página completa
+          </a>
+
           <a
             id="modal-cta"
             href="https://wa.me/56987933282"

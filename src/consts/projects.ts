@@ -14,6 +14,7 @@ const customerName = (name: string): string => {
 export const PROJECTS_STATIC: Project[] = [
   {
     order: 1,
+    slug: 'sistema-pre-matricula',
     type: 'desarrollo',
     title: 'sistema para pre-matrícula',
     description:
@@ -40,6 +41,7 @@ export const PROJECTS_STATIC: Project[] = [
   },
   {
     order: 2,
+    slug: 'asesoria-servicios-informaticos',
     type: 'servicio',
     title: 'asesoría en servicios informáticos',
     description:
@@ -63,6 +65,7 @@ export const PROJECTS_STATIC: Project[] = [
   },
   {
     order: 3,
+    slug: 'sistema-alerta-temprana',
     type: 'desarrollo',
     title: 'sistema alerta temprana',
     description:
@@ -91,6 +94,7 @@ export const PROJECTS_STATIC: Project[] = [
   },
   {
     order: 4,
+    slug: 'migracion-servicio-hosting',
     type: 'servicio',
     title: 'migración servicio hosting',
     description:
@@ -117,6 +121,7 @@ export const PROJECTS_STATIC: Project[] = [
   },
   {
     order: 5,
+    slug: 'plantilla-google-sheet-automatizada',
     type: 'desarrollo',
     title: 'plantilla Google Sheet automatizada',
     description:

@@ -47,6 +47,9 @@ export default defineConfig({
         } else if (item.url.includes('/services/')) {
           item.changefreq = 'monthly';
           item.priority = 0.9;
+        } else if (item.url.includes('/proyectos/')) {
+          item.changefreq = 'monthly';
+          item.priority = 0.85;
         } else if (item.url.endsWith('/blog') || item.url.endsWith('/blog/')) {
           item.changefreq = 'weekly';
           item.priority = 0.85;

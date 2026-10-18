@@ -46,7 +46,14 @@ nacional con soporte remoto y acompañamiento después de cada entrega.
 - Instagram: https://www.instagram.com/svtech_code/
 - Discord (comunidad técnica): https://discord.gg/DUhM8uc3HM
 
-## Proyectos y blog
+## Proyectos
 
-- [Proyectos](https://www.svtech.cl/#projects): desarrollos y servicios implementados en pequeñas y medianas empresas.
+- [Sistema para pre-matrícula](https://www.svtech.cl/proyectos/sistema-pre-matricula): sistema web de gestión del proceso de pre-matrícula para un establecimiento educacional.
+- [Asesoría en servicios informáticos](https://www.svtech.cl/proyectos/asesoria-servicios-informaticos): configuración de correo corporativo, órdenes de trabajo y asesoría en sistemas web.
+- [Sistema de alerta temprana](https://www.svtech.cl/proyectos/sistema-alerta-temprana): detección y acompañamiento de estudiantes con riesgo de deserción.
+- [Migración de servicio de hosting](https://www.svtech.cl/proyectos/migracion-servicio-hosting): migración de infraestructura, correo corporativo y SSL sin caídas.
+- [Plantilla Google Sheets automatizada](https://www.svtech.cl/proyectos/plantilla-google-sheet-automatizada): automatización con Google Apps Script para el registro y control de ventas.
+
+## Blog
+
 - [Blog](https://www.svtech.cl/blog): guías prácticas de soporte, herramientas y automatización.

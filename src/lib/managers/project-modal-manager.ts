@@ -39,6 +39,7 @@ export class ProjectModalManager {
     featuresContainer: HTMLElement;
     features: HTMLUListElement;
     cta: HTMLAnchorElement;
+    projectLink: HTMLAnchorElement;
   };
 
   /**
@@ -98,6 +99,7 @@ export class ProjectModalManager {
       featuresContainer: document.querySelector('#modal-features-container') as HTMLElement,
       features: document.querySelector('#modal-features') as HTMLUListElement,
       cta: document.querySelector('#modal-cta') as HTMLAnchorElement,
+      projectLink: document.querySelector('#modal-project-link') as HTMLAnchorElement,
     };
   }
 
@@ -301,6 +303,11 @@ export class ProjectModalManager {
 
     // Información básica del contenido del modal
     this.elements.fullDescription.textContent = project.fullDescription;
+
+    // Enlace a la página completa del proyecto
+    if (this.elements.projectLink) {
+      this.elements.projectLink.href = `/proyectos/${project.slug}`;
+    }
 
     // Features del modal
     this.updateFeatures(project.features);

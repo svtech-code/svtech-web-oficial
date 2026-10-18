@@ -10,6 +10,7 @@ type StatusProject = 'completado' | 'en-progreso' | 'mantenimiento';
 
 export interface Project {
   order: number;
+  slug: string;
   type: TypeProject;
   title: string;
   description: string;

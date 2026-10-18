@@ -1,0 +1,360 @@
+---
+import { PROJECTS_STATIC } from 'consts/projects';
+import type { Project } from 'types/projects';
+import Layout from 'layouts/Layout.astro';
+import Icon from 'components/ui/Icon.astro';
+import ProjectTypeBadge from 'components/ui/ProjectTypeBadge.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return PROJECTS_STATIC.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props as { project: Project };
+const {
+  slug,
+  type,
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  customer,
+  fullDescription,
+  technologies,
+  status,
+  duration,
+  features,
+  challenges,
+} = project;
+
+const isService: boolean = type === 'servicio';
+
+const statusColorMap: Record<string, string> = {
+  completado: 'bg-green-500',
+  'en-progreso': 'bg-yellow-500',
+  mantenimiento: 'bg-blue-500',
+};
+const statusLabel = (status || 'completado').replace('-', ' ');
+const statusColor = statusColorMap[status || 'completado'] ?? 'bg-green-500';
+
+const otherProjects = PROJECTS_STATIC.filter((p) => p.slug !== slug).sort(
+  (a, b) => a.order - b.order,
+);
+
+const siteUrl = Astro.site ?? new URL('https://www.svtech.cl');
+const projectUrl = new URL(Astro.url.pathname, siteUrl).href;
+const projectImage = imageSrc.startsWith('http') ? imageSrc : new URL(imageSrc, siteUrl).href;
+
+const whatsappMessage = encodeURIComponent(
+  `Hola SV Tech, me gustaría cotizar un proyecto similar a "${title}".`,
+);
+const whatsappUrl = `https://wa.me/56987933282?text=${whatsappMessage}`;
+
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CreativeWork',
+      '@id': `${projectUrl}#project`,
+      name: title,
+      description: fullDescription,
+      image: projectImage,
+      url: projectUrl,
+      genre: type,
+      keywords: (technologies ?? []).join(', '),
+      inLanguage: 'es-CL',
+      creator: { '@id': 'https://www.svtech.cl/#localbusiness' },
+      isPartOf: { '@id': 'https://www.svtech.cl/#website' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${projectUrl}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.svtech.cl' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Proyectos',
+          item: 'https://www.svtech.cl/#projects',
+        },
+        { '@type': 'ListItem', position: 3, name: title, item: projectUrl },
+      ],
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${title} | Proyectos | SV Tech`}
+  description={description}
+  image={imageSrc}
+  canonicalURL={projectUrl}
+  type="article"
+  showSmokeScreen={false}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
+  <div
+    class="relative flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-28 pb-24 md:pt-36 md:pb-32 lg:flex-row lg:items-start lg:gap-10"
+  >
+    <!-- Columna Principal -->
+    <article class="relative flex w-full min-w-0 flex-1 flex-col gap-8">
+      <!-- Breadcrumbs -->
+      <nav
+        aria-label="Breadcrumb"
+        class="flex items-center gap-2 text-xs font-medium text-secondary/60 sm:text-sm"
+      >
+        <a href="/" class="transition-colors hover:text-primary">Inicio</a>
+        <span>/</span>
+        <a href="/#projects" class="transition-colors hover:text-primary">Proyectos</a>
+        <span>/</span>
+        <span class="truncate text-secondary/90">{title}</span>
+      </nav>
+
+      <!-- Header -->
+      <header class="space-y-5">
+        <div class="space-y-3">
+          <ProjectTypeBadge type={type} />
+
+          <h1
+            class="text-2xl leading-tight font-bold text-secondary uppercase sm:text-3xl md:text-4xl"
+          >
+            {title}
+          </h1>
+
+          <p class="text-base leading-relaxed text-secondary/85 sm:text-lg">
+            {description}
+          </p>
+        </div>
+
+        <!-- Imagen del proyecto -->
+        <figure
+          class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-secondary/50 shadow-2xl shadow-black/50"
+        >
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            loading="eager"
+            decoding="async"
+            class="h-full w-full object-cover"
+          />
+        </figure>
+      </header>
+
+      <!-- Descripción -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-secondary sm:text-2xl">
+          Descripción del {isService ? 'servicio' : 'proyecto'}
+        </h2>
+        <p class="leading-relaxed text-secondary/85">{fullDescription}</p>
+      </section>
+
+      <!-- Características -->
+      {
+        features && features.length > 0 && (
+          <section class="space-y-3">
+            <h2 class="text-xl font-bold text-secondary sm:text-2xl">Características principales</h2>
+            <ul class="space-y-2.5">
+              {features.map((feature) => (
+                <li class="flex items-start gap-3 leading-relaxed text-secondary/85">
+                  <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-secondary" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <!-- Desafíos -->
+      {
+        challenges && challenges.length > 0 && (
+          <section class="space-y-3">
+            <h2 class="text-xl font-bold text-secondary sm:text-2xl">Desafíos abordados</h2>
+            <ul class="space-y-2.5">
+              {challenges.map((challenge) => (
+                <li class="flex items-start gap-3 leading-relaxed text-secondary/85">
+                  <span
+                    class={`mt-2 h-2 w-2 flex-shrink-0 rounded-full ${
+                      isService ? 'bg-primary' : 'bg-tertiary'
+                    }`}
+                  />
+                  <span>{challenge}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <!-- Tecnologías -->
+      {
+        technologies && technologies.length > 0 && (
+          <section class="space-y-3">
+            <h2 class="text-xl font-bold text-secondary sm:text-2xl">Tecnologías utilizadas</h2>
+            <ul class="flex flex-wrap gap-2">
+              {technologies.map((tech) => (
+                <li
+                  class={`rounded-lg border px-3 py-1 text-xs font-semibold ${
+                    isService
+                      ? 'border-primary/40 bg-primary/10 text-primary'
+                      : 'border-tertiary/40 bg-tertiary/10 text-tertiary'
+                  }`}
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <!-- CTA Final -->
+      <section
+        class="mt-4 flex flex-col items-center justify-between gap-6 rounded-2xl border border-tertiary/40 bg-gradient-secondary p-6 text-center sm:flex-row sm:text-left"
+      >
+        <div class="flex-1 space-y-1.5">
+          <span class="text-xs font-bold tracking-wider text-tertiary uppercase">
+            Atención Rápida y Personalizada
+          </span>
+          <h3 class="text-lg font-bold text-secondary sm:text-xl">
+            ¿Tienes un requerimiento similar?
+          </h3>
+          <p class="text-xs text-secondary/80 sm:text-sm">
+            Escríbenos directamente por WhatsApp o envíanos un mensaje por nuestro formulario web.
+          </p>
+        </div>
+
+        <div class="flex w-full flex-col gap-2.5 sm:w-56 sm:flex-shrink-0">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-tertiary bg-tertiary/10 px-4 text-xs font-semibold text-tertiary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-sm"
+            aria-label={`Contactar por WhatsApp sobre ${title}`}
+          >
+            <Icon name="whatsApp" class="h-4 w-4 text-tertiary" aria-hidden="true" />
+            <span class="whitespace-nowrap">Contáctanos</span>
+          </a>
+
+          <a
+            href="/#contact"
+            class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary px-4 text-xs font-semibold text-gradient-secondary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:text-sm"
+            aria-label="Ir al formulario de contacto"
+          >
+            <Icon name="mail" class="h-4 w-4 text-gradient-secondary" aria-hidden="true" />
+            <span class="whitespace-nowrap">Envíanos un mensaje</span>
+          </a>
+        </div>
+      </section>
+    </article>
+
+    <!-- Sidebar -->
+    <aside
+      class="relative flex w-full flex-col gap-6 lg:sticky lg:top-36 lg:w-[340px] lg:flex-shrink-0"
+    >
+      <!-- Ficha del proyecto -->
+      <div
+        class="reveal-card rounded-2xl border border-primary/40 bg-gradient-primary/90 p-6 shadow-xl shadow-black/30 backdrop-blur-xl"
+      >
+        <h2 class="text-xs font-bold tracking-wider text-primary uppercase">Ficha del proyecto</h2>
+
+        <div class="mt-4 space-y-3 border-t border-white/10 pt-4 text-xs text-secondary/85">
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-secondary/70">Estado:</span>
+            <span class="flex items-center gap-2 font-semibold capitalize">
+              <span class={`h-2.5 w-2.5 rounded-full ${statusColor}`} aria-hidden="true"></span>
+              {statusLabel}
+            </span>
+          </div>
+          {
+            customer && (
+              <div class="flex items-start justify-between gap-3">
+                <span class="text-secondary/70">Cliente:</span>
+                <span class="text-right font-semibold text-secondary">{customer}</span>
+              </div>
+            )
+          }
+          {
+            duration && (
+              <div class="flex items-center justify-between gap-3">
+                <span class="text-secondary/70">Duración:</span>
+                <span class="font-semibold text-secondary">{duration}</span>
+              </div>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Otros proyectos -->
+      <div
+        class="reveal-card reveal-delay-1 rounded-2xl border border-white/10 bg-gradient-secondary/50 p-6 shadow-xl shadow-black/30 backdrop-blur-xl"
+      >
+        <div class="flex items-center justify-between">
+          <h2 class="text-xs font-bold tracking-wider text-primary uppercase">Otros proyectos</h2>
+          <a
+            href="/#projects"
+            class="text-[11px] font-medium text-tertiary transition-colors hover:text-primary hover:underline"
+          >
+            Ver todos →
+          </a>
+        </div>
+
+        <div class="mt-4 flex flex-col gap-2.5 divide-y divide-white/5">
+          {
+            otherProjects.map((other) => (
+              <a
+                href={`/proyectos/${other.slug}`}
+                class="group flex items-center justify-between pt-2.5 transition-all duration-300 first:pt-0 hover:translate-x-1"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border ${
+                      other.type === 'servicio'
+                        ? 'border-primary/30 bg-primary/10 text-primary group-hover:border-primary group-hover:bg-primary/20'
+                        : 'border-tertiary/30 bg-tertiary/10 text-tertiary group-hover:border-tertiary group-hover:bg-tertiary/20'
+                    }`}
+                  >
+                    <Icon name={other.type === 'servicio' ? 'soporte-informatico' : 'desarrollo-web'} class="h-4 w-4" aria-hidden="true" />
+                  </div>
+                  <span class="text-xs font-semibold text-secondary/90 capitalize transition-colors group-hover:text-primary">
+                    {other.title}
+                  </span>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-4 w-4 flex-shrink-0 text-secondary/40 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-primary"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Volver -->
+  <nav aria-label="Navegación de retorno" class="flex w-full justify-center px-4 pb-24 md:pb-32">
+    <a
+      href="/#projects"
+      class="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-8 py-3 text-sm font-medium text-secondary transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-105 hover:border-primary hover:bg-primary/10 hover:text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+    >
+      <span aria-hidden="true" class="transition-transform duration-300 group-hover:-translate-x-1"
+        >←</span
+      >
+      <span>Volver a todos los proyectos</span>
+    </a>
+  </nav>
+</Layout>

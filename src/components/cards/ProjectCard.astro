@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { order, type, title, description, imageSrc, imageAlt } = project;
+const { order, slug, type, title, description, imageSrc, imageAlt } = project;
 
 const isService: boolean = type === 'servicio';
 ---
@@ -45,7 +45,12 @@ const isService: boolean = type === 'servicio';
       <h3
         class={`${isService ? 'text-primary' : 'text-tertiary'} pr-9 text-[15px] font-semibold leading-snug capitalize sm:pr-10 sm:text-[16px] md:text-[18px] lg:text-[19px] sm:truncate`}
       >
-        {title}
+        <a
+          href={`/proyectos/${slug}`}
+          class="rounded transition-colors hover:underline hover:underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          {title}
+        </a>
       </h3>
       <p
         class="hidden line-clamp-2 text-sm font-normal text-secondary transition-opacity duration-300 ease-out sm:block md:text-[15px] md:leading-relaxed sm:opacity-100 sm:group-hover:opacity-0"
