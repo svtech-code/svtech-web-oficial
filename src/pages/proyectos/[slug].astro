@@ -117,8 +117,6 @@ const projectSchema = {
       <!-- Header -->
       <header class="space-y-5">
         <div class="space-y-3">
-          <ProjectTypeBadge type={type} />
-
           <h1
             class="text-2xl leading-tight font-bold text-secondary uppercase sm:text-3xl md:text-4xl"
           >
@@ -141,6 +139,11 @@ const projectSchema = {
             decoding="async"
             class="h-full w-full object-cover"
           />
+
+          <!-- Tipo de proyecto -->
+          <div class="absolute top-3 right-3 z-20 sm:top-4 sm:right-4">
+            <ProjectTypeBadge type={type} />
+          </div>
         </figure>
       </header>
 

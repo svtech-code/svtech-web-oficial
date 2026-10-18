@@ -8,7 +8,7 @@ import { initCardStagger } from './card-stagger-manager';
 export class ScrollRevealManager {
   private observer: IntersectionObserver | null = null;
 
-  constructor(threshold = 0.05, rootMargin = '0px 0px 20px 0px') {
+  constructor(threshold = 0.15, rootMargin = '0px 0px -60px 0px') {
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
 
     this.observer = new IntersectionObserver(
@@ -25,7 +25,7 @@ export class ScrollRevealManager {
                 target.style.transitionDelay = '';
               };
               target.addEventListener('transitionend', clearDelay, { once: true });
-              setTimeout(clearDelay, 600);
+              setTimeout(clearDelay, 900);
             }
           } else {
             if (target.classList.contains('active')) {

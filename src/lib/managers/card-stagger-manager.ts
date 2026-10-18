@@ -5,7 +5,7 @@
  * escritorio/tablet y con stagger secuencial corto en móvil.
  */
 
-const ROW_DELAY_MS = 150;
+const ROW_DELAY_MS = 110;
 const MOBILE_CARD_DELAY_MS = 60;
 const MOBILE_BREAKPOINT = 768;
 
