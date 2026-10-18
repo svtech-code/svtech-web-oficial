@@ -25,6 +25,7 @@ export interface Project {
   links?: Links;
   features?: string[];
   challenges?: string[];
+  results?: string[];
 }
 
 export interface ProjectModalData {

@@ -16,7 +16,7 @@ export const PROJECTS_STATIC: Project[] = [
     order: 1,
     slug: 'sistema-pre-matricula',
     type: 'desarrollo',
-    title: 'sistema para pre-matrícula',
+    title: 'Sistema para Pre-Matrícula',
     description:
       'Sistema para proceso de pre-matrícula de un establecimiento educacional de Linares.',
     imageSrc: path('sistema-prematricula-lvl'),
@@ -38,12 +38,17 @@ export const PROJECTS_STATIC: Project[] = [
       'Optimización para alta concurrencia durante períodos de matrícula',
       'Envío de notificaciones por Mail con link para descarga de documentos oficiales',
     ],
+    // TODO(propietario): Reemplazar con métricas reales de impacto
+    results: [
+      'Redujo el tiempo de inscripción en un 70% (ejemplo)',
+      'Registro digital de +500 apoderados sin papeleo (ejemplo)',
+    ],
   },
   {
     order: 2,
     slug: 'asesoria-servicios-informaticos',
     type: 'servicio',
-    title: 'asesoría en servicios informáticos',
+    title: 'Asesoría en Servicios Informáticos',
     description:
       'Asesoría servicios informáticos en ofimática, diseño, gestión de correo y sistemas web.',
     imageSrc: path('asesoria-mecanica-vasquez'),
@@ -62,12 +67,14 @@ export const PROJECTS_STATIC: Project[] = [
       'Integración de diseños con imagen de la marca',
       'Integrar diseño de documentos con requerimientos de la empresa',
     ],
+    // TODO(propietario): Reemplazar con métricas reales de impacto
+    results: ['Correos corporativos y órdenes de trabajo digitalizadas (ejemplo)'],
   },
   {
     order: 3,
     slug: 'sistema-alerta-temprana',
     type: 'desarrollo',
-    title: 'sistema alerta temprana',
+    title: 'Sistema de Alerta Temprana',
     description:
       'Sistema de alerta temprana, para la identificación de estudiantes con riesgo de deserción.',
     imageSrc: path('sistema-alerta-temprana-cft'),
@@ -91,12 +98,14 @@ export const PROJECTS_STATIC: Project[] = [
       'Implementación de notificaciones por usuario',
       'Integración con diferentes fuentes de datos',
     ],
+    // TODO(propietario): Reemplazar con métricas reales de impacto
+    results: ['Detección temprana de estudiantes en riesgo en minutos, no semanas (ejemplo)'],
   },
   {
     order: 4,
     slug: 'migracion-servicio-hosting',
     type: 'servicio',
-    title: 'migración servicio hosting',
+    title: 'Migración de Servicio de Hosting',
     description:
       'Migración y configuración de los servicios de hosting, que incluyen; Página web y correos corporativos.',
     imageSrc: path('migracion-hosting-bya'),
@@ -118,12 +127,14 @@ export const PROJECTS_STATIC: Project[] = [
       'Configuración de DNS y propagación',
       'Compatibilidad entre sistemas antiguos y nuevos',
     ],
+    // TODO(propietario): Reemplazar con métricas reales de impacto
+    results: ['Migración completa sin pérdida de correos ni tiempo de inactividad (ejemplo)'],
   },
   {
     order: 5,
     slug: 'plantilla-google-sheet-automatizada',
     type: 'desarrollo',
-    title: 'plantilla Google Sheet automatizada',
+    title: 'Plantilla Google Sheets Automatizada',
     description:
       'Plantilla diseñada en Google Sheet, con automatizaciones programadas en App Script y funciones avanzadas.',
     imageSrc: path('plantilla-samed'),
@@ -147,5 +158,7 @@ export const PROJECTS_STATIC: Project[] = [
       'Consultas avanzadas mediante query',
       'Alertas mediante fechas establecidas',
     ],
+    // TODO(propietario): Reemplazar con métricas reales de impacto
+    results: ['Ahorro estimado de 10 horas semanales de digitación manual (ejemplo)'],
   },
 ] as const;

@@ -34,6 +34,7 @@ const {
   duration,
   features,
   challenges,
+  results,
 } = project;
 
 const isService: boolean = type === 'servicio';
@@ -162,6 +163,23 @@ const projectSchema = {
                     }`}
                   />
                   <span>{challenge}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <!-- Resultados -->
+      {
+        results && results.length > 0 && (
+          <section class="space-y-3">
+            <h2 class="text-xl font-bold text-secondary sm:text-2xl">Resultados</h2>
+            <ul class="space-y-2.5">
+              {results.map((result) => (
+                <li class="flex items-start gap-3 leading-relaxed text-secondary/85">
+                  <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-tertiary" />
+                  <span>{result}</span>
                 </li>
               ))}
             </ul>

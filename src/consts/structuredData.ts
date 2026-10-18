@@ -4,6 +4,7 @@ export const structuredData = {
     {
       '@type': 'ProfessionalService',
       name: 'SV Tech',
+      legalName: 'SV Tech SpA',
       alternateName: 'SVTech',
       '@id': 'https://svtech.cl/#localbusiness',
       url: 'https://svtech.cl',
