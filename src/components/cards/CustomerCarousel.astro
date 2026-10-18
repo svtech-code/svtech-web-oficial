@@ -1,13 +1,16 @@
+---
+import CustomerCard from './CustomerCard.astro';
+import { CUSTOMERS } from 'consts/customers';
+---
+
 <div
   id="customers-carousel"
+  role="group"
   class="customer-marquee-container relative w-full overflow-hidden rounded-xl py-10"
-  aria-label="Carrusel de clientes - pausa al pasar el cursor"
+  aria-label="Clientes de SV Tech - pausa al pasar el cursor"
 >
-  <!-- Módulo de carga inicial con coste mínimo -->
-  <div class="customer-marquee-placeholder flex h-32 items-center justify-center">
-    <div class="loading-skeleton animate-pulse rounded-lg bg-secondary/20 px-6 py-3">
-      <span class="text-sm text-tertiary">Cargando clientes...</span>
-    </div>
+  <div class="customer-marquee flex gap-6 md:gap-8">
+    {CUSTOMERS.map((customer) => <CustomerCard customer={customer} />)}
   </div>
 </div>
 

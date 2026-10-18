@@ -1,11 +1,10 @@
 import { CUSTOMERS } from 'consts/customers';
-import type { Customer } from 'types/customer';
 import { CustomerDetailManager } from './customer-detail-manager';
 
 /**
- * Gestiona el carrusel infinito de clientes con interacción y detalle.
- * Responsabilidad: Renderizar carrusel con animación marquee, manejar clicks,
- * coordinar con CustomerDetailManager y limpiar recursos.
+ * Mejora progresivamente el carrusel de clientes renderizado en el servidor.
+ * Responsabilidad: duplicar la pista para el bucle continuo (copia decorativa),
+ * activar la animación marquee, manejar clicks y limpiar recursos.
  */
 export class CustomerCarouselManager {
   private container: HTMLElement;
@@ -34,56 +33,34 @@ export class CustomerCarouselManager {
   }
 
   /**
-   * Inicializa el carrusel con renderizado y configuración de eventos
+   * Inicializa el carrusel duplicando la pista, activando la animación y eventos
    */
   private initialize(): void {
-    this.renderCarousel();
+    this.duplicateTrack();
     this.setupCarousel();
     this.setupEventListeners();
   }
 
   /**
-   * Renderiza el HTML del carrusel con loop infinito
+   * Duplica la pista de clientes renderizada en el servidor para el bucle infinito.
+   * La copia es decorativa: se oculta a lectores de pantalla y se saca del foco.
    */
-  private renderCarousel(): void {
-    // Generar HTML optimizado
-    const customersHTML = CUSTOMERS.map(this.generateCustomerHTML).join('');
+  private duplicateTrack(): void {
+    const marquee = this.container.querySelector<HTMLElement>('.customer-marquee');
+    if (!marquee) return;
 
-    // Crear carrusel con loop infinito
-    this.container.innerHTML = `
-      <div class="customer-marquee flex gap-6 md:gap-8">
-        ${customersHTML}${customersHTML}
-      </div>
-    `;
+    this.marquee = marquee;
 
-    this.marquee = this.container.querySelector('.customer-marquee');
-  }
+    const fragment = document.createDocumentFragment();
 
-  /**
-   * Genera HTML para un cliente individual
-   * @param customer - Datos del cliente
-   */
-  private generateCustomerHTML(customer: Customer): string {
-    return `
-      <article
-        class="flex min-w-[120px] shrink-0 cursor-pointer items-center justify-center md:min-w-[200px]"
-        id="${customer.id}"
-        data-target
-        aria-label="Cliente: ${customer.name}"
-      >
-        <figure class="bg-secondary/30 hover:bg-secondary/40 relative rounded-2xl duration-300 hover:rounded-3xl">
-          <img
-            src="/images/customers/${customer.id}.svg"
-            alt="${customer.name}"
-            class="h-auto w-28 object-contain p-4 duration-300 hover:scale-110 sm:w-40 md:hover:scale-125"
-            width=112
-            height=112
-            loading="lazy"
-            aria-label="${customer.name}"
-          />
-        </figure>
-      </article>
-    `;
+    Array.from(marquee.children).forEach((child) => {
+      const clone = child.cloneNode(true) as HTMLElement;
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      fragment.appendChild(clone);
+    });
+
+    marquee.appendChild(fragment);
   }
 
   /**
@@ -126,10 +103,11 @@ export class CustomerCarouselManager {
    * @param event - Evento de click
    */
   private handleCustomerClick(event: Event): void {
-    const customerCard = (event.target as HTMLElement).closest('[data-target]') as HTMLElement;
+    const customerCard = (event.target as HTMLElement).closest<HTMLElement>('[data-customer-id]');
+    const customerId = customerCard?.dataset.customerId;
 
-    if (customerCard?.id) {
-      const selectedCustomer = CUSTOMERS.find((customer) => customer.id === customerCard.id);
+    if (customerId) {
+      const selectedCustomer = CUSTOMERS.find((customer) => customer.id === customerId);
       if (selectedCustomer) {
         this.customerDetailManager.updateCustomerDetail(selectedCustomer);
       }
