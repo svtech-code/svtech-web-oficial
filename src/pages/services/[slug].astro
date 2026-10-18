@@ -8,6 +8,7 @@ import DetailSidebar from 'components/ui/DetailSidebar.astro';
 import RelatedList from 'components/ui/RelatedList.astro';
 import CtaBanner from 'components/ui/CtaBanner.astro';
 import ProseContent from 'components/ui/ProseContent.astro';
+import DetailHeader from 'components/ui/DetailHeader.astro';
 import type { IconName } from 'consts/icons';
 
 export const prerender = true;
@@ -123,44 +124,26 @@ const serviceSchema = {
       />
 
       <!-- Header del Servicio -->
-      <header class="space-y-5">
-        <div class="space-y-3">
-          <div
-            class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase"
-          >
-            <Icon
-              name={service.slug as IconName}
-              class="h-3.5 w-3.5 text-primary"
-              aria-hidden="true"
-            />
-            <span>Servicio Especializado</span>
-          </div>
-
-          <h1
-            class="text-2xl leading-tight font-bold text-secondary uppercase sm:text-3xl md:text-4xl"
-            transition:name={`service-title-${service.slug}`}
-          >
-            {title}
-          </h1>
-
-          <p class="text-base leading-relaxed text-secondary/85 sm:text-lg">
-            {description}
-          </p>
-        </div>
-
-        <!-- Imagen destacada del servicio -->
-        <figure
-          class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-secondary/50 shadow-2xl shadow-black/50"
+      <DetailHeader
+        title={title}
+        description={description}
+        imageSrc={image}
+        imageAlt={imageAlt}
+        titleTransitionName={`service-title-${service.slug}`}
+        imageHover
+      >
+        <div
+          slot="eyebrow"
+          class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase"
         >
-          <img
-            src={image}
-            alt={imageAlt}
-            loading="eager"
-            decoding="async"
-            class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+          <Icon
+            name={service.slug as IconName}
+            class="h-3.5 w-3.5 text-primary"
+            aria-hidden="true"
           />
-        </figure>
-      </header>
+          <span>Servicio Especializado</span>
+        </div>
+      </DetailHeader>
 
       <!-- Contenido Markdown Renderizado -->
       <ProseContent variant="page">

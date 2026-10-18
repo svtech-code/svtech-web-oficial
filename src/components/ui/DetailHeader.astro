@@ -1,0 +1,55 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  titleTransitionName?: string;
+  imageHover?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  titleTransitionName,
+  imageHover = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<header class:list={['space-y-5', className]}>
+  <div class="space-y-3">
+    <slot name="eyebrow" />
+
+    <h1
+      class="text-2xl leading-tight font-bold text-secondary uppercase sm:text-3xl md:text-4xl"
+      transition:name={titleTransitionName}
+    >
+      {title}
+    </h1>
+
+    <p class="text-base leading-relaxed text-secondary/85 sm:text-lg">
+      {description}
+    </p>
+  </div>
+
+  <figure
+    class="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-secondary/50 shadow-2xl shadow-black/50"
+  >
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      loading="eager"
+      decoding="async"
+      class:list={[
+        'h-full w-full object-cover',
+        imageHover && 'transition-transform duration-500 hover:scale-105',
+      ]}
+    />
+
+    <slot name="badge" />
+  </figure>
+</header>
