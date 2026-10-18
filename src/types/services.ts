@@ -1,9 +1,9 @@
-import type { IconName } from 'consts/icons';
+import type { ServiceSlug } from 'consts/iconsMap';
 
 export interface ServiceStatic {
   order: number;
   slug: string;
   title: string;
   description: string;
-  iconName: IconName;
+  iconName: ServiceSlug;
 }

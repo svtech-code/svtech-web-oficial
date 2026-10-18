@@ -1,11 +1,11 @@
 ---
-import Icon from './Icon.astro';
-import type { IconName } from 'consts/icons';
+import ServiceIcon from './ServiceIcon.astro';
+import type { ServiceSlug } from 'consts/iconsMap';
 
 interface RelatedItem {
   href: string;
   label: string;
-  icon: IconName;
+  icon: ServiceSlug;
   tone?: 'primary' | 'tertiary';
 }
 
@@ -67,7 +67,7 @@ const toneClasses: Record<'primary' | 'tertiary', string> = {
                 toneClasses[item.tone ?? 'primary'],
               ]}
             >
-              <Icon name={item.icon} class="h-4 w-4" aria-hidden="true" />
+              <ServiceIcon name={item.icon} class="h-4 w-4" />
             </div>
             <span class="text-xs font-semibold text-secondary/90 capitalize transition-colors group-hover:text-primary">
               {item.label}

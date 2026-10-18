@@ -7,14 +7,6 @@ import InstagramColor from 'assets/svg/instagram-color.svg';
 import WhatsAppColor from 'assets/svg/whatsApp-color.svg';
 import FacebookColor from 'assets/svg/facebook-color.svg';
 
-// servicios
-import SoporteInformatico from 'assets/services/soporte-informatico.svg';
-import DesarrolloWeb from 'assets/services/desarrollo-web.svg';
-import ConsultoriaTi from 'assets/services/consultoria-ti.svg';
-import AdministracionHosting from 'assets/services/administracion-hosting.svg';
-import BaseDatos from 'assets/services/base-datos.svg';
-import SoportePersonalizado from 'assets/services/soporte-personalizado.svg';
-
 // others
 import IconCheck from 'assets/svg/check.svg';
 import Location from 'assets/svg/location.svg';
@@ -41,14 +33,6 @@ export const icons = {
   'whatsApp-color': WhatsAppColor,
   'facebook-color': FacebookColor,
   'chrome-color': ChromeColor,
-
-  // servicios
-  'soporte-informatico': SoporteInformatico,
-  'desarrollo-web': DesarrolloWeb,
-  'consultoria-ti': ConsultoriaTi,
-  'administracion-hosting': AdministracionHosting,
-  'base-datos': BaseDatos,
-  'soporte-personalizado': SoportePersonalizado,
 
   // others
   check: IconCheck,

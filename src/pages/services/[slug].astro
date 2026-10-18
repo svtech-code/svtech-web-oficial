@@ -9,7 +9,8 @@ import RelatedList from 'components/ui/RelatedList.astro';
 import CtaBanner from 'components/ui/CtaBanner.astro';
 import ProseContent from 'components/ui/ProseContent.astro';
 import DetailHeader from 'components/ui/DetailHeader.astro';
-import type { IconName } from 'consts/icons';
+import ServiceIcon from 'components/ui/ServiceIcon.astro';
+import type { ServiceSlug } from 'consts/iconsMap';
 
 export const prerender = true;
 
@@ -136,11 +137,7 @@ const serviceSchema = {
           slot="eyebrow"
           class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase"
         >
-          <Icon
-            name={service.slug as IconName}
-            class="h-3.5 w-3.5 text-primary"
-            aria-hidden="true"
-          />
+          <ServiceIcon name={service.slug as ServiceSlug} class="h-3.5 w-3.5" />
           <span>Servicio Especializado</span>
         </div>
       </DetailHeader>
@@ -204,7 +201,7 @@ const serviceSchema = {
         items={otherServices.map((otherService) => ({
           href: `/services/${otherService.slug}`,
           label: otherService.data.title,
-          icon: otherService.slug as IconName,
+          icon: otherService.slug as ServiceSlug,
           tone: 'primary',
         }))}
       />

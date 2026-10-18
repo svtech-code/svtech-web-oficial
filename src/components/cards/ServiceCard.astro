@@ -1,9 +1,9 @@
 ---
-import type { IconName } from 'consts/icons';
-import Icon from 'components/ui/Icon.astro';
+import type { ServiceSlug } from 'consts/iconsMap';
+import ServiceIcon from 'components/ui/ServiceIcon.astro';
 
 interface Props {
-  iconName: IconName;
+  iconName: ServiceSlug;
   title: string;
   description: string;
   slug: string;
@@ -18,9 +18,8 @@ const { title, description, iconName, slug, index } = Astro.props;
   data-index={index}
 >
   <div class="pointer-events-none select-none">
-    <Icon
+    <ServiceIcon
       name={iconName}
-      aria-hidden="true"
       class="pointer-events-none absolute top-0 right-0 h-auto w-28 rotate-45 blur-md transition-transform duration-500 ease-out select-none sm:translate-x-28 sm:-translate-y-24 sm:blur-xs sm:group-hover:translate-x-2 sm:group-hover:translate-y-0"
     />
   </div>
@@ -29,7 +28,7 @@ const { title, description, iconName, slug, index } = Astro.props;
     <div
       class="relative z-10 hidden rounded-xl bg-tertiary/10 p-2 transition-colors duration-300 ease-out group-hover:bg-tertiary/30 sm:block"
     >
-      <Icon name={iconName} class="h-auto w-12" aria-hidden="true" />
+      <ServiceIcon name={iconName} class="h-auto w-12" />
     </div>
 
     <h3

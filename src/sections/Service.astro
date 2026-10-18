@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import ServiceCard from 'components/cards/ServiceCard.astro';
 import { subTitleService, titleService } from 'consts/pagesTitle';
 import SeeMoreButton from 'components/ui/SeeMoreButton.astro';
-import type { IconName } from 'consts/icons';
+import type { ServiceSlug } from 'consts/iconsMap';
 
 const servicesEntries = await getCollection('services');
 const services = servicesEntries
@@ -12,7 +12,7 @@ const services = servicesEntries
     title: entry.data.title,
     description: entry.data.description,
     slug: entry.slug,
-    iconName: entry.slug as IconName,
+    iconName: entry.slug as ServiceSlug,
   }))
   .sort((a, b) => a.order - b.order);
 ---

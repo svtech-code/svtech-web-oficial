@@ -1,0 +1,32 @@
+---
+import { serviceIconMap, type ServiceSlug } from 'consts/iconsMap';
+
+interface Props {
+  name: ServiceSlug;
+  class?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+}
+
+const {
+  name,
+  class: className = '',
+  alt = '',
+  width = 188,
+  height = 188,
+  loading = 'lazy',
+} = Astro.props;
+---
+
+<img
+  src={serviceIconMap[name]}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding="async"
+  class={className}
+  aria-hidden={alt ? undefined : 'true'}
+/>

@@ -26,4 +26,14 @@ export const socialIconsMap = {
   'whatsApp-color': WhatsAppColor,
 } as const;
 
+export const serviceIconMap = {
+  'soporte-informatico': '/images/service-icons/soporte-informatico.webp',
+  'desarrollo-web': '/images/service-icons/desarrollo-web.webp',
+  'consultoria-ti': '/images/service-icons/consultoria-ti.webp',
+  'administracion-hosting': '/images/service-icons/administracion-hosting.webp',
+  'base-datos': '/images/service-icons/base-datos.webp',
+  'soporte-personalizado': '/images/service-icons/soporte-personalizado.webp',
+} as const;
+
 export type SocialPlatform = keyof typeof socialIconsMap;
+export type ServiceSlug = keyof typeof serviceIconMap;
