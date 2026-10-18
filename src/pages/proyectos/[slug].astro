@@ -2,12 +2,12 @@
 import { PROJECTS_STATIC } from 'consts/projects';
 import type { Project } from 'types/projects';
 import Layout from 'layouts/Layout.astro';
-import Icon from 'components/ui/Icon.astro';
 import ProjectTypeBadge from 'components/ui/ProjectTypeBadge.astro';
 import PageBreadcrumb from 'components/ui/PageBreadcrumb.astro';
 import BackLink from 'components/ui/BackLink.astro';
 import DetailSidebar from 'components/ui/DetailSidebar.astro';
 import RelatedList from 'components/ui/RelatedList.astro';
+import CtaBanner from 'components/ui/CtaBanner.astro';
 
 export const prerender = true;
 
@@ -217,43 +217,12 @@ const projectSchema = {
       }
 
       <!-- CTA Final -->
-      <section
-        class="mt-4 flex flex-col items-center justify-between gap-6 rounded-2xl border border-tertiary/40 bg-gradient-secondary p-6 text-center sm:flex-row sm:text-left"
-      >
-        <div class="flex-1 space-y-1.5">
-          <span class="text-xs font-bold tracking-wider text-tertiary uppercase">
-            Atención Rápida y Personalizada
-          </span>
-          <h3 class="text-lg font-bold text-secondary sm:text-xl">
-            ¿Tienes un requerimiento similar?
-          </h3>
-          <p class="text-xs text-secondary/80 sm:text-sm">
-            Escríbenos directamente por WhatsApp o envíanos un mensaje por nuestro formulario web.
-          </p>
-        </div>
-
-        <div class="flex w-full flex-col gap-2.5 sm:w-56 sm:flex-shrink-0">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-tertiary bg-tertiary/10 px-4 text-xs font-semibold text-tertiary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-sm"
-            aria-label={`Contactar por WhatsApp sobre ${title}`}
-          >
-            <Icon name="whatsApp" class="h-4 w-4 text-tertiary" aria-hidden="true" />
-            <span class="whitespace-nowrap">Contáctanos</span>
-          </a>
-
-          <a
-            href="/#contact"
-            class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary px-4 text-xs font-semibold text-gradient-secondary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:text-sm"
-            aria-label="Ir al formulario de contacto"
-          >
-            <Icon name="mail" class="h-4 w-4 text-gradient-secondary" aria-hidden="true" />
-            <span class="whitespace-nowrap">Envíanos un mensaje</span>
-          </a>
-        </div>
-      </section>
+      <CtaBanner
+        heading="¿Tienes un requerimiento similar?"
+        text="Escríbenos directamente por WhatsApp o envíanos un mensaje por nuestro formulario web."
+        whatsappUrl={whatsappUrl}
+        whatsappAriaLabel={`Contactar por WhatsApp sobre ${title}`}
+      />
     </article>
 
     <!-- Sidebar -->

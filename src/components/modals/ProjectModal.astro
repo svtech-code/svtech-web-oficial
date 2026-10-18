@@ -3,7 +3,7 @@ import ButtonCloseModal from './ButtonCloseModal.astro';
 import ProjectTypeBadge from 'components/ui/ProjectTypeBadge.astro';
 import ProjectModalAsideInfo from './ProjectModalAsideInfo.astro';
 import ProjectModalArticleContent from './ProjectModalArticleContent.astro';
-import Icon from 'components/ui/Icon.astro';
+import ButtonLink from 'components/ui/ButtonLink.astro';
 
 interface Props {
   id?: string;
@@ -61,28 +61,33 @@ const { id = 'project-modal' } = Astro.props;
         </div>
 
         <!-- Next step -->
-        <footer class="flex w-full flex-col items-center justify-center gap-3 pt-2 pb-1 sm:flex-row md:pt-4">
-          <a
+        <footer
+          class="flex w-full flex-col items-center justify-center gap-3 pt-2 pb-1 sm:flex-row md:pt-4"
+        >
+          <ButtonLink
             id="modal-project-link"
             href="/#projects"
-            class="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-secondary transition-[transform,scale,border-color,background-color] duration-300 ease-out hover:scale-105 hover:border-primary hover:bg-primary/10 hover:text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:text-base"
-            aria-label="Ver la página completa del proyecto"
+            variant="ghost"
+            size="sm"
+            icon="open-vector"
+            iconClass="h-4 w-4"
+            ariaLabel="Ver la página completa del proyecto"
           >
-            <Icon name="open-vector" class="h-4 w-4" aria-hidden="true" />
             Ver página completa
-          </a>
+          </ButtonLink>
 
-          <a
+          <ButtonLink
             id="modal-cta"
             href="https://wa.me/56987933282"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl border border-tertiary bg-tertiary/10 px-5 py-2.5 text-sm font-medium text-tertiary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:ring-offset-2 focus:outline-none sm:text-base"
-            aria-label="Hablar por WhatsApp sobre un proyecto similar"
+            variant="amber"
+            size="sm"
+            external
+            icon="whatsApp"
+            iconClass="h-5 w-5"
+            ariaLabel="Hablar por WhatsApp sobre un proyecto similar"
           >
-            <Icon name="whatsApp" class="h-5 w-5" aria-hidden="true" />
             Hablemos de tu proyecto
-          </a>
+          </ButtonLink>
         </footer>
       </section>
     </div>

@@ -1,0 +1,66 @@
+---
+import ButtonLink from './ButtonLink.astro';
+
+interface Props {
+  heading: string;
+  text: string;
+  whatsappUrl: string;
+  eyebrow?: string;
+  whatsappAriaLabel?: string;
+  whatsappLabel?: string;
+  contactHref?: string;
+  contactLabel?: string;
+  class?: string;
+}
+
+const {
+  heading,
+  text,
+  whatsappUrl,
+  eyebrow = 'Atención Rápida y Personalizada',
+  whatsappAriaLabel = 'Contactar por WhatsApp',
+  whatsappLabel = 'Contáctanos',
+  contactHref = '/#contact',
+  contactLabel = 'Envíanos un mensaje',
+  class: className = '',
+} = Astro.props;
+---
+
+<section
+  class:list={[
+    'mt-4 flex flex-col items-center justify-between gap-6 rounded-2xl border border-tertiary/40 bg-gradient-secondary p-6 text-center sm:flex-row sm:text-left',
+    className,
+  ]}
+>
+  <div class="flex-1 space-y-1.5">
+    {
+      eyebrow && (
+        <span class="text-xs font-bold tracking-wider text-tertiary uppercase">{eyebrow}</span>
+      )
+    }
+    <h3 class="text-lg font-bold text-secondary sm:text-xl">{heading}</h3>
+    <p class="text-xs text-secondary/80 sm:text-sm">{text}</p>
+  </div>
+
+  <div class="flex w-full flex-col gap-2.5 sm:w-56 sm:flex-shrink-0">
+    <ButtonLink
+      href={whatsappUrl}
+      variant="amber"
+      external
+      icon="whatsApp"
+      iconClass="h-4 w-4 text-tertiary"
+      ariaLabel={whatsappAriaLabel}
+    >
+      {whatsappLabel}
+    </ButtonLink>
+    <ButtonLink
+      href={contactHref}
+      variant="primary"
+      icon="mail"
+      iconClass="h-4 w-4 text-gradient-secondary"
+      ariaLabel="Ir al formulario de contacto"
+    >
+      {contactLabel}
+    </ButtonLink>
+  </div>
+</section>

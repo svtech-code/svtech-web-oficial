@@ -5,6 +5,7 @@ import Icon from 'components/ui/Icon.astro';
 import PageBreadcrumb from 'components/ui/PageBreadcrumb.astro';
 import BackLink from 'components/ui/BackLink.astro';
 import DetailSidebar from 'components/ui/DetailSidebar.astro';
+import ProseContent from 'components/ui/ProseContent.astro';
 
 export const prerender = true;
 
@@ -231,11 +232,9 @@ const articleSchema = {
       }
 
       <!-- Contenido Markdown Renderizado con Tailwind Typography -->
-      <main
-        class="prose max-w-none prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-secondary prose-h2:mt-16 prose-h2:mb-5 prose-h2:text-xl sm:prose-h2:mt-20 sm:prose-h2:mb-6 sm:prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-lg sm:prose-h3:text-xl prose-p:leading-relaxed prose-p:text-secondary/85 prose-a:font-medium prose-a:text-primary prose-a:underline prose-a:decoration-primary/40 prose-a:underline-offset-4 prose-a:transition-colors prose-a:hover:text-tertiary prose-a:hover:decoration-tertiary prose-blockquote:my-6 prose-blockquote:rounded-r-xl prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-primary/10 prose-blockquote:px-5 prose-blockquote:py-3.5 prose-blockquote:text-secondary/90 prose-blockquote:not-italic prose-blockquote:shadow-sm prose-strong:font-semibold prose-strong:text-secondary prose-code:rounded-md prose-code:bg-white/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:font-normal prose-code:text-tertiary prose-code:before:content-none prose-code:after:content-none prose-ol:my-5 prose-ol:space-y-2.5 prose-ul:my-5 prose-ul:space-y-2 prose-li:text-secondary/85 prose-li:marker:text-primary prose-img:rounded-2xl prose-img:border prose-img:border-white/10 prose-img:shadow-xl prose-hr:my-12 prose-hr:border-white/10"
-      >
+      <ProseContent variant="article">
         <Content />
-      </main>
+      </ProseContent>
 
       <!-- Tags -->
       {
