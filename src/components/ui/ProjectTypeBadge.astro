@@ -10,10 +10,10 @@ const extraClass = type === 'servicio' ? 'text-primary' : 'text-tertiary';
 ---
 
 <div
-  id={divId || 'undefined'}
+  id={divId}
   class="rounded-lg bg-gradient-primary/70 px-3 py-1 backdrop-blur-2xl"
 >
-  <span id={spanId || 'undefined'} class={`${extraClass} text-normal font-medium capitalize`}
+  <span id={spanId} class={`${extraClass} text-normal font-medium capitalize`}
     >{type || ''}</span
   >
 </div>
