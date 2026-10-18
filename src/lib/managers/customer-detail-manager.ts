@@ -1,5 +1,5 @@
 import type { Customer, SocialMedia } from 'types/customer';
-import { logoSvgMap, socialIconsMap, type SocialPlatform } from 'consts/iconsMap';
+import { customerLogoMap, socialIconsMap, type SocialPlatform } from 'consts/iconsMap';
 import {
   updateImageSrc,
   createSocialLink,
@@ -74,7 +74,7 @@ export class CustomerDetailManager {
   private updateLogo(customer: Customer): void {
     if (!this.logoElement) return;
 
-    const logoSrc = logoSvgMap[customer.id as keyof typeof logoSvgMap];
+    const logoSrc = customerLogoMap[customer.id as keyof typeof customerLogoMap];
     if (logoSrc) {
       updateImageSrc(this.logoElement, logoSrc, `Logo de ${customer.name}`);
     }

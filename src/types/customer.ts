@@ -1,4 +1,12 @@
-import type { IconName } from 'consts/icons';
+export type CustomerId =
+  | 'customer-01'
+  | 'customer-02'
+  | 'customer-03'
+  | 'customer-04'
+  | 'customer-05'
+  | 'customer-06'
+  | 'customer-07'
+  | 'customer-08';
 
 export interface SocialMedia {
   instagram?: string;
@@ -14,7 +22,7 @@ export interface SocialMedia {
 }
 
 export interface Customer {
-  id: IconName;
+  id: CustomerId;
   name: string;
   shortName: string;
   description: string;

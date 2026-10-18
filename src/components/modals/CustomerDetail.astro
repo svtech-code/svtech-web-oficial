@@ -20,7 +20,15 @@ const { id, name, description, industry, location, socialMedia } = customer;
     class="relative mx-auto flex h-auto w-[200px] items-center justify-center rounded-2xl bg-secondary/20 p-2 sm:w-[300px] md:w-[400px]"
     data-customer="logo-customer"
   >
-    <Icon name={id} class="h-auto w-full object-contain" aria-hidden="true" />
+    <img
+      src={`/images/customers/${id}.webp`}
+      alt={`Logo de ${name}`}
+      width="640"
+      height="640"
+      loading="eager"
+      decoding="async"
+      class="h-auto w-full object-contain"
+    />
   </figure>
 
   <article class="flex flex-1 flex-col gap-4 text-center md:text-start">
