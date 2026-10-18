@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { imageSrcSet } from 'lib/images';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -32,6 +33,10 @@ const searchableText = `${title} ${description} ${category} ${tags.join(' ')}`.t
     <div class="relative aspect-[16/9] w-full overflow-hidden bg-gradient-secondary/50">
       <img
         src={image}
+        srcset={imageSrcSet(image)}
+        sizes="(max-width: 768px) 100vw, 540px"
+        width="1000"
+        height="600"
         alt={imageAlt}
         loading="lazy"
         transition:name={`blog-image-${slug}`}

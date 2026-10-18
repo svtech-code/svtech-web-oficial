@@ -6,6 +6,7 @@ import PageBreadcrumb from 'components/ui/PageBreadcrumb.astro';
 import BackLink from 'components/ui/BackLink.astro';
 import DetailSidebar from 'components/ui/DetailSidebar.astro';
 import ProseContent from 'components/ui/ProseContent.astro';
+import { imageSrcSet } from 'lib/images';
 
 export const prerender = true;
 
@@ -195,6 +196,10 @@ const articleSchema = {
         >
           <img
             src={image}
+            srcset={imageSrcSet(image)}
+            sizes="(max-width: 1024px) 100vw, 800px"
+            width="1000"
+            height="600"
             alt={imageAlt}
             loading="eager"
             decoding="async"

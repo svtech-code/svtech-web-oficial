@@ -2,6 +2,7 @@
 import Icon from 'components/ui/Icon.astro';
 import type { Project } from 'types/projects';
 import ProjectTypeBadge from 'components/ui/ProjectTypeBadge.astro';
+import { imageSrcSet } from 'lib/images';
 
 interface Props {
   project: Project;
@@ -31,6 +32,10 @@ const isService: boolean = type === 'servicio';
 
   <img
     src={imageSrc}
+    srcset={imageSrcSet(imageSrc)}
+    sizes="(max-width: 640px) 85vw, (max-width: 768px) 380px, 540px"
+    width="1000"
+    height="600"
     alt={imageAlt}
     loading="lazy"
     class="h-full w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-110"
