@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# LLM context (AI agent discoverability): https://www.svtech.cl/llms.txt
 Sitemap: https://www.svtech.cl/sitemap-index.xml

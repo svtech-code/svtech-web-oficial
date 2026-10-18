@@ -1,0 +1,52 @@
+# SV Tech
+
+> SV Tech es una empresa chilena de tecnología y consultoría TI que entrega
+> soporte informático, desarrollo web, administración de hosting, bases de datos
+> y consultoría para pequeñas y medianas empresas. Servicio a todo Chile con
+> atención remota y soporte continuo.
+
+## Descripción
+
+SV Tech resuelve de forma integral las necesidades tecnológicas de empresas y
+emprendedores: mantiene sus sistemas operativos, desarrolla plataformas web a
+medida y automatiza procesos de negocio. El enfoque es personalizado: las
+soluciones se adaptan a los procesos de cada cliente, no a la inversa. Cobertura
+nacional con soporte remoto y acompañamiento después de cada entrega.
+
+## Servicios
+
+- [Soporte Informático](https://www.svtech.cl/services/soporte-informatico): soporte técnico para mantener sistemas operativos funcionando de forma óptima y asegurar la continuidad operativa.
+- [Desarrollo web](https://www.svtech.cl/services/desarrollo-web): sitios corporativos, landing pages y aplicaciones web a medida, rápidas y optimizadas para SEO.
+- [Consultoría TI](https://www.svtech.cl/services/consultoria-ti): asesoramiento tecnológico estratégico para optimizar los procesos de negocio.
+- [Administración Hosting](https://www.svtech.cl/services/administracion-hosting): gestión de servidores y servicios de hosting para máximo rendimiento.
+- [Base de Datos](https://www.svtech.cl/services/base-datos): diseño, implementación y mantenimiento de bases de datos eficientes y seguras.
+- [Soporte Personalizado](https://www.svtech.cl/services/soporte-personalizado): atención técnica especializada adaptada a las necesidades de cada proyecto.
+
+## Tecnologías
+
+- Desarrollo web: Astro, React, TypeScript, TailwindCSS, HTML/CSS, JavaScript.
+- Backend y bases de datos: PHP, PostgreSQL.
+- Automatización y ofimática: Google Apps Script, Google Sheets.
+- Infraestructura: administración de hosting, servidores, correo corporativo, certificados SSL y migraciones.
+
+## Cobertura
+
+- Todo Chile, mediante soporte remoto.
+- Atención presencial coordinada según requerimiento.
+
+## Horarios de atención
+
+- Lunes a Sábado: 09:00–14:00 y 15:00–20:00 (hora de Chile).
+
+## Contacto
+
+- WhatsApp / Teléfono: +56 9 8793 3282
+- Email: contacto@svtech.cl
+- X (Twitter): https://twitter.com/svtech_code
+- Instagram: https://www.instagram.com/svtech_code/
+- Discord (comunidad técnica): https://discord.gg/DUhM8uc3HM
+
+## Proyectos y blog
+
+- [Proyectos](https://www.svtech.cl/#projects): desarrollos y servicios implementados en pequeñas y medianas empresas.
+- [Blog](https://www.svtech.cl/blog): guías prácticas de soporte, herramientas y automatización.
