@@ -5,6 +5,9 @@ build/
 # generated types
 .astro/
 .vscode/
+.agents/
+.impeccable/
+.opencode/
 
 # dependencies
 node_modules/
@@ -31,3 +34,5 @@ pnpm-debug.log*
 
 # sv-memory
 .sv-memory/
+openspec/
+
