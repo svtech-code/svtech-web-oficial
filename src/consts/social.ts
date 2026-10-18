@@ -12,9 +12,9 @@ export const SOCIAL: Social[] = [
     label: 'Visitar Instagram de Sv Tech',
   },
   {
-    name: 'discord',
-    url: 'https://discord.gg/DUhM8uc3HM',
-    label: 'Únete a la comunidad de discord Sv Tech',
+    name: 'facebook',
+    url: 'https://www.facebook.com/svteh.code/',
+    label: 'Visitar Facebook de Sv Tech',
   },
   {
     name: 'whatsApp',

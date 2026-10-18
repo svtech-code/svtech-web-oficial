@@ -1,7 +1,7 @@
 // Redes sociales svtech
 import X from 'assets/svg/x.svg';
 import Instagram from 'assets/svg/instagram.svg';
-import Discord from 'assets/svg/discord.svg';
+import Facebook from 'assets/svg/facebook.svg';
 import WhatsApp from 'assets/svg/whatsapp.svg';
 import InstagramColor from 'assets/svg/instagram-color.svg';
 import WhatsAppColor from 'assets/svg/whatsApp-color.svg';
@@ -27,7 +27,7 @@ export const icons = {
   // redes sociales
   x: X,
   instagram: Instagram,
-  discord: Discord,
+  facebook: Facebook,
   whatsApp: WhatsApp,
   'instagram-color': InstagramColor,
   'whatsApp-color': WhatsAppColor,

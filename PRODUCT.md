@@ -30,7 +30,7 @@ A personalized, full-service IT partner for SMEs. SV Tech offers support, web de
 - Site content is entirely in Chilean Spanish.
 - Contact is a single-channel funnel: a validated contact form (EmailJS + Cloudflare Turnstile anti-bot) plus direct channels — phone/WhatsApp +569 8793 3282, email contacto@svtech.cl, located in Linares, Maule.
 - Attention hours: Lunes a Sábado, 09:00–14:00 and 15:00–20:00.
-- Active social/community presence: X/Twitter (svtech_code), Instagram (svtech_code), a Discord community, and WhatsApp.
+- Active social/community presence: X/Twitter (svtech_code), Instagram (svtech_code), a Facebook page, and WhatsApp.
 - The site is a single-page structure with anchored sections (Inicio, Servicios, Proyectos, Nosotros) plus dedicated service detail pages.
 
 ## Capabilities and Constraints

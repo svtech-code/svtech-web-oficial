@@ -22,7 +22,7 @@ export const structuredData = {
       sameAs: [
         'https://twitter.com/svtech_code',
         'https://www.instagram.com/svtech_code/',
-        'https://discord.gg/DUhM8uc3HM',
+        'https://www.facebook.com/svteh.code/',
       ],
       address: {
         '@type': 'PostalAddress',
