@@ -1,8 +1,8 @@
 ---
-import ServiceLayout from 'layouts/ServiceLayout.astro';
+import Layout from 'layouts/Layout.astro';
 ---
 
-<ServiceLayout title=" 404 - Página no encontrada - Sv Tech">
+<Layout title=" 404 - Página no encontrada - Sv Tech" showHeader={false} showScrollToTop={false}>
   <section class="flex h-screen w-full flex-col items-center justify-center px-4">
     <header class="flex flex-col items-center justify-center gap-2 py-8 text-center">
       <p
@@ -33,7 +33,7 @@ import ServiceLayout from 'layouts/ServiceLayout.astro';
       </nav>
     </main>
   </section>
-</ServiceLayout>
+</Layout>
 
 <script>
   // Captura y visualización de la URL solicitada

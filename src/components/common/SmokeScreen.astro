@@ -1,0 +1,22 @@
+<div
+  id="smoke-screen"
+  aria-hidden="true"
+  class="animate-fade-out pointer-events-none fixed inset-0 z-50 bg-gradient-to-br from-[#00252d] to-[#0096b8]"
+>
+</div>
+
+<style>
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .animate-fade-out {
+    animation: fade-out 0.8s ease-in-out forwards;
+    will-change: opacity;
+  }
+</style>

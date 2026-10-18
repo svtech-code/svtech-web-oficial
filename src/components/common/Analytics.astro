@@ -1,0 +1,35 @@
+---
+import { GA_MEASUREMENT_ID } from 'consts/analytics';
+
+interface Props {
+  id?: string;
+}
+
+const { id = GA_MEASUREMENT_ID } = Astro.props;
+---
+
+<!-- Google tag (gtag.js) -->
+<script
+  type="text/partytown"
+  is:inline
+  async
+  src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+
+<script
+  type="text/partytown"
+  is:inline
+  set:html={`window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '${id}');
+
+      document.addEventListener('astro:page-load', () => {
+        if (typeof gtag === 'function') {
+          gtag('config', '${id}', {
+            page_path: window.location.pathname,
+          });
+        }
+      });`}
+></script>

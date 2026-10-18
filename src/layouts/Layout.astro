@@ -5,6 +5,10 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 import 'styles/global.css';
 import { fixedTitle } from 'consts/pagesTitle';
 import MetaTag from 'components/common/MetaTag.astro';
+import FontPreload from 'components/common/FontPreload.astro';
+import Analytics from 'components/common/Analytics.astro';
+import StructuredData from 'components/common/StructuredData.astro';
+import SmokeScreen from 'components/common/SmokeScreen.astro';
 import Header from 'components/common/Header.astro';
 import ScrollToTop from 'components/common/ScrollToTop.astro';
 import Footer from 'components/common/Footer.astro';
@@ -47,29 +51,7 @@ const {
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <!-- preloading web fonts -->
-    <link
-      rel="preload"
-      href="/fonts/poppins-latin-400-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <link
-      rel="preload"
-      href="/fonts/poppins-latin-500-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <link
-      rel="preload"
-      href="/fonts/poppins-latin-700-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    <FontPreload />
 
     <!-- Open Graph & Meta Tags -->
     <MetaTag
@@ -82,191 +64,14 @@ const {
 
     <ClientRouter />
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      type="text/partytown"
-      is:inline
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-NX19ERRPWS"></script>
-
-    <script type="text/partytown" is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-NX19ERRPWS');
-
-      document.addEventListener('astro:page-load', () => {
-        if (typeof gtag === 'function') {
-          gtag('config', 'G-NX19ERRPWS', {
-            page_path: window.location.pathname,
-          });
-        }
-      });
-    </script>
+    <Analytics />
 
     <!-- Datos estructurados para mejorar SEO -->
-    <script is:inline type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "ProfessionalService",
-            "name": "SV Tech",
-            "alternateName": "SVTech",
-            "@id": "https://www.svtech.cl/#localbusiness",
-            "url": "https://www.svtech.cl",
-            "telephone": "+56987933282",
-            "email": "contacto@svtech.cl",
-            "priceRange": "$$",
-            "slogan": "Transformando ideas en realidades digitales",
-            "description": "Servicios de soporte informático, mantenimiento de equipos y desarrollo web a medida para empresas en Chile.",
-            "image": "https://www.svtech.cl/og.png",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://www.svtech.cl/favicon.svg"
-            },
-            "sameAs": [
-              "https://twitter.com/svtech_code",
-              "https://www.instagram.com/svtech_code/",
-              "https://discord.gg/DUhM8uc3HM"
-            ],
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Linares",
-              "addressRegion": "Maule",
-              "addressCountry": "CL"
-            },
-            "areaServed": {
-              "@type": "Country",
-              "name": "Chile"
-            },
-            "availableLanguage": ["Spanish"],
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday"
-                ],
-                "opens": "09:00",
-                "closes": "14:00"
-              },
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday"
-                ],
-                "opens": "15:00",
-                "closes": "20:00"
-              }
-            ],
-            "knowsAbout": [
-              "Soporte Informático",
-              "Desarrollo Web",
-              "Consultoría TI",
-              "Administración de Hosting",
-              "Bases de Datos",
-              "Google Apps Script",
-              "Google Sheets",
-              "Automatización de procesos",
-              "React",
-              "Astro",
-              "PHP",
-              "PostgreSQL",
-              "TailwindCSS",
-              "Administración de servidores y correo corporativo"
-            ],
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Servicios de SV Tech",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Soporte Informático",
-                    "url": "https://www.svtech.cl/services/soporte-informatico"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Desarrollo web",
-                    "url": "https://www.svtech.cl/services/desarrollo-web"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Consultoría TI",
-                    "url": "https://www.svtech.cl/services/consultoria-ti"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Administración Hosting",
-                    "url": "https://www.svtech.cl/services/administracion-hosting"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Base de Datos",
-                    "url": "https://www.svtech.cl/services/base-datos"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Soporte Personalizado",
-                    "url": "https://www.svtech.cl/services/soporte-personalizado"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://www.svtech.cl/#website",
-            "url": "https://www.svtech.cl",
-            "name": "SV Tech",
-            "inLanguage": "es-CL",
-            "publisher": {
-              "@id": "https://www.svtech.cl/#localbusiness"
-            }
-          }
-        ]
-      }
-    </script>
+    <StructuredData />
   </head>
 
   <body>
-    {
-      showSmokeScreen && (
-        <div
-          id="smoke-screen"
-          aria-hidden="true"
-          class="animate-fade-out pointer-events-none fixed inset-0 z-50 bg-gradient-to-br from-[#00252d] to-[#0096b8]"
-        />
-      )
-    }
+    {showSmokeScreen && <SmokeScreen />}
 
     {showHeader && <Header />}
 
@@ -311,19 +116,5 @@ const {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  @keyframes fade-out {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .animate-fade-out {
-    animation: fade-out 0.8s ease-in-out forwards;
-    will-change: opacity;
   }
 </style>

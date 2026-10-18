@@ -1,0 +1,14 @@
+---
+const FONTS = [
+  '/fonts/poppins-latin-400-normal.woff2',
+  '/fonts/poppins-latin-500-normal.woff2',
+  '/fonts/poppins-latin-700-normal.woff2',
+];
+---
+
+<!-- preloading web fonts -->
+{
+  FONTS.map((href) => (
+    <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+  ))
+}
