@@ -17,17 +17,17 @@ const { id, name, description, industry, location, socialMedia } = customer;
   aria-live="polite"
 >
   <figure
-    class="relative mx-auto flex h-auto w-[200px] items-center justify-center rounded-2xl bg-secondary/20 p-2 sm:w-[300px] md:w-[400px]"
+    class="relative mx-auto flex h-[200px] w-[200px] items-center justify-center rounded-2xl bg-secondary/20 p-2 sm:h-[300px] sm:w-[300px] md:h-[300px] md:w-[400px]"
     data-customer="logo-customer"
   >
     <img
       src={`/images/customers/${id}.webp`}
       alt={`Logo de ${name}`}
-      width="640"
-      height="640"
+      width="512"
+      height="512"
       loading="eager"
       decoding="async"
-      class="h-auto w-full object-contain"
+      class="h-full w-full object-contain"
     />
   </figure>
 
