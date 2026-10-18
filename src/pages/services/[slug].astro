@@ -2,6 +2,10 @@
 import { getCollection, getEntry, render } from 'astro:content';
 import Layout from 'layouts/Layout.astro';
 import Icon from 'components/ui/Icon.astro';
+import PageBreadcrumb from 'components/ui/PageBreadcrumb.astro';
+import BackLink from 'components/ui/BackLink.astro';
+import DetailSidebar from 'components/ui/DetailSidebar.astro';
+import RelatedList from 'components/ui/RelatedList.astro';
 import type { IconName } from 'consts/icons';
 
 export const prerender = true;
@@ -108,16 +112,13 @@ const serviceSchema = {
     <!-- Columna Principal: Detalle del Servicio -->
     <article class="relative flex w-full min-w-0 flex-1 flex-col gap-8">
       <!-- Breadcrumbs -->
-      <nav
-        aria-label="Breadcrumb"
-        class="flex items-center gap-2 text-xs font-medium text-secondary/60 sm:text-sm"
-      >
-        <a href="/" class="transition-colors hover:text-primary">Inicio</a>
-        <span>/</span>
-        <a href="/#services" class="transition-colors hover:text-primary">Servicios</a>
-        <span>/</span>
-        <span class="truncate text-secondary/90">{title}</span>
-      </nav>
+      <PageBreadcrumb
+        items={[
+          { label: 'Inicio', href: '/' },
+          { label: 'Servicios', href: '/#services' },
+          { label: title },
+        ]}
+      />
 
       <!-- Header del Servicio -->
       <header class="space-y-5">
@@ -207,9 +208,7 @@ const serviceSchema = {
     </article>
 
     <!-- Columna Lateral: Sidebar Sticky con Horarios, Otros Servicios e Info -->
-    <aside
-      class="relative flex w-full flex-col gap-6 lg:sticky lg:top-36 lg:w-[340px] lg:flex-shrink-0"
-    >
+    <DetailSidebar>
       <!-- Bloque 1: Horarios de Atención & Cobertura -->
       <div
         class="reveal-card rounded-2xl border border-primary/40 bg-gradient-primary/90 p-6 shadow-xl shadow-black/30 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/10"
@@ -246,52 +245,17 @@ const serviceSchema = {
       </div>
 
       <!-- Bloque 2: Otros Servicios de SV Tech -->
-      <div
-        class="reveal-card reveal-delay-1 rounded-2xl border border-white/10 bg-gradient-secondary/50 p-6 shadow-xl shadow-black/30 backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
-      >
-        <div class="flex items-center justify-between">
-          <h3 class="text-xs font-bold tracking-wider text-primary uppercase">Otros Servicios</h3>
-          <a
-            href="/#services"
-            class="text-[11px] font-medium text-tertiary transition-colors hover:text-primary hover:underline"
-          >
-            Ver todos →
-          </a>
-        </div>
-
-        <div class="mt-4 flex flex-col gap-2.5 divide-y divide-white/5">
-          {
-            otherServices.map((otherService) => (
-              <a
-                href={`/services/${otherService.slug}`}
-                class="group flex items-center justify-between pt-2.5 transition-all duration-300 first:pt-0 hover:translate-x-1"
-              >
-                <div class="flex items-center gap-3">
-                  <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary transition-colors group-hover:border-primary group-hover:bg-primary/20">
-                    <Icon name={otherService.slug as IconName} class="h-4 w-4" aria-hidden="true" />
-                  </div>
-                  <span class="text-xs font-semibold text-secondary/90 transition-colors group-hover:text-primary">
-                    {otherService.data.title}
-                  </span>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  class="h-4 w-4 text-secondary/40 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-primary"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </a>
-            ))
-          }
-        </div>
-      </div>
+      <RelatedList
+        title="Otros Servicios"
+        seeAllHref="/#services"
+        class="transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
+        items={otherServices.map((otherService) => ({
+          href: `/services/${otherService.slug}`,
+          label: otherService.data.title,
+          icon: otherService.slug as IconName,
+          tone: 'primary',
+        }))}
+      />
 
       <!-- Bloque 3: Valores y Compromiso SV Tech -->
       <div
@@ -321,19 +285,9 @@ const serviceSchema = {
           </li>
         </ul>
       </div>
-    </aside>
+    </DetailSidebar>
   </div>
 
   <!-- Botón Volver al Catálogo de Servicios (Cierre Global) -->
-  <nav aria-label="Navegación de retorno" class="flex w-full justify-center px-4 pb-24 md:pb-32">
-    <a
-      href="/#services"
-      class="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-8 py-3 text-sm font-medium text-secondary transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-105 hover:border-primary hover:bg-primary/10 hover:text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-    >
-      <span aria-hidden="true" class="transition-transform duration-300 group-hover:-translate-x-1"
-        >←</span
-      >
-      <span>Volver a todos los servicios</span>
-    </a>
-  </nav>
+  <BackLink href="/#services" label="Volver a todos los servicios" />
 </Layout>

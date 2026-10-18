@@ -1,0 +1,24 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<nav
+  aria-label="Navegación de retorno"
+  class="flex w-full justify-center px-4 pb-24 md:pb-32"
+>
+  <a
+    href={href}
+    class="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-8 py-3 text-sm font-medium text-secondary transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-105 hover:border-primary hover:bg-primary/10 hover:text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+  >
+    <span
+      aria-hidden="true"
+      class="transition-transform duration-300 group-hover:-translate-x-1">←</span
+    >
+    <span>{label}</span>
+  </a>
+</nav>

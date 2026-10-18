@@ -2,6 +2,9 @@
 import { getCollection, getEntry, render } from 'astro:content';
 import Layout from 'layouts/Layout.astro';
 import Icon from 'components/ui/Icon.astro';
+import PageBreadcrumb from 'components/ui/PageBreadcrumb.astro';
+import BackLink from 'components/ui/BackLink.astro';
+import DetailSidebar from 'components/ui/DetailSidebar.astro';
 
 export const prerender = true;
 
@@ -129,16 +132,13 @@ const articleSchema = {
     <!-- Columna Principal: Artículo -->
     <article class="relative flex w-full min-w-0 flex-1 flex-col gap-8">
       <!-- Breadcrumbs & Volver -->
-      <nav
-        aria-label="Breadcrumb"
-        class="flex items-center gap-2 text-xs font-medium text-secondary/60 sm:text-sm"
-      >
-        <a href="/" class="transition-colors hover:text-primary">Inicio</a>
-        <span>/</span>
-        <a href="/blog" class="transition-colors hover:text-primary">Blog</a>
-        <span>/</span>
-        <span class="truncate text-secondary/90">{title}</span>
-      </nav>
+      <PageBreadcrumb
+        items={[
+          { label: 'Inicio', href: '/' },
+          { label: 'Blog', href: '/blog' },
+          { label: title },
+        ]}
+      />
 
       <!-- Header del Artículo -->
       <header class="space-y-6">
@@ -286,9 +286,7 @@ const articleSchema = {
     </article>
 
     <!-- Columna Lateral: Aside Sticky con Otras Guías, Redes Sociales y Contacto -->
-    <aside
-      class="relative flex w-full flex-col gap-6 lg:sticky lg:top-36 lg:w-[340px] lg:flex-shrink-0"
-    >
+    <DetailSidebar>
       <!-- Bloque: Otras Guías (si hay más disponibles, primero para retención) -->
       {
         otherPosts.length > 0 && (
@@ -420,19 +418,9 @@ const articleSchema = {
           <span>Ir al formulario de contacto</span>
         </a>
       </div>
-    </aside>
+    </DetailSidebar>
   </div>
 
   <!-- Botón Volver al Blog (Centrado como cierre global de la página) -->
-  <nav aria-label="Navegación de retorno" class="flex w-full justify-center px-4 pb-24 md:pb-32">
-    <a
-      href="/blog"
-      class="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-8 py-3 text-sm font-medium text-secondary transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-105 hover:border-primary hover:bg-primary/10 hover:text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-    >
-      <span aria-hidden="true" class="transition-transform duration-300 group-hover:-translate-x-1"
-        >←</span
-      >
-      <span>Volver a todas las guías y artículos</span>
-    </a>
-  </nav>
+  <BackLink href="/blog" label="Volver a todas las guías y artículos" />
 </Layout>

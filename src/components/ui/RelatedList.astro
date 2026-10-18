@@ -1,0 +1,93 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from 'consts/icons';
+
+interface RelatedItem {
+  href: string;
+  label: string;
+  icon: IconName;
+  tone?: 'primary' | 'tertiary';
+}
+
+interface Props {
+  title: string;
+  seeAllHref: string;
+  seeAllLabel?: string;
+  headingLevel?: 'h2' | 'h3';
+  items: RelatedItem[];
+  class?: string;
+}
+
+const {
+  title,
+  seeAllHref,
+  seeAllLabel = 'Ver todos →',
+  headingLevel = 'h3',
+  items,
+  class: className = '',
+} = Astro.props;
+
+const Heading = headingLevel;
+
+const toneClasses: Record<'primary' | 'tertiary', string> = {
+  primary:
+    'border-primary/30 bg-primary/10 text-primary group-hover:border-primary group-hover:bg-primary/20',
+  tertiary:
+    'border-tertiary/30 bg-tertiary/10 text-tertiary group-hover:border-tertiary group-hover:bg-tertiary/20',
+};
+---
+
+<div
+  class:list={[
+    'reveal-card reveal-delay-1 rounded-2xl border border-white/10 bg-gradient-secondary/50 p-6 shadow-xl shadow-black/30 backdrop-blur-xl',
+    className,
+  ]}
+>
+  <div class="flex items-center justify-between">
+    <Heading class="text-xs font-bold tracking-wider text-primary uppercase">{title}</Heading>
+    <a
+      href={seeAllHref}
+      class="text-[11px] font-medium text-tertiary transition-colors hover:text-primary hover:underline"
+    >
+      {seeAllLabel}
+    </a>
+  </div>
+
+  <div class="mt-4 flex flex-col gap-2.5 divide-y divide-white/5">
+    {
+      items.map((item) => (
+        <a
+          href={item.href}
+          class="group flex items-center justify-between pt-2.5 transition-all duration-300 first:pt-0 hover:translate-x-1"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class:list={[
+                'flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border transition-colors',
+                toneClasses[item.tone ?? 'primary'],
+              ]}
+            >
+              <Icon name={item.icon} class="h-4 w-4" aria-hidden="true" />
+            </div>
+            <span class="text-xs font-semibold text-secondary/90 capitalize transition-colors group-hover:text-primary">
+              {item.label}
+            </span>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="h-4 w-4 flex-shrink-0 text-secondary/40 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-primary"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      ))
+    }
+  </div>
+</div>
