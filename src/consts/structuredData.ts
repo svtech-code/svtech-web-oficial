@@ -11,7 +11,7 @@ export const structuredData = {
       telephone: '+56987933282',
       email: 'contacto@svtech.cl',
       priceRange: '$$',
-      slogan: 'Transformando ideas en realidades digitales',
+      slogan: 'Transformamos ideas en resultados para tu negocio',
       description:
         'Servicios de soporte informático, mantenimiento de equipos y desarrollo web a medida para empresas en Chile.',
       image: 'https://svtech.cl/og.png',

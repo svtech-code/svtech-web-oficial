@@ -1,333 +1,239 @@
-# SV Tech Web Oficial
+> **Language:** English | [Español](README_ES.md)
 
-Sitio web corporativo de SV Tech desarrollado con Astro, TypeScript y TailwindCSS 4.0. Una solución moderna, rápida y altamente optimizada para presentar servicios de tecnología y consultoría IT.
+<p align="center">
+  <img src="public/images/logo.svg" width="260" alt="SV Tech logo">
+</p>
 
-## ✨ Características
+<h1 align="center">SV Tech Official Website</h1>
 
-- **🚀 Alto rendimiento** - Astro SSG con lazy loading inteligente, code splitting y optimización de fuentes
-- **📱 Responsive excepcional** - Diseño adaptativo con Tailwind CSS 4.0 y variables CSS personalizadas
-- **♿ Accesibilidad de primer nivel** - 65+ ARIA labels, semantic HTML, skip links y navegación por teclado
-- **🔒 Seguro y robusto** - Validación avanzada con Cloudflare Turnstile y manejo de errores
-- **📧 Formulario inteligente** - Contacto con validación en tiempo real, estados de carga y EmailJS
-- **🎨 Animaciones fluidas** - Transiciones optimizadas con `prefers-reduced-motion` y micro-interacciones
-- **⚡ TypeScript estricto** - Tipado fuerte con configuración strict mode
-- **🗂️ Arquitectura sólida** - Manager Pattern, separación de responsabilidades y código escalable
+<p align="center">
+  <b>Corporate website of SV Tech SpA — IT support and custom web development for individuals, SMEs and businesses.</b>
+</p>
 
-## 🚀 Estructura del Proyecto
+<p align="center">
+  <a href="https://astro.build/"><img src="https://img.shields.io/badge/Astro-5.x-BC52EE?logo=astro&logoColor=white" alt="Astro 5"></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" alt="TypeScript strict"></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/TailwindCSS-4.x-38BDF8?logo=tailwindcss&logoColor=white" alt="TailwindCSS 4"></a>
+  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white" alt="Vercel"></a>
+  <a href="https://bun.sh/"><img src="https://img.shields.io/badge/Runtime-Bun-FBF0DF?logo=bun&logoColor=000000" alt="Bun"></a>
+  <a href="https://github.com/svtech-code/svtech-web-oficial/actions/workflows/ci.yml"><img src="https://github.com/svtech-code/svtech-web-oficial/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="README_ES.md"><img src="https://img.shields.io/badge/Lang-Espa%C3%B1ol-orange.svg" alt="Spanish Version"></a>
+</p>
+
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-project-structure">Project structure</a> •
+  <a href="#-tech-stack">Tech stack</a> •
+  <a href="#-getting-started">Getting started</a> •
+  <a href="#-environment-variables">Environment variables</a> •
+  <a href="#-commands">Commands</a> •
+  <a href="#-deployment">Deployment</a> •
+  <a href="#-seo-and-performance">SEO and performance</a> •
+  <a href="#-secret-hygiene">Secret hygiene</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
+
+---
+
+## 📖 Overview
+
+Corporate website of **SV Tech** (legal name SV Tech SpA), a technology and IT-consulting company based in Linares, Maule Region (Chile), with on-site support in the area and remote support across the whole country.
+
+The site is aimed at **clients** (individuals, SMEs and small/medium businesses) rather than a technical audience. Its goals are to:
+
+1. Present the service catalogue (6 services, each with a detail page).
+2. Demonstrate capability through real projects and clients.
+3. Convert visitors into leads through a validated contact form.
+
+## ✨ Features
+
+| Category             | Description                                                                                                                     |
+| :------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| 🚀 **Performance**   | Astro with prerendered static routes, responsive image `srcset`, manual code splitting (EmailJS and icons) and font preloading. |
+| 📱 **Responsive**    | Adaptive layout with TailwindCSS 4 and custom CSS tokens (`--color-primary/secondary/tertiary`).                                |
+| ♿ **Accessibility** | Semantic HTML, ARIA labels, skip links and keyboard navigation, with `prefers-reduced-motion` support.                          |
+| 🔒 **Security**      | Contact form protected by Cloudflare Turnstile with server-side verification in `api/verify-turnstile.ts`.                      |
+| 📧 **Form**          | EmailJS with real-time validation, loading/success/error states and input sanitization.                                         |
+| 🧩 **Content**       | Astro content collections (services and blog) editable in Markdown with a typed schema.                                         |
+| 🔎 **SEO**           | JSON-LD (`ProfessionalService`, `Service`, `CreativeWork`, breadcrumbs), automatic sitemap and Open Graph.                      |
+| 🏗️ **Architecture**  | Manager pattern for complex logic, separation of concerns and TypeScript in strict mode.                                        |
+
+## 🛠️ Architecture
+
+```mermaid
+flowchart TD
+    subgraph Client["Client / Browser"]
+        U[Visitor]
+        P[Astro pages - prerender + SSR]
+    end
+
+    subgraph App["Astro 5 application"]
+        Layout[Layout.astro]
+        Sections[Hero / Services / Projects / About / Customers / Contact]
+        Pages[Pages: index, services, proyectos, blog, api]
+        Content[Content collections: services, blog]
+        Lib[lib: managers, clients, dom]
+    end
+
+    subgraph Services["External services"]
+        EmailJS[EmailJS - email delivery]
+        Turnstile[Cloudflare Turnstile - anti-bot]
+    end
+
+    subgraph Deploy["Deployment"]
+        Vercel[Vercel - server adapter]
+    end
+
+    U --> P
+    P --> Layout --> Sections
+    Pages --> Content
+    Pages --> Lib
+    Pages --> EmailJS
+    Pages --> Turnstile
+    P --> Vercel
+```
+
+## 🚀 Project Structure
 
 ```text
 /
 ├── public/
-│   ├── fonts/          # Fuentes web optimizadas (preload, WOFF2)
-│   ├── images/         # Imágenes optimizadas (WebP, lazy loading)
+│   ├── fonts/               # Web fonts (preload, WOFF2)
+│   ├── images/              # Optimized images (WebP with srcset)
+│   │   ├── blog/            # Article covers (cover + 540/800)
+│   │   ├── customers/       # Client logos
+│   │   ├── projects/        # Project imagery
+│   │   └── services/        # Service imagery
 │   ├── favicon.svg
-│   └── robots.txt
+│   ├── og.png
+│   ├── robots.txt
+│   └── llms.txt
 ├── src/
-│   ├── assets/         # SVGs y recursos optimizados
-│   ├── components/     # Componentes Astro reutilizables
-│   │   ├── ui/         # Componentes de UI base (Icon, Button, etc.)
-│   │   ├── ContactForm.astro
-│   │   ├── CustomerCarousel.astro
-│   │   ├── ProjectModal.astro
-│   │   └── ...
-│   ├── consts/         # Constantes, datos estáticos y configuraciones
-│   │   ├── projects.ts   # Datos de proyectos con tipado fuerte
-│   │   ├── customers.ts  # Información de clientes
-│   │   ├── icons.ts      # Mapeo optimizado de iconos
-│   │   └── ...
-│   ├── layouts/        # Layouts de página con meta tags optimizados
-│   ├── lib/            # Lógica de negocio y managers (patrón de diseño)
-│   │   ├── contact-form-manager.ts    # Gestión completa de formularios
-│   │   ├── customer-carousel-manager.ts
-│   │   ├── project-modal-manager.ts   # Modal system robusto
-│   │   ├── lazy-observer.ts           # Observer optimizado con presets
-│   │   └── generic-card-visibility-manager.ts
-│   ├── pages/          # Rutas de la aplicación (file-based routing)
-│   ├── sections/       # Secciones principales de página
-│   ├── styles/         # Estilos globales y Tailwind customizations
-│   └── types/          # Definiciones TypeScript completas
+│   ├── assets/svg/          # SVG icons (social, UI, brand)
+│   ├── components/
+│   │   ├── cards/           # ServiceCard, ProjectCard, BlogCard, CustomerCard…
+│   │   ├── common/          # Header, Footer, MetaTag, StructuredData, Analytics…
+│   │   ├── forms/           # ContactForm, FormInput, FormTextarea…
+│   │   ├── modals/          # Modal, ProjectModal and their states
+│   │   └── ui/              # Icon, ButtonLink, CtaBanner, DetailHeader, RelatedList…
+│   ├── consts/              # Static data and config (services, projects, customers, icons…)
+│   ├── content/             # Astro collections (services/*.md, blog/*.md)
+│   ├── layouts/             # Layout.astro (head, meta, structured data)
+│   ├── lib/
+│   │   ├── clients/         # emailjs-client, turnstile-manager
+│   │   ├── dom/             # lazy-observer, dom-utils
+│   │   ├── managers/        # Manager pattern (contact-form, project-modal, carousel…)
+│   │   └── images.ts        # Responsive srcset helper
+│   ├── pages/               # Routes (index, services/[slug], proyectos/[slug], blog, api)
+│   ├── sections/            # Homepage sections
+│   ├── styles/              # global.css and tokens
+│   └── types/               # TypeScript definitions
+├── .github/workflows/ci.yml # CI (lint + build + governance formatting)
+├── astro.config.mjs
+├── vercel.json
+├── tsconfig.json
 └── package.json
 ```
 
-## 🧞 Comandos
+## 🛠️ Tech Stack
 
-Todos los comandos se ejecutan desde la raíz del proyecto:
+| Layer            | Technology                                                             |
+| :--------------- | :--------------------------------------------------------------------- |
+| **Framework**    | [Astro 5](https://astro.build/) (server mode with prerender)           |
+| **Language**     | [TypeScript](https://www.typescriptlang.org/) in strict mode           |
+| **Styling**      | [TailwindCSS 4](https://tailwindcss.com/) with CSS tokens              |
+| **Runtime/PM**   | [Bun](https://bun.sh/)                                                 |
+| **Deploy**       | [Vercel](https://vercel.com/) (`@astrojs/vercel`)                      |
+| **Email**        | [EmailJS](https://www.emailjs.com/) (lazy-loaded)                      |
+| **Anti-bot**     | [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) |
+| **Integrations** | `@astrojs/sitemap`, `@astrojs/partytown`, `@vercel/speed-insights`     |
+| **Quality**      | ESLint + Prettier                                                      |
 
-| Comando                       | Acción                                               |
-| :---------------------------- | :--------------------------------------------------- |
-| `bun install`                 | Instala las dependencias                             |
-| `bun dev`                     | Inicia el servidor de desarrollo en `localhost:4321` |
-| `bun build`                   | Construye el sitio para producción en `./dist/`      |
-| `bun preview`                 | Previsualiza la build localmente                     |
-| `bun astro check`             | Verifica errores de TypeScript y Astro               |
-| `bun astro add <integration>` | Agrega una integración de Astro                      |
-| `bun format`                  | Formatea código con Prettier                         |
-| `bun lint`                    | Ejecuta ESLint para verificar código                 |
+## 🧞 Getting Started
 
-## 🛠️ Stack Tecnológico
-
-### Core
-
-- **[Astro 4.x](https://astro.build/)** - Framework web moderno con SSG optimizado
-- **[TypeScript](https://www.typescriptlang.org/)** - Tipado estático en modo strict
-- **[TailwindCSS 4.0](https://tailwindcss.com/)** - Framework CSS utilitario con variables CSS
-
-### Integraciones y Servicios
-
-- **[EmailJS](https://www.emailjs.com/)** - Servicio de email sin backend
-- **[Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/)** - Protección anti-bot avanzada
-- **[Bun](https://bun.sh/)** - Runtime JavaScript rápido para desarrollo
-
-### Herramientas de Desarrollo
-
-- **[ESLint](https://eslint.org/)** - Linting con reglas personalizadas
-- **[Prettier](https://prettier.io/)** - Formateo automático de código
-- **Path Mapping** - Imports absolutos para mejor organización
-
-## 📋 Características Técnicas
-
-### 🚀 Performance y Optimización
-
-- **Lazy Loading inteligente** con `LazyObserver` y presets personalizados
-- **Code Splitting automático** con chunks manuales para EmailJS e iconos
-- **Optimización de fuentes** con preload estratégico y `font-display: swap`
-- **Imágenes optimizadas** en formato WebP con lazy loading
-- **Bundle size optimizado** con tree shaking y imports dinámicos eficientes
-
-### 🏗️ Arquitectura y Patrones
-
-- **Manager Pattern** para lógica compleja (ContactForm, ProjectModal, CustomerCarousel)
-- **Event Delegation** optimizado para mejor performance en DOM
-- **Cleanup automático** de event listeners para prevenir memory leaks
-- **Separation of Concerns** con estructura modular clara
-- **TypeScript strict mode** con interfaces y tipos fuertemente tipados
-
-### 📱 UI/UX y Accesibilidad
-
-- **Sistema de modales robusto** con animaciones y gestión de estado
-- **Responsive design avanzado** con breakpoints optimizados
-- **Accessibility-first** con 65+ ARIA labels y semantic HTML
-- **Keyboard navigation** completa con skip links
-- **prefers-reduced-motion** respetado en todas las animaciones
-
-### 📧 Sistema de Formularios
-
-- **Validación en tiempo real** con feedback visual inmediato
-- **Estados de carga avanzados** con modales informativos
-- **Protección anti-spam robusta** con Cloudflare Turnstile
-- **Error handling completo** con retry automático
-- **Sanitización de inputs** para seguridad
-
-### 🎠 Carrusel de Clientes
-
-- **Renderizado dinámico** desde configuración TypeScript
-- **Animación infinita optimizada** con CSS transforms
-- **Interacciones intuitivas** (hover para pause/resume)
-- **Performance optimizado** con `contain` y `will-change`
-- **Gestión de estados** avanzada con cleanup automático
-
-### 🖼️ Sistema de Iconos
-
-- **Mapeo optimizado** con Map() para acceso O(1)
-- **Lazy loading eficiente** sin imports dinámicos repetitivos
-- **Props tipadas fuertemente** con union types
-- **Sizes predefinidos** con clases Tailwind consistentes
-
-## 🚦 Configuración de Desarrollo
-
-### 1. **Clona el repositorio**
+Requirements: [Bun](https://bun.sh/).
 
 ```sh
-git clone <repository-url>
+# 1. Clone the repository
+git clone https://github.com/svtech-code/svtech-web-oficial.git
 cd svtech-web-oficial
-```
 
-### 2. **Instala dependencias**
-
-```sh
+# 2. Install dependencies
 bun install
-```
 
-### 3. **Configura variables de entorno**
-
-```sh
+# 3. Set up environment variables
 cp .env.example .env
-# Edita .env con tus claves:
-# - EMAILJS_PUBLIC_KEY
-# - EMAILJS_SERVICE_ID
-# - EMAILJS_TEMPLATE_ID
-# - TURNSTILE_SITE_KEY
+#    Edit .env with your values (see "Environment variables")
+
+# 4. Start the dev server
+bun run dev
 ```
 
-### 4. **Inicia el servidor de desarrollo**
+## 🔐 Environment Variables
 
-```sh
-bun dev
-```
-
-### 5. **Verifica la configuración**
-
-```sh
-# Ejecuta TypeScript check
-bun astro check
-
-# Verifica el linting
-bun lint
-
-# Formatea el código
-bun format
-```
-
-## 🔧 Variables de Entorno Requeridas
+The project reads configuration from `.env`. Use `.env.example` as a template; **never** commit `.env` (it is in `.gitignore`).
 
 ```env
-# EmailJS Configuration
-EMAILJS_PUBLIC_KEY=your_public_key
-EMAILJS_SERVICE_ID=your_service_id
-EMAILJS_TEMPLATE_ID=your_template_id
+# EmailJS (client)
+PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 PUBLIC_EMAILJS_TO_NAME=your_to_name
 
 # Cloudflare Turnstile
-TURNSTILE_SITE_KEY=your_turnstile_key
-TURNSTILE_SECRET_KEY=your_secret_key
+PUBLIC_TURNSTILE_SITE_KEY=your_site_key
+TURNSTILE_SECRET_KEY=your_secret_key   # server-only: used in api/verify-turnstile.ts
 ```
 
-## 🎯 SEO y Performance
+> ⚠️ Only variables with the `PUBLIC_` prefix are exposed to the browser. `TURNSTILE_SECRET_KEY` stays on the server and must never reach the client.
 
-### Optimizaciones Incluidas
+## 🧞 Commands
 
-- **Meta tags completos** con Open Graph y Twitter Cards
-- **Structured data JSON-LD** para SEO local business
-- **Sitemap automático** generado por Astro
-- **Robots.txt optimizado** para crawling
-- **Critical CSS inlined** para First Paint rápido
-- **Font preloading** estratégico
+| Command                | Action                                   |
+| :--------------------- | :--------------------------------------- |
+| `bun install`          | Install dependencies                     |
+| `bun run dev`          | Start the dev server at `localhost:4321` |
+| `bun run build`        | Build the site for production            |
+| `bun run preview`      | Preview the production build locally     |
+| `bun run lint`         | Run ESLint                               |
+| `bun run lint:fix`     | Auto-fix ESLint issues                   |
+| `bun run format`       | Format code with Prettier                |
+| `bun run format:check` | Check formatting with Prettier           |
 
-### Lighthouse Scores Objetivo
+## 📦 Deployment
 
-- **Performance**: 100 🎉
-- **Accessibility**: 100 🎉
-- **Best Practices**: 100 🎉
-- **SEO**: 100 🎉
+The project is configured for [Vercel](https://vercel.com/) with the `@astrojs/vercel` adapter (`output: 'server'`). Static routes (home, services, projects and blog posts) are prerendered; `api/verify-turnstile.ts` runs as a serverless function.
 
-## 📝 Uso de Componentes
+Deployment happens from the GitHub repository (`main`). `vercel.json` defines cache headers for `favicon.svg`, `og.png`, `robots.txt` and fonts.
 
-### LazyObserver con Presets
+## 🔎 SEO and Performance
 
-```typescript
-import { LazyObserver } from 'lib/lazy-observer';
+- **JSON-LD structured data** for `ProfessionalService`, `Service`, `CreativeWork` and breadcrumbs.
+- **Automatic sitemap** with per-section priorities and change frequencies.
+- **Canonical / Open Graph / Twitter Cards** pointing to the apex host `https://svtech.cl`.
+- **Responsive `srcset`** on content images (`-540.webp`, `-800.webp`, original `1000w`).
+- **Manual code splitting** for EmailJS and icons; font preloading with `font-display: swap`.
 
-// Presets optimizados para diferentes casos de uso
-LazyObserver.create('#form-element', callback, { preset: 'form' }); // Formularios
-LazyObserver.create('#carousel', callback, { preset: 'carousel' }); // Carruseles
-LazyObserver.create('#image', callback, { preset: 'image' }); // Imágenes
+## 🔐 Secret Hygiene
 
-// Configuración personalizada avanzada
-LazyObserver.create('#element', callback, {
-  threshold: 0.3,
-  rootMargin: '100px 0px',
-  timeout: 2000,
-  once: true,
-});
-```
+This repository must not contain secrets. Golden rules:
 
-### Manager Pattern - Sistemas Complejos
+- **`.env` is in `.gitignore`** and is never committed. Only `.env.example` (names + placeholders) is versioned.
+- **`TURNSTILE_SECRET_KEY` is server-only** and must never appear in client code or in `PUBLIC_`-prefixed variables.
+- Before pushing, check that you have not included keys, tokens or passwords; if one slips through, revoke the credential immediately and scrub it from history.
+- EmailJS keys are public by design (they ship to the browser), but should not be copied into the documentation.
 
-```typescript
-// Sistema de formulario completo con validación y estados
-import { ContactFormManager } from 'lib/contact-form-manager';
-const formManager = new ContactFormManager('#contact-form');
+## 🤝 Contributing
 
-// Carrusel infinito con interacciones
-import { CustomerCarouselManager } from 'lib/customer-carousel-manager';
-const carouselManager = new CustomerCarouselManager('#customers-carousel');
+See the [Spanish contribution guide](CONTRIBUTING_ES.md) or its [English version](CONTRIBUTING.md) for the pull-request flow, checks and commit conventions (Conventional Commits in English).
 
-// Sistema de modales con animaciones
-import { ProjectModalManager } from 'lib/project-modal-manager';
-const modalManager = new ProjectModalManager();
-modalManager.show(projectData);
-```
+## 📞 Contact
 
-### Componentes de UI Optimizados
+**SV Tech SpA** — IT support and custom web development.
 
-```astro
-<!-- Sistema de iconos con tipado fuerte -->
-<Icon name="arrow-right" size="lg" class="text-primary" />
-<Icon name="user" size="sm" aria-hidden="true" />
-
-<!-- Botones con estados y accesibilidad -->
-<Button variant="primary" size="lg" aria-label="Enviar formulario"> Contactar </Button>
-
-<!-- Cards con lazy loading automático -->
-<ProjectCard project={project} class="hover:scale-105" />
-```
-
-### Configuración de Visibility Manager
-
-```typescript
-import { setupCardVisibility } from 'lib/generic-card-visibility-manager';
-
-// Sistema inteligente de mostrar/ocultar cards
-setupCardVisibility({
-  sectionName: 'projects',
-  mobileLimit: 2,
-  tabletLimit: 4,
-  desktopLimit: 6,
-});
-```
-
-## 🤝 Contribuir
-
-Consulta la [guía para contribuir en español](CONTRIBUTING_ES.md) o su
-[versión en inglés](CONTRIBUTING.md) para conocer el flujo de pull requests, las
-verificaciones y las convenciones de commits.
-
-## 🔍 Testing y Quality Assurance
-
-### Herramientas de Calidad
-
-```sh
-# TypeScript check completo
-bun astro check
-
-# Linting con ESLint
-bun lint
-
-# Formateo con Prettier
-bun format
-
-# Build para verificar errores
-bun build
-```
-
-### Métricas de Calidad
-
-- **TypeScript Coverage**: 100% (strict mode)
-- **ESLint Warnings**: 0
-- **Accessibility Score**: 100 (65+ ARIA labels)
-- **Performance Score**: 100
-- **Code Architecture**: Manager Pattern implementado
-
-## 📊 Análisis del Proyecto
-
-### Estadísticas del Código
-
-- **Componentes Astro**: 25+ componentes reutilizables
-- **Managers TypeScript**: 4+ sistemas complejos
-- **Tipos definidos**: 100% coverage con interfaces
-- **Imágenes optimizadas**: 13 WebP, 9 SVG
-- **Bundle optimization**: Code splitting manual configurado
-
-### Arquitectura Destacada
-
-- **Manager Pattern** para separación de responsabilidades
-- **Event Delegation** optimizado para performance
-- **Accessibility-first** development approach
-- **Production-ready** con error handling robusto
-
-## 📞 Contacto
-
-**SV Tech** - Soluciones tecnológicas y consultoría IT
-
-- 🌐 Sitio web: [svtech.cl](https://svtech.cl)
+- 🌐 Website: [svtech.cl](https://svtech.cl)
 - 📧 Email: <contacto@svtech.cl>
+- 📱 WhatsApp: [+56 9 8793 3282](https://wa.me/56987933282)
+- 📍 Linares, Maule Region, Chile.

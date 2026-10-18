@@ -44,7 +44,7 @@ A personalized, full-service IT partner for SMEs. SV Tech offers support, web de
 ## Brand Commitments
 
 - Name: **SV Tech** (written "Sv Tech" in titles); domain **svtech.cl**; logo files under `src/assets` and `public/images`.
-- Tagline in use: "Transformando ideas en realidades digitales".
+- Tagline in use: "Transformamos ideas en resultados para tu negocio".
 - Positioning words in use: "a medida" (custom/tailored), soporte integral, adaptación a cada cliente.
 - Company values: Compromiso, Responsabilidad, Innovación.
 - Why-us benefits: Atención personalizada, Innovación y calidad, Soporte continuo.

@@ -31,7 +31,7 @@ jobs:
 
       - name: Check governance file formatting
         run: >-
-          bunx prettier --check README.md CONTRIBUTING.md CONTRIBUTING_ES.md
+          bunx prettier --check README.md README_ES.md CONTRIBUTING.md CONTRIBUTING_ES.md
           SECURITY.md SECURITY_ES.md .github/dependabot.yml
           .github/workflows/ci.yml .github/PULL_REQUEST_TEMPLATE.md
 
