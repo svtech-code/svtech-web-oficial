@@ -5,18 +5,18 @@ export const structuredData = {
       '@type': 'ProfessionalService',
       name: 'SV Tech',
       alternateName: 'SVTech',
-      '@id': 'https://www.svtech.cl/#localbusiness',
-      url: 'https://www.svtech.cl',
+      '@id': 'https://svtech.cl/#localbusiness',
+      url: 'https://svtech.cl',
       telephone: '+56987933282',
       email: 'contacto@svtech.cl',
       priceRange: '$$',
       slogan: 'Transformando ideas en realidades digitales',
       description:
         'Servicios de soporte informático, mantenimiento de equipos y desarrollo web a medida para empresas en Chile.',
-      image: 'https://www.svtech.cl/og.png',
+      image: 'https://svtech.cl/og.png',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.svtech.cl/favicon.svg',
+        url: 'https://svtech.cl/favicon.svg',
       },
       sameAs: [
         'https://twitter.com/svtech_code',
@@ -73,7 +73,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Soporte Informático',
-              url: 'https://www.svtech.cl/services/soporte-informatico',
+              url: 'https://svtech.cl/services/soporte-informatico',
             },
           },
           {
@@ -81,7 +81,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Desarrollo web',
-              url: 'https://www.svtech.cl/services/desarrollo-web',
+              url: 'https://svtech.cl/services/desarrollo-web',
             },
           },
           {
@@ -89,7 +89,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Consultoría TI',
-              url: 'https://www.svtech.cl/services/consultoria-ti',
+              url: 'https://svtech.cl/services/consultoria-ti',
             },
           },
           {
@@ -97,7 +97,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Administración Hosting',
-              url: 'https://www.svtech.cl/services/administracion-hosting',
+              url: 'https://svtech.cl/services/administracion-hosting',
             },
           },
           {
@@ -105,7 +105,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Base de Datos',
-              url: 'https://www.svtech.cl/services/base-datos',
+              url: 'https://svtech.cl/services/base-datos',
             },
           },
           {
@@ -113,7 +113,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Soporte Personalizado',
-              url: 'https://www.svtech.cl/services/soporte-personalizado',
+              url: 'https://svtech.cl/services/soporte-personalizado',
             },
           },
         ],
@@ -121,12 +121,12 @@ export const structuredData = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://www.svtech.cl/#website',
-      url: 'https://www.svtech.cl',
+      '@id': 'https://svtech.cl/#website',
+      url: 'https://svtech.cl',
       name: 'SV Tech',
       inLanguage: 'es-CL',
       publisher: {
-        '@id': 'https://www.svtech.cl/#localbusiness',
+        '@id': 'https://svtech.cl/#localbusiness',
       },
     },
   ],

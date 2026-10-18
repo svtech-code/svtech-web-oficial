@@ -36,12 +36,12 @@ export default defineConfig({
 
   output: 'server',
   adapter: vercel(),
-  site: 'https://www.svtech.cl',
+  site: 'https://svtech.cl',
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404') && !page.includes('/api/'),
       serialize(item) {
-        if (item.url === 'https://www.svtech.cl/' || item.url === 'https://www.svtech.cl') {
+        if (item.url === 'https://svtech.cl/' || item.url === 'https://svtech.cl') {
           item.changefreq = 'weekly';
           item.priority = 1.0;
         } else if (item.url.includes('/services/')) {
