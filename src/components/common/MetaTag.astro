@@ -2,11 +2,11 @@
 import { fixedTitle, defaultDescription } from 'consts/pagesTitle';
 
 export interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  canonicalURL?: string;
-  type?: string;
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
+  canonicalURL?: string | undefined;
+  type?: string | undefined;
 }
 
 const siteUrl = Astro.site ?? new URL('https://www.svtech.cl');
