@@ -2,7 +2,7 @@
 title: 'Correo corporativo con dominio propio: por qué tu negocio lo necesita'
 description: 'Descubre cómo un correo con el dominio de tu empresa proyecta profesionalismo, genera confianza y evita el spam, y cómo SV Tech te ayuda a configurarlo.'
 pubDate: 2026-10-18
-author: 'Sv Tech'
+author: 'SV Tech'
 category: 'soporte'
 image: '/images/blog/correo-corporativo/cover.webp'
 imageAlt: 'Correo corporativo con dominio propio para proyectar una imagen profesional'

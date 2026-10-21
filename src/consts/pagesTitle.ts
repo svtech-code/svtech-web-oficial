@@ -1,4 +1,4 @@
-export const fixedTitle: string = 'Sv Tech | Soporte Informático y Desarrollo Web a Medida';
+export const fixedTitle: string = 'SV Tech | Soporte Informático y Desarrollo Web a Medida';
 export const defaultDescription: string =
   'Servicios de soporte informático, mantenimiento de equipos y desarrollo web a medida para particulares y empresas en Chile. Continuidad operativa y soluciones digitales.';
 

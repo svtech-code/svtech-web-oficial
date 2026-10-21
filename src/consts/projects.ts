@@ -38,10 +38,9 @@ export const PROJECTS_STATIC: Project[] = [
       'Optimización para alta concurrencia durante períodos de matrícula',
       'Envío de notificaciones por Mail con link para descarga de documentos oficiales',
     ],
-    // TODO(propietario): Reemplazar con métricas reales de impacto
     results: [
-      'Redujo el tiempo de inscripción en un 70% (ejemplo)',
-      'Registro digital de +500 apoderados sin papeleo (ejemplo)',
+      'Permitió el registro de cerca de 950 estudiantes y sus apoderados en el proceso de pre-matrícula.',
+      'Redujo aproximadamente un 60% el tiempo de inscripción.',
     ],
   },
   {
@@ -67,8 +66,10 @@ export const PROJECTS_STATIC: Project[] = [
       'Integración de diseños con imagen de la marca',
       'Integrar diseño de documentos con requerimientos de la empresa',
     ],
-    // TODO(propietario): Reemplazar con métricas reales de impacto
-    results: ['Correos corporativos y órdenes de trabajo digitalizadas (ejemplo)'],
+    results: [
+      'Se implementó la digitalización de las órdenes de trabajo y los registros de la empresa.',
+      'Fue posible implementar correos corporativos y plataformas de registro y control.',
+    ],
   },
   {
     order: 3,
@@ -98,8 +99,10 @@ export const PROJECTS_STATIC: Project[] = [
       'Implementación de notificaciones por usuario',
       'Integración con diferentes fuentes de datos',
     ],
-    // TODO(propietario): Reemplazar con métricas reales de impacto
-    results: ['Detección temprana de estudiantes en riesgo en minutos, no semanas (ejemplo)'],
+    results: [
+      'Se consiguió la detección en tiempo real de estudiantes que requieren atención.',
+      'Permitió incorporar el seguimiento, la derivación y el estado de cada caso: atendidos y pendientes.',
+    ],
   },
   {
     order: 4,
@@ -127,8 +130,10 @@ export const PROJECTS_STATIC: Project[] = [
       'Configuración de DNS y propagación',
       'Compatibilidad entre sistemas antiguos y nuevos',
     ],
-    // TODO(propietario): Reemplazar con métricas reales de impacto
-    results: ['Migración completa sin pérdida de correos ni tiempo de inactividad (ejemplo)'],
+    results: [
+      'Se realizó la migración sin pérdida de correos ni tiempos muertos.',
+      'Se mantuvo la continuidad operativa durante todo el proceso, con soporte y seguimiento continuo.',
+    ],
   },
   {
     order: 5,
@@ -158,7 +163,9 @@ export const PROJECTS_STATIC: Project[] = [
       'Consultas avanzadas mediante query',
       'Alertas mediante fechas establecidas',
     ],
-    // TODO(propietario): Reemplazar con métricas reales de impacto
-    results: ['Ahorro estimado de 10 horas semanales de digitación manual (ejemplo)'],
+    results: [
+      'Permitió digitalizar el registro de clientes, planes y pagos en una sola plantilla de Google Sheets.',
+      'Permitió agilizar la búsqueda de datos y el seguimiento de pagos con alertas.',
+    ],
   },
 ] as const;
