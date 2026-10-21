@@ -11,8 +11,8 @@ const services = servicesEntries
     order: entry.data.order,
     title: entry.data.title,
     description: entry.data.description,
-    slug: entry.slug,
-    iconName: entry.slug as ServiceSlug,
+    slug: entry.id,
+    iconName: entry.id as ServiceSlug,
   }))
   .sort((a, b) => a.order - b.order);
 ---

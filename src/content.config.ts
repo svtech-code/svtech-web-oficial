@@ -1,6 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const services = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   schema: z.object({
     order: z.number(),
     title: z.string(),
@@ -11,10 +14,11 @@ const services = defineCollection({
 });
 
 const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.date(),
+    pubDate: z.coerce.date(),
     author: z.string().default('SV Tech'),
     category: z.enum(['soporte', 'herramientas', 'desarrollo', 'tutoriales']),
     image: z.string(),

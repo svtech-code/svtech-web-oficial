@@ -2,6 +2,9 @@
   "name": "svtech-web-oficial",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -13,12 +16,12 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@astrojs/partytown": "^2.1.8",
+    "@astrojs/partytown": "^2.1.9",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/vercel": "^9.0.3",
+    "@astrojs/vercel": "^11.0.16",
     "@tailwindcss/vite": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
-    "astro": "^5.16.7",
+    "astro": "^7.4.2",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

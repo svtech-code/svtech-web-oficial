@@ -13,7 +13,7 @@ export const prerender = true;
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
@@ -27,7 +27,7 @@ if (!post) {
 
 const allPosts = await getCollection('blog');
 const otherPosts = allPosts
-  .filter((p) => p.slug !== slug)
+  .filter((p) => p.id !== slug)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
@@ -308,7 +308,7 @@ const articleSchema = {
             <div class="mt-4 flex flex-col gap-3.5 divide-y divide-white/5">
               {otherPosts.map((otherPost) => (
                 <a
-                  href={`/blog/${otherPost.slug}`}
+                  href={`/blog/${otherPost.id}`}
                   class="group flex items-center gap-3 pt-3.5 transition-all duration-300 first:pt-0 hover:opacity-90"
                 >
                   <figure class="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-lg border border-white/10 bg-white/5">
