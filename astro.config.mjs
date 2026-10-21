@@ -25,6 +25,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   site: 'https://svtech.cl',
+  compressHTML: true,
   env: {
     schema: {
       TURNSTILE_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
