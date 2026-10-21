@@ -1,3 +1,5 @@
+import { TURNSTILE_SECRET_KEY } from 'astro:env/server';
+
 export async function POST({ request }: { request: Request }) {
   try {
     const { token } = await request.json();
@@ -15,7 +17,7 @@ export async function POST({ request }: { request: Request }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
-        secret: import.meta.env.TURNSTILE_SECRET_KEY,
+        secret: TURNSTILE_SECRET_KEY,
         response: token,
       }),
     });

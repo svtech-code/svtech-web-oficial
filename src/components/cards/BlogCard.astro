@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const slug = post.slug || post.id;
+const slug = post.id;
 const { title, description, pubDate, category, image, imageAlt, readTime, tags } = post.data;
 
 const formattedDate = new Intl.DateTimeFormat('es-CL', {

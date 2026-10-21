@@ -3,24 +3,12 @@ import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
-      // Optimizaciones para reducir bundle size y mejorar loading
-      rollupOptions: {
-        output: {
-          // Separar vendor chunks para mejor caching
-          manualChunks: {
-            // Separar EmailJS en su propio chunk (solo se carga cuando se necesita)
-            emailjs: ['src/lib/emailjs-client.ts'],
-            // Separar iconos y mapas en su propio chunk
-            icons: ['src/consts/iconsMap.ts', 'src/consts/icons.ts'],
-          },
-        },
-      },
       // Optimizar CSS
       cssCodeSplit: true,
       // Reducir threshold para chunks más pequeños
@@ -37,6 +25,11 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   site: 'https://svtech.cl',
+  env: {
+    schema: {
+      TURNSTILE_SECRET_KEY: envField.string({ context: 'server', access: 'secret' }),
+    },
+  },
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404') && !page.includes('/api/'),

@@ -17,7 +17,7 @@ export const prerender = true;
 export async function getStaticPaths() {
   const services = await getCollection('services');
   return services.map((service) => ({
-    params: { slug: service.slug },
+    params: { slug: service.id },
     props: { service },
   }));
 }
@@ -31,7 +31,7 @@ if (!service) {
 
 const allServices = await getCollection('services');
 const otherServices = allServices
-  .filter((s) => s.slug !== service.slug)
+  .filter((s) => s.id !== service.id)
   .sort((a, b) => a.data.order - b.data.order);
 
 const { data } = service;
@@ -68,7 +68,7 @@ const ctaBySlug: Record<string, { label: string; message: string }> = {
   },
 };
 
-const cta = ctaBySlug[service.slug] ?? {
+const cta = ctaBySlug[service.id] ?? {
   label: 'Contáctanos',
   message: `Hola SV Tech, me gustaría solicitar información y cotizar el servicio de ${title}.`,
 };
@@ -160,14 +160,14 @@ const serviceSchema = {
         description={description}
         imageSrc={image}
         imageAlt={imageAlt}
-        titleTransitionName={`service-title-${service.slug}`}
+        titleTransitionName={`service-title-${service.id}`}
         imageHover
       >
         <div
           slot="eyebrow"
           class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide text-primary uppercase"
         >
-          <ServiceIcon name={service.slug as ServiceSlug} class="h-3.5 w-3.5" />
+          <ServiceIcon name={service.id as ServiceSlug} class="h-3.5 w-3.5" />
           <span>Servicio Especializado</span>
         </div>
       </DetailHeader>
@@ -230,9 +230,9 @@ const serviceSchema = {
         seeAllHref="/#servicios"
         class="transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
         items={otherServices.map((otherService) => ({
-          href: `/servicios/${otherService.slug}`,
+          href: `/servicios/${otherService.id}`,
           label: otherService.data.title,
-          icon: otherService.slug as ServiceSlug,
+          icon: otherService.id as ServiceSlug,
           tone: 'primary',
         }))}
       />
