@@ -3,7 +3,12 @@
   "redirects": [
     {
       "source": "/services",
-      "destination": "/servicios",
+      "destination": "https://svtech.cl/#servicios",
+      "permanent": true
+    },
+    {
+      "source": "/services/",
+      "destination": "https://svtech.cl/#servicios",
       "permanent": true
     },
     {

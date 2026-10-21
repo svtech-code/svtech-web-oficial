@@ -85,7 +85,7 @@ const projectSchema = {
           '@type': 'ListItem',
           position: 2,
           name: 'Proyectos',
-          item: 'https://svtech.cl/#projects',
+          item: 'https://svtech.cl/#proyectos',
         },
         { '@type': 'ListItem', position: 3, name: title, item: projectUrl },
       ],
@@ -112,7 +112,7 @@ const projectSchema = {
       <PageBreadcrumb
         items={[
           { label: 'Inicio', href: '/' },
-          { label: 'Proyectos', href: '/#projects' },
+          { label: 'Proyectos', href: '/#proyectos' },
           { label: title },
         ]}
       />
@@ -256,7 +256,7 @@ const projectSchema = {
       <!-- Otros proyectos -->
       <RelatedList
         title="Otros proyectos"
-        seeAllHref="/#projects"
+        seeAllHref="/#proyectos"
         headingLevel="h2"
         items={otherProjects.map((other) => ({
           href: `/proyectos/${other.slug}`,
@@ -269,5 +269,5 @@ const projectSchema = {
   </div>
 
   <!-- Volver -->
-  <BackLink href="/#projects" label="Volver a todos los proyectos" />
+  <BackLink href="/#proyectos" label="Volver a todos los proyectos" />
 </Layout>

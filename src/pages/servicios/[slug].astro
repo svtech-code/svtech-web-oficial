@@ -118,7 +118,7 @@ const serviceSchema = {
           '@type': 'ListItem',
           position: 2,
           name: 'Servicios',
-          item: 'https://svtech.cl/#services',
+          item: 'https://svtech.cl/#servicios',
         },
         {
           '@type': 'ListItem',
@@ -149,7 +149,7 @@ const serviceSchema = {
       <PageBreadcrumb
         items={[
           { label: 'Inicio', href: '/' },
-          { label: 'Servicios', href: '/#services' },
+          { label: 'Servicios', href: '/#servicios' },
           { label: title },
         ]}
       />
@@ -227,7 +227,7 @@ const serviceSchema = {
       <!-- Bloque 2: Otros Servicios de SV Tech -->
       <RelatedList
         title="Otros Servicios"
-        seeAllHref="/#services"
+        seeAllHref="/#servicios"
         class="transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
         items={otherServices.map((otherService) => ({
           href: `/servicios/${otherService.slug}`,
@@ -269,5 +269,5 @@ const serviceSchema = {
   </div>
 
   <!-- Botón Volver al Catálogo de Servicios (Cierre Global) -->
-  <BackLink href="/#services" label="Volver a todos los servicios" />
+  <BackLink href="/#servicios" label="Volver a todos los servicios" />
 </Layout>

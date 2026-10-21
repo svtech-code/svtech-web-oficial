@@ -3,19 +3,19 @@ import type { Menu } from 'types/menu';
 export const MENU: Menu[] = [
   {
     title: 'Inicio',
-    url: '/#home',
+    url: '/#inicio',
   },
   {
     title: 'Servicios',
-    url: '/#services',
+    url: '/#servicios',
   },
   {
     title: 'Proyectos',
-    url: '/#projects',
+    url: '/#proyectos',
   },
   {
     title: 'Nosotros',
-    url: '/#about',
+    url: '/#nosotros',
   },
   {
     title: 'Blog',
