@@ -67,20 +67,6 @@ const blogSeoDescription =
           <BlogCard post={post} />
         ))}
       </div>
-
-      <!-- Estado vacío cuando no hay resultados de búsqueda -->
-      <div
-        id="no-search-results"
-        class="hidden flex-col items-center justify-center rounded-2xl border border-white/10 bg-gradient-primary/50 p-12 text-center"
-      >
-        <span class="text-3xl">🔍</span>
-        <p class="mt-3 text-lg font-semibold text-secondary">
-          No se encontraron artículos
-        </p>
-        <p class="mt-1 text-sm text-secondary/70">
-          Intenta buscar con otra palabra clave o término.
-        </p>
-      </div>
     </section>
   </div>
 </Layout>
@@ -90,10 +76,37 @@ const blogSeoDescription =
     const searchInput = document.getElementById('blog-search-input') as HTMLInputElement | null;
     const clearBtn = document.getElementById('clear-search-btn') as HTMLButtonElement | null;
     const counter = document.getElementById('search-results-counter') as HTMLParagraphElement | null;
-    const noResults = document.getElementById('no-search-results') as HTMLDivElement | null;
+    const cardsContainer = document.getElementById('blog-cards-container') as HTMLDivElement | null;
     const cards = document.querySelectorAll<HTMLElement>('[data-blog-card]');
 
-    if (!searchInput || cards.length === 0) return;
+    if (!searchInput || !cardsContainer || cards.length === 0) return;
+
+    let noResults =
+      (cardsContainer.parentElement?.querySelector('#no-search-results') as HTMLDivElement | null) ??
+      null;
+
+    function createNoResults(): HTMLDivElement {
+      const element = document.createElement('div');
+      element.id = 'no-search-results';
+      element.className =
+        'hidden flex-col items-center justify-center rounded-2xl border border-white/10 bg-gradient-primary/50 p-12 text-center';
+
+      const icon = document.createElement('span');
+      icon.className = 'text-3xl';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = '🔍';
+
+      const heading = document.createElement('p');
+      heading.className = 'mt-3 text-lg font-semibold text-secondary';
+      heading.textContent = 'No se encontraron artículos';
+
+      const hint = document.createElement('p');
+      hint.className = 'mt-1 text-sm text-secondary/70';
+      hint.textContent = 'Intenta buscar con otra palabra clave o término.';
+
+      element.append(icon, heading, hint);
+      return element;
+    }
 
     function filterCards() {
       const query = (searchInput?.value || '').trim().toLowerCase();
@@ -129,14 +142,16 @@ const blogSeoDescription =
         }
       }
 
-      if (noResults) {
-        if (visibleCount === 0 && query.length > 0) {
-          noResults.classList.remove('hidden');
-          noResults.classList.add('flex');
-        } else {
-          noResults.classList.add('hidden');
-          noResults.classList.remove('flex');
+      if (visibleCount === 0 && query.length > 0) {
+        if (!noResults) {
+          noResults = createNoResults();
+          cardsContainer.parentElement?.append(noResults);
         }
+        noResults.classList.remove('hidden');
+        noResults.classList.add('flex');
+      } else if (noResults) {
+        noResults.classList.add('hidden');
+        noResults.classList.remove('flex');
       }
     }
 

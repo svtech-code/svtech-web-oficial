@@ -39,10 +39,40 @@ const { title, image, imageAlt, description } = data;
 
 const { Content } = await render(service);
 
-const whatsappMessage = encodeURIComponent(
-  `Hola SV Tech, me gustaría solicitar información y cotizar el servicio de ${title}.`,
-);
-const whatsappUrl = `https://wa.me/56987933282?text=${whatsappMessage}`;
+const ctaBySlug: Record<string, { label: string; message: string }> = {
+  'consultoria-ti': {
+    label: 'Solicitar diagnóstico sin costo',
+    message:
+      'Hola SV Tech, me gustaría solicitar un diagnóstico inicial sin costo para evaluar la infraestructura tecnológica de mi empresa.',
+  },
+  'soporte-informatico': {
+    label: 'Solicitar soporte técnico',
+    message: 'Hola SV Tech, necesito soporte técnico para los equipos de mi empresa.',
+  },
+  'desarrollo-web': {
+    label: 'Cotizar mi sitio web',
+    message: 'Hola SV Tech, me gustaría cotizar el desarrollo de un sitio web a medida para mi negocio.',
+  },
+  'administracion-hosting': {
+    label: 'Cotizar administración de hosting',
+    message: 'Hola SV Tech, necesito asesoría para la administración de hosting y servidores de mi empresa.',
+  },
+  'base-datos': {
+    label: 'Cotizar bases de datos',
+    message:
+      'Hola SV Tech, necesito asesoría en diseño, implementación o mantenimiento de bases de datos.',
+  },
+  'soporte-personalizado': {
+    label: 'Solicitar soporte personalizado',
+    message: 'Hola SV Tech, me gustaría coordinar un soporte personalizado para mi proyecto.',
+  },
+};
+
+const cta = ctaBySlug[service.slug] ?? {
+  label: 'Contáctanos',
+  message: `Hola SV Tech, me gustaría solicitar información y cotizar el servicio de ${title}.`,
+};
+const whatsappUrl = `https://wa.me/56987933282?text=${encodeURIComponent(cta.message)}`;
 
 const siteUrl = Astro.site ?? new URL('https://svtech.cl');
 const serviceUrl = new URL(Astro.url.pathname, siteUrl).href;
@@ -152,6 +182,7 @@ const serviceSchema = {
         heading="¿Listo para poner en marcha tu requerimiento?"
         text="Escríbenos directamente por WhatsApp o envíanos un mensaje por nuestro formulario web."
         whatsappUrl={whatsappUrl}
+        whatsappLabel={cta.label}
         whatsappAriaLabel={`Contactar por WhatsApp para ${title}`}
       />
     </article>
@@ -199,7 +230,7 @@ const serviceSchema = {
         seeAllHref="/#services"
         class="transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
         items={otherServices.map((otherService) => ({
-          href: `/services/${otherService.slug}`,
+          href: `/servicios/${otherService.slug}`,
           label: otherService.data.title,
           icon: otherService.slug as ServiceSlug,
           tone: 'primary',

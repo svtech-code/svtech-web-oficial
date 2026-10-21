@@ -15,12 +15,12 @@ nacional con soporte remoto y acompañamiento después de cada entrega.
 
 ## Servicios
 
-- [Soporte Informático](https://svtech.cl/services/soporte-informatico): soporte técnico para mantener sistemas operativos funcionando de forma óptima y asegurar la continuidad operativa.
-- [Desarrollo web](https://svtech.cl/services/desarrollo-web): sitios corporativos, landing pages y aplicaciones web a medida, rápidas y optimizadas para SEO.
-- [Consultoría TI](https://svtech.cl/services/consultoria-ti): asesoramiento tecnológico estratégico para optimizar los procesos de negocio.
-- [Administración Hosting](https://svtech.cl/services/administracion-hosting): gestión de servidores y servicios de hosting para máximo rendimiento.
-- [Base de Datos](https://svtech.cl/services/base-datos): diseño, implementación y mantenimiento de bases de datos eficientes y seguras.
-- [Soporte Personalizado](https://svtech.cl/services/soporte-personalizado): atención técnica especializada adaptada a las necesidades de cada proyecto.
+- [Soporte Informático](https://svtech.cl/servicios/soporte-informatico): soporte técnico para mantener sistemas operativos funcionando de forma óptima y asegurar la continuidad operativa.
+- [Desarrollo web](https://svtech.cl/servicios/desarrollo-web): sitios corporativos, landing pages y aplicaciones web a medida, rápidas y optimizadas para SEO.
+- [Consultoría TI](https://svtech.cl/servicios/consultoria-ti): asesoramiento tecnológico estratégico para optimizar los procesos de negocio.
+- [Administración Hosting](https://svtech.cl/servicios/administracion-hosting): gestión de servidores y servicios de hosting para máximo rendimiento.
+- [Base de Datos](https://svtech.cl/servicios/base-datos): diseño, implementación y mantenimiento de bases de datos eficientes y seguras.
+- [Soporte Personalizado](https://svtech.cl/servicios/soporte-personalizado): atención técnica especializada adaptada a las necesidades de cada proyecto.
 
 ## Tecnologías
 

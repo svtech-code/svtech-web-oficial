@@ -44,7 +44,7 @@ export default defineConfig({
         if (item.url === 'https://svtech.cl/' || item.url === 'https://svtech.cl') {
           item.changefreq = 'weekly';
           item.priority = 1.0;
-        } else if (item.url.includes('/services/')) {
+        } else if (item.url.includes('/servicios/')) {
           item.changefreq = 'monthly';
           item.priority = 0.9;
         } else if (item.url.includes('/proyectos/')) {
