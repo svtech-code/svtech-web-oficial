@@ -26,8 +26,9 @@ const ogImage = image.startsWith('http')
   ? image
   : new URL(image, siteUrl).href;
 
-// URL canónica limpia (sin query params para evitar contenido duplicado en buscadores)
-const cleanCanonical = canonicalURL || new URL(Astro.url.pathname, siteUrl).href;
+// URL canónica limpia (sin query params ni barra final para evitar contenido duplicado)
+const rawCanonical = canonicalURL || new URL(Astro.url.pathname, siteUrl).href;
+const cleanCanonical = rawCanonical.replace(/\/+$/, '') || siteUrl.origin;
 const isIndexable = !robots.includes('noindex');
 ---
 

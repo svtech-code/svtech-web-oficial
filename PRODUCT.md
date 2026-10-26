@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Mixed local audience in the Maule region of Chile (Linares, Talca and surroundings):
+National audience across Chile, with in-person support in Linares and the Maule Region:
 
 - **Small and medium businesses** looking for a provider to keep their technology running and build their digital presence: IT support/maintenance, web development and landing pages, hosting administration, database work, and strategic IT consulting.
 - **Individuals** needing practical help with their computers or a quick technical solution.
@@ -17,13 +17,13 @@ Their job on the site: evaluate whether SV Tech can solve their need, see proof 
 
 ## Product Purpose
 
-The corporate website of SV Tech, a technology and IT-consulting company from Linares, Maule. It presents the service catalogue (Soporte Informático, Desarrollo Web, Consultoría TI, Administración Hosting, Base de Datos, Soporte Personalizado), demonstrates capability through real projects and client names, and converts visitors into leads through a validated contact form.
+The corporate website of SV Tech, a technology and IT-consulting company based in Linares, Maule, serving clients across Chile remotely and on site in the Maule Region. It presents the service catalogue (Soporte Informático, Desarrollo Web, Consultoría TI, Administración Hosting, Base de Datos, Soporte Personalizado), demonstrates capability through real projects and client names, and converts visitors into leads through a validated contact form.
 
-Success means a qualified local contact reaching out and starting a project or support engagement.
+Success means a qualified contact reaching out and starting a project or support engagement.
 
 ## Positioning
 
-A personalized, full-service IT partner for SMEs. SV Tech offers support, web development, hosting administration, databases and consulting under one roof, and adapts solutions to each business's own processes rather than selling a one-size-fits-all product. Local presence in Linares and the Maule region, with human, direct attention.
+A personalized, full-service IT partner for SMEs. SV Tech offers support, web development, hosting administration, databases and consulting under one roof, and adapts solutions to each business's own processes rather than selling a one-size-fits-all product. Remote coverage across Chile, with on-site support in Linares and the Maule Region and human, direct attention.
 
 ## Operating Context
 

@@ -6,7 +6,7 @@ imageAlt: 'Imagen representativa de soporte informático, mantenimiento de equip
 description: 'Mantenimiento preventivo y correctivo de computadores, servidores locales y redes para empresas y particulares.'
 ---
 
-En **SV Tech** brindamos soluciones técnicas ágiles y definitivas para mantener la continuidad operativa de tu empresa, oficina o equipamiento personal. Nuestro servicio está diseñado para resolver incidencias de hardware, software y redes con rapidez y transparencia, combinando asistencia remota inmediata y atención presencial en terreno en Linares y la Región del Maule.
+En **SV Tech** brindamos soluciones técnicas ágiles y definitivas para mantener la continuidad operativa de tu empresa, oficina o equipamiento personal. Nuestro servicio está diseñado para resolver incidencias de hardware, software y redes con rapidez y transparencia, combinando asistencia remota inmediata en todo Chile y atención presencial en terreno en Linares y la Región del Maule.
 
 ## ¿Qué incluye nuestro servicio?
 

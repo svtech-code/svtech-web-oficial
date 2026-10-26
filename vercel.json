@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/services",
@@ -12,33 +13,23 @@
       "permanent": true
     },
     {
+      "source": "/servicios",
+      "destination": "https://svtech.cl/#servicios",
+      "permanent": true
+    },
+    {
+      "source": "/servicios/",
+      "destination": "https://svtech.cl/#servicios",
+      "permanent": true
+    },
+    {
       "source": "/services/:slug([^/.]+)",
-      "destination": "/servicios/:slug/",
+      "destination": "/servicios/:slug",
       "permanent": true
     },
     {
       "source": "/services/:slug([^/.]+)/",
-      "destination": "/servicios/:slug/",
-      "permanent": true
-    },
-    {
-      "source": "/blog",
-      "destination": "/blog/",
-      "permanent": true
-    },
-    {
-      "source": "/blog/:slug([^/.]+)",
-      "destination": "/blog/:slug/",
-      "permanent": true
-    },
-    {
-      "source": "/servicios/:slug([^/.]+)",
-      "destination": "/servicios/:slug/",
-      "permanent": true
-    },
-    {
-      "source": "/proyectos/:slug([^/.]+)",
-      "destination": "/proyectos/:slug/",
+      "destination": "/servicios/:slug",
       "permanent": true
     }
   ],

@@ -25,6 +25,7 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   site: 'https://svtech.cl',
+  trailingSlash: 'never',
   compressHTML: true,
   env: {
     schema: {
@@ -35,6 +36,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => !page.includes('/404') && !page.includes('/api/'),
       serialize(item) {
+        item.url = item.url.replace(/\/+$/, '');
         if (item.url === 'https://svtech.cl/' || item.url === 'https://svtech.cl') {
           item.changefreq = 'weekly';
           item.priority = 1.0;

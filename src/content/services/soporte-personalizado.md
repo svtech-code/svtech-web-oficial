@@ -11,7 +11,7 @@ Cada empresa y organización cuenta con dinámicas, horarios y desafíos particu
 ## Modalidades y coberturas de atención
 
 - **Convenios mensuales para empresas:** Planes estructurados con horas de soporte garantizadas, mantenimiento preventivo periódico y atención preferencial.
-- **Asistencia remota inmediata:** Soporte técnico a distancia para resolución de dudas, fallas de software, configuración de periféricos y asistencia a colaboradores.
+- **Asistencia remota inmediata en todo Chile:** Soporte técnico a distancia para resolución de dudas, fallas de software, configuración de periféricos y asistencia a colaboradores.
 - **Visitas presenciales programadas y de emergencia:** Asistencia en terreno en Linares y comunas de la Región del Maule para labores físicas de hardware, redes o mantenciones globales.
 - **Mesa de ayuda directa por WhatsApp:** Canal exclusivo de comunicación directa con nuestros técnicos para resolver requerimientos urgentes en tiempo real.
 - **Capacitación y buenas prácticas:** Orientación práctica a tu equipo sobre uso seguro de herramientas digitales, prevención de estafas por correo (phishing) y respaldo de archivos.

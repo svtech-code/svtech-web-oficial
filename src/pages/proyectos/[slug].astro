@@ -259,7 +259,7 @@ const projectSchema = {
         seeAllHref="/#proyectos"
         headingLevel="h2"
         items={otherProjects.map((other) => ({
-          href: `/proyectos/${other.slug}/`,
+          href: `/proyectos/${other.slug}`,
           label: other.title,
           icon: other.type === 'servicio' ? 'soporte-informatico' : 'desarrollo-web',
           tone: other.type === 'servicio' ? 'primary' : 'tertiary',

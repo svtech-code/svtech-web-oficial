@@ -17,7 +17,7 @@ export const structuredData = {
       image: 'https://svtech.cl/og.png',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://svtech.cl/favicon.svg',
+        url: 'https://svtech.cl/images/logo-512.png',
       },
       sameAs: [
         'https://twitter.com/svtech_code',
@@ -34,7 +34,7 @@ export const structuredData = {
         '@type': 'Country',
         name: 'Chile',
       },
-      availableLanguage: ['Spanish'],
+      knowsLanguage: ['es-CL'],
       openingHoursSpecification: [
         {
           '@type': 'OpeningHoursSpecification',
@@ -74,7 +74,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Soporte Informático',
-              url: 'https://svtech.cl/servicios/soporte-informatico/',
+              url: 'https://svtech.cl/servicios/soporte-informatico',
             },
           },
           {
@@ -82,7 +82,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Desarrollo web',
-              url: 'https://svtech.cl/servicios/desarrollo-web/',
+              url: 'https://svtech.cl/servicios/desarrollo-web',
             },
           },
           {
@@ -90,7 +90,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Consultoría TI',
-              url: 'https://svtech.cl/servicios/consultoria-ti/',
+              url: 'https://svtech.cl/servicios/consultoria-ti',
             },
           },
           {
@@ -98,7 +98,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Administración Hosting',
-              url: 'https://svtech.cl/servicios/administracion-hosting/',
+              url: 'https://svtech.cl/servicios/administracion-hosting',
             },
           },
           {
@@ -106,7 +106,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Base de Datos',
-              url: 'https://svtech.cl/servicios/base-datos/',
+              url: 'https://svtech.cl/servicios/base-datos',
             },
           },
           {
@@ -114,7 +114,7 @@ export const structuredData = {
             itemOffered: {
               '@type': 'Service',
               name: 'Soporte Personalizado',
-              url: 'https://svtech.cl/servicios/soporte-personalizado/',
+              url: 'https://svtech.cl/servicios/soporte-personalizado',
             },
           },
         ],
