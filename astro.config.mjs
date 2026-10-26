@@ -18,7 +18,6 @@ export default defineConfig({
     optimizeDeps: {
       // Pre-bundle solo dependencias críticas
       include: [],
-      exclude: ['@emailjs/browser'], // EmailJS se carga lazy
     },
   },
 
