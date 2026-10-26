@@ -12,8 +12,33 @@
       "permanent": true
     },
     {
-      "source": "/services/(.*)",
-      "destination": "/servicios/$1",
+      "source": "/services/:slug([^/.]+)",
+      "destination": "/servicios/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/services/:slug([^/.]+)/",
+      "destination": "/servicios/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug([^/.]+)",
+      "destination": "/blog/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/servicios/:slug([^/.]+)",
+      "destination": "/servicios/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/proyectos/:slug([^/.]+)",
+      "destination": "/proyectos/:slug/",
       "permanent": true
     }
   ],

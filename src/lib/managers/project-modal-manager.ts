@@ -306,7 +306,7 @@ export class ProjectModalManager {
 
     // Enlace a la página completa del proyecto
     if (this.elements.projectLink) {
-      this.elements.projectLink.href = `/proyectos/${project.slug}`;
+      this.elements.projectLink.href = `/proyectos/${project.slug}/`;
     }
 
     // Features del modal

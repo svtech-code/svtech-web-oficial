@@ -230,7 +230,7 @@ const serviceSchema = {
         seeAllHref="/#servicios"
         class="transition-[border-color,box-shadow] duration-300 hover:border-white/20 hover:shadow-2xl"
         items={otherServices.map((otherService) => ({
-          href: `/servicios/${otherService.id}`,
+          href: `/servicios/${otherService.id}/`,
           label: otherService.data.title,
           icon: otherService.id as ServiceSlug,
           tone: 'primary',

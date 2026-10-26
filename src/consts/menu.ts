@@ -19,6 +19,6 @@ export const MENU: Menu[] = [
   },
   {
     title: 'Blog',
-    url: '/blog',
+    url: '/blog/',
   },
 ];

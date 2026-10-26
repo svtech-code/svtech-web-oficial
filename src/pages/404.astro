@@ -2,7 +2,12 @@
 import Layout from 'layouts/Layout.astro';
 ---
 
-<Layout title=" 404 - Página no encontrada - SV Tech" showHeader={false} showScrollToTop={false}>
+<Layout
+  title=" 404 - Página no encontrada - SV Tech"
+  robots="noindex, follow"
+  showHeader={false}
+  showScrollToTop={false}
+>
   <section class="flex h-screen w-full flex-col items-center justify-center px-4">
     <header class="flex flex-col items-center justify-center gap-2 py-8 text-center">
       <p
