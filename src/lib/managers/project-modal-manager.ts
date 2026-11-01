@@ -11,6 +11,7 @@ export class ProjectModalManager {
   private isVisible: boolean = false;
   private scrollToTopButton: HTMLElement | null = null;
   private scrollToTopWasVisible: boolean = false;
+  private whatsappButton: HTMLElement | null = null;
 
   // Elementos del modal para inyectar contenido
   private elements: {
@@ -58,8 +59,9 @@ export class ProjectModalManager {
     this.closeButton = closeButton;
     this.overlay = modal;
 
-    // Obtener referencia al botón ScrollToTop
+    // Obtener referencia a los botones flotantes
     this.scrollToTopButton = document.getElementById('scroll-to-top');
+    this.whatsappButton = document.getElementById('whatsapp-floating-btn');
 
     // Obtener todos los elementos del modal
     this.elements = this.getModalElements();
@@ -138,23 +140,30 @@ export class ProjectModalManager {
   }
 
   /**
-   * Oculta el botón ScrollToTop y guarda su estado anterior
+   * Oculta los botones flotantes (ScrollToTop y WhatsApp) y guarda su estado anterior
    */
   private hideScrollToTop(): void {
     if (this.scrollToTopButton) {
       // Guardar si el botón estaba visible antes de abrir el modal
-      this.scrollToTopWasVisible = this.scrollToTopButton.classList.contains('opacity-100');
+      this.scrollToTopWasVisible =
+        this.scrollToTopButton.classList.contains('opacity-100') ||
+        this.scrollToTopButton.classList.contains('is-visible');
 
       // Ocultar el botón con transición suave
       this.scrollToTopButton.style.transition = 'opacity 0.2s ease-out, transform 0.2s ease-out';
-      this.scrollToTopButton.classList.remove('opacity-100', 'pointer-events-auto');
+      this.scrollToTopButton.classList.remove('opacity-100', 'pointer-events-auto', 'is-visible');
       this.scrollToTopButton.classList.add('opacity-0', 'pointer-events-none');
       this.scrollToTopButton.setAttribute('tabindex', '-1');
+    }
+
+    if (this.whatsappButton) {
+      this.whatsappButton.style.transition = 'opacity 0.2s ease-out, transform 0.2s ease-out';
+      this.whatsappButton.classList.add('opacity-0', 'pointer-events-none');
     }
   }
 
   /**
-   * Restaura la visibilidad del botón ScrollToTop al estado anterior
+   * Restaura la visibilidad de los botones flotantes al estado anterior
    */
   private restoreScrollToTop(): void {
     if (this.scrollToTopButton && this.scrollToTopWasVisible) {
@@ -163,10 +172,19 @@ export class ProjectModalManager {
         if (this.scrollToTopButton) {
           this.scrollToTopButton.style.transition = 'opacity 0.3s ease-in, transform 0.3s ease-in';
           this.scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
-          this.scrollToTopButton.classList.add('opacity-100', 'pointer-events-auto');
+          this.scrollToTopButton.classList.add('opacity-100', 'pointer-events-auto', 'is-visible');
           this.scrollToTopButton.removeAttribute('tabindex');
         }
       }, 100); // Pequeño delay para que la transición del modal termine primero
+    }
+
+    if (this.whatsappButton) {
+      setTimeout(() => {
+        if (this.whatsappButton) {
+          this.whatsappButton.style.transition = 'opacity 0.3s ease-in, transform 0.3s ease-in';
+          this.whatsappButton.classList.remove('opacity-0', 'pointer-events-none');
+        }
+      }, 100);
     }
   }
 

@@ -5,7 +5,7 @@ import Icon from 'components/ui/Icon.astro';
 <button
   type="button"
   id="scroll-to-top"
-  class="group pointer-events-none fixed right-4 bottom-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary opacity-0 shadow-lg duration-300 hover:shadow-tertiary/40 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:right-6 sm:bottom-6 sm:h-14 sm:w-14 md:h-16 md:w-16"
+  class="group pointer-events-none fixed right-4 bottom-8 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary opacity-0 shadow-lg hover:shadow-tertiary/40 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:right-6 sm:bottom-8 sm:h-14 sm:w-14 md:right-8 md:bottom-8 md:h-16 md:w-16"
   aria-label="Volver al inicio"
   tabindex="-1"
 >
@@ -13,6 +13,20 @@ import Icon from 'components/ui/Icon.astro';
 </button>
 
 <style>
+  #scroll-to-top {
+    transform: translateY(1.25rem) scale(0.92);
+    transition:
+      opacity 300ms ease,
+      transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 200ms ease;
+  }
+
+  #scroll-to-top.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
   @keyframes arrowFloat {
     0%,
     100% {
@@ -37,8 +51,17 @@ import Icon from 'components/ui/Icon.astro';
 <script>
   import { initScrollToTop } from 'lib/managers/scroll-to-top';
 
-  initScrollToTop({
-    buttonId: 'scroll-to-top',
-    triggerElementId: 'services',
+  let cleanup: (() => void) | null = null;
+
+  document.addEventListener('astro:page-load', () => {
+    if (cleanup) {
+      cleanup();
+    }
+
+    cleanup = initScrollToTop({
+      buttonId: 'scroll-to-top',
+      triggerElementId: 'services',
+      fallbackThreshold: 350,
+    }) || null;
   });
 </script>

@@ -11,6 +11,7 @@ import StructuredData from 'components/common/StructuredData.astro';
 import SmokeScreen from 'components/common/SmokeScreen.astro';
 import Header from 'components/common/Header.astro';
 import ScrollToTop from 'components/common/ScrollToTop.astro';
+import WhatsAppButton from 'components/common/WhatsAppButton.astro';
 import Footer from 'components/common/Footer.astro';
 
 interface Props {
@@ -22,6 +23,7 @@ interface Props {
   robots?: string;
   showHeader?: boolean;
   showScrollToTop?: boolean;
+  showWhatsApp?: boolean;
   showSmokeScreen?: boolean;
 }
 
@@ -34,6 +36,7 @@ const {
   robots,
   showHeader = true,
   showScrollToTop = true,
+  showWhatsApp = true,
   showSmokeScreen = true,
 } = Astro.props;
 ---
@@ -89,6 +92,7 @@ const {
       <slot />
 
       {showScrollToTop && <ScrollToTop />}
+      {showWhatsApp && <WhatsAppButton />}
     </main>
 
     <Footer />
