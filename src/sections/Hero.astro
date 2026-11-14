@@ -4,8 +4,132 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 
 <section
   id="inicio"
-  class="relative flex min-h-screen w-full max-w-[1200px] flex-col items-center justify-center px-4 pt-24 pb-12 sm:pt-28 lg:pt-32"
+  class="relative flex min-h-screen w-full max-w-[1200px] flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-12 sm:pt-28 lg:pt-32"
 >
+  <!-- Figura vectorial de fondo: Sonar / Retícula Abisal ("Deepwater Control Room") -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center overflow-hidden"
+  >
+    <svg
+      class="h-[520px] w-[520px] max-w-none opacity-85 sm:h-[680px] sm:w-[680px] lg:h-[820px] lg:w-[820px]"
+      viewBox="0 0 800 800"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <radialGradient id="hero-sonar-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#0096b8" stop-opacity="0.18" />
+          <stop offset="55%" stop-color="#00252d" stop-opacity="0.08" />
+          <stop offset="100%" stop-color="#001217" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="hero-grid-mask" cx="50%" cy="50%" r="48%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+          <stop offset="65%" stop-color="#ffffff" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+        </radialGradient>
+        <pattern id="hero-tech-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path
+            d="M 40 0 L 0 0 0 40"
+            fill="none"
+            stroke="#0096b8"
+            stroke-opacity="0.1"
+            stroke-width="1"
+          />
+        </pattern>
+        <mask id="hero-radial-fade">
+          <rect width="800" height="800" fill="url(#hero-grid-mask)" />
+        </mask>
+      </defs>
+
+      <!-- Resplandor abisal central -->
+      <circle cx="400" cy="400" r="360" fill="url(#hero-sonar-glow)" />
+
+      <!-- Cuadrícula técnica con desvanecido radial -->
+      <rect width="800" height="800" fill="url(#hero-tech-grid)" mask="url(#hero-radial-fade)" />
+
+      <!-- Ejes de telemetría -->
+      <line
+        x1="80"
+        y1="400"
+        x2="720"
+        y2="400"
+        stroke="#0096b8"
+        stroke-opacity="0.14"
+        stroke-dasharray="4 8"
+      />
+      <line
+        x1="400"
+        y1="80"
+        x2="400"
+        y2="720"
+        stroke="#0096b8"
+        stroke-opacity="0.14"
+        stroke-dasharray="4 8"
+      />
+
+      <!-- Anillos concéntricos de sonar -->
+      <circle
+        cx="400"
+        cy="400"
+        r="130"
+        stroke="#0096b8"
+        stroke-opacity="0.2"
+        stroke-width="1"
+      />
+      <circle
+        cx="400"
+        cy="400"
+        r="220"
+        stroke="#0096b8"
+        stroke-opacity="0.16"
+        stroke-width="1"
+        stroke-dasharray="10 6"
+      />
+      <circle
+        cx="400"
+        cy="400"
+        r="310"
+        stroke="#0096b8"
+        stroke-opacity="0.12"
+        stroke-width="1"
+      />
+      <circle
+        cx="400"
+        cy="400"
+        r="380"
+        stroke="#ff8810"
+        stroke-opacity="0.1"
+        stroke-width="1"
+        stroke-dasharray="3 12"
+      />
+
+      <!-- Arcos de calibración de consola -->
+      <path
+        d="M 196 282 A 235 235 0 0 1 604 282"
+        stroke="#0096b8"
+        stroke-opacity="0.26"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M 225 555 A 235 235 0 0 0 575 555"
+        stroke="#ff8810"
+        stroke-opacity="0.2"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+
+      <!-- Nodos de señal luminosa (Beacons) -->
+      <circle cx="556" cy="244" r="4" fill="#0096b8" fill-opacity="0.75" />
+      <circle cx="556" cy="244" r="10" stroke="#0096b8" stroke-opacity="0.3" />
+      <circle cx="208" cy="318" r="3.5" fill="#ff8810" fill-opacity="0.8" />
+      <circle cx="208" cy="318" r="9" stroke="#ff8810" stroke-opacity="0.3" />
+      <circle cx="590" cy="520" r="3" fill="#0096b8" fill-opacity="0.65" />
+      <circle cx="262" cy="548" r="3" fill="#0096b8" fill-opacity="0.55" />
+    </svg>
+  </div>
+
   <header class="reveal flex flex-col items-center justify-center gap-2 md:gap-3">
     <mark
       class="bg-transparent text-xs text-tertiary duration-300 sm:text-base md:text-lg lg:text-xl"
@@ -23,30 +147,125 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 
   <div class="reveal reveal-delay-1 flex w-full flex-col items-center justify-center">
     <p
-      class="w-[90%] py-4 text-center text-sm font-medium text-secondary duration-300 sm:py-6 sm:text-base md:w-[80%] md:text-lg lg:max-w-3xl lg:text-xl"
+      class="w-[90%] py-4 text-center text-sm font-medium text-secondary duration-300 sm:py-5 sm:text-base md:w-[80%] md:text-lg lg:max-w-3xl lg:text-xl"
     >
       Tecnología simple y confiable para que tu negocio siga operando sin interrupciones. Te
       acompañamos de forma presencial en el Maule y remota en todo Chile.
     </p>
 
-    <SocialNetworkIcons class="gap-6 pb-8 sm:gap-10 sm:pb-12 md:pb-14" />
+    <SocialNetworkIcons class="gap-6 pb-6 sm:gap-10 sm:pb-8 md:pb-10" />
   </div>
 
-  <footer class="reveal reveal-delay-2 flex items-center justify-center gap-4 sm:gap-8">
-    <a
-      href="#contacto"
-      aria-label="Ir a la sección de contacto"
-      class="flex h-10 w-32 items-center justify-center rounded-lg border border-primary bg-primary p-2 text-sm font-medium text-gradient-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-48 sm:text-base"
-    >
-      Contáctanos
-    </a>
+  <footer class="reveal reveal-delay-2 relative flex w-full flex-col items-center justify-center gap-5">
+    <div class="flex items-center justify-center gap-4 sm:gap-8">
+      <a
+        href="#contacto"
+        aria-label="Ir a la sección de contacto"
+        class="flex h-10 w-32 items-center justify-center rounded-lg border border-primary bg-primary p-2 text-sm font-medium text-gradient-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-48 sm:text-base"
+      >
+        Contáctanos
+      </a>
 
+      <a
+        href="#servicios"
+        aria-label="Ir a la sección de servicios"
+        class="flex h-10 w-32 items-center justify-center rounded-lg border border-primary p-2 text-sm font-medium text-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-48 sm:text-base"
+      >
+        Ver Servicios
+      </a>
+    </div>
+
+    <!-- Ticket compacto de Comunidad: horizontal debajo en móvil, debajo y a la derecha cerca de los botones en desktop -->
     <a
-      href="#servicios"
-      aria-label="Ir a la sección de servicios"
-      class="flex h-10 w-32 items-center justify-center rounded-lg border border-primary p-2 text-sm font-medium text-secondary duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none sm:h-12 sm:w-48 sm:text-base"
+      href="/herramientas/generador-qr"
+      aria-label="Abrir herramienta gratuita: Generador de Códigos QR"
+      class="group relative flex h-[72px] w-[264px] items-center rounded-2xl transition duration-300 hover:scale-[1.03] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none lg:absolute lg:top-full lg:left-[calc(50%+104px)] lg:mt-8 lg:-rotate-6 lg:hover:rotate-0"
     >
-      Ver Servicios
+      <!-- Contorno y fondo SVG único para muescas circulares con el mismo borde del ticket -->
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 264 72"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="pointer-events-none absolute inset-0 -z-10 size-full drop-shadow-[0_2px_8px_rgba(255,136,16,0.22)] transition-all duration-300 group-hover:drop-shadow-[0_8px_18px_rgba(255,136,16,0.34)]"
+      >
+        <path
+          d="M 16 1 L 57 1 A 7 7 0 0 0 71 1 L 248 1 A 15 15 0 0 1 263 16 L 263 56 A 15 15 0 0 1 248 71 L 71 71 A 7 7 0 0 0 57 71 L 16 71 A 15 15 0 0 1 1 56 L 1 16 A 15 15 0 0 1 16 1 Z"
+          fill="#001217"
+          fill-opacity="0.88"
+          stroke="#ff8810"
+          stroke-opacity="0.6"
+          stroke-width="1.2"
+          class="transition-all duration-300 group-hover:stroke-opacity-100"
+        />
+        <line
+          x1="64"
+          y1="12"
+          x2="64"
+          y2="60"
+          stroke="#ff8810"
+          stroke-opacity="0.45"
+          stroke-width="1"
+          stroke-dasharray="3 3"
+        />
+      </svg>
+
+      <!-- Talón izquierdo (64px): solo icono QR centrado -->
+      <div class="flex w-[64px] shrink-0 items-center justify-center">
+        <svg
+          class="size-10 text-primary transition-transform duration-300 group-hover:scale-110"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect width="5" height="5" x="3" y="3" rx="1" />
+          <rect width="5" height="5" x="16" y="3" rx="1" />
+          <rect width="5" height="5" x="3" y="16" rx="1" />
+          <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+          <path d="M21 21v.01" />
+          <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+          <path d="M3 12h.01" />
+          <path d="M12 3h.01" />
+          <path d="M12 16v.01" />
+          <path d="M16 12h1" />
+          <path d="M21 12v.01" />
+          <path d="M12 21v-1" />
+        </svg>
+      </div>
+
+      <!-- Cuerpo derecho: Título, "Gratis" en naranjo y chip de flecha SVG -->
+      <div class="flex flex-1 items-center justify-between pr-4 pl-3.5">
+        <div class="text-left">
+          <p class="text-sm leading-tight font-bold whitespace-nowrap text-secondary">
+            Generador de QR
+          </p>
+          <p class="mt-0.5 text-xs font-bold tracking-wider text-tertiary uppercase">
+            Gratis
+          </p>
+        </div>
+
+        <span
+          aria-hidden="true"
+          class="flex size-7 shrink-0 items-center justify-center rounded-full border border-primary/45 bg-primary/15 text-primary transition duration-300 group-hover:translate-x-0.5 group-hover:border-primary group-hover:bg-primary group-hover:text-gradient-secondary"
+        >
+          <svg
+            class="size-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </span>
+      </div>
     </a>
   </footer>
 </section>
