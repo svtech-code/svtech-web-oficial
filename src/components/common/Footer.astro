@@ -20,7 +20,7 @@ import { SERVICES_STATIC } from 'consts/services';
       </a>
 
       <nav
-        class="flex flex-col items-center justify-center gap-14 pb-4 sm:flex-row sm:items-start sm:justify-around md:flex-1"
+        class="flex flex-col items-center justify-center gap-10 pb-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-around md:flex-1 lg:gap-12"
         aria-label="Barra de navegación del footer"
       >
         <div>
@@ -31,6 +31,7 @@ import { SERVICES_STATIC } from 'consts/services';
             <li><a href="/#proyectos">Proyectos</a></li>
             <li><a href="/#clientes">Clientes</a></li>
             <li><a href="/#nosotros">Nosotros</a></li>
+            <li><a href="/blog">Blog</a></li>
             <li><a href="/#contacto">Contacto</a></li>
           </ul>
         </div>
@@ -43,6 +44,15 @@ import { SERVICES_STATIC } from 'consts/services';
                 <a href={`/servicios/${slug}`}>{title}</a>
               </li>
             ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4>HERRAMIENTAS</h4>
+          <ul>
+            <li>
+              <a href="/herramientas/generador-qr">Generador de Códigos QR</a>
+            </li>
           </ul>
         </div>
 

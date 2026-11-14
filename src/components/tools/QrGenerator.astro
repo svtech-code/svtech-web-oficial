@@ -1,0 +1,728 @@
+---
+import Icon from 'components/ui/Icon.astro';
+---
+
+<section
+  aria-label="Consola de configuración y vista previa del código QR"
+  class="w-full"
+>
+  <form
+    id="qr-generator-form"
+    onsubmit="return false;"
+    class="grid w-full grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start"
+  >
+    <!-- Panel Izquierdo: Configuración de Datos y Diseño (7 columnas en desktop) -->
+    <div
+      class="flex flex-col gap-8 rounded-2xl border border-primary/40 bg-gradient-primary/80 p-5 shadow-lg shadow-primary/15 backdrop-blur-2xl sm:p-8 lg:col-span-7"
+    >
+      <!-- Paso 1: Selector de Tipo de Contenido -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-secondary uppercase sm:text-xl">
+          1. Tipo de contenido a codificar
+        </h2>
+
+        <div
+          role="tablist"
+          aria-label="Tipo de contenido del código QR"
+          class="grid grid-cols-2 gap-2.5 sm:grid-cols-4"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            data-qr-tab="url"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary px-3 py-2.5 text-xs font-semibold text-gradient-secondary transition duration-300 hover:scale-[1.02] focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            <svg
+              class="size-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            <span>Sitio / Link</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-qr-tab="whatsapp"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition duration-300 hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            <svg
+              class="size-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+            <span>WhatsApp</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-qr-tab="wifi"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition duration-300 hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            <svg
+              class="size-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 20h.01" />
+              <path d="M2 8.82a15 15 0 0 1 20 0" />
+              <path d="M5 12.859a10 10 0 0 1 14 0" />
+              <path d="M8.5 16.429a5 5 0 0 1 7 0" />
+            </svg>
+            <span>Red Wi-Fi</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-qr-tab="vcard"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition duration-300 hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            <svg
+              class="size-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect width="18" height="14" x="3" y="5" rx="2" />
+              <circle cx="9" cy="11" r="2" />
+              <path d="M15 10h2" />
+              <path d="M15 14h2" />
+              <path d="M7 15a2 2 0 0 1 4 0" />
+            </svg>
+            <span>Contacto</span>
+          </button>
+        </div>
+
+        <!-- Panel URL / Redes Sociales -->
+        <div data-qr-panel="url" class="space-y-3 pt-2">
+          <div>
+            <label
+              for="qr-url-input"
+              class="block text-sm font-medium text-secondary"
+            >
+              Dirección web, carta PDF, Instagram o Google Maps
+            </label>
+            <input
+              id="qr-url-input"
+              name="url_input"
+              type="url"
+              value="https://svtech.cl"
+              placeholder="https://tunegocio.cl/carta-digital"
+              autocomplete="off"
+              class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
+            />
+            <p class="mt-1.5 text-xs text-secondary/75">
+              La dirección se graba directamente en los puntos del QR: sin acortadores ni redirecciones que caduquen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Panel WhatsApp Directo -->
+        <div data-qr-panel="whatsapp" class="hidden space-y-4 pt-2">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label
+                for="qr-wa-phone"
+                class="block text-sm font-medium text-secondary"
+              >
+                Número con código de país
+              </label>
+              <input
+                id="qr-wa-phone"
+                name="wa_phone"
+                type="tel"
+                value="+56987933282"
+                placeholder="+56 9 8793 3282"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label
+                for="qr-wa-message"
+                class="block text-sm font-medium text-secondary"
+              >
+                Mensaje predeterminado (opcional)
+              </label>
+              <input
+                id="qr-wa-message"
+                name="wa_message"
+                type="text"
+                value="Hola, me gustaría cotizar un servicio"
+                placeholder="Ej: Hola, quiero hacer un pedido..."
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+          </div>
+          <p class="text-xs text-secondary/75">
+            Genera un enlace oficial <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">wa.me</code> que abre el chat directo en el teléfono de tu cliente.
+          </p>
+        </div>
+
+        <!-- Panel Red Wi-Fi -->
+        <div data-qr-panel="wifi" class="hidden space-y-4 pt-2">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label
+                for="qr-wifi-ssid"
+                class="block text-sm font-medium text-secondary"
+              >
+                Nombre de la red (SSID)
+              </label>
+              <input
+                id="qr-wifi-ssid"
+                name="wifi_ssid"
+                type="text"
+                placeholder="Ej: WiFi_Clientes"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label
+                for="qr-wifi-password"
+                class="block text-sm font-medium text-secondary"
+              >
+                Contraseña de la red
+              </label>
+              <input
+                id="qr-wifi-password"
+                name="wifi_password"
+                type="text"
+                placeholder="Clave Wi-Fi (procesada solo en tu equipo)"
+                autocomplete="off"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="w-full sm:w-auto">
+              <label
+                for="qr-wifi-encryption"
+                class="block text-sm font-medium text-secondary"
+              >
+                Seguridad de red
+              </label>
+              <select
+                id="qr-wifi-encryption"
+                name="wifi_encryption"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-gradient-secondary px-4 py-2 text-sm text-secondary focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:w-52"
+              >
+                <option value="WPA">WPA / WPA2 / WPA3</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">Red abierta (sin clave)</option>
+              </select>
+            </div>
+
+            <label class="mt-2 inline-flex cursor-pointer items-center gap-2.5 text-sm font-medium text-secondary sm:mt-6">
+              <input
+                type="checkbox"
+                name="wifi_hidden"
+                class="size-4 rounded border-primary bg-white/10 text-primary focus:ring-2 focus:ring-primary"
+              />
+              <span>Red con SSID oculto</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Panel Contacto vCard 3.0 -->
+        <div data-qr-panel="vcard" class="hidden space-y-4 pt-2">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="qr-vcard-name" class="block text-sm font-medium text-secondary">
+                Nombre completo
+              </label>
+              <input
+                id="qr-vcard-name"
+                name="vcard_name"
+                type="text"
+                placeholder="Ej: Mario Sandoval"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="qr-vcard-org" class="block text-sm font-medium text-secondary">
+                Empresa / Organización
+              </label>
+              <input
+                id="qr-vcard-org"
+                name="vcard_org"
+                type="text"
+                placeholder="Ej: SV Tech SpA"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="qr-vcard-title" class="block text-sm font-medium text-secondary">
+                Cargo o especialidad
+              </label>
+              <input
+                id="qr-vcard-title"
+                name="vcard_title"
+                type="text"
+                placeholder="Ej: Consultor TI & Desarrollo Web"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="qr-vcard-phone" class="block text-sm font-medium text-secondary">
+                Teléfono móvil
+              </label>
+              <input
+                id="qr-vcard-phone"
+                name="vcard_phone"
+                type="tel"
+                placeholder="+56 9 8793 3282"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="qr-vcard-email" class="block text-sm font-medium text-secondary">
+                Correo electrónico
+              </label>
+              <input
+                id="qr-vcard-email"
+                name="vcard_email"
+                type="email"
+                placeholder="contacto@svtech.cl"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="qr-vcard-web" class="block text-sm font-medium text-secondary">
+                Sitio web
+              </label>
+              <input
+                id="qr-vcard-web"
+                name="vcard_web"
+                type="url"
+                placeholder="https://svtech.cl"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 2: Geometría y Colores de Marca -->
+      <div class="space-y-5 border-t border-white/10 pt-6">
+        <h2 class="text-lg font-bold text-secondary uppercase sm:text-xl">
+          2. Estilo geométrico y colores de marca
+        </h2>
+
+        <!-- Selector de Módulos (Puntos) -->
+        <div class="space-y-2">
+          <span class="block text-sm font-medium text-secondary">
+            Geometría de los módulos (puntos internos)
+          </span>
+          <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+            <button
+              type="button"
+              data-qr-dot="rounded"
+              aria-pressed="true"
+              class="cursor-pointer rounded-lg border border-primary bg-primary/20 px-3 py-2 text-xs font-semibold text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              Redondeado
+            </button>
+            <button
+              type="button"
+              data-qr-dot="square"
+              aria-pressed="false"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              Clásico
+            </button>
+            <button
+              type="button"
+              data-qr-dot="dots"
+              aria-pressed="false"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              Circular
+            </button>
+            <button
+              type="button"
+              data-qr-dot="classy-rounded"
+              aria-pressed="false"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              Curvo Elegante
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector de Esquinas (Ojos del QR) -->
+        <div class="space-y-2">
+          <span class="block text-sm font-medium text-secondary">
+            Marcadores de esquina (ojos de posicionamiento)
+          </span>
+          <div class="grid grid-cols-3 gap-2.5">
+            <button
+              type="button"
+              data-qr-corner="extra-rounded"
+              aria-pressed="true"
+              class="cursor-pointer rounded-lg border border-primary bg-primary/20 px-3 py-2 text-xs font-semibold text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              Suave
+            </button>
+            <button
+              type="button"
+              data-qr-corner="square"
+              aria-pressed="false"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              Recto
+            </button>
+            <button
+              type="button"
+              data-qr-corner="dot"
+              aria-pressed="false"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              Circular
+            </button>
+          </div>
+        </div>
+
+        <!-- Paletas rápidas seguras para lectura óptica -->
+        <div class="space-y-2">
+          <span class="block text-sm font-medium text-secondary">
+            Combinaciones de alto contraste listas para imprenta
+          </span>
+          <div class="flex flex-wrap gap-2">
+            <button
+              type="button"
+              data-qr-preset
+              data-dots="#001217"
+              data-bg="#ffffff"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              <span class="size-3.5 rounded-full border border-white/40 bg-[#001217]"></span>
+              <span>Abismo SV Tech</span>
+            </button>
+            <button
+              type="button"
+              data-qr-preset
+              data-dots="#000000"
+              data-bg="#ffffff"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              <span class="size-3.5 rounded-full border border-white/40 bg-black"></span>
+              <span>Negro Puro</span>
+            </button>
+            <button
+              type="button"
+              data-qr-preset
+              data-dots="#005f75"
+              data-bg="#ffffff"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              <span class="size-3.5 rounded-full border border-white/40 bg-[#005f75]"></span>
+              <span>Cian Corporativo</span>
+            </button>
+            <button
+              type="button"
+              data-qr-preset
+              data-dots="#1e293b"
+              data-bg="#f8fafc"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              <span class="size-3.5 rounded-full border border-white/40 bg-[#1e293b]"></span>
+              <span>Pizarra Mate</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Selectores de Color Hexadecimal -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <label
+            for="qr-dots-color"
+            class="flex cursor-pointer items-center justify-between rounded-xl border border-white/15 bg-gradient-primary/60 px-4 py-3 transition hover:border-primary/60"
+          >
+            <div>
+              <span class="block text-xs font-medium text-secondary/75">Color de puntos</span>
+              <span id="qr-dots-color-hex" class="text-sm font-bold text-secondary">#001217</span>
+            </div>
+            <input
+              id="qr-dots-color"
+              type="color"
+              value="#001217"
+              aria-label="Seleccionar color de los puntos del QR"
+              class="size-9 cursor-pointer rounded-lg border border-white/20 bg-transparent"
+            />
+          </label>
+
+          <label
+            for="qr-bg-color"
+            class="flex cursor-pointer items-center justify-between rounded-xl border border-white/15 bg-gradient-primary/60 px-4 py-3 transition hover:border-primary/60"
+          >
+            <div>
+              <span class="block text-xs font-medium text-secondary/75">Color de fondo</span>
+              <span id="qr-bg-color-hex" class="text-sm font-bold text-secondary">#FFFFFF</span>
+            </div>
+            <input
+              id="qr-bg-color"
+              type="color"
+              value="#ffffff"
+              aria-label="Seleccionar color de fondo del QR"
+              class="size-9 cursor-pointer rounded-lg border border-white/20 bg-transparent"
+            />
+          </label>
+        </div>
+
+        <!-- Alerta de Contraste Óptico WCAG -->
+        <div
+          id="qr-contrast-alert"
+          role="status"
+          aria-live="polite"
+          class="hidden flex-col items-start justify-between gap-3 rounded-xl border border-tertiary bg-gradient-secondary/90 p-4 sm:flex-row sm:items-center"
+        >
+          <div class="flex items-start gap-3">
+            <svg
+              class="mt-0.5 size-5 shrink-0 text-tertiary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+              <path d="M12 9v4" />
+              <path d="M12 17h.01" />
+            </svg>
+            <p id="qr-contrast-message" class="text-xs leading-relaxed font-medium text-secondary">
+              Contraste óptico bajo para cámaras móviles.
+            </p>
+          </div>
+          <button
+            id="qr-contrast-fix"
+            type="button"
+            class="shrink-0 cursor-pointer rounded-lg border border-tertiary bg-tertiary/15 px-3 py-1.5 text-xs font-semibold text-tertiary transition hover:bg-tertiary/25 focus:ring-2 focus:ring-tertiary focus:outline-none"
+          >
+            Corregir contraste
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 3: Logotipo Central Local -->
+      <div class="space-y-4 border-t border-white/10 pt-6">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h2 class="text-lg font-bold text-secondary uppercase sm:text-xl">
+            3. Logotipo central (opcional)
+          </h2>
+          <span class="rounded-lg border border-primary/40 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+            Reed-Solomon Nivel H (30%)
+          </span>
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <label
+            for="qr-logo-input"
+            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary/15 px-4 py-2.5 text-xs font-semibold text-secondary transition duration-300 hover:scale-[1.02] hover:bg-primary/25 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            <svg
+              class="size-4 text-primary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" x2="12" y1="3" y2="15" />
+            </svg>
+            <span>Cargar logo desde tu dispositivo</span>
+            <input
+              id="qr-logo-input"
+              type="file"
+              accept=".png,.svg,.webp,.jpg,.jpeg,image/png,image/svg+xml,image/webp,image/jpeg"
+              class="sr-only"
+            />
+          </label>
+
+          <button
+            id="qr-logo-remove"
+            type="button"
+            class="hidden cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-tertiary/60 bg-tertiary/10 px-3.5 py-2.5 text-xs font-semibold text-tertiary transition hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:outline-none"
+          >
+            <span>Quitar logo</span>
+          </button>
+
+          <span id="qr-logo-filename" class="truncate text-xs text-secondary/75">
+            Sin logotipo (opcional — PNG, SVG, WebP)
+          </span>
+        </div>
+        <p class="text-xs text-secondary/75">
+          Tu logotipo nunca se sube a ningún servidor: se procesa localmente en la memoria de tu navegador.
+        </p>
+      </div>
+    </div>
+
+    <!-- Panel Derecho: Lienzo de Vista Previa y Exportación HD (5 columnas en desktop, sticky) -->
+    <div class="flex flex-col gap-6 lg:sticky lg:top-28 lg:col-span-5">
+      <div
+        class="flex flex-col items-center rounded-2xl border border-primary/50 bg-gradient-primary/90 p-6 shadow-lg shadow-primary/20 backdrop-blur-2xl sm:p-8"
+      >
+        <div class="mb-4 flex w-full items-center justify-between">
+          <span class="text-xs font-semibold tracking-wide text-secondary/80 uppercase">
+            Vista Previa Óptica
+          </span>
+          <span class="rounded-lg border border-tertiary/40 bg-gradient-secondary px-2.5 py-1 text-xs font-semibold text-tertiary">
+            Sin caducidad · 1000×1000 px
+          </span>
+        </div>
+
+        <!-- Contenedor fijo size-64 (256x256px) para CLS = 0.00 -->
+        <div
+          class="relative flex size-64 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white p-3 shadow-lg shadow-primary/20"
+        >
+          <div
+            id="qr-preview-canvas"
+            aria-label="Vista previa del código QR generado"
+            class="flex size-full items-center justify-center [&_canvas]:size-full [&_svg]:size-full"
+          >
+          </div>
+        </div>
+
+        <!-- Trama codificada en tiempo real -->
+        <div class="mt-4 w-full rounded-xl border border-white/10 bg-gradient-secondary/70 px-3.5 py-2.5 text-center">
+          <span class="block text-xs font-medium text-secondary/75">
+            Datos grabados directamente en la matriz:
+          </span>
+          <code
+            id="qr-payload-preview"
+            class="mt-0.5 block truncate text-xs font-semibold text-primary"
+          >
+            https://svtech.cl
+          </code>
+        </div>
+
+        <!-- Botones de Descarga Directa (PNG y SVG Vectorial) -->
+        <div class="mt-6 grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
+          <button
+            type="button"
+            data-qr-download="png"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary px-4 py-3 text-sm font-bold text-gradient-secondary transition duration-300 hover:scale-[1.03] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+          >
+            <Icon name="download" class="size-4" aria-hidden="true" />
+            <span>Descargar PNG</span>
+          </button>
+
+          <button
+            type="button"
+            data-qr-download="svg"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-transparent px-4 py-3 text-sm font-bold text-secondary transition duration-300 hover:scale-[1.03] hover:bg-primary/15 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+          >
+            <Icon name="download" class="size-4 text-primary" aria-hidden="true" />
+            <span>Vectorial SVG</span>
+          </button>
+        </div>
+
+        <p class="mt-3 text-center text-xs text-secondary/75">
+          <strong>PNG</strong> para redes y documentos digitales · <strong>SVG</strong> para imprenta, pendones y papelería sin perder nitidez.
+        </p>
+
+        <!-- Micro-conversión contextual tras descargar -->
+        <div
+          id="qr-download-feedback"
+          role="region"
+          aria-live="polite"
+          class="mt-5 hidden w-full flex-col gap-2.5 rounded-xl border border-tertiary/60 bg-gradient-secondary p-4 text-left shadow-sm shadow-tertiary/30"
+        >
+          <p class="text-xs font-bold text-tertiary">
+            ¡Tu código QR perpetuo ya está descargado!
+          </p>
+          <p class="text-xs leading-relaxed text-secondary/90">
+            ¿El enlace al que apunta tu QR está a la altura de tu negocio? Diseñamos páginas web rápidas, catálogos digitales y sistemas a medida en todo Chile.
+          </p>
+          <a
+            href="https://wa.me/56987933282?text=Hola%20SV%20Tech,%20acabo%20de%20crear%20mi%20c%C3%B3digo%20QR%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web%20o%20sistema%20para%20mi%20negocio."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-1 inline-flex items-center gap-2 text-xs font-bold text-primary underline decoration-primary/60 underline-offset-4 transition hover:text-tertiary"
+          >
+            <span>Cotizar mi web o sistema por WhatsApp →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bloque de Conversión Contextual B2B Permanente -->
+      <aside
+        aria-label="Asesoría en desarrollo web y sistemas a medida"
+        class="rounded-2xl border border-tertiary/50 bg-gradient-primary/85 p-6 shadow-sm shadow-tertiary/40 backdrop-blur-xl"
+      >
+        <h3 class="text-base font-bold text-secondary sm:text-lg">
+          ¿Ya tienes tu QR pero aún no cuentas con una página web profesional?
+        </h3>
+        <p class="mt-2 text-xs leading-relaxed text-secondary/85 sm:text-sm">
+          En <strong>SV Tech</strong> creamos sitios web corporativos, páginas de aterrizaje y sistemas a medida para que tus clientes lleguen a una experiencia rápida, segura y con tu propio dominio <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">.cl</code>.
+        </p>
+        <div class="mt-4 flex flex-wrap items-center gap-3">
+          <a
+            href="/servicios/desarrollo-web"
+            class="inline-flex items-center justify-center rounded-lg border border-primary bg-primary px-4 py-2 text-xs font-bold text-gradient-secondary transition duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            Ver Desarrollo Web
+          </a>
+          <a
+            href="/#contacto"
+            class="inline-flex items-center justify-center rounded-lg border border-primary px-4 py-2 text-xs font-semibold text-secondary transition duration-300 hover:scale-105 hover:bg-primary/15 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            Solicitar propuesta
+          </a>
+        </div>
+      </aside>
+    </div>
+  </form>
+</section>
+
+<script>
+  import {
+    cleanupQrGenerator,
+    initQrGenerator,
+  } from 'lib/managers/qr-generator-manager';
+
+  document.addEventListener('astro:page-load', () => {
+    initQrGenerator();
+  });
+
+  document.addEventListener('astro:before-swap', () => {
+    cleanupQrGenerator();
+  });
+</script>

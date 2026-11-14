@@ -209,28 +209,33 @@ const articleSchema = {
         </figure>
       </header>
 
-      <!-- Banner de Sitio Web Oficial si aplica -->
+      <!-- Banner de Sitio Web Oficial o Herramienta Interna si aplica -->
       {
         officialLink && (
           <section class="flex flex-col items-center justify-between gap-4 rounded-2xl border border-primary/40 bg-gradient-primary/90 p-5 shadow-lg backdrop-blur-xl sm:flex-row sm:p-6">
             <div class="space-y-1 text-center sm:text-left">
               <span class="text-xs font-bold tracking-wider text-primary uppercase">
-                Sitio Web Oficial
+                {officialLink.startsWith('/') ? 'Herramienta Gratuita SV Tech' : 'Sitio Web Oficial'}
               </span>
               <p class="text-sm font-medium text-secondary">
-                Accede de forma segura al portal oficial del desarrollador para tu sistema
-                operativo.
+                {officialLink.startsWith('/')
+                  ? 'Utiliza nuestra herramienta interactiva directamente en tu navegador, 100% gratis y sin registro.'
+                  : 'Accede de forma segura al portal oficial del desarrollador para tu sistema operativo.'}
               </p>
             </div>
             <a
               href={officialLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={officialLink.startsWith('/') ? undefined : '_blank'}
+              rel={officialLink.startsWith('/') ? undefined : 'noopener noreferrer'}
               class="inline-flex flex-shrink-0 items-center gap-2 rounded-xl border border-primary bg-primary/10 px-5 py-2.5 text-sm font-semibold text-primary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-105 hover:bg-primary/20 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
-              aria-label="Visitar web oficial"
+              aria-label={
+                officialLink.startsWith('/') ? 'Abrir herramienta gratuita' : 'Visitar web oficial'
+              }
             >
               <Icon name="open-vector" class="h-4 w-4" aria-hidden="true" />
-              <span>Visitar web oficial</span>
+              <span>
+                {officialLink.startsWith('/') ? 'Abrir herramienta gratuita' : 'Visitar web oficial'}
+              </span>
             </a>
           </section>
         )
