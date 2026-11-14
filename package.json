@@ -18,7 +18,7 @@
   "dependencies": {
     "@astrojs/partytown": "^2.1.9",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/vercel": "^11.0.16",
+    "@astrojs/vercel": "^11.0.21",
     "@tailwindcss/vite": "^4.3.3",
     "@vercel/speed-insights": "^2.0.0",
     "astro": "^7.4.7",
