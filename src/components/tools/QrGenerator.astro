@@ -149,41 +149,39 @@ import Icon from 'components/ui/Icon.astro';
 
         <!-- Panel WhatsApp Directo -->
         <div data-qr-panel="whatsapp" class="qr-panel-enter hidden space-y-4 pt-2">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <label
-                for="qr-wa-phone"
-                class="block text-sm font-medium text-secondary"
-              >
-                Número con código de país
-              </label>
-              <input
-                id="qr-wa-phone"
-                name="wa_phone"
-                type="tel"
-                value="+56987933282"
-                placeholder="+56 9 8793 3282"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
-              />
-            </div>
-
-            <div>
-              <label
-                for="qr-wa-message"
-                class="block text-sm font-medium text-secondary"
-              >
-                Mensaje predeterminado (opcional)
-              </label>
-              <input
-                id="qr-wa-message"
-                name="wa_message"
-                type="text"
-                value="Hola, me gustaría cotizar un servicio"
-                placeholder="Ej: Hola, quiero hacer un pedido..."
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
-              />
-            </div>
+          <div>
+            <label
+              for="qr-wa-phone"
+              class="block text-sm font-medium text-secondary"
+            >
+              Número con código de país
+            </label>
+            <input
+              id="qr-wa-phone"
+              name="wa_phone"
+              type="tel"
+              value="+56987933282"
+              placeholder="+56 9 8793 3282"
+              class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
+            />
           </div>
+
+          <div>
+            <label
+              for="qr-wa-message"
+              class="block text-sm font-medium text-secondary"
+            >
+              Mensaje predeterminado (opcional)
+            </label>
+            <textarea
+              id="qr-wa-message"
+              name="wa_message"
+              rows="3"
+              placeholder="Ej: Hola, quiero hacer un pedido o cotizar un servicio..."
+              class="mt-1.5 w-full resize-y rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm leading-relaxed text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
+            >Hola, me gustaría cotizar un servicio</textarea>
+          </div>
+
           <p class="text-xs leading-relaxed text-secondary/75 sm:text-sm">
             Genera un enlace oficial <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">wa.me</code> que abre el chat directo en el teléfono de tu cliente.
           </p>
@@ -226,33 +224,74 @@ import Icon from 'components/ui/Icon.astro';
             </div>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <div class="w-full sm:w-auto">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-end">
+            <div>
               <label
                 for="qr-wifi-encryption"
                 class="block text-sm font-medium text-secondary"
               >
                 Seguridad de red
               </label>
-              <select
-                id="qr-wifi-encryption"
-                name="wifi_encryption"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-gradient-secondary px-4 py-2 text-sm text-secondary transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:w-52"
-              >
-                <option value="WPA">WPA / WPA2 / WPA3</option>
-                <option value="WEP">WEP</option>
-                <option value="nopass">Red abierta (sin clave)</option>
-              </select>
+              <div class="relative mt-1.5">
+                <select
+                  id="qr-wifi-encryption"
+                  name="wifi_encryption"
+                  class="w-full cursor-pointer appearance-none rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 pr-10 text-sm text-secondary backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
+                >
+                  <option value="WPA" class="bg-gradient-primary text-secondary">WPA / WPA2 / WPA3</option>
+                  <option value="WEP" class="bg-gradient-primary text-secondary">WEP</option>
+                  <option value="nopass" class="bg-gradient-primary text-secondary">Red abierta (sin clave)</option>
+                </select>
+                <svg
+                  class="pointer-events-none absolute top-1/2 right-3.5 size-4 -translate-y-1/2 text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
             </div>
 
-            <label class="mt-2 inline-flex cursor-pointer items-center gap-2.5 text-sm font-medium text-secondary sm:mt-6">
-              <input
-                type="checkbox"
-                name="wifi_hidden"
-                class="size-4 rounded border-primary bg-white/10 text-primary focus:ring-2 focus:ring-primary"
-              />
-              <span>Red con SSID oculto</span>
-            </label>
+            <div>
+              <span class="block text-sm font-medium text-secondary">
+                Visibilidad
+              </span>
+              <label
+                for="qr-wifi-hidden"
+                class="mt-1.5 flex cursor-pointer items-center justify-between rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary backdrop-blur-md transition duration-200 hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/15 sm:text-base"
+              >
+                <span class="font-medium">Red con SSID oculto</span>
+                <span class="relative flex items-center">
+                  <input
+                    id="qr-wifi-hidden"
+                    type="checkbox"
+                    name="wifi_hidden"
+                    class="peer sr-only"
+                  />
+                  <span
+                    aria-hidden="true"
+                    class="flex size-5 items-center justify-center rounded border border-primary/60 bg-gradient-primary/80 text-transparent transition duration-200 peer-checked:border-primary peer-checked:bg-primary peer-checked:text-gradient-secondary peer-focus-visible:ring-2 peer-focus-visible:ring-primary"
+                  >
+                    <svg
+                      class="size-3.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                </span>
+              </label>
+            </div>
           </div>
         </div>
 
@@ -693,16 +732,16 @@ import Icon from 'components/ui/Icon.astro';
         <p class="mt-2 text-xs leading-relaxed text-secondary/85 sm:text-sm">
           En <strong>SV Tech</strong> creamos sitios web corporativos, páginas de aterrizaje y sistemas a medida para que tus clientes lleguen a una experiencia rápida, segura y con tu propio dominio <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">.cl</code>.
         </p>
-        <div class="mt-4 flex flex-wrap items-center gap-3">
+        <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <a
             href="/servicios/desarrollo-web"
-            class="inline-flex items-center justify-center rounded-lg border border-primary bg-primary px-4 py-2 text-xs font-bold text-gradient-secondary transition duration-300 hover:scale-105 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+            class="inline-flex items-center justify-center rounded-lg border border-primary bg-primary px-4 py-2.5 text-center text-xs font-bold text-gradient-secondary transition duration-300 hover:scale-[1.02] focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
           >
             Ver Desarrollo Web
           </a>
           <a
             href="/#contacto"
-            class="inline-flex items-center justify-center rounded-lg border border-primary px-4 py-2 text-xs font-semibold text-secondary transition duration-300 hover:scale-105 hover:bg-primary/15 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+            class="inline-flex items-center justify-center rounded-lg border border-primary px-4 py-2.5 text-center text-xs font-semibold text-secondary transition duration-300 hover:scale-[1.02] hover:bg-primary/15 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
           >
             Solicitar propuesta
           </a>
