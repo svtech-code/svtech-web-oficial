@@ -38,9 +38,53 @@ import Modal from 'components/modals/Modal.astro';
         <FormTextarea id="message" name="message" label="Mensaje" required={true} />
       </div>
 
-      <footer class="flex w-full flex-col items-center justify-center gap-8">
+      <footer class="flex w-full flex-col items-center justify-center gap-6">
         <!-- Widget de Turnstile -->
         <div id="turnstile-widget" class="flex items-center justify-center"></div>
+
+        <!-- Consentimiento explícito Ley 21.719 (sin premarcar) -->
+        <label
+          for="privacy-consent"
+          class="flex w-full cursor-pointer items-start gap-3 rounded-lg border border-primary/40 bg-white/5 px-3.5 py-2.5 text-left text-xs leading-relaxed text-secondary/85 transition duration-200 hover:border-primary/70 has-[:checked]:border-primary has-[:checked]:bg-primary/10"
+        >
+          <span class="relative mt-0.5 flex shrink-0 items-center">
+            <input
+              id="privacy-consent"
+              name="privacy_consent"
+              type="checkbox"
+              required
+              class="peer sr-only"
+            />
+            <span
+              aria-hidden="true"
+              class="flex size-4 items-center justify-center rounded border border-primary/70 bg-gradient-primary/80 text-transparent transition duration-200 peer-checked:border-primary peer-checked:bg-primary peer-checked:text-gradient-secondary peer-focus-visible:ring-2 peer-focus-visible:ring-primary"
+            >
+              <svg
+                class="size-3"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </span>
+          </span>
+          <span>
+            Acepto la{' '}
+            <a
+              href="/privacidad"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-primary underline decoration-primary/60 underline-offset-4 transition-colors hover:text-tertiary"
+            >
+              Política de Privacidad
+            </a>{' '}
+            para que SV Tech SpA responda mi consulta.
+          </span>
+        </label>
 
         <FormButton
           id="submit-btn"

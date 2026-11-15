@@ -8,6 +8,29 @@ interface Props {
 const { id = GA_MEASUREMENT_ID } = Astro.props;
 ---
 
+<!-- Google Consent Mode v2 (ejecutado en hilo principal antes de Partytown) -->
+<script
+  is:inline
+  set:html={`window.dataLayer = window.dataLayer || [];
+function gtag() {
+  window.dataLayer.push(arguments);
+}
+(function () {
+  var saved = null;
+  try {
+    saved = window.localStorage.getItem('svtech_cookie_consent');
+  } catch (e) {}
+  var analyticsConsent = saved === 'granted' ? 'granted' : 'denied';
+  gtag('consent', 'default', {
+    analytics_storage: analyticsConsent,
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+})();`}
+></script>
+
 <!-- Google tag (gtag.js) -->
 <script
   type="text/partytown"

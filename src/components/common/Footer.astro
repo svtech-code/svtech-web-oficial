@@ -77,12 +77,38 @@ import { SERVICES_STATIC } from 'consts/services';
       </span>
     </div>
 
-    <p class="py-2 text-center text-xs text-secondary md:text-sm">
-      Copyright &copy; {new Date().getFullYear()} SV Tech SpA
-      <span aria-hidden="true" class="hidden md:inline">|</span>
-      <br aria-hidden="true" class="block md:hidden" />
-      Todos los derechos reservados.
-    </p>
+    <div class="flex flex-col items-center justify-between gap-2 py-2 text-center text-xs text-secondary md:w-full md:flex-row md:px-4 md:text-sm">
+      <p>
+        Copyright &copy; {new Date().getFullYear()} SV Tech SpA
+        <span aria-hidden="true" class="hidden md:inline">|</span>
+        <br aria-hidden="true" class="block md:hidden" />
+        Todos los derechos reservados.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-secondary/80">
+        <a
+          href="/privacidad"
+          class="rounded transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          Política de Privacidad
+        </a>
+        <span aria-hidden="true" class="text-tertiary/60">·</span>
+        <a
+          href="/aviso-legal"
+          class="rounded transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          Aviso Legal
+        </a>
+        <span aria-hidden="true" class="text-tertiary/60">·</span>
+        <button
+          type="button"
+          data-open-cookie-settings
+          class="cursor-pointer rounded transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          Preferencias de cookies
+        </button>
+      </div>
+    </div>
   </div>
 </footer>
 

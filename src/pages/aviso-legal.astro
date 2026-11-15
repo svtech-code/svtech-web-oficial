@@ -1,0 +1,94 @@
+---
+import Layout from 'layouts/Layout.astro';
+import PageBreadcrumb from 'components/ui/PageBreadcrumb.astro';
+import BackLink from 'components/ui/BackLink.astro';
+
+export const prerender = true;
+
+const pageTitle = 'Aviso Legal y Términos de Uso | SV Tech';
+const pageDescription =
+  'Información legal del titular de svtech.cl (SV Tech SpA), propiedad intelectual y condiciones de uso del sitio web y herramientas gratuitas de comunidad.';
+const canonicalUrl = 'https://svtech.cl/aviso-legal';
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalUrl}
+  showSmokeScreen={false}
+>
+  <article
+    class="relative flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-28 pb-20 md:pt-36 md:pb-28"
+  >
+    <PageBreadcrumb
+      items={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Aviso Legal' },
+      ]}
+    />
+
+    <header class="reveal flex flex-col gap-3">
+      <h1
+        class="text-2xl leading-tight font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl"
+      >
+        Aviso Legal{' '}
+        <span class="text-primary">y Términos de Uso</span>
+      </h1>
+      <p class="max-w-[70ch] text-sm leading-relaxed font-medium text-secondary/85 sm:text-base md:text-lg">
+        Condiciones generales de acceso, propiedad intelectual y uso de los contenidos y herramientas gratuitas disponibles en <strong>svtech.cl</strong>.
+      </p>
+      <p class="text-xs font-medium text-tertiary">
+        Última actualización: noviembre de 2026
+      </p>
+    </header>
+
+    <div class="reveal reveal-delay-1 flex flex-col gap-10 border-t border-white/10 pt-10">
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          1. Titular del sitio web
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          El presente sitio web (<a href="https://svtech.cl" class="text-primary underline underline-offset-4">https://svtech.cl</a>) es operado por <strong>SV Tech SpA</strong>, empresa chilena dedicada a servicios de soporte informático, desarrollo web, administración de hosting, bases de datos y consultoría TI, con base en Linares, Región del Maule, Chile. Contacto oficial: <a href="mailto:contacto@svtech.cl" class="text-primary underline underline-offset-4">contacto@svtech.cl</a>.
+        </p>
+      </section>
+
+      <section class="space-y-3 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          2. Condiciones de uso y propiedad intelectual
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Los textos, logotipos, código fuente del sitio, diseños gráficos, guías técnicas del blog y material audiovisual publicados en este dominio pertenecen a SV Tech SpA o se utilizan con autorización de sus respectivos titulares. Queda prohibida su reproducción comercial no autorizada.
+        </p>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          El usuario se compromete a hacer un uso lícito del sitio y de sus formularios de contacto, absteniéndose de enviar contenido malicioso, automatizado o contrario a la ley chilena.
+        </p>
+      </section>
+
+      <section class="space-y-3 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          3. Uso de herramientas gratuitas (Generador de Códigos QR)
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          El <a href="/herramientas/generador-qr" class="text-primary underline underline-offset-4">Generador de Códigos QR Estáticos</a> se ofrece de forma gratuita y sin fines de lucro para la comunidad. Al tratarse de códigos estáticos generados localmente en el navegador del usuario, SV Tech SpA no interviene en la redirección ni almacena los destinos codificados.
+        </p>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          El usuario es el único responsable del contenido, enlaces, redes o datos de contacto que decida codificar, así como de verificar la correcta lectura óptica de sus códigos antes de enviarlos a producción o imprenta masiva. La herramienta se entrega "tal cual", sin garantías implícitas sobre la disponibilidad de los sitios de terceros a los que apunte el usuario.
+        </p>
+      </section>
+
+      <section class="space-y-3 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          4. Enlaces externos y legislación aplicable
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Las guías del blog pueden incluir enlaces a sitios web oficiales de terceros (por ejemplo, desarrolladores de software de soporte remoto) con fines exclusivamente informativos. SV Tech SpA no controla ni responde por el contenido o políticas de privacidad de dichos portales externos.
+        </p>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Cualquier controversia derivada del uso de este sitio web se regirá por las leyes de la República de Chile.
+        </p>
+      </section>
+    </div>
+  </article>
+
+  <BackLink href="/" label="Volver al inicio de SV Tech" />
+</Layout>

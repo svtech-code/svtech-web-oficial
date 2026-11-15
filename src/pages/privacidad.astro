@@ -1,0 +1,155 @@
+---
+import Layout from 'layouts/Layout.astro';
+import PageBreadcrumb from 'components/ui/PageBreadcrumb.astro';
+import BackLink from 'components/ui/BackLink.astro';
+
+export const prerender = true;
+
+const pageTitle = 'Política de Privacidad y Cookies | SV Tech';
+const pageDescription =
+  'Conoce cómo SV Tech SpA trata tus datos personales, el uso de cookies bajo Consent Mode, el funcionamiento local de nuestras herramientas y cómo ejercer tus derechos ARCO+ en Chile.';
+const canonicalUrl = 'https://svtech.cl/privacidad';
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalURL={canonicalUrl}
+  showSmokeScreen={false}
+>
+  <article
+    class="relative flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-28 pb-20 md:pt-36 md:pb-28"
+  >
+    <PageBreadcrumb
+      items={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Política de Privacidad' },
+      ]}
+    />
+
+    <header class="reveal flex flex-col gap-3">
+      <h1
+        class="text-2xl leading-tight font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl"
+      >
+        Política de Privacidad{' '}
+        <span class="text-primary">y Cookies</span>
+      </h1>
+      <p class="max-w-[70ch] text-sm leading-relaxed font-medium text-secondary/85 sm:text-base md:text-lg">
+        En <strong>SV Tech SpA</strong> nos comprometemos con la transparencia y el resguardo de tus datos personales conforme a la legislación chilena vigente (<strong>Ley N° 19.628</strong> y <strong>Ley N° 21.719</strong> sobre Protección de los Datos Personales).
+      </p>
+      <p class="text-xs font-medium text-tertiary">
+        Última actualización: noviembre de 2026
+      </p>
+    </header>
+
+    <div class="reveal reveal-delay-1 flex flex-col gap-10 border-t border-white/10 pt-10">
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          1. Responsable del tratamiento
+        </h2>
+        <ul class="space-y-1.5 text-sm leading-relaxed text-secondary/90 sm:text-base">
+          <li><strong>Razón social:</strong> SV Tech SpA</li>
+          <li><strong>Sitio web:</strong> <a href="https://svtech.cl" class="text-primary underline underline-offset-4">https://svtech.cl</a></li>
+          <li><strong>Domicilio:</strong> Linares, Región del Maule, Chile</li>
+          <li><strong>Correo de contacto y privacidad:</strong> <a href="mailto:contacto@svtech.cl" class="text-primary underline underline-offset-4">contacto@svtech.cl</a></li>
+          <li><strong>Teléfono / WhatsApp:</strong> +56 9 8793 3282</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          2. Qué datos recopilamos y con qué finalidad
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Únicamente recopilamos los datos que tú decides enviarnos de forma voluntaria y explícita:
+        </p>
+        <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary/90 sm:text-base">
+          <li>
+            <strong>Formulario de contacto:</strong> nombre, correo electrónico, teléfono (opcional) y el contenido de tu mensaje. Se utilizan exclusivamente para responder consultas, preparar propuestas técnicas o cotizaciones y coordinar soporte. La base legal es tu consentimiento expreso al marcar la casilla de aceptación antes de enviar.
+          </li>
+          <li>
+            <strong>Canales directos (WhatsApp y correo electrónico):</strong> cuando nos escribes voluntariamente por estos medios, tratamos tus datos de contacto únicamente para atender tu requerimiento.
+          </li>
+          <li>
+            <strong>Herramientas web gratuitas (Generador de Códigos QR):</strong> nuestra herramienta en <a href="/herramientas/generador-qr" class="text-primary underline underline-offset-4">/herramientas/generador-qr</a> funciona <strong>100% en tu navegador (Client-Side)</strong>. Las direcciones web, números telefónicos, contraseñas de redes Wi-Fi, datos vCard y logotipos cargados nunca se envían a nuestros servidores ni se almacenan en bases de datos.
+          </li>
+        </ul>
+      </section>
+
+      <section class="space-y-3 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          3. Terceros proveedores y transferencias de datos
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          No vendemos, arrendamos ni cedemos tus datos personales a terceros con fines comerciales. Para la operación técnica del sitio intervienen los siguientes proveedores bajo sus propias políticas de seguridad:
+        </p>
+        <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary/90 sm:text-base">
+          <li><strong>Cloudflare Turnstile:</strong> validación técnica anti-spam en el formulario de contacto para prevenir envíos automatizados maliciosos.</li>
+          <li><strong>EmailJS:</strong> servicio de entrega segura que transporta el mensaje del formulario hacia nuestra casilla corporativa <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">contacto@svtech.cl</code>.</li>
+          <li><strong>Vercel Inc.:</strong> infraestructura de alojamiento web y métricas agregadas de rendimiento técnico (Speed Insights).</li>
+          <li><strong>Google Analytics 4:</strong> medición estadística anónima o agregada de visitas, activa únicamente si otorgas tu consentimiento en el banner de cookies.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          4. Plazo de conservación
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Conservaremos los datos enviados a través del formulario o canales de contacto únicamente durante el tiempo necesario para gestionar tu consulta, prestar el servicio solicitado o cumplir con obligaciones legales vigentes, tras lo cual serán eliminados o anonimizados de forma segura.
+        </p>
+      </section>
+
+      <section class="space-y-3 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          5. Tus derechos (ARCO+ : Acceso, Rectificación, Supresión, Oposición, Portabilidad y Bloqueo)
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Conforme a la Ley N° 19.628 y la Ley N° 21.719, puedes ejercer en cualquier momento tus derechos de:
+        </p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary/90 sm:text-base">
+          <li><strong>Acceso:</strong> conocer qué datos personales tuyos tratamos y su origen.</li>
+          <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos o desactualizados.</li>
+          <li><strong>Cancelación / Supresión:</strong> pedir la eliminación de tus datos cuando ya no sean necesarios o revoques tu consentimiento.</li>
+          <li><strong>Oposición, Portabilidad y Bloqueo:</strong> oponerte a tratamientos específicos, solicitar una copia estructurada o requerir la suspensión temporal del tratamiento.</li>
+        </ul>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Para ejercer cualquiera de estos derechos, escríbenos a{' '}
+          <a href="mailto:contacto@svtech.cl?subject=Ejercicio%20de%20Derechos%20de%20Privacidad" class="font-semibold text-primary underline underline-offset-4">
+            contacto@svtech.cl
+          </a>{' '}
+          indicando tu nombre, correo de contacto y la solicitud concreta. Responderemos dentro de los plazos legales establecidos (máximo 30 días corridos).
+        </p>
+      </section>
+
+      <section id="cookies" class="space-y-4 border-t border-white/10 pt-8">
+        <h2 class="text-lg font-bold tracking-wide text-primary uppercase sm:text-xl">
+          6. Política de Cookies y Consent Mode
+        </h2>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          Este sitio distingue entre cookies estrictamente necesarias y cookies analíticas opcionales:
+        </p>
+        <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary/90 sm:text-base">
+          <li>
+            <strong>Cookies técnicas / de seguridad (siempre activas):</strong> necesarias para la verificación anti-bot de Cloudflare Turnstile en el formulario de contacto y para recordar tu preferencia de privacidad (<code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">svtech_cookie_consent</code> en almacenamiento local).
+          </li>
+          <li>
+            <strong>Cookies analíticas (Google Analytics 4 — opcionales):</strong> por defecto se encuentran <strong>deshabilitadas</strong> (<code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">analytics_storage: denied</code>). Solo se activan si haces clic en <em>"Aceptar analíticas"</em> en nuestro banner. No utilizamos cookies de publicidad ni seguimiento entre sitios de terceros.
+          </li>
+        </ul>
+
+        <div class="pt-2">
+          <button
+            type="button"
+            data-open-cookie-settings
+            class="inline-flex cursor-pointer items-center justify-center rounded-lg border border-primary bg-primary/15 px-4 py-2 text-xs font-semibold text-primary transition duration-300 hover:scale-[1.02] hover:bg-primary hover:text-gradient-secondary focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+          >
+            Cambiar mis preferencias de cookies
+          </button>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <BackLink href="/" label="Volver al inicio de SV Tech" />
+</Layout>

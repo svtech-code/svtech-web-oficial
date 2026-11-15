@@ -55,7 +55,11 @@ export default defineConfig({
         return item;
       },
     }),
-    partytown(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
   ],
 
   // Optimizaciones de build
