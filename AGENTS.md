@@ -1,8 +1,20 @@
 <!-- SV-MEMORY:START -->
 # SV-Memory Protocol Rules
 
+## TL;DR — the non-negotiable workflow (any model, any client)
+
+1. **Start:** call 'sv_mem_session_start' first and read its Auto-Boot bundle as authoritative context.
+2. **Before any code:** call 'sv_graph_explore' (one call) then 'sv_mem_search'; only then read raw files.
+3. **Obey:** the bundle's **Pinned memories** and **Standards & Conventions** are binding project rules — never ask the user to restate them.
+4. **Before changing behavior/architecture:** run the Spec Cycle ('sv_spec_list' → 'sv_propose_spec' → 'sv_update_spec' → 'sv_validate_decision' → 'sv_commit_spec').
+5. **After a decision, bugfix, or convention:** call 'sv_mem_save' immediately.
+6. **Finish:** call 'sv_mem_session_end' with a summary.
+
+Tool names may be prefixed by your client — match by the 'sv_*' suffix (e.g. 'sv_graph_explore' → 'sv-memory_sv_graph_explore').
+
 <CRITICAL_INSTRUCTIONS>
 - **Tool-name resolution:** Your MCP client prefixes sv-memory tool names with a server namespace. Match by the 'sv_*' suffix: 'sv_graph_explore' is exposed as 'sv-memory_sv_graph_explore' (OpenCode) or 'mcp__sv-memory__sv_graph_explore' (Claude Code); 'sv_mem_search' as 'sv-memory_sv_mem_search', etc. Always call the tool whose name ends with the referenced 'sv_*' name.
+- **Authoritative conventions:** The **Pinned memories** and **Standards & Conventions** in the Auto-Boot context are authoritative project rules. You MUST apply them before writing code and MUST NOT ask the user to restate a convention that is already recorded.
 - YOU MUST ALWAYS call 'sv_mem_session_start' FIRST at the beginning of a session to load the Auto-Boot Context Bundle (skip ONLY if a Claude Code or Antigravity hook already injected the active session bundle into your turn).
 - YOU MUST NEVER use native grep, find, cat, or read_file to understand codebase structure or search for symbols. YOU MUST ALWAYS use 'sv_graph_explore' or 'sv_graph_search' first. Native tools are ONLY for unindexed config/docs.
 - YOU MUST ALWAYS call 'sv_mem_save' immediately after making a design decision, fixing a complex bug, or establishing a convention. Do not wait for the user to ask.
