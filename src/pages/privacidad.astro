@@ -120,11 +120,14 @@ const privacySchema = {
           No vendemos, arrendamos ni cedemos tus datos personales a terceros con fines comerciales. Para la operación técnica del sitio intervienen los siguientes proveedores bajo sus propias políticas de seguridad:
         </p>
         <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary/90 sm:text-base">
-          <li><strong>Cloudflare Turnstile:</strong> validación técnica anti-spam en el formulario de contacto para prevenir envíos automatizados maliciosos.</li>
-          <li><strong>EmailJS:</strong> servicio de entrega segura que transporta el mensaje del formulario hacia nuestra casilla corporativa <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">contacto@svtech.cl</code>.</li>
-          <li><strong>Vercel Inc.:</strong> infraestructura de alojamiento web y métricas agregadas de rendimiento técnico (Speed Insights).</li>
-          <li><strong>Google Analytics 4:</strong> medición estadística anónima o agregada de visitas, activa únicamente si otorgas tu consentimiento en el banner de cookies.</li>
+          <li><strong>Cloudflare Turnstile:</strong> verificación de seguridad anti-spam en el formulario de contacto para prevenir envíos automatizados maliciosos.</li>
+          <li><strong>EmailJS:</strong> servicio que transporta el mensaje del formulario hacia nuestra casilla corporativa <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">contacto@svtech.cl</code>.</li>
+          <li><strong>Vercel Inc.:</strong> infraestructura de alojamiento web y métricas agregadas de rendimiento técnico (Speed Insights, sin cookies).</li>
+          <li><strong>Google Analytics 4:</strong> medición estadística de visitas mediante identificadores seudonimizados (páginas visitadas, tipo de dispositivo y ubicación aproximada). Solo instala cookies si otorgas tu consentimiento en el banner.</li>
         </ul>
+        <p class="max-w-[75ch] text-sm leading-relaxed text-secondary/90 sm:text-base">
+          <strong>Transferencia internacional:</strong> estos proveedores pueden procesar datos en servidores ubicados fuera de Chile. Al utilizarlos, SV Tech SpA selecciona servicios que declaran medidas de seguridad y confidencialidad para el tratamiento de la información.
+        </p>
       </section>
 
       <section class="space-y-3 border-t border-white/10 pt-8">
@@ -167,10 +170,10 @@ const privacySchema = {
         </p>
         <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary/90 sm:text-base">
           <li>
-            <strong>Cookies técnicas / de seguridad (siempre activas):</strong> necesarias para la verificación anti-bot de Cloudflare Turnstile en el formulario de contacto y para recordar tu preferencia de privacidad (<code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">svtech_cookie_consent</code> en almacenamiento local).
+            <strong>Almacenamiento técnico y de seguridad (siempre activo):</strong> la verificación anti-bot de Cloudflare Turnstile en el formulario de contacto y el registro de tu preferencia de privacidad (<code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">svtech_cookie_consent</code> en el almacenamiento local de tu navegador).
           </li>
           <li>
-            <strong>Cookies analíticas (Google Analytics 4 — opcionales):</strong> por defecto se encuentran <strong>deshabilitadas</strong> (<code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">analytics_storage: denied</code>). Solo se activan si haces clic en <em>"Aceptar analíticas"</em> en nuestro banner. No utilizamos cookies de publicidad ni seguimiento entre sitios de terceros.
+            <strong>Cookies analíticas (Google Analytics 4 — opcionales):</strong> por defecto se encuentran <strong>deshabilitadas</strong> (<code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">analytics_storage: denied</code>). Mientras no aceptes, Google Analytics no instala cookies; únicamente puede recibir señales técnicas sin cookies ni identificadores persistentes (Google Consent Mode). Las cookies analíticas solo se activan si haces clic en <em>"Aceptar analíticas"</em>. No utilizamos cookies de publicidad ni de seguimiento entre sitios.
           </li>
         </ul>
 

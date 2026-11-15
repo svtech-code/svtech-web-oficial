@@ -29,18 +29,15 @@ export function buildUrlPayload(rawUrl: string): string {
 }
 
 /**
- * Construye el enlace oficial directo de WhatsApp (https://wa.me/...)
+ * Construye el enlace oficial directo de WhatsApp (https://wa.me/...).
+ * Si no hay número, genera un enlace genérico que permite elegir el contacto al abrirlo.
  */
 export function buildWhatsappPayload(input: QrWhatsappPayloadInput): string {
-  const cleanPhone = input.phone.replace(/\D/g, '');
-  const phone = cleanPhone.length > 0 ? cleanPhone : '56987933282';
+  const phone = input.phone.replace(/\D/g, '');
   const cleanMessage = input.message.trim();
+  const query = cleanMessage ? `?text=${encodeURIComponent(cleanMessage)}` : '';
 
-  if (!cleanMessage) {
-    return `https://wa.me/${phone}`;
-  }
-
-  return `https://wa.me/${phone}?text=${encodeURIComponent(cleanMessage)}`;
+  return `https://wa.me/${phone}${query}`;
 }
 
 /**

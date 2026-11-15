@@ -23,7 +23,6 @@ export const CUSTOMERS: Customer[] = [
     location: 'Maule, Chile',
     socialMedia: {
       'chrome-color': 'https://www.gesmedic.cl',
-      'instagram-color': 'https://www.instagram.com/senderismolinares/',
     },
   },
   {
