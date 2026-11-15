@@ -39,9 +39,6 @@ import Modal from 'components/modals/Modal.astro';
       </div>
 
       <footer class="flex w-full flex-col items-center justify-center gap-6">
-        <!-- Widget de Turnstile -->
-        <div id="turnstile-widget" class="flex items-center justify-center"></div>
-
         <!-- Consentimiento explícito Ley 21.719 (sin premarcar) -->
         <label
           for="privacy-consent"
@@ -85,6 +82,9 @@ import Modal from 'components/modals/Modal.astro';
             para que SV Tech SpA responda mi consulta.
           </span>
         </label>
+
+        <!-- Widget de Turnstile -->
+        <div id="turnstile-widget" class="flex items-center justify-center"></div>
 
         <FormButton
           id="submit-btn"
