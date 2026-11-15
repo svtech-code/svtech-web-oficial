@@ -179,7 +179,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
     <a
       href="/herramientas/generador-qr"
       aria-label="Abrir herramienta gratuita: Generador de Códigos QR"
-      class="group relative flex h-[72px] w-[264px] items-center rounded-2xl transition duration-300 hover:scale-[1.03] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none lg:absolute lg:top-full lg:left-[calc(50%+104px)] lg:mt-8 lg:-rotate-6 lg:hover:rotate-0"
+      class="group relative flex h-[60px] w-[220px] items-center rounded-2xl transition duration-300 hover:scale-[1.03] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none lg:absolute lg:top-full lg:left-[calc(50%+104px)] lg:mt-8 lg:h-[84px] lg:w-[308px] lg:-rotate-6 lg:hover:rotate-0"
     >
       <!-- Contorno y fondo SVG único para muescas circulares con el mismo borde del ticket -->
       <svg
@@ -210,10 +210,10 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
         />
       </svg>
 
-      <!-- Talón izquierdo (64px): solo icono QR centrado -->
-      <div class="flex w-[64px] shrink-0 items-center justify-center">
+      <!-- Talón izquierdo (~24.24% del ancho): solo icono QR centrado -->
+      <div class="flex w-[54px] shrink-0 items-center justify-center lg:w-[75px]">
         <svg
-          class="size-10 text-primary transition-transform duration-300 group-hover:scale-110"
+          class="size-8 text-primary transition-transform duration-300 group-hover:scale-110 lg:size-11"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -238,22 +238,22 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
       </div>
 
       <!-- Cuerpo derecho: Título, "Gratis" en naranjo y chip de flecha SVG -->
-      <div class="flex flex-1 items-center justify-between pr-4 pl-3.5">
+      <div class="flex flex-1 items-center justify-between pr-3 pl-2.5 lg:pr-5 lg:pl-4">
         <div class="text-left">
-          <p class="text-sm leading-tight font-bold whitespace-nowrap text-secondary">
+          <p class="text-xs leading-tight font-bold whitespace-nowrap text-secondary lg:text-base">
             Generador de QR
           </p>
-          <p class="mt-0.5 text-xs font-bold tracking-wider text-tertiary uppercase">
+          <p class="mt-0.5 text-[11px] font-bold tracking-wider text-tertiary uppercase lg:text-xs">
             Gratis
           </p>
         </div>
 
         <span
           aria-hidden="true"
-          class="flex size-7 shrink-0 items-center justify-center rounded-full border border-primary/45 bg-primary/15 text-primary transition duration-300 group-hover:translate-x-0.5 group-hover:border-primary group-hover:bg-primary group-hover:text-gradient-secondary"
+          class="flex size-6 shrink-0 items-center justify-center rounded-full border border-primary/45 bg-primary/15 text-primary transition duration-300 group-hover:translate-x-0.5 group-hover:border-primary group-hover:bg-primary group-hover:text-gradient-secondary lg:size-8"
         >
           <svg
-            class="size-4"
+            class="size-3.5 lg:size-4"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
