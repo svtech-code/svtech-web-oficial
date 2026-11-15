@@ -9,6 +9,41 @@ const pageTitle = 'Política de Privacidad y Cookies | SV Tech';
 const pageDescription =
   'Conoce cómo SV Tech SpA trata tus datos personales, el uso de cookies bajo Consent Mode, el funcionamiento local de nuestras herramientas y cómo ejercer tus derechos ARCO+ en Chile.';
 const canonicalUrl = 'https://svtech.cl/privacidad';
+
+const privacySchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: 'es-CL',
+      isPartOf: {
+        '@id': 'https://svtech.cl/#website',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://svtech.cl',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Política de Privacidad',
+          item: canonicalUrl,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <Layout
@@ -17,6 +52,7 @@ const canonicalUrl = 'https://svtech.cl/privacidad';
   canonicalURL={canonicalUrl}
   showSmokeScreen={false}
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(privacySchema)} />
   <article
     class="relative flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-28 pb-20 md:pt-36 md:pb-28"
   >

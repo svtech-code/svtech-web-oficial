@@ -9,6 +9,41 @@ const pageTitle = 'Aviso Legal y Términos de Uso | SV Tech';
 const pageDescription =
   'Información legal del titular de svtech.cl (SV Tech SpA), propiedad intelectual y condiciones de uso del sitio web y herramientas gratuitas de comunidad.';
 const canonicalUrl = 'https://svtech.cl/aviso-legal';
+
+const legalSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: 'es-CL',
+      isPartOf: {
+        '@id': 'https://svtech.cl/#website',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Inicio',
+          item: 'https://svtech.cl',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Aviso Legal',
+          item: canonicalUrl,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <Layout
@@ -17,6 +52,7 @@ const canonicalUrl = 'https://svtech.cl/aviso-legal';
   canonicalURL={canonicalUrl}
   showSmokeScreen={false}
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(legalSchema)} />
   <article
     class="relative flex w-full max-w-[1200px] flex-col gap-10 px-4 pt-28 pb-20 md:pt-36 md:pb-28"
   >

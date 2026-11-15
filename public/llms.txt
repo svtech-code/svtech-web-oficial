@@ -54,6 +54,15 @@ nacional con soporte remoto y acompañamiento después de cada entrega.
 - [Migración de servicio de hosting](https://svtech.cl/proyectos/migracion-servicio-hosting): migración de infraestructura, correo corporativo y SSL sin caídas.
 - [Plantilla Google Sheets automatizada](https://svtech.cl/proyectos/plantilla-google-sheet-automatizada): automatización con Google Apps Script para el registro y control de ventas.
 
+## Herramientas Gratuitas (Comunidad)
+
+- [Generador de Códigos QR Estáticos](https://svtech.cl/herramientas/generador-qr): utilidad web 100% gratuita, privada (procesamiento local en navegador) y sin fecha de caducidad para crear códigos QR estáticos con logotipo propio (URL, WhatsApp, Wi-Fi y Contacto vCard) en formatos PNG y SVG vectorial.
+
 ## Blog
 
 - [Blog](https://svtech.cl/blog): guías prácticas de soporte, herramientas y automatización.
+
+## Información Legal
+
+- [Política de Privacidad y Cookies](https://svtech.cl/privacidad): tratamiento de datos personales (Ley 19.628 y Ley 21.719 de Chile), derechos ARCO+ y uso de cookies.
+- [Aviso Legal y Términos de Uso](https://svtech.cl/aviso-legal): condiciones generales de uso del sitio y herramientas comunitarias.

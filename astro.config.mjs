@@ -39,7 +39,7 @@ export default defineConfig({
         if (item.url === 'https://svtech.cl/' || item.url === 'https://svtech.cl') {
           item.changefreq = 'weekly';
           item.priority = 1.0;
-        } else if (item.url.includes('/servicios/')) {
+        } else if (item.url.includes('/servicios/') || item.url.includes('/herramientas/')) {
           item.changefreq = 'monthly';
           item.priority = 0.9;
         } else if (item.url.includes('/proyectos/')) {
@@ -51,6 +51,9 @@ export default defineConfig({
         } else if (item.url.includes('/blog/')) {
           item.changefreq = 'monthly';
           item.priority = 0.8;
+        } else if (item.url.endsWith('/privacidad') || item.url.endsWith('/aviso-legal')) {
+          item.changefreq = 'yearly';
+          item.priority = 0.3;
         }
         return item;
       },
