@@ -24,7 +24,7 @@ import { SERVICES_STATIC } from 'consts/services';
         aria-label="Barra de navegación del footer"
       >
         <div>
-          <h4>ENLACES</h4>
+          <h2>ENLACES</h2>
           <ul>
             <li><a href="/#inicio">Inicio</a></li>
             <li><a href="/#servicios">Servicios</a></li>
@@ -37,7 +37,7 @@ import { SERVICES_STATIC } from 'consts/services';
         </div>
 
         <div>
-          <h4>SERVICIOS</h4>
+          <h2>SERVICIOS</h2>
           <ul>
             {SERVICES_STATIC.map(({ title, slug }) => (
               <li>
@@ -48,7 +48,7 @@ import { SERVICES_STATIC } from 'consts/services';
         </div>
 
         <div>
-          <h4>HERRAMIENTAS</h4>
+          <h2>HERRAMIENTAS</h2>
           <ul>
             <li>
               <a href="/herramientas/generador-qr">Generador de Códigos QR</a>
@@ -57,7 +57,7 @@ import { SERVICES_STATIC } from 'consts/services';
         </div>
 
         <div>
-          <h4>CONTACTO</h4>
+          <h2>CONTACTO</h2>
           <ul>
             <li>
               <a href="https://wa.me/56987933282" target="_blank" rel="noopener noreferrer"
@@ -118,7 +118,7 @@ import { SERVICES_STATIC } from 'consts/services';
     text-align: center;
   }
 
-  h4 {
+  h2 {
     padding-bottom: 8px;
     color: var(--color-primary);
     font-size: 1.4rem;
@@ -178,7 +178,7 @@ import { SERVICES_STATIC } from 'consts/services';
       transform-origin: left;
     }
 
-    h4 {
+    h2 {
       font-size: 1rem;
     }
   }
