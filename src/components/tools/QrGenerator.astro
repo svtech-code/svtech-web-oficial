@@ -13,11 +13,11 @@ import Icon from 'components/ui/Icon.astro';
   >
     <!-- Panel Izquierdo: Configuración de Datos y Diseño (7 columnas en desktop) -->
     <div
-      class="flex flex-col gap-8 rounded-2xl border border-primary/40 bg-gradient-primary/80 p-5 shadow-lg shadow-primary/15 backdrop-blur-2xl sm:p-8 lg:col-span-7"
+      class="reveal-left flex flex-col gap-8 rounded-2xl border border-primary/40 bg-gradient-primary/85 p-5 shadow-sm shadow-primary/40 backdrop-blur-2xl sm:p-8 lg:col-span-7"
     >
       <!-- Paso 1: Selector de Tipo de Contenido -->
       <div class="space-y-4">
-        <h2 class="text-lg font-bold text-secondary uppercase sm:text-xl">
+        <h2 class="text-base font-bold tracking-wide text-primary uppercase sm:text-lg">
           1. Tipo de contenido a codificar
         </h2>
 
@@ -31,7 +31,7 @@ import Icon from 'components/ui/Icon.astro';
             role="tab"
             aria-selected="true"
             data-qr-tab="url"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary px-3 py-2.5 text-xs font-semibold text-gradient-secondary transition duration-300 hover:scale-[1.02] focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary px-3 py-2.5 text-xs font-semibold text-gradient-secondary transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-[1.02] focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
           >
             <svg
               class="size-4 shrink-0"
@@ -54,7 +54,7 @@ import Icon from 'components/ui/Icon.astro';
             role="tab"
             aria-selected="false"
             data-qr-tab="whatsapp"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition duration-300 hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
           >
             <svg
               class="size-4 shrink-0"
@@ -76,7 +76,7 @@ import Icon from 'components/ui/Icon.astro';
             role="tab"
             aria-selected="false"
             data-qr-tab="wifi"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition duration-300 hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
           >
             <svg
               class="size-4 shrink-0"
@@ -101,7 +101,7 @@ import Icon from 'components/ui/Icon.astro';
             role="tab"
             aria-selected="false"
             data-qr-tab="vcard"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition duration-300 hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-white/10 bg-gradient-primary/60 px-3 py-2.5 text-xs font-semibold text-secondary/80 transition-[transform,scale,border-color,background-color,color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
           >
             <svg
               class="size-4 shrink-0"
@@ -124,7 +124,7 @@ import Icon from 'components/ui/Icon.astro';
         </div>
 
         <!-- Panel URL / Redes Sociales -->
-        <div data-qr-panel="url" class="space-y-3 pt-2">
+        <div data-qr-panel="url" class="qr-panel-enter space-y-3 pt-2">
           <div>
             <label
               for="qr-url-input"
@@ -139,16 +139,16 @@ import Icon from 'components/ui/Icon.astro';
               value="https://svtech.cl"
               placeholder="https://tunegocio.cl/carta-digital"
               autocomplete="off"
-              class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
+              class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
             />
-            <p class="mt-1.5 text-xs text-secondary/75">
+            <p class="mt-1.5 text-xs leading-relaxed text-secondary/75 sm:text-sm">
               La dirección se graba directamente en los puntos del QR: sin acortadores ni redirecciones que caduquen.
             </p>
           </div>
         </div>
 
         <!-- Panel WhatsApp Directo -->
-        <div data-qr-panel="whatsapp" class="hidden space-y-4 pt-2">
+        <div data-qr-panel="whatsapp" class="qr-panel-enter hidden space-y-4 pt-2">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label
@@ -163,7 +163,7 @@ import Icon from 'components/ui/Icon.astro';
                 type="tel"
                 value="+56987933282"
                 placeholder="+56 9 8793 3282"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
 
@@ -180,17 +180,17 @@ import Icon from 'components/ui/Icon.astro';
                 type="text"
                 value="Hola, me gustaría cotizar un servicio"
                 placeholder="Ej: Hola, quiero hacer un pedido..."
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
           </div>
-          <p class="text-xs text-secondary/75">
+          <p class="text-xs leading-relaxed text-secondary/75 sm:text-sm">
             Genera un enlace oficial <code class="rounded bg-white/10 px-1.5 py-0.5 text-tertiary">wa.me</code> que abre el chat directo en el teléfono de tu cliente.
           </p>
         </div>
 
         <!-- Panel Red Wi-Fi -->
-        <div data-qr-panel="wifi" class="hidden space-y-4 pt-2">
+        <div data-qr-panel="wifi" class="qr-panel-enter hidden space-y-4 pt-2">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label
@@ -204,7 +204,7 @@ import Icon from 'components/ui/Icon.astro';
                 name="wifi_ssid"
                 type="text"
                 placeholder="Ej: WiFi_Clientes"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
 
@@ -221,7 +221,7 @@ import Icon from 'components/ui/Icon.astro';
                 type="text"
                 placeholder="Clave Wi-Fi (procesada solo en tu equipo)"
                 autocomplete="off"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
           </div>
@@ -237,7 +237,7 @@ import Icon from 'components/ui/Icon.astro';
               <select
                 id="qr-wifi-encryption"
                 name="wifi_encryption"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-gradient-secondary px-4 py-2 text-sm text-secondary focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:w-52"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-gradient-secondary px-4 py-2 text-sm text-secondary transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:w-52"
               >
                 <option value="WPA">WPA / WPA2 / WPA3</option>
                 <option value="WEP">WEP</option>
@@ -257,7 +257,7 @@ import Icon from 'components/ui/Icon.astro';
         </div>
 
         <!-- Panel Contacto vCard 3.0 -->
-        <div data-qr-panel="vcard" class="hidden space-y-4 pt-2">
+        <div data-qr-panel="vcard" class="qr-panel-enter hidden space-y-4 pt-2">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label for="qr-vcard-name" class="block text-sm font-medium text-secondary">
@@ -268,7 +268,7 @@ import Icon from 'components/ui/Icon.astro';
                 name="vcard_name"
                 type="text"
                 placeholder="Ej: Mario Sandoval"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
             <div>
@@ -280,7 +280,7 @@ import Icon from 'components/ui/Icon.astro';
                 name="vcard_org"
                 type="text"
                 placeholder="Ej: SV Tech SpA"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
             <div>
@@ -292,7 +292,7 @@ import Icon from 'components/ui/Icon.astro';
                 name="vcard_title"
                 type="text"
                 placeholder="Ej: Consultor TI & Desarrollo Web"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
             <div>
@@ -304,7 +304,7 @@ import Icon from 'components/ui/Icon.astro';
                 name="vcard_phone"
                 type="tel"
                 placeholder="+56 9 8793 3282"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
             <div>
@@ -316,7 +316,7 @@ import Icon from 'components/ui/Icon.astro';
                 name="vcard_email"
                 type="email"
                 placeholder="contacto@svtech.cl"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
             <div>
@@ -328,7 +328,7 @@ import Icon from 'components/ui/Icon.astro';
                 name="vcard_web"
                 type="url"
                 placeholder="https://svtech.cl"
-                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                class="mt-1.5 w-full rounded-lg border border-primary/60 bg-white/10 px-4 py-2.5 text-sm text-secondary placeholder:text-secondary/60 backdrop-blur-md transition duration-200 focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none sm:text-base"
               />
             </div>
           </div>
@@ -337,7 +337,7 @@ import Icon from 'components/ui/Icon.astro';
 
       <!-- Paso 2: Geometría y Colores de Marca -->
       <div class="space-y-5 border-t border-white/10 pt-6">
-        <h2 class="text-lg font-bold text-secondary uppercase sm:text-xl">
+        <h2 class="text-base font-bold tracking-wide text-primary uppercase sm:text-lg">
           2. Estilo geométrico y colores de marca
         </h2>
 
@@ -351,7 +351,7 @@ import Icon from 'components/ui/Icon.astro';
               type="button"
               data-qr-dot="rounded"
               aria-pressed="true"
-              class="cursor-pointer rounded-lg border border-primary bg-primary/20 px-3 py-2 text-xs font-semibold text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+              class="cursor-pointer rounded-lg border border-primary bg-primary/20 px-3 py-2 text-xs font-semibold text-secondary transition-[transform,border-color,background-color] duration-300 ease-out hover:scale-[1.02] focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
             >
               Redondeado
             </button>
@@ -359,7 +359,7 @@ import Icon from 'components/ui/Icon.astro';
               type="button"
               data-qr-dot="square"
               aria-pressed="false"
-              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition-[transform,border-color,background-color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
             >
               Clásico
             </button>
@@ -367,7 +367,7 @@ import Icon from 'components/ui/Icon.astro';
               type="button"
               data-qr-dot="dots"
               aria-pressed="false"
-              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition-[transform,border-color,background-color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
             >
               Circular
             </button>
@@ -375,7 +375,7 @@ import Icon from 'components/ui/Icon.astro';
               type="button"
               data-qr-dot="classy-rounded"
               aria-pressed="false"
-              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition-[transform,border-color,background-color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
             >
               Curvo Elegante
             </button>
@@ -392,7 +392,7 @@ import Icon from 'components/ui/Icon.astro';
               type="button"
               data-qr-corner="extra-rounded"
               aria-pressed="true"
-              class="cursor-pointer rounded-lg border border-primary bg-primary/20 px-3 py-2 text-xs font-semibold text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+              class="cursor-pointer rounded-lg border border-primary bg-primary/20 px-3 py-2 text-xs font-semibold text-secondary transition-[transform,border-color,background-color] duration-300 ease-out hover:scale-[1.02] focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
             >
               Suave
             </button>
@@ -400,7 +400,7 @@ import Icon from 'components/ui/Icon.astro';
               type="button"
               data-qr-corner="square"
               aria-pressed="false"
-              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition-[transform,border-color,background-color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
             >
               Recto
             </button>
@@ -408,7 +408,7 @@ import Icon from 'components/ui/Icon.astro';
               type="button"
               data-qr-corner="dot"
               aria-pressed="false"
-              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none"
+              class="cursor-pointer rounded-lg border border-white/10 bg-gradient-primary/50 px-3 py-2 text-xs font-semibold text-secondary/75 transition-[transform,border-color,background-color] duration-300 ease-out hover:scale-[1.02] hover:border-primary/50 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
             >
               Circular
             </button>
@@ -426,7 +426,7 @@ import Icon from 'components/ui/Icon.astro';
               data-qr-preset
               data-dots="#001217"
               data-bg="#ffffff"
-              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-secondary transition duration-300 hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <span class="size-3.5 rounded-full border border-white/40 bg-[#001217]"></span>
               <span>Abismo SV Tech</span>
@@ -436,7 +436,7 @@ import Icon from 'components/ui/Icon.astro';
               data-qr-preset
               data-dots="#000000"
               data-bg="#ffffff"
-              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-secondary transition duration-300 hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <span class="size-3.5 rounded-full border border-white/40 bg-black"></span>
               <span>Negro Puro</span>
@@ -446,7 +446,7 @@ import Icon from 'components/ui/Icon.astro';
               data-qr-preset
               data-dots="#005f75"
               data-bg="#ffffff"
-              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-secondary transition duration-300 hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <span class="size-3.5 rounded-full border border-white/40 bg-[#005f75]"></span>
               <span>Cian Corporativo</span>
@@ -456,7 +456,7 @@ import Icon from 'components/ui/Icon.astro';
               data-qr-preset
               data-dots="#1e293b"
               data-bg="#f8fafc"
-              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-gradient-primary/70 px-3 py-1.5 text-xs font-medium text-secondary transition hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
+              class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-secondary transition duration-300 hover:border-primary focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <span class="size-3.5 rounded-full border border-white/40 bg-[#1e293b]"></span>
               <span>Pizarra Mate</span>
@@ -464,11 +464,11 @@ import Icon from 'components/ui/Icon.astro';
           </div>
         </div>
 
-        <!-- Selectores de Color Hexadecimal -->
+        <!-- Selectores de Color Hexadecimal (Controles planos, sin aspecto de card anidada) -->
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <label
             for="qr-dots-color"
-            class="flex cursor-pointer items-center justify-between rounded-xl border border-white/15 bg-gradient-primary/60 px-4 py-3 transition hover:border-primary/60"
+            class="flex cursor-pointer items-center justify-between rounded-lg border border-primary/50 bg-white/10 px-3.5 py-2.5 backdrop-blur-md transition duration-200 hover:border-primary"
           >
             <div>
               <span class="block text-xs font-medium text-secondary/75">Color de puntos</span>
@@ -479,13 +479,13 @@ import Icon from 'components/ui/Icon.astro';
               type="color"
               value="#001217"
               aria-label="Seleccionar color de los puntos del QR"
-              class="size-9 cursor-pointer rounded-lg border border-white/20 bg-transparent"
+              class="size-8 cursor-pointer rounded-lg border border-white/20 bg-transparent"
             />
           </label>
 
           <label
             for="qr-bg-color"
-            class="flex cursor-pointer items-center justify-between rounded-xl border border-white/15 bg-gradient-primary/60 px-4 py-3 transition hover:border-primary/60"
+            class="flex cursor-pointer items-center justify-between rounded-lg border border-primary/50 bg-white/10 px-3.5 py-2.5 backdrop-blur-md transition duration-200 hover:border-primary"
           >
             <div>
               <span class="block text-xs font-medium text-secondary/75">Color de fondo</span>
@@ -496,17 +496,17 @@ import Icon from 'components/ui/Icon.astro';
               type="color"
               value="#ffffff"
               aria-label="Seleccionar color de fondo del QR"
-              class="size-9 cursor-pointer rounded-lg border border-white/20 bg-transparent"
+              class="size-8 cursor-pointer rounded-lg border border-white/20 bg-transparent"
             />
           </label>
         </div>
 
-        <!-- Alerta de Contraste Óptico WCAG -->
+        <!-- Alerta de Contraste Óptico WCAG (Callout inline limpio) -->
         <div
           id="qr-contrast-alert"
           role="status"
           aria-live="polite"
-          class="hidden flex-col items-start justify-between gap-3 rounded-xl border border-tertiary bg-gradient-secondary/90 p-4 sm:flex-row sm:items-center"
+          class="qr-panel-enter hidden flex-col items-start justify-between gap-3 rounded-lg border border-tertiary/50 bg-tertiary/10 px-4 py-3 sm:flex-row sm:items-center"
         >
           <div class="flex items-start gap-3">
             <svg
@@ -530,7 +530,7 @@ import Icon from 'components/ui/Icon.astro';
           <button
             id="qr-contrast-fix"
             type="button"
-            class="shrink-0 cursor-pointer rounded-lg border border-tertiary bg-tertiary/15 px-3 py-1.5 text-xs font-semibold text-tertiary transition hover:bg-tertiary/25 focus:ring-2 focus:ring-tertiary focus:outline-none"
+            class="shrink-0 cursor-pointer rounded-lg border border-tertiary bg-tertiary/15 px-3 py-1.5 text-xs font-semibold text-tertiary transition duration-200 hover:bg-tertiary/25 focus:ring-2 focus:ring-tertiary focus:outline-none"
           >
             Corregir contraste
           </button>
@@ -540,7 +540,7 @@ import Icon from 'components/ui/Icon.astro';
       <!-- Paso 3: Logotipo Central Local -->
       <div class="space-y-4 border-t border-white/10 pt-6">
         <div class="flex flex-wrap items-center justify-between gap-2">
-          <h2 class="text-lg font-bold text-secondary uppercase sm:text-xl">
+          <h2 class="text-base font-bold tracking-wide text-primary uppercase sm:text-lg">
             3. Logotipo central (opcional)
           </h2>
           <span class="rounded-lg border border-primary/40 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
@@ -551,7 +551,7 @@ import Icon from 'components/ui/Icon.astro';
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
           <label
             for="qr-logo-input"
-            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary/15 px-4 py-2.5 text-xs font-semibold text-secondary transition duration-300 hover:scale-[1.02] hover:bg-primary/25 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
+            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary/15 px-4 py-2.5 text-xs font-semibold text-secondary transition-[transform,background-color] duration-300 ease-out hover:scale-[1.02] hover:bg-primary/25 focus:ring-2 focus:ring-primary focus:outline-none sm:text-sm"
           >
             <svg
               class="size-4 text-primary"
@@ -579,38 +579,38 @@ import Icon from 'components/ui/Icon.astro';
           <button
             id="qr-logo-remove"
             type="button"
-            class="hidden cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-tertiary/60 bg-tertiary/10 px-3.5 py-2.5 text-xs font-semibold text-tertiary transition hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:outline-none"
+            class="hidden cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-tertiary/60 bg-tertiary/10 px-3.5 py-2.5 text-xs font-semibold text-tertiary transition duration-200 hover:bg-tertiary/20 focus:ring-2 focus:ring-tertiary focus:outline-none"
           >
             <span>Quitar logo</span>
           </button>
 
-          <span id="qr-logo-filename" class="truncate text-xs text-secondary/75">
+          <span id="qr-logo-filename" class="truncate text-xs text-secondary/75 sm:text-sm">
             Sin logotipo (opcional — PNG, SVG, WebP)
           </span>
         </div>
-        <p class="text-xs text-secondary/75">
+        <p class="text-xs leading-relaxed text-secondary/75 sm:text-sm">
           Tu logotipo nunca se sube a ningún servidor: se procesa localmente en la memoria de tu navegador.
         </p>
       </div>
     </div>
 
     <!-- Panel Derecho: Lienzo de Vista Previa y Exportación HD (5 columnas en desktop, sticky) -->
-    <div class="flex flex-col gap-6 lg:sticky lg:top-28 lg:col-span-5">
+    <div class="reveal-right reveal-delay-1 flex flex-col gap-6 lg:sticky lg:top-28 lg:col-span-5">
       <div
-        class="flex flex-col items-center rounded-2xl border border-primary/50 bg-gradient-primary/90 p-6 shadow-lg shadow-primary/20 backdrop-blur-2xl sm:p-8"
+        class="flex flex-col items-center rounded-2xl border border-primary/50 bg-gradient-primary/90 p-6 shadow-sm shadow-primary/40 backdrop-blur-2xl sm:p-8"
       >
-        <div class="mb-4 flex w-full items-center justify-between">
-          <span class="text-xs font-semibold tracking-wide text-secondary/80 uppercase">
+        <div class="mb-5 flex w-full items-center justify-between">
+          <span class="text-xs font-bold tracking-wider text-primary uppercase">
             Vista Previa Óptica
           </span>
-          <span class="rounded-lg border border-tertiary/40 bg-gradient-secondary px-2.5 py-1 text-xs font-semibold text-tertiary">
+          <span class="rounded-lg bg-tertiary/15 px-2.5 py-1 text-xs font-semibold text-tertiary">
             Sin caducidad · 1000×1000 px
           </span>
         </div>
 
         <!-- Contenedor fijo size-64 (256x256px) para CLS = 0.00 -->
         <div
-          class="relative flex size-64 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white p-3 shadow-lg shadow-primary/20"
+          class="relative flex size-64 items-center justify-center overflow-hidden rounded-xl bg-white p-3 shadow-md shadow-primary/20 transition-transform duration-300 ease-out hover:scale-[1.01]"
         >
           <div
             id="qr-preview-canvas"
@@ -620,25 +620,25 @@ import Icon from 'components/ui/Icon.astro';
           </div>
         </div>
 
-        <!-- Trama codificada en tiempo real -->
-        <div class="mt-4 w-full rounded-xl border border-white/10 bg-gradient-secondary/70 px-3.5 py-2.5 text-center">
+        <!-- Trama codificada en tiempo real (Separador limpio, sin card anidada) -->
+        <div class="mt-5 w-full border-t border-b border-white/10 py-3 text-center">
           <span class="block text-xs font-medium text-secondary/75">
             Datos grabados directamente en la matriz:
           </span>
           <code
             id="qr-payload-preview"
-            class="mt-0.5 block truncate text-xs font-semibold text-primary"
+            class="mt-1 block truncate text-xs font-semibold text-primary sm:text-sm"
           >
             https://svtech.cl
           </code>
         </div>
 
         <!-- Botones de Descarga Directa (PNG y SVG Vectorial) -->
-        <div class="mt-6 grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
+        <div class="mt-5 grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
           <button
             type="button"
             data-qr-download="png"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary px-4 py-3 text-sm font-bold text-gradient-secondary transition duration-300 hover:scale-[1.03] focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-primary px-4 py-3 text-sm font-bold text-gradient-secondary transition-[transform,scale,box-shadow] duration-300 ease-out hover:scale-[1.03] hover:shadow-md hover:shadow-primary/40 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
           >
             <Icon name="download" class="size-4" aria-hidden="true" />
             <span>Descargar PNG</span>
@@ -647,45 +647,45 @@ import Icon from 'components/ui/Icon.astro';
           <button
             type="button"
             data-qr-download="svg"
-            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-transparent px-4 py-3 text-sm font-bold text-secondary transition duration-300 hover:scale-[1.03] hover:bg-primary/15 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
+            class="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-primary bg-transparent px-4 py-3 text-sm font-bold text-secondary transition-[transform,scale,background-color] duration-300 ease-out hover:scale-[1.03] hover:bg-primary/15 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
           >
             <Icon name="download" class="size-4 text-primary" aria-hidden="true" />
             <span>Vectorial SVG</span>
           </button>
         </div>
 
-        <p class="mt-3 text-center text-xs text-secondary/75">
+        <p class="mt-3 text-center text-xs leading-relaxed text-secondary/75">
           <strong>PNG</strong> para redes y documentos digitales · <strong>SVG</strong> para imprenta, pendones y papelería sin perder nitidez.
         </p>
 
-        <!-- Micro-conversión contextual tras descargar -->
+        <!-- Micro-conversión contextual tras descargar (inline limpio, sin card anidada) -->
         <div
           id="qr-download-feedback"
           role="region"
           aria-live="polite"
-          class="mt-5 hidden w-full flex-col gap-2.5 rounded-xl border border-tertiary/60 bg-gradient-secondary p-4 text-left shadow-sm shadow-tertiary/30"
+          class="qr-panel-enter mt-5 hidden w-full flex-col gap-2 border-t border-tertiary/40 pt-4 text-left"
         >
-          <p class="text-xs font-bold text-tertiary">
+          <p class="text-xs font-bold text-tertiary sm:text-sm">
             ¡Tu código QR perpetuo ya está descargado!
           </p>
-          <p class="text-xs leading-relaxed text-secondary/90">
+          <p class="text-xs leading-relaxed text-secondary/85 sm:text-sm">
             ¿El enlace al que apunta tu QR está a la altura de tu negocio? Diseñamos páginas web rápidas, catálogos digitales y sistemas a medida en todo Chile.
           </p>
           <a
             href="https://wa.me/56987933282?text=Hola%20SV%20Tech,%20acabo%20de%20crear%20mi%20c%C3%B3digo%20QR%20y%20me%20gustar%C3%ADa%20cotizar%20una%20p%C3%A1gina%20web%20o%20sistema%20para%20mi%20negocio."
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-1 inline-flex items-center gap-2 text-xs font-bold text-primary underline decoration-primary/60 underline-offset-4 transition hover:text-tertiary"
+            class="mt-1 inline-flex items-center gap-1.5 text-xs font-bold text-primary underline decoration-primary/60 underline-offset-4 transition duration-200 hover:text-tertiary sm:text-sm"
           >
             <span>Cotizar mi web o sistema por WhatsApp →</span>
           </a>
         </div>
       </div>
 
-      <!-- Bloque de Conversión Contextual B2B Permanente -->
+      <!-- Bloque de Conversión Contextual B2B -->
       <aside
         aria-label="Asesoría en desarrollo web y sistemas a medida"
-        class="rounded-2xl border border-tertiary/50 bg-gradient-primary/85 p-6 shadow-sm shadow-tertiary/40 backdrop-blur-xl"
+        class="rounded-2xl border border-tertiary/50 bg-gradient-primary/85 p-6 shadow-sm shadow-tertiary/40 backdrop-blur-xl transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-tertiary hover:shadow-lg hover:shadow-tertiary/25"
       >
         <h3 class="text-base font-bold text-secondary sm:text-lg">
           ¿Ya tienes tu QR pero aún no cuentas con una página web profesional?
@@ -711,6 +711,23 @@ import Icon from 'components/ui/Icon.astro';
     </div>
   </form>
 </section>
+
+<style>
+  @keyframes qrFadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .qr-panel-enter {
+    animation: qrFadeSlide 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+</style>
 
 <script>
   import {

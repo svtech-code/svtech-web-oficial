@@ -6,25 +6,25 @@ import { QR_FAQ_ITEMS } from 'consts/qrFaq';
   aria-labelledby="qr-faq-heading"
   class="flex w-full flex-col gap-8 border-t border-white/10 pt-16"
 >
-  <div class="max-w-3xl space-y-3">
+  <div class="reveal max-w-3xl space-y-3">
     <h2
       id="qr-faq-heading"
       class="text-2xl leading-tight font-bold text-secondary uppercase sm:text-3xl"
     >
       Preguntas frecuentes sobre códigos QR para negocios
     </h2>
-    <p class="text-sm leading-relaxed text-secondary/80 sm:text-base">
+    <p class="text-sm leading-relaxed font-medium text-secondary/80 sm:text-base">
       Resolvemos las dudas técnicas más habituales antes de enviar tu código QR a imprenta o compartirlo con tus clientes.
     </p>
   </div>
 
-  <div class="divide-y divide-white/10 rounded-2xl border border-primary/40 bg-gradient-primary/80 px-6 py-2 shadow-lg shadow-primary/15 backdrop-blur-xl sm:px-8">
+  <div class="reveal-card reveal-delay-1 divide-y divide-white/10 rounded-2xl border border-primary/40 bg-gradient-primary/80 px-6 py-2 shadow-sm shadow-primary/40 backdrop-blur-xl sm:px-8">
     {
       QR_FAQ_ITEMS.map((item, idx) => (
-        <details class="group py-5" open={idx === 0}>
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-sm font-bold text-secondary transition-colors duration-200 hover:text-primary focus:outline-none sm:text-base [&::-webkit-details-marker]:hidden">
+        <details class="group py-5" data-faq-item open={idx === 0}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-sm font-bold text-secondary transition-colors duration-300 hover:text-primary focus:outline-none sm:text-base [&::-webkit-details-marker]:hidden">
             <span>{item.question}</span>
-            <span class="flex size-7 shrink-0 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary transition-transform duration-300 group-open:rotate-180">
+            <span class="flex size-7 shrink-0 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary transition-transform duration-300 ease-out group-open:rotate-180">
               <svg
                 class="size-4"
                 viewBox="0 0 24 24"
@@ -39,11 +39,78 @@ import { QR_FAQ_ITEMS } from 'consts/qrFaq';
               </svg>
             </span>
           </summary>
-          <p class="mt-3 max-w-[72ch] text-xs leading-relaxed text-secondary/85 sm:text-sm">
-            {item.answer}
-          </p>
+          <div data-faq-content class="overflow-hidden">
+            <p class="pt-3 max-w-[72ch] text-xs leading-relaxed text-secondary/85 sm:text-sm">
+              {item.answer}
+            </p>
+          </div>
         </details>
       ))
     }
   </div>
 </section>
+
+<script>
+  function initFaqAccordions() {
+    const items = document.querySelectorAll<HTMLDetailsElement>('[data-faq-item]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    items.forEach((details) => {
+      if (details.dataset.faqBound === 'true') return;
+      details.dataset.faqBound = 'true';
+
+      const summary = details.querySelector('summary');
+      const content = details.querySelector<HTMLElement>('[data-faq-content]');
+      if (!summary || !content) return;
+
+      let activeAnimation: Animation | null = null;
+
+      summary.addEventListener('click', (event) => {
+        if (prefersReducedMotion) return;
+
+        event.preventDefault();
+        if (activeAnimation) {
+          activeAnimation.cancel();
+        }
+
+        if (details.open) {
+          const startHeight = content.offsetHeight;
+          activeAnimation = content.animate(
+            [
+              { height: `${startHeight}px`, opacity: 1 },
+              { height: '0px', opacity: 0 },
+            ],
+            {
+              duration: 260,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            },
+          );
+          activeAnimation.onfinish = () => {
+            details.open = false;
+            content.style.height = '';
+            activeAnimation = null;
+          };
+        } else {
+          details.open = true;
+          const targetHeight = content.scrollHeight;
+          activeAnimation = content.animate(
+            [
+              { height: '0px', opacity: 0 },
+              { height: `${targetHeight}px`, opacity: 1 },
+            ],
+            {
+              duration: 300,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            },
+          );
+          activeAnimation.onfinish = () => {
+            content.style.height = '';
+            activeAnimation = null;
+          };
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initFaqAccordions);
+</script>
