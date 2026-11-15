@@ -4,7 +4,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
 
 <section
   id="inicio"
-  class="relative flex min-h-screen w-full max-w-[1200px] flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-12 sm:pt-28 lg:pt-32"
+  class="relative flex min-h-screen w-full max-w-[1200px] flex-col items-center justify-center overflow-x-clip px-4 pt-24 pb-12 sm:pt-28 lg:pt-32 lg:pb-40"
 >
   <!-- Figura vectorial de fondo: Sonar / Retícula Abisal ("Deepwater Control Room") -->
   <div
@@ -69,14 +69,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
       />
 
       <!-- Anillos concéntricos de sonar -->
-      <circle
-        cx="400"
-        cy="400"
-        r="130"
-        stroke="#0096b8"
-        stroke-opacity="0.2"
-        stroke-width="1"
-      />
+      <circle cx="400" cy="400" r="130" stroke="#0096b8" stroke-opacity="0.2" stroke-width="1" />
       <circle
         cx="400"
         cy="400"
@@ -86,14 +79,7 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
         stroke-width="1"
         stroke-dasharray="10 6"
       />
-      <circle
-        cx="400"
-        cy="400"
-        r="310"
-        stroke="#0096b8"
-        stroke-opacity="0.12"
-        stroke-width="1"
-      />
+      <circle cx="400" cy="400" r="310" stroke="#0096b8" stroke-opacity="0.12" stroke-width="1" />
       <circle
         cx="400"
         cy="400"
@@ -131,24 +117,18 @@ import SocialNetworkIcons from 'components/ui/SocialNetworkIcons.astro';
   </div>
 
   <header class="reveal flex flex-col items-center justify-center gap-2 md:gap-3">
-    <mark
-      class="bg-transparent text-xs text-tertiary duration-300 sm:text-base md:text-lg lg:text-xl"
-    >
+    <mark class="bg-transparent text-xs text-tertiary duration-300 sm:text-base md:text-lg lg:text-xl">
       Transformamos ideas en resultados para tu negocio
     </mark>
 
-    <h1
-      class="text-center text-3xl font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl lg:text-6xl"
-    >
+    <h1 class="text-center text-3xl font-bold text-secondary uppercase duration-300 sm:text-4xl md:text-5xl lg:text-6xl">
       Soporte Informático
       <span class="block text-primary">Desarrollo Web</span>
     </h1>
   </header>
 
   <div class="reveal reveal-delay-1 flex w-full flex-col items-center justify-center">
-    <p
-      class="w-[90%] py-4 text-center text-sm font-medium text-secondary duration-300 sm:py-5 sm:text-base md:w-[80%] md:text-lg lg:max-w-3xl lg:text-xl"
-    >
+    <p class="w-[90%] py-4 text-center text-sm font-medium text-secondary duration-300 sm:py-5 sm:text-base md:w-[80%] md:text-lg lg:max-w-3xl lg:text-xl">
       Tecnología simple y confiable para que tu negocio siga operando sin interrupciones. Te
       acompañamos de forma presencial en el Maule y remota en todo Chile.
     </p>
